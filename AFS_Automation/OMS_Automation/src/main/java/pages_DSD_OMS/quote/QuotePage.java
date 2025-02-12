@@ -108,13 +108,16 @@ public class QuotePage
         new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'calendar-monthview')]"))));
         new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'calendar-monthview')]")));
 
-        OrderEntryPage oepa=new OrderEntryPage(driver,scenario);
+            OrderEntryPage oepa=new OrderEntryPage(driver,scenario);
             String deliverydate=oepa.Read_DeliveryDate2();
             DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("EEE, MMM d, yyyy");
             DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
 
             try
             {
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'calendar-monthview')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'calendar-monthview')]")));
+
                 LocalDate myDateObj = LocalDate.parse(deliverydate,inputFormat);
                 String formattedDate1 = myDateObj.format(outputFormat);
 

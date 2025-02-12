@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Test execution report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Feb 10, 2025 11:12:34 AM</span></a>
+<a href="#"><span class="badge badge-primary">Feb 11, 2025 10:18:23 PM</span></a>
 </li>
 </ul>
 </div>
@@ -45,6 +45,11 @@
 <li class="nav-item dropdown" onclick="toggleView('test-view')">
 <a id="nav-test" class="dropdown-toggle" href="#">
 <span class="ico"><i class="fa fa-list"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('exception-view')">
+<a id="nav-exception" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-bug"></i></span>
 </a>
 </li>
 <li class="nav-item dropdown" onclick="toggleView('category-view')">
@@ -71,7 +76,7 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
+<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
 </ul>
@@ -79,2977 +84,345 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
 <ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" href="#">@CancelWhileEditing</a><a class="dropdown-item" href="#">@BogoItemsInQuoteToOrder</a><a class="dropdown-item" href="#">@SkipQuoteFromOE</a><a class="dropdown-item" href="#">@BogoItemsInQuote</a><a class="dropdown-item" href="#">@QuickProdQuote</a><a class="dropdown-item" href="#">@ConvertQuoteToOrder</a><a class="dropdown-item" href="#">@CreateCopyQuote</a><a class="dropdown-item" href="#">@BogoItemsInQuoteToOrderDuplicateProducts</a><a class="dropdown-item" href="#">@QuoteFromCatalog</a><a class="dropdown-item" href="#">@EditQuoteOG</a><a class="dropdown-item" href="#">@QuoteFromOG</a><a class="dropdown-item" href="#">@CancelQuoteCreation</a><a class="dropdown-item" href="#">@EditQuote</a><a class="dropdown-item" href="#">@SkipQuoteInNewOE</a><a class="dropdown-item" href="#">@CommentInQuote</a><a class="dropdown-item" href="#">@PrintQuote</a><a class="dropdown-item" href="#">@ConvertQuoteToOG</a><a class="dropdown-item" href="#">@DeleteCancel</a><a class="dropdown-item" href="#">@CancelQuoteInSummarypage</a><a class="dropdown-item" href="#">@DeleteProductQuote</a><a class="dropdown-item" href="#">@NavigateQuoteSummay</a>
+<a class="dropdown-item" href="#">@ImportOrder</a><a class="dropdown-item" href="#">@ExportOrder</a>
 </ul>
 </li>
 </ul>
 </div>    <div class="test-list-wrapper scrollable">
       <ul class="test-list-item">
-        <li class="test-item"  status="pass" test-id="1"
+        <li class="test-item"  status="fail" test-id="1"
           author=""
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Quotes</p>
+            <p class="name">Order Entry5</p>
             <p class="text-sm">
-              <span>11:12:59 AM</span> / <span>00:22:01:757</span>
-              <span class="badge pass-bg log float-right">Pass</span>
+              <span>10:20:30 PM</span> / <span>00:00:48:746</span>
+              <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Quotes</h5>
-<span class='badge badge-success'>02.10.2025 11:12:59 AM</span>
-<span class='badge badge-danger'>02.10.2025 11:35:01 AM</span>
-<span class='badge badge-default'>00:22:01:757</span>
+<h5 class="test-status text-fail">Order Entry5</h5>
+<span class='badge badge-success'>02.11.2025 10:20:30 PM</span>
+<span class='badge badge-danger'>02.11.2025 10:21:19 PM</span>
+<span class='badge badge-default'>00:00:48:746</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
-<div class="m-t-10 m-l-5"> Used for cration of Quotes and test different functionality</div>
+<div class="m-t-10 m-l-5"> Used for cration of New order in different ways
+Used for canceling order, editing of order, skipping of order</div>
 </div>
 </div>
 <div class="accordion mt-4">
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for creating Quotes</div>
+        <div class="node" id="2"><span class="badge log fail-bg mr-2">Fail</span>Create an order Open that order and export the order</div>
       </div>
     </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="3"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for creating Quotes</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>SIGNIN BUTTON CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>USER ICON FOUND
-      </div>
-      <div>IN ADMIN PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d
-      </div>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 00000006
-      </div>
-      <div>UNIT ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004757
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="105"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for canceling of Quote after creation</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="106"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for canceling of Quote after creation</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 00000006
-      </div>
-      <div>UNIT ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004758
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Quote in Order Entry grid</span>
-      <div>QUOTE HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User should be navigated to Quote summary page and click on cancel button</span>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>CANCEL BUTTON TO CANCEL QUOTE
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="210"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for canceling of Quote while creating</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="211"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for canceling of Quote while creating</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 00000006
-      </div>
-      <div>UNIT ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on Cancel button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>QUOTES CREATION HAS BEEN CANCELLED
-      </div>
-      <div>QUOTE HAS BEEN CANCELED
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="311"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for creating Quote using catalog</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="312"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for creating Quote using catalog</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on Plus symbol in new Quote page and selects Catalog option from drop down</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>CATALOG OPTION HAS BEEN SELECTED FROM ADD PRODUCTS DROP DOWN
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User adds some products from catalog</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>CATALOG DIALOG HAS BEEN FOUND
-      </div>
-      <div>CASES ENTERED IN CATALOG 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004759
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="415"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for creating quote using OG</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="416"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for creating quote using OG</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on Plus symbol in new Quote page and selects OG option from drop down</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>OG OPTION HAS BEEN SELECTED FROM ADD PRODUCTS DROP DOWN
-      </div>
-      <div>FIRST OG HAS BEEN SELECTED FROM POPUP
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters some Qty to product in Product grid</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>CASE ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004760
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="519"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for converting Quote to Order</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="520"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for converting Quote to Order</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 00000006
-      </div>
-      <div>UNIT ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004761
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Quote in Order Entry grid</span>
-      <div>QUOTE HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User should be navigated to Quote summary page and click on Convert Order button</span>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE CONVERT TO ORDER BUTTON CLICKED
-      </div>
-      <div>NEW ORDER ENTRY PAGE HAS BEEN FOUND
-      </div>
-      <div>This product is currently unavailable.
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter PO# for New order</span>
-      <div><table class='markup-table table '><tr><td>PO123</td></tr></table>
-      </div>
-      <div>NEW ORDER ENTRY PAGE HAS BEEN FOUND
-      </div>
-      <div>PO# ENTERED IS PO123
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And Enter Qty for the products in Product grid</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>2</td></tr></table>
-      </div>
-      <div>QTY ENTERED IN UNIT INPUTBOX 2
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on Next button</span>
-      <div>PRODUCT FOUND IN ORDER ARE 
-      </div>
-      <div>6
-      </div>
-      <div>NEXT BUTTON CLICKED
-      </div>
-      <div>FREQUENTLY ORDERED ITEMS POPUP HAS BEEN HANDLED
-      </div>
-      <div>CRITICAL ITEMS DIALOG BOX FOUND
-      </div>
-      <div>ORDER NUMBER CREATED IS 3717774
-      </div>
-      <div>PAYMENT METHOD HAS BEEN SELECTED
-      </div>
-      <div>FIRST PAYMENT OPTION HAS BEEN SELECTED
-      </div>
-      <div>CLICKED ON NEXT BUTTON
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And Click on SubmitOrder button</span>
-      <div>ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED
-      </div>
-      <div>ORDER HAS BEEN SUCESSFULLY CREATED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should be navigated to Order Entry page</span>
-      <div>ORDER ENTRY PAGE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="629"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for converting Quote to OG</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="630"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for converting Quote to OG</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 00000006
-      </div>
-      <div>UNIT ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004762
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Quote in Order Entry grid</span>
-      <div>QUOTE HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User should be navigated to Quote summary page and click on Convert OG button</span>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>CONVERT QUOTE AS ORDER GUIDE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Description "QToOG" Start date 8 and End date 9 day from current date for Quote to OG</span>
-      <div>Tuesday, February 18, 2025 HAS BEEN SELECTED AS START DATE FOR OG
-      </div>
-      <div>Wednesday, February 19, 2025 HAS BEEN SELECTED AS END DATE FOR OG
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User click on Save button to convert Quote as OG</span>
-      <div>OG HAS BEEN SAVED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User should navigate back to OG page and verify OG "QToOG"  existence</span>
-      <div>NAVIGATED TO ORDER GUIDE
-      </div>
-      <div>USER IS ON ORDER GUIDE PAGE
-      </div>
-      <div>ORDER GUIDE ENTERED IN SEARCH BOX IS QToOG
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And Clear filter to display both active and inactive OG</span>
-      <div>NAVIGATED TO ORDER GUIDE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters OG Description "QToOG" in search box and Delete the OG verify same in OG grid</span>
-      <div>NAVIGATED TO ORDER GUIDE
-      </div>
-      <div>ORDER GUIDE ENTERED IN SEARCH BOX IS QToOG
-      </div>
-      <div>OG DELETE BUTTON HAS BEEN CLICKED
-      </div>
-      <div>OG DELETE HAS BEEN CLEARED
-      </div>
-      <div>NAVIGATED TO ORDER GUIDE
-      </div>
-      <div>ORDER GUIDE DOESNOT EXISTS
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should navigated to Order Entry page from OG page</span>
-      <div>NAVIGATED BACK TO ORDER ENTRY
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="740"><span class="badge log pass-bg mr-2">Pass</span>Test scenario to create copy of Quote</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="741"><span class="badge log pass-bg mr-2">Pass</span>Test scenario to create copy of Quote</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 00000006
-      </div>
-      <div>UNIT ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User click on Copy button in summary page and enter Quote name "Quote111" and Click on Create button</span>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE COPY BUTTON HAS BEEN CLICKED
-      </div>
-      <div>QUOTE NAME IS Quote111
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004764
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="844"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for printing details of quote</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="845"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for printing details of quote</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 00000006
-      </div>
-      <div>UNIT ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Print button</span>
-      <div>.pdf HAS BEEN FOUND
-      </div>
-      <div>PRINT BUTTON HAS BEEN HANDLED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004765
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-</div>
-          </div>
-        </li>
-        <li class="test-item"  status="pass" test-id="948"
-          author=""
-          tag=""
-          device="">
-          <div class="test-detail">
-            <p class="name">Quotes1</p>
-            <p class="text-sm">
-              <span>11:35:01 AM</span> / <span>00:28:52:986</span>
-              <span class="badge pass-bg log float-right">Pass</span>
-            </p>
-          </div>
-          <div class="test-contents d-none">
-<div class="detail-head">
-<div class="p-v-10">
-<div class="info">
-<h5 class="test-status text-pass">Quotes1</h5>
-<span class='badge badge-success'>02.10.2025 11:35:01 AM</span>
-<span class='badge badge-danger'>02.10.2025 12:03:54 PM</span>
-<span class='badge badge-default'>00:28:52:986</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=948</span>
-<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
-<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
-</div>
-<div class="m-t-10 m-l-5"> Used for cration of Quotes and test different functionality</div>
-</div>
-</div>
-<div class="accordion mt-4">
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="949"><span class="badge log pass-bg mr-2">Pass</span>Test scenario to create Quote with multiple products and delete one of the product from quote</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="950"><span class="badge log pass-bg mr-2">Pass</span>Test scenario to create Quote with multiple products and delete one of the product from quote</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter multiple Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr><tr><td>2</td><td>1</td></tr><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT ENTRY IS: 00000001
-      </div>
-      <div>UNIT ENTERED IS: 1
-      </div>
-      <div>CASES ENTERED IS: 1
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT ENTRY IS: 00000002
-      </div>
-      <div>UNIT ENTERED IS: 2
-      </div>
-      <div>CASES ENTERED IS: 1
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT ENTRY IS: 00000003
-      </div>
-      <div>UNIT ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User selects one product from product grid and click on delete button</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004766
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="1,053"><span class="badge log pass-bg mr-2">Pass</span>Test scenario to edit Quote by adding Product from Quick product entry</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="1,054"><span class="badge log pass-bg mr-2">Pass</span>Test scenario to edit Quote by adding Product from Quick product entry</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 00000006
-      </div>
-      <div>UNIT ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004767
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Quote in Order Entry grid</span>
-      <div>QUOTE HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User should be navigated to Quote summary page and click on Edit button</span>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE EDIT BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should navigate to new Quotes page add product# in Quick product entry</span>
-      <div><table class='markup-table table '><tr><td>2</td><td>1</td></tr></table>
-      </div>
-      <div>SECOND PRODUCT ENTERED IN QUICK ENTRY IS: 00000008
-      </div>
-      <div>UNIT ENTERED IS: 2
-      </div>
-      <div>CASE ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004767
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="1,162"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for editing quote by adding OG to quote</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="1,163"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for editing quote by adding OG to quote</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>2</td><td>2</td></tr></table>
-      </div>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 00000006
-      </div>
-      <div>UNIT ENTERED IS: 2
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004768
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Quote in Order Entry grid</span>
-      <div>QUOTE HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User should be navigated to Quote summary page and click on Edit button</span>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE EDIT BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should navigate to new Quotes page Click on Add product and select OG "SampleOG"</span>
-      <div><table class='markup-table table '><tr><td>2</td><td>1</td></tr></table>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004768
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="1,271"><span class="badge log pass-bg mr-2">Pass</span>test scenario for cancelling quote at the time of edit quote</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="1,272"><span class="badge log pass-bg mr-2">Pass</span>test scenario for cancelling quote at the time of edit quote</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 00000006
-      </div>
-      <div>UNIT ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004769
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Quote in Order Entry grid</span>
-      <div>QUOTE HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User should be navigated to Quote summary page and click on Edit button</span>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE EDIT BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should navigate to new Quotes page add product# in Quick product entry</span>
-      <div><table class='markup-table table '><tr><td>20</td><td>15</td></tr></table>
-      </div>
-      <div>SECOND PRODUCT ENTERED IN QUICK ENTRY IS: 00000008
-      </div>
-      <div>UNIT ENTERED IS: 20
-      </div>
-      <div>CASE ENTERED IS: 15
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on Cancel button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>QUOTES CREATION HAS BEEN CANCELLED
-      </div>
-      <div>QUOTE HAS BEEN CANCELED
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="1,378"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for adding comment to quote</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="1,379"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for adding comment to quote</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 00000006
-      </div>
-      <div>UNIT ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Comment Icon in Quote page and select Internal comment flag</span>
-      <div><table class='markup-table table '><tr><td>Adding Comment in Quote</td></tr></table>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004770
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="1,482"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for navigating from OE page to Quote summary page</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="1,483"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for navigating from OE page to Quote summary page</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 00000006
-      </div>
-      <div>UNIT ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004771
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Quote in Order Entry grid</span>
-      <div>QUOTE HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User should be navigated to Quote summary page</span>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="1,587"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for deleting or canceling Quote</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="1,588"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for deleting or canceling Quote</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 00000006
-      </div>
-      <div>UNIT ENTERED IS: 1
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004772
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Quote in Order Entry grid</span>
-      <div>QUOTE HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User should be navigated to Quote summary page and click on cancel button</span>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>CANCEL BUTTON TO CANCEL QUOTE
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="1,692"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for adding bogo item to quote and verify the behaviour</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="1,693"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for adding bogo item to quote and verify the behaviour</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter BOGO Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>5</td><td>5</td></tr></table>
-      </div>
-      <div>BOGO PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 59626700
-      </div>
-      <div>UNIT ENTERED IS: 5
-      </div>
-      <div>CASE ENTERED IS: 5
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User verifies the products added to Quote</span>
-      <div>PRODUCTS FOUND IN QUOTES
-      </div>
-      <div>59626700
-      </div>
-      <div>59627170
-      </div>
-      <div>BOGO PRODUCT FOUND IN QUOTE IS 59627170
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004773
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="1,796"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for adding BOGO item to quote and create Order for that Quote</div>
-      </div>
-    </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="1,797"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for adding BOGO item to quote and create Order for that Quote</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter BOGO Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>5</td><td>5</td></tr></table>
-      </div>
-      <div>BOGO PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 59626700
-      </div>
-      <div>UNIT ENTERED IS: 5
-      </div>
-      <div>CASE ENTERED IS: 5
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User verifies the products added to Quote</span>
-      <div>PRODUCTS FOUND IN QUOTES
-      </div>
-      <div>59626700
-      </div>
-      <div>59627170
-      </div>
-      <div>BOGO PRODUCT FOUND IN QUOTE IS 59627170
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004774
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Quote in Order Entry grid</span>
-      <div>QUOTE HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User should be navigated to Quote summary page and click on Convert Order button</span>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE CONVERT TO ORDER BUTTON CLICKED
-      </div>
-      <div>NEW ORDER ENTRY PAGE HAS BEEN FOUND
-      </div>
-      <div>This product is currently unavailable.
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter PO# for New order for Quote to Order</span>
-      <div><table class='markup-table table '><tr><td>PO123</td></tr></table>
-      </div>
-      <div>NEW ORDER ENTRY PAGE HAS BEEN FOUND
-      </div>
-      <div>PO# ENTERED IS PO123
-      </div>
-      <div>PRODUCT FOUND IN ORDER ARE 
-      </div>
-      <div>59626700
-      </div>
-      <div>59627170
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on Next button</span>
-      <div>PRODUCT FOUND IN ORDER ARE 
-      </div>
-      <div>59626700
-      </div>
-      <div>59627170
-      </div>
-      <div>NEXT BUTTON CLICKED
-      </div>
-      <div>FREQUENTLY ORDERED ITEMS POPUP HAS BEEN HANDLED
-      </div>
-      <div>CRITICAL ITEMS DIALOG BOX FOUND
-      </div>
-      <div>% OF YOUR AVERAGE ORDER POPUP HAS BEEN HANDLED
-      </div>
-      <div>ORDER NUMBER CREATED IS 3717775
-      </div>
-      <div>PAYMENT METHOD HAS BEEN SELECTED
-      </div>
-      <div>FIRST PAYMENT OPTION HAS BEEN SELECTED
-      </div>
-      <div>CLICKED ON NEXT BUTTON
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And Click on SubmitOrder button</span>
-      <div>ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED
-      </div>
-      <div>ORDER HAS BEEN SUCESSFULLY CREATED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should be navigated to Order Entry page</span>
-      <div>ORDER ENTRY PAGE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="1,906"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for adding BOGO item to quote and create Order for that Quote</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User clicks on drop down next to Start order button and select Quote option</span>
-      <div>QUOTE OPTION HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User enters Quote name "Quote123" and Quote End date click on OK button</span>
-      <div>QUOTE NAME IS Quote123
-      </div>
-      <div>END DATE FOR QUOTE IS : Thursday, February 13, 2025
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should select Note from popup and Order guide from popup for quote</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter BOGO Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit</span>
-      <div><table class='markup-table table '><tr><td>5</td><td>5</td></tr></table>
-      </div>
-      <div>BOGO PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: 59626700
-      </div>
-      <div>UNIT ENTERED IS: 5
-      </div>
-      <div>CASE ENTERED IS: 5
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User verifies the products added to Quote</span>
-      <div>PRODUCTS FOUND IN QUOTES
-      </div>
-      <div>59626700
-      </div>
-      <div>59627170
-      </div>
-      <div>BOGO PRODUCT FOUND IN QUOTE IS 59627170
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on create button in New Quote page</span>
-      <div>NAVIGATED TO QUOTES PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on Back to orderlist button from Quote summary page and Read order number</span>
-      <div>QUOTE IS CRATED, QUOTE # IS Q000004775
-      </div>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE BACK BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Verify User is on Order Entry Page and verify Quote is existing</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>ORDER/QUOTE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Quote in Order Entry grid</span>
-      <div>QUOTE HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User should be navigated to Quote summary page and click on Convert Order button</span>
-      <div>QUOTE SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>QUOTE CONVERT TO ORDER BUTTON CLICKED
-      </div>
-      <div>NEW ORDER ENTRY PAGE HAS BEEN FOUND
-      </div>
-      <div>This product is currently unavailable.
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Enter PO# for New order for Quote to Order</span>
-      <div><table class='markup-table table '><tr><td>PO123</td></tr></table>
-      </div>
-      <div>NEW ORDER ENTRY PAGE HAS BEEN FOUND
-      </div>
-      <div>PO# ENTERED IS PO123
-      </div>
-      <div>PRODUCT FOUND IN ORDER ARE 
-      </div>
-      <div>59626700
-      </div>
-      <div>59627170
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then Click on Next button and verify for duplicate product</span>
-      <div>PRODUCT FOUND IN ORDER ARE 
-      </div>
-      <div>59626700
-      </div>
-      <div>59627170
-      </div>
-      <div>NO DUPLICATE PRODUCT HAS BEEN FOUND
-      </div>
-      <div>NEXT BUTTON CLICKED
-      </div>
-      <div>FREQUENTLY ORDERED ITEMS POPUP HAS BEEN HANDLED
-      </div>
-      <div>CRITICAL ITEMS DIALOG BOX FOUND
-      </div>
-      <div>% OF YOUR AVERAGE ORDER POPUP HAS BEEN HANDLED
-      </div>
-      <div>ORDER NUMBER CREATED IS 3717776
-      </div>
-      <div>PAYMENT METHOD HAS BEEN SELECTED
-      </div>
-      <div>FIRST PAYMENT OPTION HAS BEEN SELECTED
-      </div>
-      <div>CLICKED ON NEXT BUTTON
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And Click on SubmitOrder button</span>
-      <div>ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED
-      </div>
-      <div>ORDER HAS BEEN SUCESSFULLY CREATED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User should be navigated to Order Entry page</span>
-      <div>ORDER ENTRY PAGE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-              </div>
-            </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="2,015"><span class="badge log pass-bg mr-2">Pass</span>Test scenario to verify skip in Quote</div>
-      </div>
-    </div>
-        <div class="collapse">
+        <div class="">
           <div class="card-body">
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForQuotes()">
-                <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials()">
+                <span>Given User enters URL and is on login page and entered credentials</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps.user_is_on_home_pageForQuotes()">
-                <span>When User is on Home Page for Quotes</span>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()">
+                <span>When User is on Home Page</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps.user_navigate_to_client_sideForQuotes()">
-                <span>Then User navigate to Client side for Quotes</span>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()">
+                <span>Then User navigate to Client side</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps.user_should_select_order_entry_tabForQuotes()">
-                <span>Then User should select Order Entry tab for Quotes</span>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab()">
+                <span>Then User should select Order Entry tab</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps.user_selects_accountForQuotes()">
-                <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
+              <div class="step fail-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account()">
+                <span>Then User selects Account#</span>
       <div>
+        <textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=132.0.6834.160)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [59263c036ec62a2bec79222b5840df6b, findElement {using=xpath, value=//div[@class='loader']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 59263c036ec62a2bec79222b5840df6b
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:569)
+	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:565)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	at pages_DSD_OMS.orderEntry.OrderEntryPage.ChangeAccount(OrderEntryPage.java:488)
+	at stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account(OrderEntryPageSteps.java:119)
+	at ✽.User selects Account#(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature:10)
+</textarea>
+      
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page()">
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page()">
                 <span>Given User must be on Order Entry Page</span>
-      <div>
+      <div>Step skipped
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.change_the_date_days_after_current_date(java.lang.Integer)">
-                <span>Then Change the date 4 days after current date</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>SELECT DELIVERY DATE IS Thu, Feb 20, 2025
-      </div>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps1.userVerifiesSkipButtonInOEPageWhenQuotesIsAlreadyCreated()">
-                <span>And User verifies skip button in OE page when Quotes is already created</span>
-      <div>SKIP BUTTON IS VISIBLE
-      </div>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps1.userShouldResetTheDeliveryDateToCurrentDate()">
-                <span>Then User should reset the delivery date to current date</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>PREVIOUS DELIVERY DATE Thursday, February 13, 2025
-      </div>
-      <div>DATE HAS BEEN RESET TO Thu, Feb 13, 2025
-      </div>
-      <div>
-      </div>
-              </div>
-          </div>
-        </div>
-  </div>
-  <div class="card">
-    <div class="card-header" role="tab">
-      <div class="card-title">
-        <div class="node" id="2,113"><span class="badge log pass-bg mr-2">Pass</span>Test scenario to verify skip in New OE page, when Quote is already existing</div>
-      </div>
-    </div>
-        <div class="collapse">
-          <div class="card-body">
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForQuotes()">
-                <span>Given User enters URL and is on login page and entered credentials for Quotes</span>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps.user_is_on_home_pageForQuotes()">
-                <span>When User is on Home Page for Quotes</span>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps.user_navigate_to_client_sideForQuotes()">
-                <span>Then User navigate to Client side for Quotes</span>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps.user_should_select_order_entry_tabForQuotes()">
-                <span>Then User should select Order Entry tab for Quotes</span>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps.user_selects_accountForQuotes()">
-                <span>Then User selects Account# for Quotes</span>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page()">
-                <span>Given User must be on Order Entry Page</span>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.change_the_date_days_after_current_date(java.lang.Integer)">
-                <span>Then Change the date 4 days after current date</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div>PREVIOUS DELIVERY DATE Thursday, February 13, 2025
-      </div>
-      <div>DATE HAS BEEN RESET TO Thu, Feb 13, 2025
-      </div>
-      <div>SELECT DELIVERY DATE IS Thu, Feb 20, 2025
-      </div>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button()">
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button()">
                 <span>Then User must click Start Order button</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
-      </div>
-      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 13, 2025</span>
-      </div>
-      <div>START BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
+      <div>Step skipped
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()">
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()">
                 <span>Then User should make selection between Pending order or Start New order</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()">
+                <span>Then User should select Note from popup and Order guide from popup</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)">
+                <span>Then Enter PO# for New order</span>
+      <div><table class='markup-table table '><tr><td>PO123</td></tr></table>
+      </div>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_pro_in_quick_product_entry_area()">
+                <span>Then Enter Pro# in Quick Product Entry area</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable)">
+                <span>And Check for Case and Unit input box enabled or not based on that enter value</span>
+      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
+      </div>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()">
+                <span>Then Click on Next button</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button_and_read_order_no()">
+                <span>And Click on Submit Order button and read Order_no</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()">
+                <span>Then User should be navigated to Order Entry page</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_order_in_search_box_in_order_entry_page()">
+                <span>Then Enter Order# in Search box in Order Entry page</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_order_number_in_order_entry_page()">
+                <span>Then Click on Order number in Order Entry page</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.navigate_to_newoe_page_and_click_on_export_button()">
+                <span>Then navigate to newOE page and Click on Export button</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step fail-bg" title="AFTER">
+                <span>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</span>
+      <div>
+        <textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=132.0.6834.160)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [59263c036ec62a2bec79222b5840df6b, screenshot {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 59263c036ec62a2bec79222b5840df6b
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:622)
+	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:334)
+	at stepDefination_DSD_OMS.LoginPageStep.afterScenario1(LoginPageStep.java:77)
+</textarea>
+      
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="109"><span class="badge log fail-bg mr-2">Fail</span>Create an order by importing .csv files</div>
+      </div>
+    </div>
+        <div class="">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials()">
+                <span>Given User enters URL and is on login page and entered credentials</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopupForQuote()">
-                <span>Then User should select Note from popup and Order guide from popup for quote</span>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()">
+                <span>When User is on Home Page</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps1.userVerifiesSkipButtonInNewOEPage()">
-                <span>And User verifies Skip button in New OE page</span>
-      <div>SKIP BUTTON HAS BEEN FOUND
-      </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()">
+                <span>Then User navigate to Client side</span>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps1.userShouldNavigateToOEPageUserShouldSelectTheCurrentDateAsDeliveryDate()">
-                <span>Then User should navigate to OE page, User should select the current date as delivery date</span>
-      <div>PREVIOUS DELIVERY DATE Thursday, February 13, 2025
-      </div>
-      <div>DATE HAS BEEN RESET TO Thu, Feb 13, 2025
-      </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab()">
+                <span>Then User should select Order Entry tab</span>
       <div>
+      </div>
+              </div>
+              <div class="step fail-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account()">
+                <span>Then User selects Account#</span>
+      <div>
+        <textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=132.0.6834.160)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [59263c036ec62a2bec79222b5840df6b, findElement {using=xpath, value=//div[@class='loader']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 59263c036ec62a2bec79222b5840df6b
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:569)
+	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:565)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	at pages_DSD_OMS.orderEntry.OrderEntryPage.ChangeAccount(OrderEntryPage.java:488)
+	at stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account(OrderEntryPageSteps.java:119)
+	at ✽.User selects Account#(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature:10)
+</textarea>
+      
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page()">
+                <span>Given User must be on Order Entry Page</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button()">
+                <span>Then User must click Start Order button</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()">
+                <span>Then User should make selection between Pending order or Start New order</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()">
+                <span>Then User should select Note from popup and Order guide from popup</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)">
+                <span>Then Enter PO# for New order</span>
+      <div><table class='markup-table table '><tr><td>PO123</td></tr></table>
+      </div>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_import_button()">
+                <span>And Click on Import button</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()">
+                <span>Then Click on Next button</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button_and_read_order_no()">
+                <span>And Click on Submit Order button and read Order_no</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()">
+                <span>Then User should be navigated to Order Entry page</span>
+      <div>Step skipped
+      </div>
+              </div>
+              <div class="step fail-bg" title="AFTER">
+                <span>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</span>
+      <div>
+        <textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=132.0.6834.160)
+Build info: version: '4.27.0', revision: 'd6e718d134'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [59263c036ec62a2bec79222b5840df6b, screenshot {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 59263c036ec62a2bec79222b5840df6b
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:622)
+	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:334)
+	at stepDefination_DSD_OMS.LoginPageStep.afterScenario1(LoginPageStep.java:77)
+</textarea>
+      
       </div>
               </div>
           </div>
@@ -3067,26 +440,26 @@
 </div>
 <div class="test-content-detail"><div class="detail-body"></div></div>
 </div></div>
-<div class="test-wrapper row view category-view attributes-view">
+<div class="test-wrapper row view exception-view attributes-view">
 <div class="test-list">
 <div class="test-list-tools">
-<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
-<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">21</span></a></li></ul>
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Exception</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
 </div>
 <div class="test-list-wrapper scrollable">
 <ul class="test-list-item">
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log pass-bg'>1</span>
+<span class='badge log badge-danger'>4</span>
 </span>
-<p class="name">@CancelWhileEditing</p>
-<p class="duration text-sm">1 tests</p>
+<p class="name">org.openqa.selenium.NoSuchWindowException</p>
+<p class="duration text-sm">4 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>@CancelWhileEditing</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
+<h4>org.openqa.selenium.NoSuchWindowException</h4>
+<span status="fail" class='badge log badge-danger'>4 failed</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -3097,13 +470,95 @@
 </tr>
 </thead>
 <tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:42:25 AM</td>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>22:20:42 PM</td>
 <td>
-<a href="#" class="linked" test-id='948' id='1,272'>test scenario for cancelling quote at the time of edit quote</a>
+<a href="#" class="linked" test-id='1' id='94'>Then User selects Account#</a>
 <div class="">
-<span class="badge badge-default">Quotes1.test scenario for cancelling quote at the time of edit quote</span>
+<span class="badge badge-default">Order Entry5.Create an order Open that order and export the order.Then User selects Account#</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>22:20:42 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='108'>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</a>
+<div class="">
+<span class="badge badge-default">Order Entry5.Create an order Open that order and export the order.stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>22:21:19 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='201'>Then User selects Account#</a>
+<div class="">
+<span class="badge badge-default">Order Entry5.Create an order by importing .csv files.Then User selects Account#</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>22:21:19 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='211'>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</a>
+<div class="">
+<span class="badge badge-default">Order Entry5.Create an order by importing .csv files.stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="test-content scrollable">
+<div class="test-content-detail">
+<div class="detail-body"></div>
+</div>
+</div>
+</div><div class="test-wrapper row view category-view attributes-view">
+<div class="test-list">
+<div class="test-list-tools">
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">2</span></a></li></ul>
+</div>
+<div class="test-list-wrapper scrollable">
+<ul class="test-list-item">
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log badge-danger'>1</span>
+</span>
+<p class="name">@ImportOrder</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@ImportOrder</h4>
+<span status="fail" class='badge log badge-danger'>1 failed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>22:21:18 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='109'>Create an order by importing .csv files</a>
+<div class="">
+<span class="badge badge-default">Order Entry5.Create an order by importing .csv files</span>
 </div>
 </td>
 </tr>
@@ -3114,61 +569,15 @@
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log pass-bg'>2</span>
+<span class='badge log badge-danger'>1</span>
 </span>
-<p class="name">@BogoItemsInQuoteToOrder</p>
-<p class="duration text-sm">2 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@BogoItemsInQuoteToOrder</h4>
-<span status="pass" class='badge log pass-bg'>2 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:52:53 AM</td>
-<td>
-<a href="#" class="linked" test-id='948' id='1,797'>Test scenario for adding BOGO item to quote and create Order for that Quote</a>
-<div class="">
-<span class="badge badge-default">Quotes1.Test scenario for adding BOGO item to quote and create Order for that Quote</span>
-</div>
-</td>
-</tr>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:56:24 AM</td>
-<td>
-<a href="#" class="linked" test-id='948' id='1,906'>Test scenario for adding BOGO item to quote and create Order for that Quote</a>
-<div class="">
-<span class="badge badge-default">Quotes1.Test scenario for adding BOGO item to quote and create Order for that Quote</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@SkipQuoteFromOE</p>
+<p class="name">@ExportOrder</p>
 <p class="duration text-sm">1 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>@SkipQuoteFromOE</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
+<h4>@ExportOrder</h4>
+<span status="fail" class='badge log badge-danger'>1 failed</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -3179,661 +588,13 @@
 </tr>
 </thead>
 <tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:59:59 AM</td>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>22:20:30 PM</td>
 <td>
-<a href="#" class="linked" test-id='948' id='2,015'>Test scenario to verify skip in Quote</a>
+<a href="#" class="linked" test-id='1' id='2'>Create an order Open that order and export the order</a>
 <div class="">
-<span class="badge badge-default">Quotes1.Test scenario to verify skip in Quote</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@BogoItemsInQuote</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@BogoItemsInQuote</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:50:55 AM</td>
-<td>
-<a href="#" class="linked" test-id='948' id='1,693'>Test scenario for adding bogo item to quote and verify the behaviour</a>
-<div class="">
-<span class="badge badge-default">Quotes1.Test scenario for adding bogo item to quote and verify the behaviour</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@QuickProdQuote</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@QuickProdQuote</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:12:59 AM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='3'>Test scenario for creating Quotes</a>
-<div class="">
-<span class="badge badge-default">Quotes.Test scenario for creating Quotes</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@ConvertQuoteToOrder</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@ConvertQuoteToOrder</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:24:07 AM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='520'>Test scenario for converting Quote to Order</a>
-<div class="">
-<span class="badge badge-default">Quotes.Test scenario for converting Quote to Order</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@CreateCopyQuote</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@CreateCopyQuote</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:30:33 AM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='741'>Test scenario to create copy of Quote</a>
-<div class="">
-<span class="badge badge-default">Quotes.Test scenario to create copy of Quote</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@BogoItemsInQuoteToOrderDuplicateProducts</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@BogoItemsInQuoteToOrderDuplicateProducts</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:56:24 AM</td>
-<td>
-<a href="#" class="linked" test-id='948' id='1,906'>Test scenario for adding BOGO item to quote and create Order for that Quote</a>
-<div class="">
-<span class="badge badge-default">Quotes1.Test scenario for adding BOGO item to quote and create Order for that Quote</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@QuoteFromCatalog</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@QuoteFromCatalog</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:19:44 AM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='312'>Test scenario for creating Quote using catalog</a>
-<div class="">
-<span class="badge badge-default">Quotes.Test scenario for creating Quote using catalog</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@EditQuoteOG</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@EditQuoteOG</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:39:58 AM</td>
-<td>
-<a href="#" class="linked" test-id='948' id='1,163'>Test scenario for editing quote by adding OG to quote</a>
-<div class="">
-<span class="badge badge-default">Quotes1.Test scenario for editing quote by adding OG to quote</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@QuoteFromOG</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@QuoteFromOG</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:22:04 AM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='416'>Test scenario for creating quote using OG</a>
-<div class="">
-<span class="badge badge-default">Quotes.Test scenario for creating quote using OG</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@CancelQuoteCreation</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@CancelQuoteCreation</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:17:53 AM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='211'>Test scenario for canceling of Quote while creating</a>
-<div class="">
-<span class="badge badge-default">Quotes.Test scenario for canceling of Quote while creating</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@EditQuote</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@EditQuote</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:37:25 AM</td>
-<td>
-<a href="#" class="linked" test-id='948' id='1,054'>Test scenario to edit Quote by adding Product from Quick product entry</a>
-<div class="">
-<span class="badge badge-default">Quotes1.Test scenario to edit Quote by adding Product from Quick product entry</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@SkipQuoteInNewOE</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@SkipQuoteInNewOE</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>12:01:42 PM</td>
-<td>
-<a href="#" class="linked" test-id='948' id='2,113'>Test scenario to verify skip in New OE page, when Quote is already existing</a>
-<div class="">
-<span class="badge badge-default">Quotes1.Test scenario to verify skip in New OE page, when Quote is already existing</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@CommentInQuote</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@CommentInQuote</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:44:44 AM</td>
-<td>
-<a href="#" class="linked" test-id='948' id='1,379'>Test scenario for adding comment to quote</a>
-<div class="">
-<span class="badge badge-default">Quotes1.Test scenario for adding comment to quote</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@PrintQuote</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@PrintQuote</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:32:52 AM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='845'>Test scenario for printing details of quote</a>
-<div class="">
-<span class="badge badge-default">Quotes.Test scenario for printing details of quote</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@ConvertQuoteToOG</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@ConvertQuoteToOG</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:27:41 AM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='630'>Test scenario for converting Quote to OG</a>
-<div class="">
-<span class="badge badge-default">Quotes.Test scenario for converting Quote to OG</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@DeleteCancel</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@DeleteCancel</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:48:49 AM</td>
-<td>
-<a href="#" class="linked" test-id='948' id='1,588'>Test scenario for deleting or canceling Quote</a>
-<div class="">
-<span class="badge badge-default">Quotes1.Test scenario for deleting or canceling Quote</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@CancelQuoteInSummarypage</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@CancelQuoteInSummarypage</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:15:49 AM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='106'>Test scenario for canceling of Quote after creation</a>
-<div class="">
-<span class="badge badge-default">Quotes.Test scenario for canceling of Quote after creation</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@DeleteProductQuote</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@DeleteProductQuote</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:35:01 AM</td>
-<td>
-<a href="#" class="linked" test-id='948' id='950'>Test scenario to create Quote with multiple products and delete one of the product from quote</a>
-<div class="">
-<span class="badge badge-default">Quotes1.Test scenario to create Quote with multiple products and delete one of the product from quote</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log pass-bg'>1</span>
-</span>
-<p class="name">@NavigateQuoteSummay</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>@NavigateQuoteSummay</h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>11:46:45 AM</td>
-<td>
-<a href="#" class="linked" test-id='948' id='1,483'>Test scenario for navigating from OE page to Quote summary page</a>
-<div class="">
-<span class="badge badge-default">Quotes1.Test scenario for navigating from OE page to Quote summary page</span>
+<span class="badge badge-default">Order Entry5.Create an order Open that order and export the order</span>
 </div>
 </td>
 </tr>
@@ -3854,25 +615,25 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Feb 10, 2025 11:12:34 AM</h3>
+<h3>Feb 11, 2025 10:18:23 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Feb 10, 2025 12:03:55 PM</h3>
+<h3>Feb 11, 2025 10:21:21 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Features Passed</p>
-<h3>2</h3>
+<h3>0</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Features Failed</p>
-<h3>0</h3>
+<h3>1</h3>
 </div></div>
 </div>
 </div>
@@ -3888,12 +649,12 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'>
-<b>2</b> features passed
+<div><small data-tooltip='0%'>
+<b>0</b> features passed
 </small>
 </div>
 <div>
-<small data-tooltip='0%'><b>0</b> features failed,
+<small data-tooltip='100%'><b>1</b> features failed,
 <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
@@ -3911,9 +672,9 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>21</b> scenarios passed</small></div>
+<div><small data-tooltip='0%'><b>0</b> scenarios passed</small></div>
 <div>
-<small data-tooltip='0%'><b>0</b> scenarios failed,
+<small data-tooltip='100%'><b>2</b> scenarios failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
 </small>
 </div>
@@ -3931,10 +692,10 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>324</b> steps passed</small></div>
+<div><small data-tooltip='23%'><b>8</b> steps passed</small></div>
 <div>
-<small data-tooltip='0%'><b>0</b> steps failed,
-<b>0</b> skipped, <b data-tooltip='%'>0</b> others
+<small data-tooltip='11%'><b>4</b> steps failed,
+<b>22</b> skipped, <b data-tooltip='%'>0</b> others
 </small>
 </div>
 </div>
@@ -3950,7 +711,7 @@
 </div></div>
 <script>
 var timeline = {
-"Quotes":1321.757,"Quotes1":1732.986
+"Order Entry5":48.746
 };
 </script>
 <div class="row">
@@ -3960,172 +721,20 @@ var timeline = {
 <div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
 <thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
 <tr>
-<td>@CancelWhileEditing</td>
+<td>@ImportOrder</td>
+<td>0</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0</td>
-<td>100%</td>
+<td>0%</td>
 </tr>
 <tr>
-<td>@BogoItemsInQuoteToOrder</td>
-<td>2</td>
+<td>@ExportOrder</td>
 <td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@SkipQuoteFromOE</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@BogoItemsInQuote</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@QuickProdQuote</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@ConvertQuoteToOrder</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@CreateCopyQuote</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@BogoItemsInQuoteToOrderDuplicateProducts</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@QuoteFromCatalog</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@EditQuoteOG</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@QuoteFromOG</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@CancelQuoteCreation</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@EditQuote</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@SkipQuoteInNewOE</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@CommentInQuote</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@PrintQuote</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@ConvertQuoteToOG</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@DeleteCancel</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@CancelQuoteInSummarypage</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@DeleteProductQuote</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-</tr>
-<tr>
-<td>@NavigateQuoteSummay</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
+<td>0%</td>
 </tr>
 </tbody>
 </table></div>
@@ -4158,21 +767,21 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 2,
-failParent: 0,
+passParent: 0,
+failParent: 1,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
-passChild: 21,
-failChild: 0,
+passChild: 0,
+failChild: 2,
 warningChild: 0,
 skipChild: 0,
 infoChild: 0,
 grandChildCount: 5,
-passGrandChild: 324,
-failGrandChild: 0,
+passGrandChild: 8,
+failGrandChild: 4,
 warningGrandChild: 0,
-skipGrandChild: 0,
+skipGrandChild: 22,
 infoGrandChild: 0,
 eventsCount: 5,
 };
