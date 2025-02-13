@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Test execution report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Feb 11, 2025 10:18:23 PM</span></a>
+<a href="#"><span class="badge badge-primary">Feb 13, 2025 01:37:29 PM</span></a>
 </li>
 </ul>
 </div>
@@ -45,11 +45,6 @@
 <li class="nav-item dropdown" onclick="toggleView('test-view')">
 <a id="nav-test" class="dropdown-toggle" href="#">
 <span class="ico"><i class="fa fa-list"></i></span>
-</a>
-</li>
-<li class="nav-item dropdown" onclick="toggleView('exception-view')">
-<a id="nav-exception" class="dropdown-toggle" href="#">
-<span class="ico"><i class="fa fa-bug"></i></span>
 </a>
 </li>
 <li class="nav-item dropdown" onclick="toggleView('category-view')">
@@ -76,7 +71,7 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
+<a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
 </ul>
@@ -84,348 +79,1064 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
 <ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" href="#">@ImportOrder</a><a class="dropdown-item" href="#">@ExportOrder</a>
+<a class="dropdown-item" href="#">@DuplicateProduct</a><a class="dropdown-item" href="#">@ReportPriceGroupDefaultSchedule</a><a class="dropdown-item" href="#">@ReportDescending</a><a class="dropdown-item" href="#">@LoadingExistingData</a><a class="dropdown-item" href="#">@DeleteProduct</a><a class="dropdown-item" href="#">@AddCompetitor</a><a class="dropdown-item" href="#">@SearchingProductSearchBar</a><a class="dropdown-item" href="#">@ReportAscending</a><a class="dropdown-item" href="#">@ReportNationalChainERP</a><a class="dropdown-item" href="#">@DeleteCompetitorData</a><a class="dropdown-item" href="#">@ReportMultipleCustomer</a><a class="dropdown-item" href="#">@ReportMarketSegment</a><a class="dropdown-item" href="#">@ReportSingleCustomer</a><a class="dropdown-item" href="#">@AddProduct</a><a class="dropdown-item" href="#">@SearchForProduct</a><a class="dropdown-item" href="#">@ReportLocalChainERP</a>
 </ul>
 </li>
 </ul>
 </div>    <div class="test-list-wrapper scrollable">
       <ul class="test-list-item">
-        <li class="test-item"  status="fail" test-id="1"
+        <li class="test-item"  status="pass" test-id="1"
           author=""
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Order Entry5</p>
+            <p class="name">Competitive Pricing</p>
             <p class="text-sm">
-              <span>10:20:30 PM</span> / <span>00:00:48:746</span>
-              <span class="badge fail-bg log float-right">Fail</span>
+              <span>1:38:20 PM</span> / <span>00:50:10:074</span>
+              <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-fail">Order Entry5</h5>
-<span class='badge badge-success'>02.11.2025 10:20:30 PM</span>
-<span class='badge badge-danger'>02.11.2025 10:21:19 PM</span>
-<span class='badge badge-default'>00:00:48:746</span>
+<h5 class="test-status text-pass">Competitive Pricing</h5>
+<span class='badge badge-success'>02.13.2025 1:38:20 PM</span>
+<span class='badge badge-danger'>02.13.2025 2:28:30 PM</span>
+<span class='badge badge-default'>00:50:10:074</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
-<div class="m-t-10 m-l-5"> Used for cration of New order in different ways
-Used for canceling order, editing of order, skipping of order</div>
+<div class="m-t-10 m-l-5"> All the scenarios that performs all the scenarios related to Competitive pricing</div>
 </div>
 </div>
 <div class="accordion mt-4">
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="2"><span class="badge log fail-bg mr-2">Fail</span>Create an order Open that order and export the order</div>
+        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>For adding new competitor pricing</div>
       </div>
     </div>
-        <div class="">
-          <div class="card-body">
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials()">
-                <span>Given User enters URL and is on login page and entered credentials</span>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="3"><span class="badge log pass-bg mr-2">Pass</span>For adding new competitor pricing</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>SIGNIN BUTTON CLICKED
+      </div>
       <div>
       </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()">
-                <span>When User is on Home Page</span>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND
+      </div>
       <div>
       </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()">
-                <span>Then User navigate to Client side</span>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>USER ICON FOUND
+      </div>
+      <div>IN ADMIN PAGE
+      </div>
+      <div>https://autoerp.afsi.com/omsi/clientportal/apps/cpCompetitivePricing.html?p=QJFsTz5JBfVNODvKd%2b4hK56SreO0vwVwYSCjo3j9p6A%3d
+      </div>
+      <div>NAVIGATED TO COMPETITOR PRICING PAGE
+      </div>
       <div>
       </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab()">
-                <span>Then User should select Order Entry tab</span>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
       <div>
       </div>
-              </div>
-              <div class="step fail-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account()">
-                <span>Then User selects Account#</span>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
       <div>
-        <textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=132.0.6834.160)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [59263c036ec62a2bec79222b5840df6b, findElement {using=xpath, value=//div[@class='loader']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 59263c036ec62a2bec79222b5840df6b
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:569)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:565)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at pages_DSD_OMS.orderEntry.OrderEntryPage.ChangeAccount(OrderEntryPage.java:488)
-	at stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account(OrderEntryPageSteps.java:119)
-	at ✽.User selects Account#(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature:10)
-</textarea>
-      
       </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page()">
-                <span>Given User must be on Order Entry Page</span>
-      <div>Step skipped
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</span>
+      <div>CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985
       </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button()">
-                <span>Then User must click Start Order button</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()">
-                <span>Then User should make selection between Pending order or Start New order</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()">
-                <span>Then User should select Note from popup and Order guide from popup</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)">
-                <span>Then Enter PO# for New order</span>
-      <div><table class='markup-table table '><tr><td>PO123</td></tr></table>
-      </div>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_pro_in_quick_product_entry_area()">
-                <span>Then Enter Pro# in Quick Product Entry area</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable)">
-                <span>And Check for Case and Unit input box enabled or not based on that enter value</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table>
-      </div>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()">
-                <span>Then Click on Next button</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button_and_read_order_no()">
-                <span>And Click on Submit Order button and read Order_no</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()">
-                <span>Then User should be navigated to Order Entry page</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_order_in_search_box_in_order_entry_page()">
-                <span>Then Enter Order# in Search box in Order Entry page</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_order_number_in_order_entry_page()">
-                <span>Then Click on Order number in Order Entry page</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.navigate_to_newoe_page_and_click_on_export_button()">
-                <span>Then navigate to newOE page and Click on Export button</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step fail-bg" title="AFTER">
-                <span>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</span>
       <div>
-        <textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=132.0.6834.160)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [59263c036ec62a2bec79222b5840df6b, screenshot {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 59263c036ec62a2bec79222b5840df6b
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:622)
-	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:334)
-	at stepDefination_DSD_OMS.LoginPageStep.afterScenario1(LoginPageStep.java:77)
-</textarea>
-      
       </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User click on Add competitor button and Enters Competitor details and clicks on Add button</span>
+      <div>NEW COMPETITOR BUTTON HAS BEEN CLICKED
+      </div>
+      <div>CODE ENTERED IS oxtb
+      </div>
+      <div>DESCRIPTION ENTERED IS otQI
+      </div>
+      <div>
+      </div>
+                  </div>
               </div>
-          </div>
+            </div>
         </div>
   </div>
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="109"><span class="badge log fail-bg mr-2">Fail</span>Create an order by importing .csv files</div>
+        <div class="node" id="99"><span class="badge log pass-bg mr-2">Pass</span>For Adding Product to competitor</div>
       </div>
     </div>
-        <div class="">
-          <div class="card-body">
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials()">
-                <span>Given User enters URL and is on login page and entered credentials</span>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="100"><span class="badge log pass-bg mr-2">Pass</span>For Adding Product to competitor</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
       <div>
       </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()">
-                <span>When User is on Home Page</span>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
       <div>
       </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()">
-                <span>Then User navigate to Client side</span>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
       <div>
       </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab()">
-                <span>Then User should select Order Entry tab</span>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
       <div>
       </div>
-              </div>
-              <div class="step fail-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account()">
-                <span>Then User selects Account#</span>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
       <div>
-        <textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=132.0.6834.160)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [59263c036ec62a2bec79222b5840df6b, findElement {using=xpath, value=//div[@class='loader']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 59263c036ec62a2bec79222b5840df6b
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:569)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:565)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at pages_DSD_OMS.orderEntry.OrderEntryPage.ChangeAccount(OrderEntryPage.java:488)
-	at stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account(OrderEntryPageSteps.java:119)
-	at ✽.User selects Account#(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature:10)
-</textarea>
-      
       </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page()">
-                <span>Given User must be on Order Entry Page</span>
-      <div>Step skipped
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</span>
+      <div>CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985
       </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button()">
-                <span>Then User must click Start Order button</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()">
-                <span>Then User should make selection between Pending order or Start New order</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()">
-                <span>Then User should select Note from popup and Order guide from popup</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)">
-                <span>Then Enter PO# for New order</span>
-      <div><table class='markup-table table '><tr><td>PO123</td></tr></table>
-      </div>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_import_button()">
-                <span>And Click on Import button</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()">
-                <span>Then Click on Next button</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button_and_read_order_no()">
-                <span>And Click on Submit Order button and read Order_no</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step skip-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()">
-                <span>Then User should be navigated to Order Entry page</span>
-      <div>Step skipped
-      </div>
-              </div>
-              <div class="step fail-bg" title="AFTER">
-                <span>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</span>
       <div>
-        <textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=132.0.6834.160)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [59263c036ec62a2bec79222b5840df6b, screenshot {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 59263c036ec62a2bec79222b5840df6b
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:622)
-	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:334)
-	at stepDefination_DSD_OMS.LoginPageStep.afterScenario1(LoginPageStep.java:77)
-</textarea>
-      
       </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User clicks on competitor drop down and select the competitor based on previously created competitor</span>
+      <div>VALUE TO BE SELECTED FROM COMPETITOR: oxtb
+      </div>
+      <div>COMPETITOR VALUE SELECTED IS oxtb
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User should click on Plus button for adding products, using filter input box</span>
+      <div>PRODUCT NUMBERS IN GRID 0002
+      </div>
+      <div>PRODUCT NUMBERS IN GRID 0013
+      </div>
+      <div>PRODUCT NUMBERS IN GRID 0027
+      </div>
+      <div>PRODUCT NUMBERS IN GRID 0001
+      </div>
+      <div>PRODUCT NUMBERS IN GRID 0012
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User selects Sold by uom, base uom, competitor pricing and comment, then user clicks on Save button</span>
+      <div><table class='markup-table table '><tr><td>10.50</td><td>Comment Test1</td></tr><tr><td>20.60</td><td>Comment Test2</td></tr><tr><td>15.80</td><td>Comment Test3</td></tr><tr><td>40.00</td><td>Comment Test4</td></tr><tr><td>25.00</td><td>Comment Test5</td></tr></table>
+      </div>
+      <div>COMPETITOR PRICING HAS BEEN SAVED SUCCESSFULLY
+      </div>
+      <div>
+      </div>
+                  </div>
               </div>
-          </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="198"><span class="badge log pass-bg mr-2">Pass</span>For loading competitor data</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="199"><span class="badge log pass-bg mr-2">Pass</span>For loading competitor data</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</span>
+      <div>CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User Click on Load existing data and select competitor in popup</span>
+      <div>PRODUCT FOUND IN: 0001
+      </div>
+      <div>PRODUCT FOUND IN: 0002
+      </div>
+      <div>PRODUCT FOUND IN: 0012
+      </div>
+      <div>PRODUCT FOUND IN: 0013
+      </div>
+      <div>PRODUCT FOUND IN: 0027
+      </div>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="295"><span class="badge log pass-bg mr-2">Pass</span>For Searching product in competitor pricing</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="296"><span class="badge log pass-bg mr-2">Pass</span>For Searching product in competitor pricing</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</span>
+      <div>CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User clicks on competitor drop down and select the competitor based on previously created competitor</span>
+      <div>VALUE TO BE SELECTED FROM COMPETITOR: oxtb
+      </div>
+      <div>COMPETITOR VALUE SELECTED IS oxtb
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User search for product using Add filter</span>
+      <div>PRODUCT SEARCHED FOR IN CATALOG IS 0001
+      </div>
+      <div>0001 HAS BEEN FOUND IN THE GRID
+      </div>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="393"><span class="badge log pass-bg mr-2">Pass</span>For Deleting Product in competitor</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="394"><span class="badge log pass-bg mr-2">Pass</span>For Deleting Product in competitor</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</span>
+      <div>CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User clicks on competitor drop down and select the competitor based on previously created competitor</span>
+      <div>VALUE TO BE SELECTED FROM COMPETITOR: oxtb
+      </div>
+      <div>COMPETITOR VALUE SELECTED IS oxtb
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User search for product using Add filter</span>
+      <div>PRODUCT SEARCHED FOR IN CATALOG IS 0001
+      </div>
+      <div>0001 HAS BEEN FOUND IN THE GRID
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User selects one of the product from grid and delete it and click on save button</span>
+      <div>1ST PRODUCT IS SELECTED FROM COMPETITIVE PRICING
+      </div>
+      <div>PRODUCT HAS BEEN DELETED FROM COMPETITIVE PRICING
+      </div>
+      <div>COMPETITOR PRICING HAS BEEN SAVED SUCCESSFULLY
+      </div>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="492"><span class="badge log pass-bg mr-2">Pass</span>For searching of products in competitor pricing using Search bar</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="493"><span class="badge log pass-bg mr-2">Pass</span>For searching of products in competitor pricing using Search bar</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</span>
+      <div>CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User clicks on competitor drop down and select the competitor based on previously created competitor</span>
+      <div>VALUE TO BE SELECTED FROM COMPETITOR: oxtb
+      </div>
+      <div>COMPETITOR VALUE SELECTED IS oxtb
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User search for product using Search bar</span>
+      <div>0002 HAS BEEN FOUND IN THE GRID
+      </div>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="590"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for verifying Duplicate products are not added in competitor pricing</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="591"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for verifying Duplicate products are not added in competitor pricing</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</span>
+      <div>CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User clicks on competitor drop down and select the competitor based on previously created competitor</span>
+      <div>VALUE TO BE SELECTED FROM COMPETITOR: oxtb
+      </div>
+      <div>COMPETITOR VALUE SELECTED IS oxtb
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User search for product in catalog dialog box, to make sure that duplicate products are not added to competitive pricing</span>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="688"><span class="badge log pass-bg mr-2">Pass</span>For Deleting competitor record it self</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="689"><span class="badge log pass-bg mr-2">Pass</span>For Deleting competitor record it self</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</span>
+      <div>CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User clicks on competitor drop down and select the competitor based on previously created competitor</span>
+      <div>VALUE TO BE SELECTED FROM COMPETITOR: oxtb
+      </div>
+      <div>COMPETITOR VALUE SELECTED IS oxtb
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User clicks on delete competitor record button</span>
+      <div>DELETE COMPETITOR PRICING IS SUCCESSFUL
+      </div>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="786"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with single customer Account#</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="787"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with single customer Account#</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</span>
+      <div>NAVIGATED TO REPORT PAGE
+      </div>
+      <div>NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User should select customer account# in groupOne and even select customer</span>
+      <div><table class='markup-table table '><tr><td>Customer account #</td></tr></table>
+      </div>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="883"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with Multiple customer Account#</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="884"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with Multiple customer Account#</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</span>
+      <div>NAVIGATED TO REPORT PAGE
+      </div>
+      <div>NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User should select multiple customer account# in groupOne and even select customer</span>
+      <div><table class='markup-table table '><tr><td>Customer account #</td></tr></table>
+      </div>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="980"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with ascending order</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="981"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with ascending order</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</span>
+      <div>NAVIGATED TO REPORT PAGE
+      </div>
+      <div>NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User should select customer account# in groupOne and even select customer and select ascending order radio button</span>
+      <div><table class='markup-table table '><tr><td>Customer account #</td></tr></table>
+      </div>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="1,077"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with ascending order</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</span>
+      <div>NAVIGATED TO REPORT PAGE
+      </div>
+      <div>NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User should select customer account# in groupOne and even select customer and select descending order radio button</span>
+      <div><table class='markup-table table '><tr><td>Customer account #</td></tr></table>
+      </div>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="1,173"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with Local chain in ERP env</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="1,174"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with Local chain in ERP env</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</span>
+      <div>NAVIGATED TO REPORT PAGE
+      </div>
+      <div>NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User should select Group by in groupOne and even select chain</span>
+      <div><table class='markup-table table '><tr><td>Local chain</td></tr></table>
+      </div>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="1,270"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with National chain in ERP env</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="1,271"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with National chain in ERP env</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</span>
+      <div>NAVIGATED TO REPORT PAGE
+      </div>
+      <div>NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User should select Group by in groupOne and even select chain</span>
+      <div><table class='markup-table table '><tr><td>National chain</td></tr></table>
+      </div>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="1,367"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with Market segment in ERP env</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="1,368"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with Market segment in ERP env</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</span>
+      <div>NAVIGATED TO REPORT PAGE
+      </div>
+      <div>NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User should select Group by in groupOne and even select chain</span>
+      <div><table class='markup-table table '><tr><td>Market segment</td></tr></table>
+      </div>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="1,464"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with Price base in ERP env</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="1,465"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for generating report with Price base in ERP env</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given User enters URL and is on login page and entered credentials for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User is on Home Page for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User navigate to Client side for Competitior pricing</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Given User must be on Client side and select Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>When User should confirm that he is in Competitor pricing page</span>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</span>
+      <div>NAVIGATED TO REPORT PAGE
+      </div>
+      <div>NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>Then User should select Group by in groupOne and even select chain</span>
+      <div><table class='markup-table table '><tr><td>Price group - default schedule</td></tr></table>
+      </div>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
         </div>
   </div>
 </div>
@@ -440,108 +1151,26 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 </div>
 <div class="test-content-detail"><div class="detail-body"></div></div>
 </div></div>
-<div class="test-wrapper row view exception-view attributes-view">
-<div class="test-list">
-<div class="test-list-tools">
-<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Exception</span></a></li></ul>
-<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
-</div>
-<div class="test-list-wrapper scrollable">
-<ul class="test-list-item">
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log badge-danger'>4</span>
-</span>
-<p class="name">org.openqa.selenium.NoSuchWindowException</p>
-<p class="duration text-sm">4 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>org.openqa.selenium.NoSuchWindowException</h4>
-<span status="fail" class='badge log badge-danger'>4 failed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>22:20:42 PM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='94'>Then User selects Account#</a>
-<div class="">
-<span class="badge badge-default">Order Entry5.Create an order Open that order and export the order.Then User selects Account#</span>
-</div>
-</td>
-</tr>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>22:20:42 PM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='108'>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</a>
-<div class="">
-<span class="badge badge-default">Order Entry5.Create an order Open that order and export the order.stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</span>
-</div>
-</td>
-</tr>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>22:21:19 PM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='201'>Then User selects Account#</a>
-<div class="">
-<span class="badge badge-default">Order Entry5.Create an order by importing .csv files.Then User selects Account#</span>
-</div>
-</td>
-</tr>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>22:21:19 PM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='211'>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</a>
-<div class="">
-<span class="badge badge-default">Order Entry5.Create an order by importing .csv files.stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</span>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="test-content scrollable">
-<div class="test-content-detail">
-<div class="detail-body"></div>
-</div>
-</div>
-</div><div class="test-wrapper row view category-view attributes-view">
+<div class="test-wrapper row view category-view attributes-view">
 <div class="test-list">
 <div class="test-list-tools">
 <ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
-<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">2</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">16</span></a></li></ul>
 </div>
 <div class="test-list-wrapper scrollable">
 <ul class="test-list-item">
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log badge-danger'>1</span>
+<span class='badge log pass-bg'>1</span>
 </span>
-<p class="name">@ImportOrder</p>
+<p class="name">@DuplicateProduct</p>
 <p class="duration text-sm">1 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>@ImportOrder</h4>
-<span status="fail" class='badge log badge-danger'>1 failed</span>
+<h4>@DuplicateProduct</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -552,13 +1181,13 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 </tr>
 </thead>
 <tbody>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>22:21:18 PM</td>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>14:21:14 PM</td>
 <td>
-<a href="#" class="linked" test-id='1' id='109'>Create an order by importing .csv files</a>
+<a href="#" class="linked" test-id='1' id='591'>Test scenario for verifying Duplicate products are not added in competitor pricing</a>
 <div class="">
-<span class="badge badge-default">Order Entry5.Create an order by importing .csv files</span>
+<span class="badge badge-default">Competitive Pricing.Test scenario for verifying Duplicate products are not added in competitor pricing</span>
 </div>
 </td>
 </tr>
@@ -569,15 +1198,15 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log badge-danger'>1</span>
+<span class='badge log pass-bg'>1</span>
 </span>
-<p class="name">@ExportOrder</p>
+<p class="name">@ReportPriceGroupDefaultSchedule</p>
 <p class="duration text-sm">1 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>@ExportOrder</h4>
-<span status="fail" class='badge log badge-danger'>1 failed</span>
+<h4>@ReportPriceGroupDefaultSchedule</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -588,13 +1217,527 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 </tr>
 </thead>
 <tbody>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>22:20:30 PM</td>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>14:28:19 PM</td>
 <td>
-<a href="#" class="linked" test-id='1' id='2'>Create an order Open that order and export the order</a>
+<a href="#" class="linked" test-id='1' id='1,465'>Test scenario for generating report with Price base in ERP env</a>
 <div class="">
-<span class="badge badge-default">Order Entry5.Create an order Open that order and export the order</span>
+<span class="badge badge-default">Competitive Pricing.Test scenario for generating report with Price base in ERP env</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@ReportDescending</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@ReportDescending</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>14:25:34 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='1,077'>Test scenario for generating report with ascending order</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.Test scenario for generating report with ascending order</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@LoadingExistingData</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@LoadingExistingData</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>13:48:28 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='199'>For loading competitor data</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.For loading competitor data</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@DeleteProduct</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@DeleteProduct</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>14:01:26 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='394'>For Deleting Product in competitor</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.For Deleting Product in competitor</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@AddCompetitor</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@AddCompetitor</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>13:38:20 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='3'>For adding new competitor pricing</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.For adding new competitor pricing</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@SearchingProductSearchBar</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@SearchingProductSearchBar</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>14:15:08 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='493'>For searching of products in competitor pricing using Search bar</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.For searching of products in competitor pricing using Search bar</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>2</span>
+</span>
+<p class="name">@ReportAscending</p>
+<p class="duration text-sm">2 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@ReportAscending</h4>
+<span status="pass" class='badge log pass-bg'>2 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>14:24:52 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='981'>Test scenario for generating report with ascending order</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.Test scenario for generating report with ascending order</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>14:25:34 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='1,077'>Test scenario for generating report with ascending order</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.Test scenario for generating report with ascending order</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@ReportNationalChainERP</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@ReportNationalChainERP</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>14:26:57 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='1,271'>Test scenario for generating report with National chain in ERP env</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.Test scenario for generating report with National chain in ERP env</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@DeleteCompetitorData</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@DeleteCompetitorData</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>14:22:19 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='689'>For Deleting competitor record it self</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.For Deleting competitor record it self</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@ReportMultipleCustomer</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@ReportMultipleCustomer</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>14:24:09 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='884'>Test scenario for generating report with Multiple customer Account#</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.Test scenario for generating report with Multiple customer Account#</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@ReportMarketSegment</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@ReportMarketSegment</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>14:27:37 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='1,368'>Test scenario for generating report with Market segment in ERP env</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.Test scenario for generating report with Market segment in ERP env</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@ReportSingleCustomer</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@ReportSingleCustomer</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>14:23:27 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='787'>Test scenario for generating report with single customer Account#</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.Test scenario for generating report with single customer Account#</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@AddProduct</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@AddProduct</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>13:42:25 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='100'>For Adding Product to competitor</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.For Adding Product to competitor</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@SearchForProduct</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@SearchForProduct</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>13:55:43 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='296'>For Searching product in competitor pricing</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.For Searching product in competitor pricing</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@ReportLocalChainERP</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@ReportLocalChainERP</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>14:26:15 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='1,174'>Test scenario for generating report with Local chain in ERP env</a>
+<div class="">
+<span class="badge badge-default">Competitive Pricing.Test scenario for generating report with Local chain in ERP env</span>
 </div>
 </td>
 </tr>
@@ -615,25 +1758,25 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Feb 11, 2025 10:18:23 PM</h3>
+<h3>Feb 13, 2025 01:37:29 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Feb 11, 2025 10:21:21 PM</h3>
+<h3>Feb 13, 2025 02:28:37 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Features Passed</p>
-<h3>0</h3>
+<h3>1</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Features Failed</p>
-<h3>1</h3>
+<h3>0</h3>
 </div></div>
 </div>
 </div>
@@ -649,12 +1792,12 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='0%'>
-<b>0</b> features passed
+<div><small data-tooltip='100%'>
+<b>1</b> features passed
 </small>
 </div>
 <div>
-<small data-tooltip='100%'><b>1</b> features failed,
+<small data-tooltip='0%'><b>0</b> features failed,
 <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
@@ -672,9 +1815,9 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='0%'><b>0</b> scenarios passed</small></div>
+<div><small data-tooltip='100%'><b>16</b> scenarios passed</small></div>
 <div>
-<small data-tooltip='100%'><b>2</b> scenarios failed,
+<small data-tooltip='0%'><b>0</b> scenarios failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
 </small>
 </div>
@@ -692,10 +1835,10 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='23%'><b>8</b> steps passed</small></div>
+<div><small data-tooltip='100%'><b>120</b> steps passed</small></div>
 <div>
-<small data-tooltip='11%'><b>4</b> steps failed,
-<b>22</b> skipped, <b data-tooltip='%'>0</b> others
+<small data-tooltip='0%'><b>0</b> steps failed,
+<b>0</b> skipped, <b data-tooltip='%'>0</b> others
 </small>
 </div>
 </div>
@@ -711,7 +1854,7 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 </div></div>
 <script>
 var timeline = {
-"Order Entry5":48.746
+"Competitive Pricing":3010.074
 };
 </script>
 <div class="row">
@@ -721,20 +1864,132 @@ var timeline = {
 <div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
 <thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
 <tr>
-<td>@ImportOrder</td>
-<td>0</td>
+<td>@DuplicateProduct</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0%</td>
+<td>0</td>
+<td>100%</td>
 </tr>
 <tr>
-<td>@ExportOrder</td>
-<td>0</td>
+<td>@ReportPriceGroupDefaultSchedule</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
-<td>0%</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@ReportDescending</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@LoadingExistingData</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@DeleteProduct</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@AddCompetitor</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@SearchingProductSearchBar</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@ReportAscending</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@ReportNationalChainERP</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@DeleteCompetitorData</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@ReportMultipleCustomer</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@ReportMarketSegment</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@ReportSingleCustomer</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@AddProduct</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@SearchForProduct</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@ReportLocalChainERP</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
 </tr>
 </tbody>
 </table></div>
@@ -767,21 +2022,21 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 0,
-failParent: 1,
+passParent: 1,
+failParent: 0,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
-passChild: 0,
-failChild: 2,
+passChild: 16,
+failChild: 0,
 warningChild: 0,
 skipChild: 0,
 infoChild: 0,
 grandChildCount: 5,
-passGrandChild: 8,
-failGrandChild: 4,
+passGrandChild: 120,
+failGrandChild: 0,
 warningGrandChild: 0,
-skipGrandChild: 22,
+skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
 };

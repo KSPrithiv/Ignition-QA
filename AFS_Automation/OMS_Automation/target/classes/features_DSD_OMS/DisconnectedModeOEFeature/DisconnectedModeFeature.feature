@@ -149,26 +149,26 @@ Feature: Disconnected mode
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-  @DMDeleteProductFromCart
-  Scenario: Test scenario for navigating to catalog tab, and delete product from cart
+  @DragAndDropDisconnectedMode
+  Scenario: Test scenario for drag and drop feature
     Given User should be in Order entry page
     When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
     And Then User selects Go offline option in Disconnected mode popup
     Then User should get Customer account# popup
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
     Then User must be on Order Entry Page in disconnected mode
-    And User should navigate to Catalog tab
-    And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
-    Then User enters Product# in Search bar and enters Qty
-      |1|1|
-      |2|1|
-      |2|2|
-    Then User click on cart in catalog and click on Gotocart, before that Delete Product from popup
-    And user should be on New Order entry page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |1|1|
+    And Drag and drop table header
+      |Category|
     Then Click on Next button
-    Then Click on SubmitOrder button
+    And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
 

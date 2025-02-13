@@ -65,6 +65,12 @@ public class OrderControlListPage
     @FindBy(xpath = "//div[contains(@class,'header-row')]/descendant::span[contains(@class,'calendar')]")
     private WebElement CallDate;
 
+    @FindBy(id="DeliveryDate")
+    private WebElement deliveryDate;
+
+    @FindBy(id="CallDate")
+    private WebElement callDate;
+
     @FindBy(id = "refreshButton")
     private WebElement RefreshButton;
 
@@ -2214,7 +2220,7 @@ public class OrderControlListPage
     public void validateCreatedByColumn()
     {
         exists=false;
-        String headText="";
+        String headText;
         Actions act=new Actions(driver);
         try
         {
@@ -2241,7 +2247,6 @@ public class OrderControlListPage
         exists=false;
         try
         {
-            //Thread.sleep(1000);
             if(HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')]/td["+a+"]/descendant::div[contains(@class,'CPKendoDataGrid-Text')]/span",driver))
             {
                 WebElement createdBy=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+a+"]/descendant::div[contains(@class,'CPKendoDataGrid-Text')]/span");
@@ -2676,6 +2681,89 @@ public class OrderControlListPage
             else
             {
                 exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectDeliveryDateRadioButton()
+    {
+        exists=false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(deliveryDate.isDisplayed())
+            {
+                HelpersMethod.ActClick(driver, deliveryDate, 10000);
+                exists=true;
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnCalender()
+    {
+        try
+        {
+
+        }
+        catch (Exception e){}
+    }
+
+    public void validateLastDeliveryDate()
+    {
+        exists=false;
+        String headText;
+        Actions act=new Actions(driver);
+        try
+        {
+            a=0;
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[contains(@class,'k-column-title')]");
+            for(WebElement head:heads)
+            {
+                a++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equalsIgnoreCase("Last delivery date"))
+                {
+                    scenario.log("LAST DELIVERY DATE COLUMN HAS BEEN FOUND");
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void valueInLastDeliveryDate()
+    {
+        exists=false;
+        String callText;
+        try
+        {
+            if(HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')]/td["+a+"]/descendant::div[contains(@class,'CPKendoDataGrid-Text')]/span",driver))
+            {
+               List<WebElement> callDeliveryDates=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+a+"]/descendant::div[contains(@class,'CPKendoDataGrid-Date')]/span");
+               for(WebElement callDelivery:callDeliveryDates)
+               {
+                   callText =callDelivery.getText();
+                   scenario.log("CALL DELIVERY DATE: " + callText);
+                   exists = true;
+               }
             }
             Assert.assertEquals(exists,true);
         }

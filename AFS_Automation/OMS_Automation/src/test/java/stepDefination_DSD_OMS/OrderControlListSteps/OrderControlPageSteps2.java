@@ -132,4 +132,13 @@ public class OrderControlPageSteps2
         orderControlList.Validate_OCL();
         orderControlList.searchForAccountNo();
     }
+
+    @And("User verify last delivery date column")
+    public void userVerifyLastDeliveryDateColumn() throws InterruptedException
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.Validate_OCL();
+        orderControlList.validateLastDeliveryDate();
+        orderControlList.valueInLastDeliveryDate();
+    }
 }
