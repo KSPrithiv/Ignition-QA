@@ -40,7 +40,6 @@
 		<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
 			<li class='waves-effect active'><a href='#!' view='test-view' onclick="configureView(0);chartsView('test');"><i class='material-icons'>dashboard</i></a></li>
 			<li class='waves-effect'><a href='#!' view='category-view' onclick="configureView(1)"><i class='material-icons'>label_outline</i></a></li>
-			<li class='waves-effect'><a href='#!' view='exception-view' onclick="configureView(2)"><i class='material-icons'>bug_report</i></a></li>
 			<li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></a></li>
 		</ul>
 		<!-- report name -->
@@ -50,7 +49,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Feb 11, 2025 10:18:23 PM</span>
+			<span class='label blue darken-3 suite-start-time'>Feb 13, 2025 01:37:29 PM</span>
 			</a>
 		</ul>
 	</div>
@@ -65,7 +64,7 @@
 				<i class='material-icons'>warning</i> Status
 				</a>
 				<ul id='tests-toggle' class='dropdown-content'>
-										<li status='fail'><a href='#!'>Fail <i class='material-icons red-text'>cancel</i></a></li>
+										<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
 					<li class='divider'></li>
 					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
 				</ul>
@@ -77,8 +76,22 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
-					<li><a href='#'>@ImportOrder</a></li>
-					<li><a href='#'>@ExportOrder</a></li>
+					<li><a href='#'>@DuplicateProduct</a></li>
+					<li><a href='#'>@ReportPriceGroupDefaultSchedule</a></li>
+					<li><a href='#'>@ReportDescending</a></li>
+					<li><a href='#'>@LoadingExistingData</a></li>
+					<li><a href='#'>@DeleteProduct</a></li>
+					<li><a href='#'>@AddCompetitor</a></li>
+					<li><a href='#'>@SearchingProductSearchBar</a></li>
+					<li><a href='#'>@ReportAscending</a></li>
+					<li><a href='#'>@ReportNationalChainERP</a></li>
+					<li><a href='#'>@DeleteCompetitorData</a></li>
+					<li><a href='#'>@ReportMultipleCustomer</a></li>
+					<li><a href='#'>@ReportMarketSegment</a></li>
+					<li><a href='#'>@ReportSingleCustomer</a></li>
+					<li><a href='#'>@AddProduct</a></li>
+					<li><a href='#'>@SearchForProduct</a></li>
+					<li><a href='#'>@ReportLocalChainERP</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -120,12 +133,12 @@
                     <canvas id='parent-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='$0%'>
-                    <span class='strong'>0</span> features passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='$100%'>
+                    <span class='strong'>1</span> features passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong tooltipped' data-position='top' data-tooltip='100%'>
-                    1</span> features failed, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
+                    0</span> features failed, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
                     0</span> skipped
                 </div>
@@ -138,12 +151,12 @@
                     <canvas id='child-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='0%'>
-                    <span class='strong'>0</span> scenarios passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='100%'>
+                    <span class='strong'>16</span> scenarios passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong tooltipped' data-position='top' data-tooltip='100%'>
-                    2</span> scenarios failed, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
+                    0</span> scenarios failed, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
                     0</span> skipped, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -158,14 +171,14 @@
                     <canvas id='grandchild-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='23%'>
-                    <span class='strong'>8</span> steps passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='100%'>
+                    <span class='strong'>120</span> steps passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong tooltipped' data-position='top' data-tooltip='11%'>
-                    4</span> steps failed, 
-                    <span class='strong tooltipped' data-position='top' data-tooltip='64%'>
-                    22</span> skipped, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
+                    0</span> steps failed, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
+                    0</span> skipped, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
                     0</span> others
                 </div>
@@ -186,11 +199,11 @@
 	<div class='subview-left left'>
 		<div class='view-summary'>
 			<ul id='test-collection' class='test-collection'>
-				<li class='test displayed active has-leaf fail' status='fail' bdd='true' test-id='1'>
+				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>Order Entry5</span>
-						<span class='test-time'>Feb 11, 2025 10:20:30 PM</span>
-						<span class='test-status right fail'>Fail</span>
+						<span class='test-name'>Competitive Pricing</span>
+						<span class='test-time'>Feb 13, 2025 01:38:20 PM</span>
+						<span class='test-status right pass'>Pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class="sr-filters bdd-filters">
@@ -199,339 +212,915 @@
 	<a class="btn-floating waves-effect waves-light skip blue" title="skip"><i class='material-icons'>redo</i></a>
 	<a class="btn-floating waves-effect waves-light clear grey" title="clear"><i class='material-icons'>clear</i></a>
 </div>
-	<div class='test-desc'>  Used for cration of New order in different ways
-  Used for canceling order, editing of order, skipping of order</div>
+	<div class='test-desc'>  All the scenarios that performs all the scenarios related to Competitive pricing</div>
 
-<div class='scenario node' test-id='2' status='fail'>
+<div class='scenario outline node' test-id='2' status='pass'>
 
-	<span class='duration right label'>00 00 11.760</span>
+	<span class='duration right label'>00 03 48.024</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span> Scenario: Create an order Open that order and export the order</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: For adding new competitor pricing</div>
 	</div>
 	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>CustRef</td><td>CustRef1</td></tr><tr><td>Customer account #</td><td>All customer accounts #</td></tr></table></div>
 	
-		<div class='category-list'>
-				<span class='category label'>@ExportOrder</span>
-		</div>
 	
 	<ul class='steps'>
-		<li test-id='90' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials</div>
+		<li test-id='3' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>For adding new competitor pricing</div>
 
+				<div class='category-list'>
+						<span class='category label'>@AddCompetitor</span>
+				</div>
 
-		</li>
-		<li test-id='91' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</div>
+			<ul class='gc steps'>
+				<li test-id='91' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
 
+							<div class="node-step">SIGNIN BUTTON CLICKED</div>
+				</li>
+				<li test-id='92' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
 
-		</li>
-		<li test-id='92' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</div>
+							<div class="node-step">ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND</div>
+				</li>
+				<li test-id='93' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
 
+							<div class="node-step">USER ICON FOUND</div>
+							<div class="node-step">IN ADMIN PAGE</div>
+							<div class="node-step">https://autoerp.afsi.com/omsi/clientportal/apps/cpCompetitivePricing.html?p=QJFsTz5JBfVNODvKd%2b4hK56SreO0vwVwYSCjo3j9p6A%3d</div>
+							<div class="node-step">NAVIGATED TO COMPETITOR PRICING PAGE</div>
+				</li>
+				<li test-id='94' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
 
-		</li>
-		<li test-id='93' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab</div>
+				</li>
+				<li test-id='95' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
 
+				</li>
+				<li test-id='96' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userSelectsCustomerReferenceAndSelectCustomerAccount(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</h6>
 
-		</li>
-		<li test-id='94' class='node then Fail' status='Fail'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account())"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span>Then User selects Account#</div>
+							<div class="node-step">CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985</div>
+				</li>
+				<li test-id='97' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userClickOnAddCompetitorButtonAndEntersCompetitorDetailsAndClicksOnAddButton()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on Add competitor button and Enters Competitor details and clicks on Add button</h6>
 
-
-					<textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=132.0.6834.160)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [59263c036ec62a2bec79222b5840df6b, findElement {using=xpath, value=//div[@class='loader']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 59263c036ec62a2bec79222b5840df6b
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:569)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:565)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at pages_DSD_OMS.orderEntry.OrderEntryPage.ChangeAccount(OrderEntryPage.java:488)
-	at stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account(OrderEntryPageSteps.java:119)
-	at ✽.User selects Account#(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature:10)
-</textarea>
-		</li>
-		<li test-id='95' class='node given Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Given User must be on Order Entry Page</div>
-
-
-					<div class="node-step">Step skipped</div>
-		</li>
-		<li test-id='96' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User must click Start Order button</div>
-
-
-					<div class="node-step">Step skipped</div>
-		</li>
-		<li test-id='97' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User should make selection between Pending order or Start New order</div>
-
-
-					<div class="node-step">Step skipped</div>
-		</li>
-		<li test-id='98' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User should select Note from popup and Order guide from popup</div>
-
-
-					<div class="node-step">Step skipped</div>
-		</li>
-		<li test-id='99' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable))"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then Enter PO# for New order</div>
-
-
-					<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
-					<div class="node-step">Step skipped</div>
-		</li>
-		<li test-id='100' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_pro_in_quick_product_entry_area())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then Enter Pro# in Quick Product Entry area</div>
-
-
-					<div class="node-step">Step skipped</div>
-		</li>
-		<li test-id='101' class='node and Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable))"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>And Check for Case and Unit input box enabled or not based on that enter value</div>
-
-
-					<div class="node-step"><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table></div>
-					<div class="node-step">Step skipped</div>
-		</li>
-		<li test-id='102' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then Click on Next button</div>
-
-
-					<div class="node-step">Step skipped</div>
-		</li>
-		<li test-id='103' class='node and Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button_and_read_order_no())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>And Click on Submit Order button and read Order_no</div>
-
-
-					<div class="node-step">Step skipped</div>
-		</li>
-		<li test-id='104' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User should be navigated to Order Entry page</div>
-
-
-					<div class="node-step">Step skipped</div>
-		</li>
-		<li test-id='105' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_order_in_search_box_in_order_entry_page())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then Enter Order# in Search box in Order Entry page</div>
-
-
-					<div class="node-step">Step skipped</div>
-		</li>
-		<li test-id='106' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_order_number_in_order_entry_page())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then Click on Order number in Order Entry page</div>
-
-
-					<div class="node-step">Step skipped</div>
-		</li>
-		<li test-id='107' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.navigate_to_newoe_page_and_click_on_export_button())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then navigate to newOE page and Click on Export button</div>
-
-
-					<div class="node-step">Step skipped</div>
-		</li>
-		<li test-id='108' class='node * Fail' status='Fail'>
-			<div class="step-name" title="(AFTER)"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</div>
-
-
-					<textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=132.0.6834.160)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [59263c036ec62a2bec79222b5840df6b, screenshot {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 59263c036ec62a2bec79222b5840df6b
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:622)
-	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:334)
-	at stepDefination_DSD_OMS.LoginPageStep.afterScenario1(LoginPageStep.java:77)
-</textarea>
+							<div class="node-step">NEW COMPETITOR BUTTON HAS BEEN CLICKED</div>
+							<div class="node-step">CODE ENTERED IS oxtb</div>
+							<div class="node-step">DESCRIPTION ENTERED IS otQI</div>
+				</li>
+			</ul>
 		</li>
 	</ul>
 </div>
-<div class='scenario node' test-id='109' status='fail'>
+<div class='scenario outline node' test-id='99' status='pass'>
 
-	<span class='duration right label'>00 00 00.543</span>
+	<span class='duration right label'>00 04 32.869</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span> Scenario: Create an order by importing .csv files</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: For Adding Product to competitor</div>
 	</div>
 	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>CustRef</td><td>CustRef1</td></tr><tr><td>Customer account #</td><td>All customer accounts #</td></tr></table></div>
 	
-		<div class='category-list'>
-				<span class='category label'>@ImportOrder</span>
-		</div>
 	
 	<ul class='steps'>
-		<li test-id='197' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials</div>
+		<li test-id='100' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>For Adding Product to competitor</div>
 
+				<div class='category-list'>
+						<span class='category label'>@AddProduct</span>
+				</div>
 
+			<ul class='gc steps'>
+				<li test-id='188' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='189' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='190' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='191' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='192' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='193' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userSelectsCustomerReferenceAndSelectCustomerAccount(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</h6>
+
+							<div class="node-step">CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985</div>
+				</li>
+				<li test-id='194' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userClicksOnCompetitorDropDownAndSelectTheCompetitorBasedOnPreviouslyCreatedCompetitor()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on competitor drop down and select the competitor based on previously created competitor</h6>
+
+							<div class="node-step">VALUE TO BE SELECTED FROM COMPETITOR: oxtb</div>
+							<div class="node-step">COMPETITOR VALUE SELECTED IS oxtb</div>
+				</li>
+				<li test-id='195' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldClickOnPlusButtonForAddingProductsUsingFilterInputBox()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should click on Plus button for adding products, using filter input box</h6>
+
+							<div class="node-step">PRODUCT NUMBERS IN GRID 0002</div>
+							<div class="node-step">PRODUCT NUMBERS IN GRID 0013</div>
+							<div class="node-step">PRODUCT NUMBERS IN GRID 0027</div>
+							<div class="node-step">PRODUCT NUMBERS IN GRID 0001</div>
+							<div class="node-step">PRODUCT NUMBERS IN GRID 0012</div>
+				</li>
+				<li test-id='196' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userSelectsSoldByUomBaseUomCompetitorPricingAndCommentThenUserClicksOnSaveButton(io.cucumber.datatable.DataTable)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Sold by uom, base uom, competitor pricing and comment, then user clicks on Save button</h6>
+
+							<div class="node-step"><table class='markup-table table '><tr><td>10.50</td><td>Comment Test1</td></tr><tr><td>20.60</td><td>Comment Test2</td></tr><tr><td>15.80</td><td>Comment Test3</td></tr><tr><td>40.00</td><td>Comment Test4</td></tr><tr><td>25.00</td><td>Comment Test5</td></tr></table></div>
+							<div class="node-step">COMPETITOR PRICING HAS BEEN SAVED SUCCESSFULLY</div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='198' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='198' status='pass'>
 
+	<span class='duration right label'>00 06 12.226</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: For loading competitor data</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>CustRef</td><td>CustRef1</td></tr><tr><td>Customer account #</td><td>All customer accounts #</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='199' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>For loading competitor data</div>
 
+				<div class='category-list'>
+						<span class='category label'>@LoadingExistingData</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='287' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='288' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='289' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='290' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='291' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='292' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userSelectsCustomerReferenceAndSelectCustomerAccount(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</h6>
+
+							<div class="node-step">CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985</div>
+				</li>
+				<li test-id='293' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userClickOnLoadExistingDataAndSelectCompetitorInPopup()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User Click on Load existing data and select competitor in popup</h6>
+
+							<div class="node-step">PRODUCT FOUND IN: 0001</div>
+							<div class="node-step">PRODUCT FOUND IN: 0002</div>
+							<div class="node-step">PRODUCT FOUND IN: 0012</div>
+							<div class="node-step">PRODUCT FOUND IN: 0013</div>
+							<div class="node-step">PRODUCT FOUND IN: 0027</div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='199' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='295' status='pass'>
 
+	<span class='duration right label'>00 04 06.335</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: For Searching product in competitor pricing</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>CustRef</td><td>CustRef1</td></tr><tr><td>Customer account #</td><td>All customer accounts #</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='296' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>For Searching product in competitor pricing</div>
 
+				<div class='category-list'>
+						<span class='category label'>@SearchForProduct</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='384' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='385' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='386' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='387' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='388' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='389' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userSelectsCustomerReferenceAndSelectCustomerAccount(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</h6>
+
+							<div class="node-step">CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985</div>
+				</li>
+				<li test-id='390' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userClicksOnCompetitorDropDownAndSelectTheCompetitorBasedOnPreviouslyCreatedCompetitor()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on competitor drop down and select the competitor based on previously created competitor</h6>
+
+							<div class="node-step">VALUE TO BE SELECTED FROM COMPETITOR: oxtb</div>
+							<div class="node-step">COMPETITOR VALUE SELECTED IS oxtb</div>
+				</li>
+				<li test-id='391' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userSearchForProductUsingAddFilter()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User search for product using Add filter</h6>
+
+							<div class="node-step">PRODUCT SEARCHED FOR IN CATALOG IS 0001</div>
+							<div class="node-step">0001 HAS BEEN FOUND IN THE GRID</div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='200' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='393' status='pass'>
 
+	<span class='duration right label'>00 09 04.599</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: For Deleting Product in competitor</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>CustRef</td><td>CustRef1</td></tr><tr><td>Customer account #</td><td>All customer accounts #</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='394' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>For Deleting Product in competitor</div>
 
+				<div class='category-list'>
+						<span class='category label'>@DeleteProduct</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='482' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='483' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='484' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='485' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='486' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='487' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userSelectsCustomerReferenceAndSelectCustomerAccount(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</h6>
+
+							<div class="node-step">CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985</div>
+				</li>
+				<li test-id='488' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userClicksOnCompetitorDropDownAndSelectTheCompetitorBasedOnPreviouslyCreatedCompetitor()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on competitor drop down and select the competitor based on previously created competitor</h6>
+
+							<div class="node-step">VALUE TO BE SELECTED FROM COMPETITOR: oxtb</div>
+							<div class="node-step">COMPETITOR VALUE SELECTED IS oxtb</div>
+				</li>
+				<li test-id='489' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userSearchForProductUsingAddFilter()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User search for product using Add filter</h6>
+
+							<div class="node-step">PRODUCT SEARCHED FOR IN CATALOG IS 0001</div>
+							<div class="node-step">0001 HAS BEEN FOUND IN THE GRID</div>
+				</li>
+				<li test-id='490' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userSelectsOneOfTheProductFromGridAndDeleteItAndClickOnSaveButton()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User selects one of the product from grid and delete it and click on save button</h6>
+
+							<div class="node-step">1ST PRODUCT IS SELECTED FROM COMPETITIVE PRICING</div>
+							<div class="node-step">PRODUCT HAS BEEN DELETED FROM COMPETITIVE PRICING</div>
+							<div class="node-step">COMPETITOR PRICING HAS BEEN SAVED SUCCESSFULLY</div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='201' class='node then Fail' status='Fail'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account())"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span>Then User selects Account#</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='492' status='pass'>
 
+	<span class='duration right label'>00 05 37.472</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: For searching of products in competitor pricing using Search bar</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>CustRef</td><td>CustRef1</td></tr><tr><td>Customer account #</td><td>All customer accounts #</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='493' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>For searching of products in competitor pricing using Search bar</div>
 
-					<textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=132.0.6834.160)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [59263c036ec62a2bec79222b5840df6b, findElement {using=xpath, value=//div[@class='loader']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 59263c036ec62a2bec79222b5840df6b
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:569)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:565)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at pages_DSD_OMS.orderEntry.OrderEntryPage.ChangeAccount(OrderEntryPage.java:488)
-	at stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account(OrderEntryPageSteps.java:119)
-	at ✽.User selects Account#(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature:10)
-</textarea>
+				<div class='category-list'>
+						<span class='category label'>@SearchingProductSearchBar</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='581' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='582' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='583' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='584' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='585' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='586' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userSelectsCustomerReferenceAndSelectCustomerAccount(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</h6>
+
+							<div class="node-step">CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985</div>
+				</li>
+				<li test-id='587' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userClicksOnCompetitorDropDownAndSelectTheCompetitorBasedOnPreviouslyCreatedCompetitor()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on competitor drop down and select the competitor based on previously created competitor</h6>
+
+							<div class="node-step">VALUE TO BE SELECTED FROM COMPETITOR: oxtb</div>
+							<div class="node-step">COMPETITOR VALUE SELECTED IS oxtb</div>
+				</li>
+				<li test-id='588' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userSearchForProductUsingSearchBar()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User search for product using Search bar</h6>
+
+							<div class="node-step">0002 HAS BEEN FOUND IN THE GRID</div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='202' class='node given Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Given User must be on Order Entry Page</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='590' status='pass'>
 
+	<span class='duration right label'>00 00 36.123</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario for verifying Duplicate products are not added in competitor pricing</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>CustRef</td><td>CustRef1</td></tr><tr><td>Customer account #</td><td>All customer accounts #</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='591' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for verifying Duplicate products are not added in competitor pricing</div>
 
-					<div class="node-step">Step skipped</div>
+				<div class='category-list'>
+						<span class='category label'>@DuplicateProduct</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='679' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='680' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='681' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='682' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='683' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='684' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userSelectsCustomerReferenceAndSelectCustomerAccount(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</h6>
+
+							<div class="node-step">CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985</div>
+				</li>
+				<li test-id='685' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userClicksOnCompetitorDropDownAndSelectTheCompetitorBasedOnPreviouslyCreatedCompetitor()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on competitor drop down and select the competitor based on previously created competitor</h6>
+
+							<div class="node-step">VALUE TO BE SELECTED FROM COMPETITOR: oxtb</div>
+							<div class="node-step">COMPETITOR VALUE SELECTED IS oxtb</div>
+				</li>
+				<li test-id='686' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userSearchForProductInCatalogDialogBoxToMakeSureThatDuplicateProductsAreNotAddedToCompetitivePricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User search for product in catalog dialog box, to make sure that duplicate products are not added to competitive pricing</h6>
+
+				</li>
+			</ul>
 		</li>
-		<li test-id='203' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User must click Start Order button</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='688' status='pass'>
 
+	<span class='duration right label'>00 00 37.959</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: For Deleting competitor record it self</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>CustRef</td><td>CustRef1</td></tr><tr><td>Customer account #</td><td>All customer accounts #</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='689' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>For Deleting competitor record it self</div>
 
-					<div class="node-step">Step skipped</div>
+				<div class='category-list'>
+						<span class='category label'>@DeleteCompetitorData</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='777' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='778' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='779' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='780' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='781' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='782' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userSelectsCustomerReferenceAndSelectCustomerAccount(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User selects Customer reference "Customer account #" "All customer accounts #" and Select customer Account#</h6>
+
+							<div class="node-step">CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: K11985</div>
+				</li>
+				<li test-id='783' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userClicksOnCompetitorDropDownAndSelectTheCompetitorBasedOnPreviouslyCreatedCompetitor()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on competitor drop down and select the competitor based on previously created competitor</h6>
+
+							<div class="node-step">VALUE TO BE SELECTED FROM COMPETITOR: oxtb</div>
+							<div class="node-step">COMPETITOR VALUE SELECTED IS oxtb</div>
+				</li>
+				<li test-id='784' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userClicksOnDeleteCompetitorRecordButton()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User clicks on delete competitor record button</h6>
+
+							<div class="node-step">DELETE COMPETITOR PRICING IS SUCCESSFUL</div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='204' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User should make selection between Pending order or Start New order</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='786' status='pass'>
 
+	<span class='duration right label'>00 00 13.319</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario for generating report with single customer Account#</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Reportstab</td><td>Groupby</td></tr><tr><td>Report</td><td>Group by</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='787' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for generating report with single customer Account#</div>
 
-					<div class="node-step">Step skipped</div>
+				<div class='category-list'>
+						<span class='category label'>@ReportSingleCustomer</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='875' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='876' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='877' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='878' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='879' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='880' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep1.userNavigatesToUnderCompetitorPricingAndSelectTabUnderReports(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</h6>
+
+							<div class="node-step">NAVIGATED TO REPORT PAGE</div>
+							<div class="node-step">NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE</div>
+				</li>
+				<li test-id='881' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep1.userShouldSelectCustomerAccountInGroupOneAndEvenSelectCustomer(io.cucumber.datatable.DataTable)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select customer account# in groupOne and even select customer</h6>
+
+							<div class="node-step"><table class='markup-table table '><tr><td>Customer account #</td></tr></table></div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='205' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User should select Note from popup and Order guide from popup</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='883' status='pass'>
 
+	<span class='duration right label'>00 00 14.907</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario for generating report with Multiple customer Account#</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Reportstab</td><td>Groupby</td></tr><tr><td>Report</td><td>Group by</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='884' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for generating report with Multiple customer Account#</div>
 
-					<div class="node-step">Step skipped</div>
+				<div class='category-list'>
+						<span class='category label'>@ReportMultipleCustomer</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='972' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='973' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='974' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='975' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='976' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='977' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep1.userNavigatesToUnderCompetitorPricingAndSelectTabUnderReports(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</h6>
+
+							<div class="node-step">NAVIGATED TO REPORT PAGE</div>
+							<div class="node-step">NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE</div>
+				</li>
+				<li test-id='978' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep1.userShouldSelectMultipleCustomerAccountInGroupOneAndEvenSelectCustomer(io.cucumber.datatable.DataTable)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select multiple customer account# in groupOne and even select customer</h6>
+
+							<div class="node-step"><table class='markup-table table '><tr><td>Customer account #</td></tr></table></div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='206' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable))"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then Enter PO# for New order</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='980' status='pass'>
 
+	<span class='duration right label'>00 00 54.220</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario for generating report with ascending order</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Reportstab</td><td>Groupby</td></tr><tr><td>Report</td><td>Group by</td></tr></table><br><br><table class='markup-table table '><tr><td>Reportstab</td><td>Groupby</td></tr><tr><td>Report</td><td>Group by</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='981' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for generating report with ascending order</div>
 
-					<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
-					<div class="node-step">Step skipped</div>
+				<div class='category-list'>
+						<span class='category label'>@ReportAscending</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='1,069' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,070' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,071' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,072' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='1,073' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='1,074' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep1.userNavigatesToUnderCompetitorPricingAndSelectTabUnderReports(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</h6>
+
+							<div class="node-step">NAVIGATED TO REPORT PAGE</div>
+							<div class="node-step">NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE</div>
+				</li>
+				<li test-id='1,075' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep1.userShouldSelectCustomerAccountInGroupOneAndEvenSelectCustomerAndSelectAscendingOrderRadioButton(io.cucumber.datatable.DataTable)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select customer account# in groupOne and even select customer and select ascending order radio button</h6>
+
+							<div class="node-step"><table class='markup-table table '><tr><td>Customer account #</td></tr></table></div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='207' class='node and Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_import_button())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>And Click on Import button</div>
+		<li test-id='1,077' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for generating report with ascending order</div>
 
+				<div class='category-list'>
+						<span class='category label'>@ReportAscending</span>
+						<span class='category label'>@ReportDescending</span>
+				</div>
 
-					<div class="node-step">Step skipped</div>
+			<ul class='gc steps'>
+				<li test-id='1,165' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,166' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,167' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,168' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='1,169' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='1,170' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep1.userNavigatesToUnderCompetitorPricingAndSelectTabUnderReports(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</h6>
+
+							<div class="node-step">NAVIGATED TO REPORT PAGE</div>
+							<div class="node-step">NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE</div>
+				</li>
+				<li test-id='1,171' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep1.userShouldSelectCustomerAccountInGroupOneAndEvenSelectCustomerAndSelectDescendingOrderRadioButton(io.cucumber.datatable.DataTable)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select customer account# in groupOne and even select customer and select descending order radio button</h6>
+
+							<div class="node-step"><table class='markup-table table '><tr><td>Customer account #</td></tr></table></div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='208' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then Click on Next button</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='1,173' status='pass'>
 
+	<span class='duration right label'>00 00 13.164</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario for generating report with Local chain in ERP env</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Reportstab</td><td>Groupby</td></tr><tr><td>Report</td><td>Group by</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='1,174' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for generating report with Local chain in ERP env</div>
 
-					<div class="node-step">Step skipped</div>
+				<div class='category-list'>
+						<span class='category label'>@ReportLocalChainERP</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='1,262' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,263' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,264' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,265' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='1,266' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='1,267' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep1.userNavigatesToUnderCompetitorPricingAndSelectTabUnderReports(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</h6>
+
+							<div class="node-step">NAVIGATED TO REPORT PAGE</div>
+							<div class="node-step">NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE</div>
+				</li>
+				<li test-id='1,268' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageERPStep.userShouldSelectGroupByInGroupOneAndEvenSelectChain(io.cucumber.datatable.DataTable)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Group by in groupOne and even select chain</h6>
+
+							<div class="node-step"><table class='markup-table table '><tr><td>Local chain</td></tr></table></div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='209' class='node and Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button_and_read_order_no())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>And Click on Submit Order button and read Order_no</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='1,270' status='pass'>
 
+	<span class='duration right label'>00 00 11.688</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario for generating report with National chain in ERP env</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Reportstab</td><td>Groupby</td></tr><tr><td>Report</td><td>Group by</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='1,271' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for generating report with National chain in ERP env</div>
 
-					<div class="node-step">Step skipped</div>
+				<div class='category-list'>
+						<span class='category label'>@ReportNationalChainERP</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='1,359' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,360' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,361' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,362' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='1,363' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='1,364' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep1.userNavigatesToUnderCompetitorPricingAndSelectTabUnderReports(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</h6>
+
+							<div class="node-step">NAVIGATED TO REPORT PAGE</div>
+							<div class="node-step">NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE</div>
+				</li>
+				<li test-id='1,365' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageERPStep.userShouldSelectGroupByInGroupOneAndEvenSelectChain(io.cucumber.datatable.DataTable)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Group by in groupOne and even select chain</h6>
+
+							<div class="node-step"><table class='markup-table table '><tr><td>National chain</td></tr></table></div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='210' class='node then Skip' status='Skip'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page())"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User should be navigated to Order Entry page</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='1,367' status='pass'>
 
+	<span class='duration right label'>00 00 11.486</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario for generating report with Market segment in ERP env</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Reportstab</td><td>Groupby</td></tr><tr><td>Report</td><td>Group by</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='1,368' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for generating report with Market segment in ERP env</div>
 
-					<div class="node-step">Step skipped</div>
+				<div class='category-list'>
+						<span class='category label'>@ReportMarketSegment</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='1,456' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,457' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,458' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,459' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='1,460' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='1,461' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep1.userNavigatesToUnderCompetitorPricingAndSelectTabUnderReports(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</h6>
+
+							<div class="node-step">NAVIGATED TO REPORT PAGE</div>
+							<div class="node-step">NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE</div>
+				</li>
+				<li test-id='1,462' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageERPStep.userShouldSelectGroupByInGroupOneAndEvenSelectChain(io.cucumber.datatable.DataTable)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Group by in groupOne and even select chain</h6>
+
+							<div class="node-step"><table class='markup-table table '><tr><td>Market segment</td></tr></table></div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='211' class='node * Fail' status='Fail'>
-			<div class="step-name" title="(AFTER)"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='1,464' status='pass'>
 
+	<span class='duration right label'>00 00 11.376</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario for generating report with Price base in ERP env</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Reportstab</td><td>Groupby</td></tr><tr><td>Report</td><td>Group by</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='1,465' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for generating report with Price base in ERP env</div>
 
-					<textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=132.0.6834.160)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [59263c036ec62a2bec79222b5840df6b, screenshot {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 59263c036ec62a2bec79222b5840df6b
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:622)
-	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:334)
-	at stepDefination_DSD_OMS.LoginPageStep.afterScenario1(LoginPageStep.java:77)
-</textarea>
+				<div class='category-list'>
+						<span class='category label'>@ReportPriceGroupDefaultSchedule</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='1,553' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,554' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userIsOnHomePageForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,555' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userNavigateToClientSideForCompetitiorPricing()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Competitior pricing</h6>
+
+				</li>
+				<li test-id='1,556' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userMustBeOnClientSideAndSelectCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Competitor pricing page</h6>
+
+				</li>
+				<li test-id='1,557' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.userShouldConfirmThatHeIsInCompetitorPricingPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Competitor pricing page</h6>
+
+				</li>
+				<li test-id='1,558' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep1.userNavigatesToUnderCompetitorPricingAndSelectTabUnderReports(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigates to "Report" under competitor pricing and select "Group by" tab under Reports</h6>
+
+							<div class="node-step">NAVIGATED TO REPORT PAGE</div>
+							<div class="node-step">NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE</div>
+				</li>
+				<li test-id='1,559' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageERPStep.userShouldSelectGroupByInGroupOneAndEvenSelectChain(io.cucumber.datatable.DataTable)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Group by in groupOne and even select chain</h6>
+
+							<div class="node-step"><table class='markup-table table '><tr><td>Price group - default schedule</td></tr></table></div>
+				</li>
+			</ul>
 		</li>
 	</ul>
 </div>
@@ -579,15 +1168,15 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@ImportOrder</span>
+						<span class='category-name'>@DuplicateProduct</span>
 						<span class='category-status right'>
-						<span class='label fail'>1</span>
+						<span class='label pass'>1</span>
 						</span>
 					</div>
 					<div class='category-content hide'>
 						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
 							
-							<span status="fail" class='label red lighten-1 white-text'>Failed: 1</span>
 							
 						</div>
 						<div class='category-tests'>
@@ -601,9 +1190,9 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 								</thead>
 								<tbody>
 									<tr>
-										<td>Feb 11, 2025 10:21:18 PM</td>
-										<td class='linked' test-id='109'>Create an order by importing .csv files</td>
-										<td><span class='test-status Fail'>Fail</span></td>
+										<td>Feb 13, 2025 02:21:14 PM</td>
+										<td class='linked' test-id='591'>Test scenario for verifying Duplicate products are not added in competitor pricing</td>
+										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
 							</table>
@@ -612,15 +1201,15 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 				</li>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@ExportOrder</span>
+						<span class='category-name'>@ReportPriceGroupDefaultSchedule</span>
 						<span class='category-status right'>
-						<span class='label fail'>1</span>
+						<span class='label pass'>1</span>
 						</span>
 					</div>
 					<div class='category-content hide'>
 						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
 							
-							<span status="fail" class='label red lighten-1 white-text'>Failed: 1</span>
 							
 						</div>
 						<div class='category-tests'>
@@ -634,9 +1223,476 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 								</thead>
 								<tbody>
 									<tr>
-										<td>Feb 11, 2025 10:20:30 PM</td>
-										<td class='linked' test-id='2'>Create an order Open that order and export the order</td>
-										<td><span class='test-status Fail'>Fail</span></td>
+										<td>Feb 13, 2025 02:28:19 PM</td>
+										<td class='linked' test-id='1,465'>Test scenario for generating report with Price base in ERP env</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@ReportDescending</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Feb 13, 2025 02:25:34 PM</td>
+										<td class='linked' test-id='1,077'>Test scenario for generating report with ascending order</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@LoadingExistingData</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Feb 13, 2025 01:48:28 PM</td>
+										<td class='linked' test-id='199'>For loading competitor data</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@DeleteProduct</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Feb 13, 2025 02:01:26 PM</td>
+										<td class='linked' test-id='394'>For Deleting Product in competitor</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@AddCompetitor</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Feb 13, 2025 01:38:20 PM</td>
+										<td class='linked' test-id='3'>For adding new competitor pricing</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@SearchingProductSearchBar</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Feb 13, 2025 02:15:08 PM</td>
+										<td class='linked' test-id='493'>For searching of products in competitor pricing using Search bar</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@ReportAscending</span>
+						<span class='category-status right'>
+						<span class='label pass'>2</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 2</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Feb 13, 2025 02:24:52 PM</td>
+										<td class='linked' test-id='981'>Test scenario for generating report with ascending order</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+									<tr>
+										<td>Feb 13, 2025 02:25:34 PM</td>
+										<td class='linked' test-id='1,077'>Test scenario for generating report with ascending order</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@ReportNationalChainERP</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Feb 13, 2025 02:26:57 PM</td>
+										<td class='linked' test-id='1,271'>Test scenario for generating report with National chain in ERP env</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@DeleteCompetitorData</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Feb 13, 2025 02:22:19 PM</td>
+										<td class='linked' test-id='689'>For Deleting competitor record it self</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@ReportMultipleCustomer</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Feb 13, 2025 02:24:09 PM</td>
+										<td class='linked' test-id='884'>Test scenario for generating report with Multiple customer Account#</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@ReportMarketSegment</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Feb 13, 2025 02:27:37 PM</td>
+										<td class='linked' test-id='1,368'>Test scenario for generating report with Market segment in ERP env</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@ReportSingleCustomer</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Feb 13, 2025 02:23:27 PM</td>
+										<td class='linked' test-id='787'>Test scenario for generating report with single customer Account#</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@AddProduct</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Feb 13, 2025 01:42:25 PM</td>
+										<td class='linked' test-id='100'>For Adding Product to competitor</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@SearchForProduct</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Feb 13, 2025 01:55:43 PM</td>
+										<td class='linked' test-id='296'>For Searching product in competitor pricing</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@ReportLocalChainERP</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Feb 13, 2025 02:26:15 PM</td>
+										<td class='linked' test-id='1,174'>Test scenario for generating report with Local chain in ERP env</td>
+										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
 							</table>
@@ -652,199 +1708,7 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 		</div>
 	</div>
 </div>
-<!-- category view --><div id='exception-view' class='view hide'>
-	<section id='controls'>
-		<div class='controls grey lighten-4'>
-			<!-- search -->
-			<div class='chip transparent' alt='Search Tests' title='Search Tests'>
-				<a href="#" class='search-div'>
-				<i class='material-icons'>search</i> Search
-				</a>
-				<div class='input-field left hide'>
-					<input id='search-tests' type='text' class='validate browser-default' placeholder='Search Tests...'>
-				</div>
-			</div>
-			<!-- search -->
-		</div>
-	</section>
-	<div class='subview-left left'>
-		<div class='view-summary'>
-			<ul id='exception-collection' class='exception-collection'>
-				<li class='exception displayed active'>
-					<div class='exception-heading'>
-						<span class='exception-name'>org.openqa.selenium.NoSuchWindowException</span>
-						<span class='exception-count right'><span class='label red lighten-1 white-text'>4</span></span>
-					</div>
-					<div class='exception-content hide'>
-						<div class='exception-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>StackTrace</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 11, 2025 10:20:42 PM</td>
-										<td class='linked' test-id='94'>Then User selects Account#</td>
-										<td>
-											<textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=132.0.6834.160)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [59263c036ec62a2bec79222b5840df6b, findElement {using=xpath, value=//div[@class='loader']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 59263c036ec62a2bec79222b5840df6b
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:569)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:565)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at pages_DSD_OMS.orderEntry.OrderEntryPage.ChangeAccount(OrderEntryPage.java:488)
-	at stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account(OrderEntryPageSteps.java:119)
-	at ✽.User selects Account#(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature:10)
-</textarea>
-										</td>
-									</tr>
-									<tr>
-										<td>Feb 11, 2025 10:20:42 PM</td>
-										<td class='linked' test-id='108'>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</td>
-										<td>
-											<textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=132.0.6834.160)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [59263c036ec62a2bec79222b5840df6b, findElement {using=xpath, value=//div[@class='loader']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 59263c036ec62a2bec79222b5840df6b
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:569)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:565)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at pages_DSD_OMS.orderEntry.OrderEntryPage.ChangeAccount(OrderEntryPage.java:488)
-	at stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account(OrderEntryPageSteps.java:119)
-	at ✽.User selects Account#(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature:10)
-</textarea>
-										</td>
-									</tr>
-									<tr>
-										<td>Feb 11, 2025 10:21:19 PM</td>
-										<td class='linked' test-id='201'>Then User selects Account#</td>
-										<td>
-											<textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=132.0.6834.160)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [59263c036ec62a2bec79222b5840df6b, findElement {using=xpath, value=//div[@class='loader']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 59263c036ec62a2bec79222b5840df6b
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:569)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:565)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at pages_DSD_OMS.orderEntry.OrderEntryPage.ChangeAccount(OrderEntryPage.java:488)
-	at stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account(OrderEntryPageSteps.java:119)
-	at ✽.User selects Account#(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature:10)
-</textarea>
-										</td>
-									</tr>
-									<tr>
-										<td>Feb 11, 2025 10:21:19 PM</td>
-										<td class='linked' test-id='211'>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</td>
-										<td>
-											<textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=132.0.6834.160)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [59263c036ec62a2bec79222b5840df6b, findElement {using=xpath, value=//div[@class='loader']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.160, chrome: {chromedriverVersion: 132.0.6834.159 (2d77d3fc445..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56070}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56070/devtoo..., se:cdpVersion: 132.0.6834.160, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 59263c036ec62a2bec79222b5840df6b
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:569)
-	at org.openqa.selenium.support.ui.ExpectedConditions$20.apply(ExpectedConditions.java:565)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
-	at pages_DSD_OMS.orderEntry.OrderEntryPage.ChangeAccount(OrderEntryPage.java:488)
-	at stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account(OrderEntryPageSteps.java:119)
-	at ✽.User selects Account#(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature:10)
-</textarea>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class='subview-right left'>
-		<div class='view-summary'>
-			<h5 class='exception-name'></h5>
-		</div>
-	</div>
-</div>
-<!-- exception view --><div id='dashboard-view' class='view hide'>
+<!-- category view --><div id='dashboard-view' class='view hide'>
 	<div class='card-panel transparent np-v'>
 		<h5>Dashboard</h5>
 
@@ -858,31 +1722,31 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Scenarios
-					<div class='panel-lead'>2</div>
+					<div class='panel-lead'>16</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>34</div>
+					<div class='panel-lead'>120</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Feb 11, 2025 10:18:23 PM</div>
+					<div class='panel-lead'>Feb 13, 2025 01:37:29 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Feb 11, 2025 10:21:21 PM</div>
+			 		<div class='panel-lead'>Feb 13, 2025 02:28:37 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 02 57.121</div>
+					<div class='panel-lead'>00 51 07.545</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -922,21 +1786,147 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 							<th>Passed %</th>
 						</tr>
 						<tr>
-							<td>@ImportOrder</td>
-							<td>0</td>
+							<td>@DuplicateProduct</td>
 							<td>1</td>
 							<td>0</td>
+							<td>0</td>
 							<td>
-									0%
+									100%
 							</td>
 						</tr>
 						<tr>
-							<td>@ExportOrder</td>
-							<td>0</td>
+							<td>@ReportPriceGroupDefaultSchedule</td>
 							<td>1</td>
 							<td>0</td>
+							<td>0</td>
 							<td>
-									0%
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@ReportDescending</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@LoadingExistingData</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@DeleteProduct</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@AddCompetitor</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@SearchingProductSearchBar</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@ReportAscending</td>
+							<td>2</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@ReportNationalChainERP</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@DeleteCompetitorData</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@ReportMultipleCustomer</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@ReportMarketSegment</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@ReportSingleCustomer</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@AddProduct</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@SearchForProduct</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@ReportLocalChainERP</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
 							</td>
 						</tr>
 					</table>
@@ -951,34 +1941,34 @@ Session ID: 59263c036ec62a2bec79222b5840df6b
 		<script>
 			var statusGroup = {
                 parentCount: 1,
-				passParent: 0,
-				failParent: 1,
+				passParent: 1,
+				failParent: 0,
 				fatalParent: 0,
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
-				childCount: 2,
-				passChild: 0,
-				failChild: 2,
+				childCount: 16,
+				passChild: 16,
+				failChild: 0,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
-				grandChildCount: 34,
-				passGrandChild: 8,
-				failGrandChild: 4,
+				grandChildCount: 120,
+				passGrandChild: 120,
+				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
 				warningGrandChild: 0,
-				skipGrandChild: 22,
+				skipGrandChild: 0,
 				infoGrandChild: 0,
 			};
 			</script>
 		
 		<script>
 			var timeline = {
-			        "Order Entry5":48.746
+			        "Competitive Pricing":3010.074
 			};
 		</script>
 		

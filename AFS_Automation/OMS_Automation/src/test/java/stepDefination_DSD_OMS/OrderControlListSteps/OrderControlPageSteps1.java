@@ -109,4 +109,15 @@ public class OrderControlPageSteps1
         orderControlList.enterMultipleRouteValue();
         orderControlList.removeMutlipleRouteValue();
     }
+
+    @Then("User should change Delivery date")
+    public void userShouldChangeDeliveryDate() throws InterruptedException
+    {
+        orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.Validate_OCL();
+        orderControlList.selectDeliveryDateRadioButton();
+        orderControlList.Call_Date_Click();
+        orderControlList.Call_Date_Selection(1);
+        //orderControlList.validateRoutesValuesPresent();
+    }
 }
