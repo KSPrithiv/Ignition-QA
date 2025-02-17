@@ -270,6 +270,22 @@ public class OrderEntryPageSteps1
         newOE.OrderGuideGrid(OGName.get(0).get(0));
     }
 
+    @Then("Click on Add product drop down and select multiple OrderGuide option")
+    public void clickOnAddProductDropDownAndSelectMultipleOrderGuideOption(DataTable tabledata) throws InterruptedException, AWTException
+    {
+        List<List<String>> OGName = tabledata.asLists(String.class);
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.Click_On_Add_Product();
+        newOE.SelectOGFromDropdown();
+        newOE.validateOGPopup();
+        newOE.OrderGuideGrid(OGName.get(0).get(0));
+
+        newOE.Click_On_Add_Product();
+        newOE.SelectOGFromDropdown();
+        newOE.validateOGPopup();
+        newOE.OrderGuideGrid(OGName.get(0).get(1));
+    }
+
     @Then("User verifies Order history page and add history Order to order select Order")
     public void userVerifiesOrderHistoryPageAndAddHistoryOrderToOrderSelectOrder() throws InterruptedException, AWTException
     {

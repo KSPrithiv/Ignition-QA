@@ -62,17 +62,30 @@ public class OrderControlPageSteps2
     {
         orderpage = new OrderEntryPage(driver, scenario);
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(600))
+                .withTimeout(Duration.ofSeconds(800))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(800))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        Thread.sleep(2000);
         for(int i=0;i<=1;i++)
         {
             orderpage.OrderGuidePopup();
             Thread.sleep(1000);
             orderpage.verifyNoteInDialogbox(commentText);
         }
-        String status = HelpersMethod.returnDocumentStatus(driver);
+        status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
             HelpersMethod.waitTillLoadingPage(driver);
@@ -140,5 +153,27 @@ public class OrderControlPageSteps2
         orderControlList.Validate_OCL();
         orderControlList.validateLastDeliveryDate();
         orderControlList.valueInLastDeliveryDate();
+    }
+
+    @And("User verifies already taken order numbers")
+    public void userVerifiesAlreadyTakenOrderNumbers() throws InterruptedException
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.Validate_OCL();
+        orderControlList.validateOrderColumn();
+        orderControlList.valueInOrderColumn();
+    }
+
+    @Then("User changes call back time")
+    public void userChangesCallBackTime() throws InterruptedException
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.Validate_OCL();
+        orderControlList.validateCallBackTime();
+        orderControlList.clickOnClockIcon();
+        orderControlList.selectHours();
+        orderControlList.selectMin();
+        orderControlList.clickOnSetButton();
+        orderControlList.validateCallBackTimeValue();
     }
 }

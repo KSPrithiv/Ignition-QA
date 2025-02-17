@@ -1300,4 +1300,19 @@ public class CheckOutSummaryPage
         }
         catch (Exception e){}
     }
+
+    public void pickupOrderElement()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[text()='Pick up order']/following-sibling::div[text()='Yes']",driver))
+            {
+                scenario.log("PICKUP ORDER HAS BEEN CREATED");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }

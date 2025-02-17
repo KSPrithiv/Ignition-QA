@@ -118,6 +118,7 @@ public class OrderControlPageSteps1
         orderControlList.selectDeliveryDateRadioButton();
         orderControlList.Call_Date_Click();
         orderControlList.Call_Date_Selection(1);
-        //orderControlList.validateRoutesValuesPresent();
+        orderControlList.validateNoRouteValue();
+        orderControlList.readCustomerAccountsInOCL();
     }
 }

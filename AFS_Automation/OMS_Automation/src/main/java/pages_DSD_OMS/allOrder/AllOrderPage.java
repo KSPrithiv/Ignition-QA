@@ -3215,4 +3215,14 @@ public class AllOrderPage
         }
         catch (Exception e){}
     }
+
+    public void verifyDayOfWeekAndDeliveryDate()
+    {
+        exists=false;
+        try
+        {
+
+        }
+        catch (Exception e){}
+    }
 }

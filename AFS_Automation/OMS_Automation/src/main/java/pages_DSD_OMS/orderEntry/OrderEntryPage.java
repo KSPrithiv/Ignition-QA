@@ -1308,7 +1308,7 @@ public class OrderEntryPage
             HelpersMethod.waitTillLoadingPage(driver);
         }
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(500))
+                .withTimeout(Duration.ofSeconds(800))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1319,7 +1319,7 @@ public class OrderEntryPage
             HelpersMethod.waitTillLoadingPage(driver);
         }
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(500))
+                .withTimeout(Duration.ofSeconds(800))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1335,7 +1335,7 @@ public class OrderEntryPage
                 HelpersMethod.ActClick(driver, okButton, 10000);
                 scenario.log("ORDER GUIDE POPUP HAS BEEN FOUND");
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(500))
+                        .withTimeout(Duration.ofSeconds(800))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1347,7 +1347,7 @@ public class OrderEntryPage
                 }
 
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(500))
+                        .withTimeout(Duration.ofSeconds(800))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1359,7 +1359,7 @@ public class OrderEntryPage
                 }
 
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(500))
+                        .withTimeout(Duration.ofSeconds(800))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -4178,10 +4178,9 @@ public class OrderEntryPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        String noteText="";
-        String nText="";
+        String noteText;
+        String nText=" ";
         int i=0;
-        WebElement WebEle;
         try
         {
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -4189,21 +4188,23 @@ public class OrderEntryPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(800))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(800))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -4221,7 +4222,7 @@ public class OrderEntryPage
                     {
                         nText=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]["+i+"]/td[3]").getText();
                         WebElement noteRow=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]["+i+"]");
-                        HelpersMethod.ActClick(driver,noteRow,10000);
+                        HelpersMethod.ActClick(driver,noteRow,40000);
                         exists=true;
                         break;
                     }
@@ -4236,17 +4237,18 @@ public class OrderEntryPage
                 WebElement notePopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
                 //code to click on 'Ok' button in OG popup
                 WebElement okButton = notePopup.findElement(By.xpath(".//button/span[text()='Ok']"));
-                HelpersMethod.ActClick(driver, okButton, 4000);
+                HelpersMethod.ActClick(driver, okButton, 10000);
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {

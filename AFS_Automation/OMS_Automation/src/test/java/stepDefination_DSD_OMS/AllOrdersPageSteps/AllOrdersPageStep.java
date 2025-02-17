@@ -333,6 +333,32 @@ public class AllOrdersPageStep
         scenario.log("ORDER CREATED FOR ALL ORDER "+Ord_No);
     }
 
+    @And("Click on Submit Order button and read Order_no created for All order and verify pickup order element")
+    public void clickOnSubmitOrderButtonAndReadOrder_noCreatedForAllOrderAndVerifyPickupOrderElement() throws InterruptedException, AWTException
+    {
+        summary = new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
+        summary.pickupOrderElement();
+        summary.ClickSubmit();
+        summary.additionalOrderPopup();
+        for(int i=0;i<=2;i++)
+        {
+            summary.cutoffDialog();
+            summary.percentageOfAverageProd();
+        }
+        String sOrd_No = summary.Get_Order_No();
+        if(sOrd_No!=null)
+        {
+            Ord_No=sOrd_No;
+        }
+        else
+        {
+            scenario.log("NOT ABLE TO READ ORDER NUMBER IN SUMMARY PAGE");
+        }
+        summary.SucessPopupForAllOrder();
+        scenario.log("ORDER CREATED FOR ALL ORDER "+Ord_No);
+    }
+
     @And("Click on Back to Orderlist button and read Order_no created for All order")
     public void clickOnBackToOrderlistButtonAndReadOrder_noCreatedForAllOrder() throws InterruptedException, AWTException
     {
@@ -361,6 +387,14 @@ public class AllOrdersPageStep
     {
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.DisplayOrderNumbers();
+    }
+
+    @And("User goes through all the order in Open order grid and verify values in delivery date and Day of week")
+    public void userGoesThroughAllTheOrderInOpenOrderGridAndVerifyValuesInDeliveryDateAndDayOfWeek()
+    {
+        allOrder=new AllOrderPage(driver,scenario);
+        allOrder.DisplayOrderNumbers();
+        allOrder.verifyDayOfWeekAndDeliveryDate();
     }
 
     @Then("USer should check for Comment icon")

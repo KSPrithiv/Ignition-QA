@@ -110,7 +110,6 @@ public class OrderEntryPageEnd
         Ord_No=checkorder.readOrderNumber();
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
-            //Thread.sleep(4000);
             checkorder.Select_PaymentMethod_ClickDownArrow();
             if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
             {

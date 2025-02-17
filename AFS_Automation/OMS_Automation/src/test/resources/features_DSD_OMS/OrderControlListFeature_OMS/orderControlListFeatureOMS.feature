@@ -182,4 +182,13 @@ Feature: Order control list
     And Change the delivery date 2 days after current date
     Then User clicks on Print button and handle the new browser window
 
-
+  @SearchByRoute
+  Scenario: Test scenario to search based on Route_No in Route input box
+    Given User must be on Order Entry Page to select OCL
+    And User should navigate to OCL
+    Then User should select Order taker from drop down
+    And Change the delivery date 2 days after current date
+    And User clicks on All radio button
+    Then User should search for credit holder in OCL
+      |No Hold|
+    Then User enters Route# in Route search input box and count number of rows in OCL grid

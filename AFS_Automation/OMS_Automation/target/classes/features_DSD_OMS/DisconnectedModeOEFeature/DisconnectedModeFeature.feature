@@ -43,7 +43,7 @@ Feature: Disconnected mode
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-    @DMOrderOG
+  @DMOrderOG
   Scenario: For creating order using OG
     Given User should be in Order entry page
     When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
@@ -171,5 +171,46 @@ Feature: Disconnected mode
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
+  @DuplicateProductsDisconnectedMode
+  Scenario: Test scenario for checking duplicate products in order in disconnected mode
+    Given User should be in Order entry page
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
+    And Then User selects Go offline option in Disconnected mode popup
+    Then User should get Customer account# popup
+    And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
+    Then User must be on Order Entry Page in disconnected mode
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Click on Add product drop down and select OrderGuide option
+      |SampleOG|
+    And Enter Qty for the products in Product grid
+      |1|1|
+      |2|1|
+    Then Click on Next button and verify for duplicate product
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
 
-
+  @DuplicateProductsDisconnectedModeMultipleOG
+  Scenario: Test scenario for checking duplicate products in order in disconnected mode by adding multiple OG
+    Given User should be in Order entry page
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
+    And Then User selects Go offline option in Disconnected mode popup
+    Then User should get Customer account# popup
+    And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
+    Then User must be on Order Entry Page in disconnected mode
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Click on Add product drop down and select multiple OrderGuide option
+      |SampleOG|SamplePar|
+    And Enter Qty for the products in Product grid
+      |1|1|
+      |2|1|
+    Then Click on Next button and verify for duplicate product
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
