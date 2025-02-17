@@ -54,6 +54,7 @@ Feature: Order Entry1
       |Order history|
     Then User verifies Order history page and add history Order to order
     And Click on Copy button
+    Then User should select Note from popup and Order guide from popup
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

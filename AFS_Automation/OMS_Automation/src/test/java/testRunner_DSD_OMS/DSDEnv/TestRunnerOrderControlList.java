@@ -41,14 +41,18 @@ public class TestRunnerOrderControlList extends AbstractTestNGCucumberTests
     }
 
     @AfterClass
-    public static void afterclass() throws InterruptedException, MessagingException, IOException {
+    public static void afterclass() throws InterruptedException, MessagingException, IOException
+    {
         Thread.sleep(500);
         //MailSend.sendMail();
         TestBase.CloseBrowser();
 
-        if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox")) {
+        if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))
+        {
             Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe");
-        } else if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("Chrome")) {
+        }
+        else if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("Chrome"))
+        {
             Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
         }
     }

@@ -28,6 +28,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import static util.RandomValues.RandomNumber;
+
 /**
  * @Project DSD_OMS
  * @Author Divya.Ramadas@afsi.com
@@ -51,7 +53,9 @@ public class OrderControlListPage
     static int a=0;
     static int pageHold=0;
     static int rowNo;
-    int skipRow=0;
+    static int skipRow=0;
+    static int row=0;
+    String callBackTime;
 
     @FindBy(id = "OrderTaker")
     private WebElement OrderTaker;
@@ -653,7 +657,7 @@ public class OrderControlListPage
                                 .ignoring(NoSuchElementException.class);
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                        WebEle = HelpersMethod.FindByElement(driver, "id", "CallDate");
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'datepicker')]/descendant::input[@id='CallDate']");
                         JavascriptExecutor jse = (JavascriptExecutor) driver;
                         FTDate = (String) jse.executeScript("return arguments[0].getAttribute('value');", WebEle);
                         scenario.log(FTDate + " HAS BEEN SELECTED FOR OCL");
@@ -696,7 +700,7 @@ public class OrderControlListPage
                                     .ignoring(NoSuchElementException.class);
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                        WebEle = HelpersMethod.FindByElement(driver, "id", "CallDate");
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'datepicker')]/descendant::input[@id='CallDate']");
                         JavascriptExecutor jse = (JavascriptExecutor) driver;
                         FTDate = (String) jse.executeScript("return arguments[0].getAttribute('value');", WebEle);
                         scenario.log(FTDate + " HAS BEEN SELECTED FOR OCL");
@@ -715,7 +719,6 @@ public class OrderControlListPage
     public void ValidateOCLGrid()
     {
         exists = false;
-//        WebElement WebEle = null;
         try
         {
             if (HelpersMethod.IsExists("//td[contains(text(),'No records available')]", driver))
@@ -2755,15 +2758,225 @@ public class OrderControlListPage
         String callText;
         try
         {
-            if(HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')]/td["+a+"]/descendant::div[contains(@class,'CPKendoDataGrid-Text')]/span",driver))
-            {
                List<WebElement> callDeliveryDates=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+a+"]/descendant::div[contains(@class,'CPKendoDataGrid-Date')]/span");
                for(WebElement callDelivery:callDeliveryDates)
                {
                    callText =callDelivery.getText();
-                   scenario.log("CALL DELIVERY DATE: " + callText);
+                   scenario.log("LAST DELIVERY DATE : " + callText);
                    exists = true;
                }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateNoRouteValue()
+    {
+        exists=true;
+        try
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'datepicker')]/descendant::input[@id='CallDate']");
+            JavascriptExecutor jse = (JavascriptExecutor) driver;
+            String routeNumber = (String) jse.executeScript("return arguments[0].getAttribute('value');", WebEle);
+            if(routeNumber=="")
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateOrderColumn()
+    {
+        exists=false;
+        String headText;
+        Actions act=new Actions(driver);
+        try
+        {
+            a=0;
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[contains(@class,'k-column-title')]");
+            for(WebElement head:heads)
+            {
+                a++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equalsIgnoreCase("Order"))
+                {
+                    scenario.log("ORDER COLUMN HAS BEEN FOUND");
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void valueInOrderColumn()
+    {
+        exists=false;
+        String callText;
+        try
+        {
+            List<WebElement> callDeliveryDates=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+a+"]/descendant::div[contains(@class,'CPKendoDataGrid-Date')]/span");
+            for(WebElement callDelivery:callDeliveryDates)
+            {
+                callText =callDelivery.getText();
+                scenario.log("ORDER NUMBER IN OCL : " + callText);
+                exists = true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateCallBackTime()
+    {
+        exists=false;
+        String headText;
+        Actions act=new Actions(driver);
+        try
+        {
+            a=0;
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[contains(@class,'k-column-title')]");
+            for(WebElement head:heads)
+            {
+                a++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equalsIgnoreCase("Call back time"))
+                {
+                    scenario.log("CALL BACK TIME COLUMN HAS BEEN FOUND");
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnClockIcon()
+    {
+        exists=true;
+        try
+        {
+            List<WebElement> clocks=HelpersMethod.FindByElements(driver,"xpath", "//tr[contains(@class,'k-master-row')]/descendant::span[contains(@data-test-id,'TimeInput-CallBackTime')]/descendant::input");
+            for(WebElement clock:clocks)
+            {
+                row++;
+                callBackTime=HelpersMethod.JSGetValueEle(driver,clock,40000);
+                if(callBackTime.equals("") || callBackTime.equals(null))
+                {
+                    WebElement clockIcon = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')]["+row+"]/descendant::span[contains(@data-test-id,'TimeInput-CallBackTime')]/descendant::button");
+                    HelpersMethod.ClickBut(driver,clockIcon,400000);
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectHours()
+    {
+        exists=false;
+        int hrSec;
+        Actions act=new Actions(driver);
+        String hr_text;
+        int hr_No;
+        try
+        {
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector')]")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector')]")));
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-timeselector')]",driver))
+            {
+                hrSec=RandomNumber(1,12);
+                scenario.log("HOURS SELECTED IS "+hrSec);
+                List<WebElement> hrs= HelpersMethod.FindByElements(driver,"xpath","//span[text()='hour']/following-sibling::div/descendant::li/span");
+                for(WebElement hr:hrs)
+                {
+                    act.moveToElement(hr).build().perform();
+                    act.click(hr).build().perform();
+                    hr_text= hr.getText();
+                    hr_No= Integer.parseInt(hr_text);
+                    if(hr_No==hrSec)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void selectMin()
+    {
+        exists=false;
+        int hrSec;
+        Actions act=new Actions(driver);
+        String min_text;
+        int min_No;
+        try
+        {
+            hrSec=RandomNumber(0,59);
+            scenario.log("MINITS SELECTED IS "+hrSec);
+            List<WebElement> mins= HelpersMethod.FindByElements(driver,"xpath","//span[text()='minute']/following-sibling::div/descendant::li/span");
+            for(WebElement min:mins)
+            {
+                act.moveToElement(min).build().perform();
+                act.click(min).build().perform();
+                min_text= min.getText();
+                min_No= Integer.parseInt(min_text);
+                if(min_No==hrSec)
+                {
+                    break;
+                }
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnSetButton()
+    {
+        exists=false;
+        WebElement WebEle;
+        try
+        {
+            if(HelpersMethod.IsExists("//button/span[text()='Set']",driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button/span[text()='Set']");
+                HelpersMethod.ScrollElement(driver, WebEle);
+                HelpersMethod.ActClick(driver, WebEle, 10000);
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector')]")));
+                exists=true;
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateCallBackTimeValue()
+    {
+        exists=false;
+        WebElement WebEle;
+        try
+        {
+            if(HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')]["+row+"]/descendant::span[contains(@data-test-id,'TimeInput-CallBackTime')]/descendant::input",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+row+"]/descendant::span[contains(@data-test-id,'TimeInput-CallBackTime')]/descendant::input");
+                callBackTime=HelpersMethod.JSGetValueEle(driver,WebEle,40000);
+                if(!callBackTime.equals("") || !callBackTime.equals(null))
+                {
+                    exists=true;
+                }
             }
             Assert.assertEquals(exists,true);
         }

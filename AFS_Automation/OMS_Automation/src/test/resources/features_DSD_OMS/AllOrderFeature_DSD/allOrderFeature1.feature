@@ -38,6 +38,26 @@ Feature: All orders
     And User clicks on Show all orders check box
     And User Clicks on Add filter button and Search for OrderNo
 
+  @CreatePickupOrderSummaryPage
+  Scenario: Test scenario for creating Pickup order and verify that in order summary page pickup order element contains 'Yes'
+    Given User must be on Order Entry Page to select All Orders
+    And User should navigate to All Orders
+    Then User clicks on Start order button and selects Pick up order from drop down
+    Then User selects customer account# and delivery date for pickup order
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    And User validates Pickup order check box is selected
+    Then Enter PO# for New order for All orders
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |1|1|
+    Then Click on Next button for All order
+    And Click on Submit Order button and read Order_no created for All order and verify pickup order element
+    Then User should be navigated back to All order page
+    And User clicks on Show all orders check box
+    And User Clicks on Add filter button and Search for OrderNo
+
   @VerifyCommentIcon
   Scenario: Test scenario for verifying Comment Icon
     Given User must be on Order Entry Page to select All Orders
@@ -93,5 +113,11 @@ Feature: All orders
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
+#  @VerifyDayOfWeek
+#  Scenario: Test scenario to verify Day of week is according to delivery date
+#    Given User must be on Order Entry Page to select All Orders
+#    And User should navigate to All Orders
+#    Then User clicks on Show all orders check box after Clicking All orders tab
+#    And User goes through all the order in Open order grid and verify values in delivery date and Day of week
 
 

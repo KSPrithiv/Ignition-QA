@@ -22,9 +22,6 @@ Feature: Order control list
     And User validate that he is in NewOE page
     Then Enter PO# for New order
       |PO123|
-#    Then Enter Pro# in Quick Product Entry area
-#    And Check for Case and Unit input box enabled or not based on that enter value
-#      |1|1|
     Then Click on Add product drop down and select catalog option
     And User should select Product from catalog and Enter Qty for the products for OCL
       |1|1|
@@ -66,6 +63,7 @@ Feature: Order control list
       |Order history|
     Then User verifies Order history page and add history Order to order
     And Click on Copy button
+    Then User should select Note from popup and Order guide from popup
     Then Click on Next button and select option Continue without payment option
     And Click on Submit Order button and read Order_no for OCL
     Then User should select Note from popup and Order guide from popup for OCL
@@ -73,3 +71,25 @@ Feature: Order control list
     And User Clicks on Back button in NewOE page and User must be in OCL page
     Then User Clicks on Taken radio button
     And User should verify Order number created in OCL grid and Order icon in OCL
+
+#  @TakenRadioButton
+#  Scenario: Test scenario for verifying taken radio button and to verify taken orders
+#    Given User must be on Order Entry Page to select OCL
+#    And User should navigate to OCL
+#    Then User should select Order taker from drop down
+#    And Change the delivery date 2 days after current date
+#    Then User Clicks on Untaken radio button
+#    Then User should search for valid customers in OCL
+#      |Milos|
+#    And User verifies already taken order numbers
+
+  @CallBackChangeTime
+  Scenario: Test scenario for changing call back time and validate in OCL grid
+    Given User must be on Order Entry Page to select OCL
+    And User should navigate to OCL
+    Then User should select Order taker from drop down
+    And Change the delivery date 2 days after current date
+    Then User Clicks on Untaken radio button
+    Then User should search for valid customers in OCL
+      |Milos|
+    Then User changes call back time

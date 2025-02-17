@@ -141,4 +141,37 @@ Scenario: Test scenario to verify payment info in summary page
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
+  @PickupOrderHistoryCheckbox
+  Scenario: Test scenario for creating Pickup order with checkbox by copying order history
+    Given User must be on Order Entry Page
+    When User clicks on drop down next to Start order button
+    And Select Pickup Order from drop down options and select delivery date
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order for Pickup order
+      |PO123|
+    And User validates Pickup order check box is selected
+    Then User should click on Copy from dropdown and Select Order history
+      |Order history|
+    Then User verifies Order history page and add history Order to order
+    And Click on Copy button
+    Then User should select Note from popup and Order guide from popup
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
 
+  @PickupOrderHistoryOEPage
+  Scenario: Test scenario for creating pickup order by copying order history,creating pickup order from OE home page
+    Given User must be on Order Entry Page
+    When User clicks on drop down next to Start order button
+    And Select Pickup Order from drop down options and select delivery date
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order for Pickup order
+      |PO123|
+    Then User should click on Copy from dropdown and Select Order history
+      |Order history|
+    Then User verifies Order history page and add history Order to order
+    And Click on Copy button
+    Then User should select Note from popup and Order guide from popup
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page

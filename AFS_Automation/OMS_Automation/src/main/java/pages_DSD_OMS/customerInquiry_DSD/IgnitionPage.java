@@ -377,9 +377,9 @@ public class IgnitionPage
         int hr_No;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-timeselector k-reset')]",driver))
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector')]")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector')]")));
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-timeselector')]",driver))
             {
                 hrSec=RandomNumber(1,12);
                 scenario.log("HOURS SELECTED IS "+hrSec);
@@ -436,7 +436,7 @@ public class IgnitionPage
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//button/span[text()='Set']");
             HelpersMethod.ScrollElement(driver,WebEle);
             HelpersMethod.ActClick(driver,WebEle,10000);
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector')]")));
         }
         catch (Exception e){}
     }

@@ -7,8 +7,8 @@ Feature: Order control list1
     Then User navigate to Client side for OCL
     Then User should select Order Entry tab for OCL
 
-  @SearchByRoute
-  Scenario: Test scenario to search based on Route_No in Route input box
+  @RouteWithDeliveryDate
+  Scenario: Test scenario for selecting route and change delivery date and verify order details in grid
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order taker from drop down
@@ -17,6 +17,7 @@ Feature: Order control list1
     Then User should search for credit holder in OCL
       |No Hold|
     Then User enters Route# in Route search input box and count number of rows in OCL grid
+    Then User should change Delivery date
 
   @CommentCustomerLevel
   Scenario: Test scenario for adding comment at customer level
