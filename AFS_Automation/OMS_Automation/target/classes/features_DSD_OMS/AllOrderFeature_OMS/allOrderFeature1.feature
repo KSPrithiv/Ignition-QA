@@ -113,10 +113,10 @@ Feature: All orders
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-  #@VerifyDayOfWeek
-#  Scenario: Test scenario to verify Day of week is according to delivery date
-#    Given User must be on Order Entry Page to select All Orders
-#    And User should navigate to All Orders
-#    Then User clicks on Show all orders check box after Clicking All orders tab
-#    And User goes through all the order in Open order grid and verify values in delivery date and Day of week
+  @VerifyDayOfWeek
+  Scenario: Test scenario to verify Day of week is according to delivery date
+    Given User must be on Order Entry Page to select All Orders
+    And User should navigate to All Orders
+    Then User clicks on Show all orders check box after Clicking All orders tab
+    And User goes through all the order in Open order grid and verify values in delivery date and Day of week
 

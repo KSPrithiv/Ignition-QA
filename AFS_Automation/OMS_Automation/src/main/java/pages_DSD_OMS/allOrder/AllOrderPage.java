@@ -11,10 +11,15 @@ import org.testng.Assert;
 import util.DataBaseConnection;
 import util.TestBase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -3219,9 +3224,70 @@ public class AllOrderPage
     public void verifyDayOfWeekAndDeliveryDate()
     {
         exists=false;
+        Actions act=new Actions(driver);
+        String headText;
+        int i=0,j=0;
+        String dateText, weekText;
         try
         {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement head:heads)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equalsIgnoreCase("Delivery date"))
+                {
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
 
+            exists=false;
+            heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement head:heads)
+            {
+                j++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equalsIgnoreCase("Day of week"))
+                {
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
+
+            exists=false;
+            String finalDay;
+            List<WebElement> deliveryDates=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+i+"]");
+            List<WebElement> daysOfWeek=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+j+"]");
+            for(int k=1;k<=deliveryDates.size()-1;k++)
+            {
+                dateText=deliveryDates.get(k).getText();
+                dateText=dateText.trim();
+                weekText=daysOfWeek.get(k).getText();
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/dd/yyyy", Locale.ENGLISH);
+                // Parse the date string to LocalDate
+                LocalDate date = LocalDate.parse(dateText, formatter);
+                // Get the day of the week
+                DayOfWeek dayOfWeek = date.getDayOfWeek();
+                //finalDay= String.valueOf(dayOfWeek);
+
+                if(String.valueOf(dayOfWeek).equalsIgnoreCase(weekText))
+                {
+                    scenario.log("DAY OF WEEK FOUND IS "+dayOfWeek+" WHICH IS CORRECT");
+                    exists=true;
+                }
+                else
+                {
+                    exists=false;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

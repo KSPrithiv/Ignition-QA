@@ -1098,4 +1098,58 @@ public class AdminHomePage
         }
         catch (Exception e){}
     }
+
+    public void setDecimalValuesForPrice()
+    {
+        exists=false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(800))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(800))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(HelpersMethod.IsExists("//input[@id='CPDecimalPlacesForPricing']",driver))
+            {
+                WebElement decimalPrice=HelpersMethod.FindByElement(driver,"id","CPDecimalPlacesForPricing");
+                HelpersMethod.clearText(driver,decimalPrice,40000);
+                HelpersMethod.JSSetValueEle(driver,decimalPrice,40000,"2");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateDecimalPrice()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//input[@id='CPDecimalPlacesForPricing']",driver))
+            {
+                WebElement decimalPrice=HelpersMethod.FindByElement(driver,"id","CPDecimalPlacesForPricing");
+                String decimalValue= HelpersMethod.JSGetValueEle(driver,decimalPrice,40000);
+                if(decimalValue.equals("2"))
+                {
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }

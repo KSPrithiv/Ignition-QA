@@ -7,6 +7,18 @@ Feature: Disconnected mode
     Then User navigate to Client side for DM
     Then User should select Order Entry tab for DM
 
+  @DMSeparatedByComma
+  Scenario: Search for product separated by comma in Disconnected mode catalog
+    Given User should be in Order entry page
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
+    And Then User selects Go offline option in Disconnected mode popup
+    Then User should get Customer account# popup
+    And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
+    Then User must be on Order Entry Page in disconnected mode
+    And User should navigate to Catalog tab
+    And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
+    Then User enters Product# in Search bar separated by comma and Read the product# available in catalog
+
   @DMDeleteProductFromCart
   Scenario: Test scenario for navigating to catalog tab, and delete product from cart
     Given User should be in Order entry page

@@ -11,6 +11,7 @@ import pages_DSD_OMS.disconnectedMode.DMOEPage;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
+import pages_DSD_OMS.webOrdering.AdminHomePage;
 import util.TestBase;
 
 import java.awt.*;
@@ -29,6 +30,7 @@ public class AdminDisconnectedModeStep
     static CatalogPage catalogPage;
     static HomePage homepage;
     static OrderEntryPage orderpage;
+    static AdminHomePage adminHomePage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -136,5 +138,21 @@ public class AdminDisconnectedModeStep
         catalogPage=new CatalogPage(driver,scenario);
         catalogPage.validateCatalog();
         catalogPage.validatePriceCard();
+    }
+
+    @Then("User should set the value for Number of decimal places shown in prices as two")
+    public void userShouldSetTheValueForNumberOfDecimalPlacesShownInPricesAsTwo()
+    {
+        adminHomePage = new AdminHomePage(driver, scenario);
+        adminHomePage.setDecimalValuesForPrice();
+        adminHomePage.validateDecimalPrice();
+    }
+
+    @Then("User should verify Whether price is having two decimal values")
+    public void userShouldVerifyWhetherPriceIsHavingTwoDecimalValues() throws InterruptedException, AWTException
+    {
+        catalogPage=new CatalogPage(driver,scenario);
+        catalogPage.validateCatalog();
+        catalogPage.priceDecimalValue();
     }
 }
