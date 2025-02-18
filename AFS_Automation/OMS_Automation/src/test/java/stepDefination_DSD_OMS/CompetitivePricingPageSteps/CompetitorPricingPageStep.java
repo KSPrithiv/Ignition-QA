@@ -119,6 +119,7 @@ public class CompetitorPricingPageStep
         competitivePricingGeneralPage=new CompetitivePricingGeneralPage(driver,scenario);
         competitivePricingGeneralPage.ValidateCompetitorGeneral();
         competitivePricingGeneralPage.Click_CompetitorDropdown();
+
     }
 
     @And("User should click on Plus button for adding products, using filter input box")
@@ -163,6 +164,8 @@ public class CompetitorPricingPageStep
     public void userSearchForProductUsingAddFilter()
     {
         competitivePricingGeneralPage=new CompetitivePricingGeneralPage(driver,scenario);
+        competitivePricingGeneralPage.ValidateCompetitorGeneral();
+        competitivePricingGeneralPage.DetailsOfProducts();
         competitivePricingGeneralPage.SearchForProd();
     }
 
@@ -170,6 +173,7 @@ public class CompetitorPricingPageStep
     public void userSearchForProductUsingSearchBar()
     {
         competitivePricingGeneralPage=new CompetitivePricingGeneralPage(driver,scenario);
+        competitivePricingGeneralPage.ValidateCompetitorGeneral();
         competitivePricingGeneralPage.SearchForProdSearchBar();
     }
 

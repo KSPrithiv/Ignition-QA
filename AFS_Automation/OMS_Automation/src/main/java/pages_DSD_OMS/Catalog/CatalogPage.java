@@ -261,6 +261,11 @@ public class CatalogPage
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
             }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
         catch (Exception e){}
     }
@@ -2332,6 +2337,27 @@ public class CatalogPage
             {
                 scenario.log("SUCCESSFULLY DISPLAYING PRICE OF PRODUCT, UNDER CATALOG");
                 exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void priceDecimalValue()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@id,'gridItemBox')][1]/descendant::div[@class='product-price-container']/descendant::span[@class='product-price']|//div[contains(@id,'gridItemBox')][1]/descendant::div[@class='product-price-container']/descendant::span[@class='product-price deal-price']",driver))
+            {
+                WebElement priceElement = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@id,'gridItemBox')][1]/descendant::div[@class='product-price-container']/descendant::span[@class='product-price']|//div[contains(@id,'gridItemBox')][1]/descendant::div[@class='product-price-container']/descendant::span[@class='product-price deal-price']");
+                String priceValue = HelpersMethod.ReadValue(priceElement);
+                String decimalValue = priceValue.substring(priceValue.lastIndexOf('.') + 1);
+                int noChars = decimalValue.length();
+                if (noChars == 2) {
+                    scenario.log("PRICE CONTAINS ONLY 2 DECIMAL VALUES");
+                    exists = true;
+                }
             }
             Assert.assertEquals(exists,true);
         }

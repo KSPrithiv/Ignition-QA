@@ -157,3 +157,31 @@ Feature: scenarios for admin credentials and client credentials
     Examples:
       |  Setting                        |               Key           |
       | Hide prices in offline mode     | CPHidePriceInOfflineMode    |
+
+  @PriceHavingTwoDecimalValues
+  Scenario Outline: Test scenario for Price having 2 decimal values
+    Given User enters URL and is on login page for admin and client Test scenarios
+    When User should land on landing page and verify
+    Then User Clicks on Permissions by drop down to select Customer Account# for admin security
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
+    Then User should set the value for Number of decimal places shown in prices as two
+    And User logs out from Admin site, logs in to client credentials
+    When User is on Home Page for DM for admin setting
+    Then User navigate to Client side for DM for admin setting
+    Then User should select Order Entry tab for DM for admin setting
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode for admin setting
+    And Then User selects Go offline option in Disconnected mode popup for admin setting
+    Then User should get Customer account# popup for admin setting
+    And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized for admin setting
+    Then User must be on Order Entry Page in disconnected mode
+    And User should navigate to Catalog tab
+    And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
+    Then User should verify Whether price is having two decimal values
+    When User clicks on network symbol and click on toggle button drop down should appear
+    And Then User should Click on toggle button to go online
+    Then User sign out from client side for Admin setting changes
+    Examples:
+      |Main menu    |Sub menu  |
+      |Web Ordering |General   |
+
+
