@@ -268,7 +268,7 @@ public class NewStandingOrderCard
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
             new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::input[@id='addFromDate']/parent::span/following-sibling::button")));
-            Thread.sleep(6000);
+            Thread.sleep(8000);
             // to fetch the web element of the modal container
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
             WebElement startDateIcon = modalContainer.findElement(By.xpath(".//input[@id='addFromDate']/parent::span/following-sibling::button"));
