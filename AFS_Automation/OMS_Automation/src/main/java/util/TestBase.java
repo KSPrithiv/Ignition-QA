@@ -184,6 +184,9 @@ public class TestBase
                 chromeOptions.addArguments("--silent");
 
                 System.setProperty("webdriver.chrome.silentOutput", "true");// extra -delete
+                System.setProperty("webdriver.chrome.logfile", "selenium.log");
+                System.setProperty("webdriver.chrome.verboseLogging", "true");
+
                 chromeOptions.addArguments("--ignore-certificate-errors");
                 chromeOptions.addArguments("--ignore-ssl-errors");
                 chromeOptions.addArguments("--disable-dev-shm-usage");
