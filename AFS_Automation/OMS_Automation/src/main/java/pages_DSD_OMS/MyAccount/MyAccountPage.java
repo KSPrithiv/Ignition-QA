@@ -249,7 +249,7 @@ public class MyAccountPage {
 //            HelpersMethod.ClickBut(driver, new_Emailadded_value, 100);
 //            HelpersMethod.ClickBut(driver, delete_button, 100);
 //            HelpersMethod.ClickBut(driver, confirm_delete_yes, 100);
-        HelpersMethod.Implicitwait(driver, 40);
+        //HelpersMethod.Implicitwait(driver, 40);
 
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading")) {
@@ -299,7 +299,7 @@ public class MyAccountPage {
 //    }
 
     public void User_deletes_Email_Address_recipients() {
-        HelpersMethod.Implicitwait(driver, 40);
+        //HelpersMethod.Implicitwait(driver, 40);
 
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading")) {
@@ -317,12 +317,12 @@ public class MyAccountPage {
             System.out.println("user_validated that_delete_button_is_enabled");
         }
         HelpersMethod.ClickBut(driver, delete_button, 100);
-        //HelpersMethod.Implicitwait(driver,20);
+        ////HelpersMethod.Implicitwait(driver,20);
         HelpersMethod.ClickBut(driver, confirm_delete_yes, 100);
     }
 
     public void User_deletes_Email_Address_recipients_Delete_Button() {
-        HelpersMethod.Implicitwait(driver, 40);
+        //HelpersMethod.Implicitwait(driver, 40);
 
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading")) {
@@ -336,14 +336,14 @@ public class MyAccountPage {
 
 
         HelpersMethod.ClickBut(driver, delete_button, 100);
-        HelpersMethod.Implicitwait(driver, 20);
+        //HelpersMethod.Implicitwait(driver, 20);
         HelpersMethod.ClickBut(driver, confirm_delete_yes, 100);
     }
 
     public void validate_Email_Address_recipients_added() {
-        //HelpersMethod.Implicitwait(driver, 40);
+        ////HelpersMethod.Implicitwait(driver, 40);
         //HelpersMethod.ClickBut(driver, new_Emailadded_value, 100);
-        HelpersMethod.Implicitwait(driver, 40);
+        //HelpersMethod.Implicitwait(driver, 40);
 
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading")) {
@@ -364,7 +364,7 @@ public class MyAccountPage {
     }
     public void validate_Email_Address_recipients_deleted() {
 
-        HelpersMethod.Implicitwait(driver, 20);
+        //HelpersMethod.Implicitwait(driver, 20);
 
         List<WebElement> validate_Delete_email_element = HelpersMethod.FindByElements(driver, "//div[@class='k-grid-container']//td[@colspan='1']/following-sibling::td[text()='effico_proc@efficounet.com']", "xpath");
         List<WebElement> Email_gridcontainer = null;
@@ -389,7 +389,7 @@ public class MyAccountPage {
     }
 
     public void Additionalcust_acc_search_box() {
-        HelpersMethod.Implicitwait(driver, 40);
+        //HelpersMethod.Implicitwait(driver, 40);
 
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading")) {
@@ -400,7 +400,7 @@ public class MyAccountPage {
     }
 
     public void user_fetches_the_account_number_MyAccount() {
-        HelpersMethod.Implicitwait(driver, 40);
+        //HelpersMethod.Implicitwait(driver, 40);
 
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading")) {
@@ -412,7 +412,7 @@ public class MyAccountPage {
     }
 
     public void user_validates_grid_should_display_customer_account_no() {
-        HelpersMethod.Implicitwait(driver, 40);
+        //HelpersMethod.Implicitwait(driver, 40);
 
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading")) {
@@ -424,7 +424,7 @@ public class MyAccountPage {
 
     public void user_deletes_details_of_the_mentioned_account_number() {
         //Customer_Account_row
-        //HelpersMethod.Implicitwait(driver,40);
+        ////HelpersMethod.Implicitwait(driver,40);
         //HelpersMethod.waitTillloaderDisappears(driver,loader_bg,100);
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading")) {

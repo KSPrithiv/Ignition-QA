@@ -204,7 +204,7 @@ public class MasterPage
                 //Click on Company drop down
                 WebEle= HelpersMethod.FindByElement(driver,"id","dropdownList3");
                 HelpersMethod.ClickBut(driver,WebEle,20);
-                HelpersMethod.Implicitwait(driver,80);
+               ////HelpersMethod.Implicitwait(driver,80);
                 Thread.sleep(10);
                 //Create list of web elements in dropdown
                 company=TestBase.testEnvironment.get_CompanyNo();
@@ -213,11 +213,11 @@ public class MasterPage
                 {
                     act.moveToElement(Val).build().perform();
                     String Val_Text = Val.getText();
-                    HelpersMethod.Implicitwait(driver,40);
+                   // //HelpersMethod.Implicitwait(driver,40);
                     if (Val_Text.equalsIgnoreCase(company) || Val_Text.contains(company))
                     {
                         act.click(Val).build().perform();
-                        HelpersMethod.Implicitwait(driver,40);
+                   //     //HelpersMethod.Implicitwait(driver,40);
                         break;
                     }
                 }
@@ -353,15 +353,14 @@ public class MasterPage
             List<WebElement> MenuBars=HelpersMethod.FindByElements(driver,"xpath","//div[@class='topMenu']/descendant::li/span");
             for(WebElement Menu:MenuBars)
             {
-                HelpersMethod.Implicitwait(driver,20);
+               // //HelpersMethod.Implicitwait(driver,20);
                 act.moveToElement(Menu).build().perform();
-                HelpersMethod.Implicitwait(driver,20);
+//                //HelpersMethod.Implicitwait(driver,20);
                 Menu_Text=Menu.getText();
                 if(MenuItem.equals(Menu_Text))
                 {
-                    HelpersMethod.Implicitwait(driver,10);
-                    act.click(Menu).build().perform();
-                    HelpersMethod.Implicitwait(driver,40);
+          //          //HelpersMethod.Implicitwait(driver,10);
+             //       //HelpersMethod.Implicitwait(driver,40);
                     break;
                 }
             }

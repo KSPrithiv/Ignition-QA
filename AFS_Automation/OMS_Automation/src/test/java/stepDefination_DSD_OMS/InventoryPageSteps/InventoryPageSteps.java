@@ -199,10 +199,6 @@ public class InventoryPageSteps
         inventory.selectStoreInventory();
     }
 
-    @And("User enters product#, <Case>,<Unit>, <Sequence> in quick product entry")
-    public void userEntersProductCaseUnitSequenceInQuickProductEntry() {
-    }
-
     @And("User enters product#, {string}, {string}, {string} in quick product entry")
     public void userEntersProductInQuickProductEntry(String cases, String unit, String sequence)
     {
@@ -238,5 +234,25 @@ public class InventoryPageSteps
         inventory.clickOnCancel();
         inventory.handleCancelPopup();
         inventory.readProductsInInventory();
+    }
+
+    @And("User should change {string} in store inventory and verify same has been reflected in store inventory product grid")
+    public void userShouldChangeInStoreInventoryAndVerifySameHasBeenReflectedInStoreInventoryProductGrid(String qty)
+    {
+        InventoryPage inventory=new InventoryPage(driver,scenario);
+        inventory.readFirstProduct();
+        inventory.readUnitQtyOfFirstProd();
+        inventory.clickOnAddProd();
+
+        inventory.validateCatalogPopup();
+        inventory.loadProducts();
+        inventory.selectShowAllProducts();
+        inventory.searchForProdInCatalogDialogbox();
+        inventory.changeQtyOfProd(qty);
+        inventory.clickOnCatalogOkButton();
+        inventory.clickSaveButton();
+        inventory.readProductsInInventory();
+        inventory.updatedUnitQtyOfFirstProd();
+        inventory.comparePreviousAndNewUnitValue();
     }
 }

@@ -188,7 +188,7 @@ public class BadgeBuilderPage {
         try {
             if (HelpersMethod.IsExists("/html//div[@id='badgeIconCard']//div[@class='badge-icon-content']/div[3]", driver)) {
                 BadgeBuildericon = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeIconCard']//div[@class='badge-icon-content']/div[3]");
-                //HelpersMethod.Implicitwait(driver,10);
+                ////HelpersMethod.Implicitwait(driver,10);
                 HelpersMethod.JScriptClick(driver, BadgeBuildericon, 20);
 //                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
                 Thread.sleep(3000);
@@ -233,7 +233,7 @@ public class BadgeBuilderPage {
         BadgeGallery = driver.findElement(By.xpath("/html//div[@id='badgeGalleryCard']//div[@class='badge-subsection-header']/span[1]"));
         HelpersMethod.JSScroll(driver, BadgeGallery);
 //        Thread.sleep(3000);
-        //HelpersMethod.Implicitwait(driver, 20);
+        ////HelpersMethod.Implicitwait(driver, 20);
 
     }
 
@@ -279,7 +279,7 @@ public class BadgeBuilderPage {
         try {
             if (HelpersMethod.IsExists("/html//div[@id='badgeIconCard']//div[@class='badge-icon-content']/div[4]", driver)) {
                 BadgeBuildericon = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeIconCard']//div[@class='badge-icon-content']/div[4]");
-                //HelpersMethod.Implicitwait(driver,10);
+                ////HelpersMethod.Implicitwait(driver,10);
                 HelpersMethod.JScriptClick(driver, BadgeBuildericon, 20);
 //                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
             }
@@ -316,7 +316,7 @@ public class BadgeBuilderPage {
         try {
             if (HelpersMethod.IsExists("/html//button[@id='plusButton']", driver)) {
                 Submit = HelpersMethod.FindByElement(driver, "xpath", "/html//button[@id='plusButton']");
-                //HelpersMethod.Implicitwait(driver,10);
+                ////HelpersMethod.Implicitwait(driver,10);
                 HelpersMethod.JScriptClick(driver, Submit, 20);
 //                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
                 Thread.sleep(2000);
@@ -384,7 +384,7 @@ public class BadgeBuilderPage {
             if (HelpersMethod.IsExists("/html//input[@id='nameTextbox']", driver)) {
                 TextBox1 = HelpersMethod.FindByElement(driver, "xpath", "/html//input[@id='nameTextbox']");
                 Thread.sleep(3000);
-                //HelpersMethod.Implicitwait(driver,10);
+                ////HelpersMethod.Implicitwait(driver,10);
                 //HelpersMethod.JScriptClick(driver, TextBox, 20);
                 HelpersMethod.clearText(driver, TextBox1, 20);
                 HelpersMethod.sendKeys(driver, TextBox1, 20, str);
@@ -403,7 +403,7 @@ public class BadgeBuilderPage {
             if (HelpersMethod.IsExists("/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[8]/div[@class='color-circle']", driver)) {
                 WebEleColour = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[8]/div[@class='color-circle']");
 //                Thread.sleep(3000);
-                //HelpersMethod.Implicitwait(driver,10);
+                ////HelpersMethod.Implicitwait(driver,10);
                 //HelpersMethod.JScriptClick(driver, TextBox, 20);
                 HelpersMethod.JScriptClick(driver, WebEleColour, 20);
 //                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
@@ -458,10 +458,10 @@ public class BadgeBuilderPage {
         try {
             if (HelpersMethod.IsExists("/html//div[@id='badgeTypeCard']/div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='badge-type-container']/div[1]/div/input", driver)) {
                 RadioBt1 = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeTypeCard']/div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='badge-type-container']/div[1]/div/input");
-                //HelpersMethod.Implicitwait(driver,10);
+                ////HelpersMethod.Implicitwait(driver,10);
                 HelpersMethod.JScriptClick(driver, RadioBt1, 20);
 //                Thread.sleep(2000);
-                // HelpersMethod.Implicitwait(driver,3);
+                // //HelpersMethod.Implicitwait(driver,3);
 
                 PreviewIcon1 = driver.findElement(By.cssSelector(".icon-preview-tooltip-container > .icon-preview-background.icon-preview-background-white > .icon-preview-background > .icon-preview-icon > .i-icon"));
 
@@ -475,7 +475,7 @@ public class BadgeBuilderPage {
 
 
                 RadioBt2 = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeTypeCard']/div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='badge-type-container']/div[2]/div/input");
-                //HelpersMethod.Implicitwait(driver,10);
+                ////HelpersMethod.Implicitwait(driver,10);
                 HelpersMethod.JScriptClick(driver, RadioBt2, 20);
 //                Thread.sleep(2000);
                 PreviewIcon2 = driver.findElement(By.cssSelector(".i-card__card__body.i-card__card__body--expanded > .label-preview-background.label-preview-background-white > .label-preview-background > .label-preview-label"));
@@ -487,7 +487,7 @@ public class BadgeBuilderPage {
                 RadioBt3 = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeTypeCard']/div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='badge-type-container']/div[3]/div/input");
                 HelpersMethod.JScriptClick(driver, RadioBt3, 20);
 //                Thread.sleep(2000);
-                // HelpersMethod.Implicitwait(driver,4);
+                // //HelpersMethod.Implicitwait(driver,4);
                 Preview = driver.findElement(By.cssSelector(".icon-preview-container"));
                 String TextValue3 = Preview.getText();
                 System.out.println(TextValue3+":Badge Name");
@@ -513,7 +513,7 @@ public class BadgeBuilderPage {
     public void ClickOnBadgeGallerBadge1() {
         try {
             if (HelpersMethod.IsExists("/html//div[@id='badgeGalleryCard']//div[@class='badge-gallery-container']/div[32]/div[@class='badge-gallery-code']", driver)) {
-                driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+                //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
                 HelpersMethod.JScriptClick(driver, BadgeGallery2, 20);
 
 //                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
@@ -526,7 +526,7 @@ public class BadgeBuilderPage {
         HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "/html//div[@id='badgeGalleryCard']//div[@class='badge-gallery-container']/div[32]/div[@class='badge-gallery-code']", 40);
         HelpersMethod.JSScroll(driver, BadgeGallery2);
         Thread.sleep(3000);
-        //HelpersMethod.Implicitwait(driver, 20);
+        ////HelpersMethod.Implicitwait(driver, 20);
 
     }
 
@@ -535,7 +535,7 @@ public class BadgeBuilderPage {
         HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "/html//button[@id='editButton']", 40);
         EditBtn = driver.findElement(By.xpath("/html//button[@id='editButton']"));
         HelpersMethod.JScriptClick(driver, EditBtn, 20);
-        //HelpersMethod.Implicitwait(driver, 20);
+        ////HelpersMethod.Implicitwait(driver, 20);
 
     }
 
@@ -569,8 +569,8 @@ public class BadgeBuilderPage {
         try {
             if (HelpersMethod.IsExists("/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[3]/div[@class='color-circle']", driver)) {
                 WebEleColour = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[3]/div[@class='color-circle']");
-                HelpersMethod.Implicitwait(driver, 10);
-                //HelpersMethod.Implicitwait(driver,10);
+                ////HelpersMethod.Implicitwait(driver, 10);
+                ////HelpersMethod.Implicitwait(driver,10);
                 //HelpersMethod.JScriptClick(driver, TextBox, 20);
                 HelpersMethod.JScriptClick(driver, WebEleColour, 20);
                 HelpersMethod.JScriptClick(driver, RdButton1, 20);
@@ -632,7 +632,7 @@ public class BadgeBuilderPage {
                 //Click on Company drop down
                 WebEle = HelpersMethod.FindByElement(driver, "id", "dropdownList3");
                 HelpersMethod.ClickBut(driver, WebEle, 20);
-                HelpersMethod.Implicitwait(driver, 80);
+               // //HelpersMethod.Implicitwait(driver, 80);
                 Thread.sleep(3000);
                 //Thread.sleep(10);
                 //Create list of web elements in dropdown
@@ -642,11 +642,11 @@ public class BadgeBuilderPage {
 //                {
 //                    act.moveToElement(Val).build().perform();
 //                    String Val_Text = Val.getText();
-//                    HelpersMethod.Implicitwait(driver,40);
+//                    //HelpersMethod.Implicitwait(driver,40);
 //                    if (Val_Text.equalsIgnoreCase(company) || Val_Text.contains(company))
 //                    {
 //                        act.click(Val).build().perform();
-//                        HelpersMethod.Implicitwait(driver,40);
+//                        //HelpersMethod.Implicitwait(driver,40);
 //                        break;
 //                    }
 //                }
@@ -690,8 +690,8 @@ public class BadgeBuilderPage {
         try {
             if (HelpersMethod.IsExists("/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[3]/div[@class='color-circle']", driver)) {
                 WebEleColour = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[3]/div[@class='color-circle']");
-                HelpersMethod.Implicitwait(driver, 10);
-                //HelpersMethod.Implicitwait(driver,10);
+                ////HelpersMethod.Implicitwait(driver, 10);
+                ////HelpersMethod.Implicitwait(driver,10);
                 //HelpersMethod.JScriptClick(driver, TextBox, 20);
                 HelpersMethod.JScriptClick(driver, WebEleColour, 20);
                 Tiered_CatchColorAdmin=WebEleColour.getCssValue("background-color");
@@ -786,7 +786,7 @@ public class BadgeBuilderPage {
             Thread.sleep(8000);
         new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.elementToBeClickable(By.cssSelector(".settings-back-container > .i-icon")));
 //        Thread.sleep(5000);
-        HelpersMethod.Implicitwait(driver, 30);
+        ////HelpersMethod.Implicitwait(driver, 30);
         WebElement ClientsideIcon;
         ClientsideIcon = driver.findElement(By.cssSelector(".settings-back-container > .i-icon"));
         HelpersMethod.waitTillElementDisplayed(driver, ClientsideIcon, 200);
@@ -837,7 +837,7 @@ public class BadgeBuilderPage {
             HelpersMethod.waitTillLoadingPage(driver);
         }
         try {
-            // HelpersMethod.Implicitwait(driver,40);
+            // //HelpersMethod.Implicitwait(driver,40);
             Actions act = new Actions(driver);
             Acc_No = "0040035975-000000-000295";
 //            WebEle=HelpersMethod.FindByElement(driver,"id","customerAccountNumberComboBox");
@@ -885,7 +885,7 @@ public class BadgeBuilderPage {
 //            if (HelpersMethod.IsExists("/html//input[@id='poNumber']", driver)) {
 //                POTextBox = HelpersMethod.FindByElement(driver, "xpath", "/html//input[@id='poNumber']");
 //                Thread.sleep(3000);
-//                //HelpersMethod.Implicitwait(driver,10);
+//                ////HelpersMethod.Implicitwait(driver,10);
 //                //HelpersMethod.JScriptClick(driver, TextBox, 20);
 //                HelpersMethod.clearText(driver, POTextBox, 20);
 //                HelpersMethod.sendKeys(driver, POTextBox, 20, str);
@@ -957,7 +957,7 @@ public class BadgeBuilderPage {
             HelpersMethod.sendKeys(driver, SearchProd1, 10, "10010800");
             //HelpersMethod.ClickBut(driver,IndexSearch,4);
 //            Thread.sleep(5000);
-            HelpersMethod.Implicitwait(driver, 30);
+           // //HelpersMethod.Implicitwait(driver, 30);
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200);
             //Thread.sleep(5000);
 
@@ -1370,7 +1370,7 @@ public class BadgeBuilderPage {
             //String Title = modalContentTitle.getText();
                 CatchwtColor = CatchWtIcon.getCssValue("color");
                 System.out.println(CatchwtColor);
-                HelpersMethod.Implicitwait(driver, 20);
+             //   //HelpersMethod.Implicitwait(driver, 20);
                 //Thread.sleep(30000);
 
                 if(Tiered_CatchColorAdmin.equals(CatchwtColor)){
@@ -1460,7 +1460,7 @@ public class BadgeBuilderPage {
 
 
             //String Title = modalContentTitle.getText();
-            HelpersMethod.Implicitwait(driver, 20);
+           // //HelpersMethod.Implicitwait(driver, 20);
             HelpersMethod.waitTillElementDisplayed(driver, CatSearchIcon, 100);
 
             HelpersMethod.ScrollElement(driver, CatSearchIcon);
@@ -1470,7 +1470,7 @@ public class BadgeBuilderPage {
             CatSearchIconClr = CatSearchIcon.getCssValue("background-color");
             //CatSearchIconClr = CatSearchIcon.getCssValue("color");
             System.out.println(CatSearchIconClr);
-            HelpersMethod.Implicitwait(driver, 20);
+          //  //HelpersMethod.Implicitwait(driver, 20);
 //            Thread.sleep(8000);
 
             if(Tiered_CatchColorAdmin2.equals(CatSearchIconClr)){
@@ -1585,7 +1585,7 @@ public class BadgeBuilderPage {
                 //HelpersMethod.ClickBut(driver, CreateNew, 80);
 
 
-//            HelpersMethod.Implicitwait(driver, 10);
+//            //HelpersMethod.Implicitwait(driver, 10);
 
 
             WebElement ProductTextBox;
@@ -1598,7 +1598,7 @@ public class BadgeBuilderPage {
             if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 500);
-                HelpersMethod.Implicitwait(driver, 10);
+               // //HelpersMethod.Implicitwait(driver, 10);
                 Thread.sleep(5000);
                 ProductTextBox = HelpersMethod.FindByElement(driver, "xpath", "/html//input[@id='quickProduct']");
                 HelpersMethod.waitTillElementDisplayed(driver, ProductTextBox, 100);
@@ -1687,7 +1687,7 @@ public class BadgeBuilderPage {
 
 
             HelpersMethod.waitTillElementDisplayed(driver, OrderGuideClr, 100);
-            HelpersMethod.Implicitwait(driver, 20);
+        //    //HelpersMethod.Implicitwait(driver, 20);
             Thread.sleep(5000);
             //  OrderGuideClrCheck = OrderGuideClr.getCssValue("background-color");
             OrderGuideClrCheck = OrderGuideClr.getCssValue("color");
@@ -1832,7 +1832,7 @@ public class BadgeBuilderPage {
                 //HelpersMethod.ClickBut(driver, CreateNew, 80);
             }
 
-            HelpersMethod.Implicitwait(driver, 10);
+//            //HelpersMethod.Implicitwait(driver, 10);
 
 
             WebElement ProductTextBox;
@@ -1843,12 +1843,12 @@ public class BadgeBuilderPage {
             if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 500);
-                HelpersMethod.Implicitwait(driver, 10);
+             //   //HelpersMethod.Implicitwait(driver, 10);
                 ProductTextBox = HelpersMethod.FindByElement(driver, "xpath", "/html//input[@id='quickProduct']");
                 Thread.sleep(3000);
                 HelpersMethod.waitTillElementDisplayed(driver, ProductTextBox, 100);
                 Thread.sleep(2000);
-                //HelpersMethod.Implicitwait(driver,10);
+                ////HelpersMethod.Implicitwait(driver,10);
                 //HelpersMethod.JScriptClick(driver, TextBox, 20);
                 // HelpersMethod.clearText(driver, ProductTextBox, 20);
                 HelpersMethod.sendKeys(driver, ProductTextBox, 20, str);
@@ -2029,7 +2029,7 @@ public class BadgeBuilderPage {
     {
 //        exists=false;
         WebElement WebEle;
-        HelpersMethod.Implicitwait(driver,40);
+       // //HelpersMethod.Implicitwait(driver,40);
         //new WebDriverWait(driver,40).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Add product')]")));
         try
         {
@@ -2046,7 +2046,7 @@ public class BadgeBuilderPage {
     {
         exists=false;
         WebElement WebEle;
-        HelpersMethod.Implicitwait(driver,40);
+     //   //HelpersMethod.Implicitwait(driver,40);
         new WebDriverWait(driver,Duration.ofMillis(6000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Add product')]")));
         try
         {

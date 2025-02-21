@@ -2973,7 +2973,7 @@ public class OrderControlListPage
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+row+"]/descendant::span[contains(@data-test-id,'TimeInput-CallBackTime')]/descendant::input");
                 callBackTime=HelpersMethod.JSGetValueEle(driver,WebEle,40000);
-                if(!callBackTime.equals("") || !callBackTime.equals(null))
+                if(!callBackTime.equals("") || !callBackTime.equals(null)||!callBackTime.equals("12:00 AM"))
                 {
                     exists=true;
                 }

@@ -814,8 +814,9 @@ public class CompetitivePricingGeneralPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("card1"))));
-            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("card1")));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[contains(@class,'k-grid-table')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[contains(@class,'k-grid-table')]")));
+            Thread.sleep(4000);
         }
         catch (Exception e){}
     }
@@ -1398,10 +1399,17 @@ public class CompetitivePricingGeneralPage
 
                 if(HelpersMethod.IsExists("//span[text()='Discard pending changes']/ancestor::div[@class='k-window k-dialog']",driver))
                 {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::button/span[text()='Discard']");
-                    HelpersMethod.ActClick(driver,WebEle,10000);
                     wait = new FluentWait<>(driver)
-                            .withTimeout(Duration.ofSeconds(600))
+                            .withTimeout(Duration.ofSeconds(1000))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::button/span[text()='Discard']");
+                    HelpersMethod.ActClick(driver,WebEle,60000);
+
+                    wait = new FluentWait<>(driver)
+                            .withTimeout(Duration.ofSeconds(1000))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1412,8 +1420,9 @@ public class CompetitivePricingGeneralPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("card1"))));
-                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("card1")));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[contains(@class,'k-grid-table')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[contains(@class,'k-grid-table')]")));
+                Thread.sleep(4000);
             }
             else
             {

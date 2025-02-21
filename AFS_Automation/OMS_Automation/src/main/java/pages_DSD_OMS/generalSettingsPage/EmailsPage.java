@@ -207,7 +207,7 @@ public class EmailsPage
                 //Click on Company drop down
                 WebEle= HelpersMethod.FindByElement(driver,"id","dropdownList3");
                 HelpersMethod.ClickBut(driver,WebEle,20);
-                HelpersMethod.Implicitwait(driver,80);
+              //  //HelpersMethod.Implicitwait(driver,80);
                 Thread.sleep(10);
                 //Create list of web elements in dropdown
                 company=TestBase.testEnvironment.get_CompanyNo();
@@ -216,11 +216,11 @@ public class EmailsPage
                 {
                     act.moveToElement(Val).build().perform();
                     String Val_Text = Val.getText();
-                    HelpersMethod.Implicitwait(driver,40);
+                    ////HelpersMethod.Implicitwait(driver,40);
                     if (Val_Text.equalsIgnoreCase(company) || Val_Text.contains(company))
                     {
                         act.click(Val).build().perform();
-                        HelpersMethod.Implicitwait(driver,40);
+                       // //HelpersMethod.Implicitwait(driver,40);
                         break;
                     }
                 }
@@ -249,7 +249,7 @@ public class EmailsPage
                 //Click on User drop down
                 WebEle= HelpersMethod.FindByElement(driver,"id","dropdownList2");
                 HelpersMethod.ClickBut(driver,WebEle,50);
-                HelpersMethod.Implicitwait(driver,90);
+                //HelpersMethod.Implicitwait(driver,90);
                 Thread.sleep(10);
                 //Create list of web elements in dropdown
                 user_PermissionBy="User Role";
@@ -259,11 +259,11 @@ public class EmailsPage
                 {
                     act.moveToElement(Val).build().perform();
                     String Val_Text = Val.getText();
-                    HelpersMethod.Implicitwait(driver,90);
+                    //HelpersMethod.Implicitwait(driver,90);
                     if (Val_Text.equalsIgnoreCase(user_PermissionBy) || Val_Text.contains(user_PermissionBy))
                     {
                         act.click(Val).build().perform();
-                        HelpersMethod.Implicitwait(driver,40);
+                        //HelpersMethod.Implicitwait(driver,40);
                         break;
                     }
                 }
@@ -292,7 +292,7 @@ public class EmailsPage
                 //Click on Company drop down
                 WebEle= HelpersMethod.FindByElement(driver,"id","dropdownList3");
                 HelpersMethod.ClickBut(driver,WebEle,20);
-                HelpersMethod.Implicitwait(driver,80);
+                //HelpersMethod.Implicitwait(driver,80);
                 Thread.sleep(10);
                 //Create list of web elements in dropdown
                 user="regular user";
@@ -302,11 +302,11 @@ public class EmailsPage
                 {
                     act.moveToElement(Val).build().perform();
                     String Val_Text = Val.getText();
-                    HelpersMethod.Implicitwait(driver,40);
+                    //HelpersMethod.Implicitwait(driver,40);
                     if (Val_Text.equalsIgnoreCase(user) || Val_Text.contains(user))
                     {
                         act.click(Val).build().perform();
-                        HelpersMethod.Implicitwait(driver,40);
+                        //HelpersMethod.Implicitwait(driver,40);
                         break;
                     }
                 }
@@ -524,18 +524,18 @@ public class EmailsPage
                 //Click on Email Template drop down
                 WebSelectEmailDrpDwn= HelpersMethod.FindByElement(driver,"xpath","//*[@id='CPEmailTemplate']/span[2]");
                 HelpersMethod.ClickBut(driver,WebSelectEmailDrpDwn,20);
-                HelpersMethod.Implicitwait(driver,80);
+                //HelpersMethod.Implicitwait(driver,80);
                 Thread.sleep(10);
                 List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::li");
                 for(WebElement Val: Values)
                 {
                     act.moveToElement(Val).build().perform();
                     String Val_Text = Val.getText();
-                    HelpersMethod.Implicitwait(driver,40);
+                    //HelpersMethod.Implicitwait(driver,40);
                     if (Val_Text.equalsIgnoreCase(EmailTemplate) || Val_Text.contains(EmailTemplate))
                     {
                         act.click(Val).build().perform();
-                        HelpersMethod.Implicitwait(driver,40);
+                        //HelpersMethod.Implicitwait(driver,40);
                         break;
                     }
                     else {
@@ -670,15 +670,15 @@ public class EmailsPage
             List<WebElement> MenuBars=HelpersMethod.FindByElements(driver,"xpath","//div[@class='topMenu']/descendant::li/span");
             for(WebElement Menu:MenuBars)
             {
-                HelpersMethod.Implicitwait(driver,20);
+                //HelpersMethod.Implicitwait(driver,20);
                 act.moveToElement(Menu).build().perform();
-                HelpersMethod.Implicitwait(driver,20);
+                //HelpersMethod.Implicitwait(driver,20);
                 Menu_Text=Menu.getText();
                 if(MenuItem.equals(Menu_Text))
                 {
-                    HelpersMethod.Implicitwait(driver,10);
+                    //HelpersMethod.Implicitwait(driver,10);
                     act.click(Menu).build().perform();
-                    HelpersMethod.Implicitwait(driver,40);
+                    //HelpersMethod.Implicitwait(driver,40);
                     break;
                 }
             }

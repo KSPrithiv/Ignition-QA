@@ -182,11 +182,12 @@ public class TestBase
                 chromeOptions.addArguments("--disk-cache-size=0");
                 chromeOptions.addArguments("--dns-prefetch-disable");
                 chromeOptions.addArguments("--silent");
-                //chromeOptions.setProxy(null);
+
                 System.setProperty("webdriver.chrome.silentOutput", "true");// extra -delete
                 chromeOptions.addArguments("--ignore-certificate-errors");
                 chromeOptions.addArguments("--ignore-ssl-errors");
                 chromeOptions.addArguments("--disable-dev-shm-usage");
+                chromeOptions.addArguments("--remote-debugging-port=9222");
                 chromeOptions.addArguments("--log-level=3");
 
                 chromeOptions.addArguments("--aggressive-cache-discard");

@@ -2363,4 +2363,32 @@ public class CatalogPage
         }
         catch (Exception e){}
     }
+
+    public void validateAllProductDropDown()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[@id='CPproducttypes']",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateNoAllProductDropDown()
+    {
+        exists=false;
+        try
+        {
+            if(!HelpersMethod.IsExists("//span[@id='CPproducttypes']",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }

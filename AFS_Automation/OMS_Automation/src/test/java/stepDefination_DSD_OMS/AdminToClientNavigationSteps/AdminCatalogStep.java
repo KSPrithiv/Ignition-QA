@@ -411,4 +411,18 @@ public class AdminCatalogStep
         catalogPage=new CatalogPage(driver,scenario);
         catalogPage.ValidateHomeOrCatalog();
    }
+
+    @Then("User should verify whether All Product drop down is displayed")
+    public void userShouldVerifyWhetherAllProductDropDownIsDisplayed()
+    {
+        catalogPage=new CatalogPage(driver,scenario);
+        catalogPage.validateAllProductDropDown();
+    }
+
+    @Then("User should verify whether All Product drop down is not displayed")
+    public void userShouldVerifyWhetherAllProductDropDownIsNotDisplayed()
+    {
+        catalogPage=new CatalogPage(driver,scenario);
+        catalogPage.validateNoAllProductDropDown();
+    }
 }

@@ -129,7 +129,7 @@ public class CRMPage {
 
     @BeforeMethod
     public void WaitForPage() {
-        HelpersMethod.Implicitwait(driver, 10);
+     //   //HelpersMethod.Implicitwait(driver, 10);
     }
 
     public void clickOnHamburgerMenu() throws InterruptedException {
@@ -1542,7 +1542,7 @@ public class CRMPage {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
         }
-        HelpersMethod.Implicitwait(driver,10);
+        //HelpersMethod.Implicitwait(driver,10);
         try
         {
             HelpersMethod.ScrollElement(driver,SettingsBtn);

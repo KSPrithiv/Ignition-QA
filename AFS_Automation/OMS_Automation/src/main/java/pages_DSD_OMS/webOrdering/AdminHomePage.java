@@ -2,7 +2,10 @@ package pages_DSD_OMS.webOrdering;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.en_old.Ac;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -1147,6 +1150,69 @@ public class AdminHomePage
                 {
                     exists=true;
                 }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void navigateToTab(String tabValue)
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String tabText;
+        try
+        {
+            List<WebElement> adminTabs=HelpersMethod.FindByElements(driver,"xpath","//div[@class='topMenu']/descendant::span[@class='k-link']");
+            for (WebElement adminTab:adminTabs)
+            {
+                act.moveToElement(adminTab).build().perform();
+                tabText=adminTab.getText();
+                if(tabText.equals(tabValue))
+                {
+                    act.moveToElement(adminTab).build().perform();
+                    act.click(adminTab).build().perform();
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void enableProductTypeFilter()
+    {
+        exists=false;
+        try
+        {
+            if (HelpersMethod.IsExists("//span[@id='CPCatalogSearchEnableProductTypeFilter']", driver))
+            {
+                WebElement webEle = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CPCatalogSearchEnableProductTypeFilter']");
+                HelpersMethod.ActClick(driver,webEle,40000);
+            }
+            if(HelpersMethod.IsExists("//span[@id='CPCatalogSearchEnableProductTypeFilter' and @aria-checked='true']",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void disableProductTypeFilter()
+    {
+        exists=false;
+        try
+        {
+            if (HelpersMethod.IsExists("//span[@id='CPCatalogSearchEnableProductTypeFilter']", driver))
+            {
+                WebElement webEle = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CPCatalogSearchEnableProductTypeFilter']");
+                HelpersMethod.ActClick(driver,webEle,40000);
+            }
+            if(HelpersMethod.IsExists("//span[@id='CPCatalogSearchEnableProductTypeFilter' and @aria-checked='false']",driver))
+            {
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }

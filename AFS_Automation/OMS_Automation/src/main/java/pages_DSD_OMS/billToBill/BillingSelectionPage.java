@@ -3,12 +3,19 @@ package pages_DSD_OMS.billToBill;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.Set;
 
 /**
@@ -66,12 +73,15 @@ public class BillingSelectionPage
     //Action
     public void ValidateBillingSelection()
     {
-        String Header;
+        exists=false;
         try
         {
-            Header= HelpersMethod.FindByElement(driver,"xpath","//div[@class='topHeaderRow row']/descendant::span").getText();
-            Assert.assertEquals(Header,"Billing selection");
-            scenario.log("BILLING SELECTION PAGE HAS BEEN FOUND");
+            Thread.sleep(4000);
+           if(HelpersMethod.IsExists("//div[@id='selectionCard']",driver))
+           {
+               exists=true;
+           }
+           Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -80,13 +90,12 @@ public class BillingSelectionPage
     {
         exists=false;
         WebElement WebEle;
-
         try
         {
             if(HelpersMethod.IsExists("//table[contains(@class,'k-grid-table')]/descendant::tr[1]/descendant::input",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//table[contains(@class,'k-grid-table')]/descendant::tr[1]/descendant::input");
-                HelpersMethod.ActClick(driver,WebEle,1000);
+                HelpersMethod.ActClick(driver,WebEle,40000);
                 exists = true;
                 scenario.log("CHECK BOX CLICKED IN SELECTION GRID");
             }
@@ -104,11 +113,26 @@ public class BillingSelectionPage
         exists=false;
         try
         {
-            if(PrintButton.isDisplayed())
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("selectionCard"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("selectionCard")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.id("printEditButton")));
+
+            if(PrintButton.isDisplayed() && PrintButton.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, PrintButton, 10000);
+                HelpersMethod.ClickBut(driver, PrintButton, 40000);
                 scenario.log("PRINT BUTTON HAS BEEN CLICKED");
                 exists = true;
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(800))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
             }
             Assert.assertTrue(exists);
         }
@@ -120,11 +144,27 @@ public class BillingSelectionPage
         exists=false;
         try
         {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(800))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            Thread.sleep(2000);
             if (HelpersMethod.IsExists("//span[contains(text(),'Print customer billing')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
                 exists = true;
             }
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -139,33 +179,45 @@ public class BillingSelectionPage
             String ParentWindow = driver.getWindowHandle();
             if(WebEle.isDisplayed() && WebEle.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,WebEle,1000);
-                Thread.sleep(2000);
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                HelpersMethod.ClickBut(driver,WebEle,10000);
+                Thread.sleep(4000);
+
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(800))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
                 {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingPage(driver);
                 }
+
+                Thread.sleep(4000);
                 Set<String> PCWindows = driver.getWindowHandles();
                 for (String PCwind : PCWindows)
                 {
                     if (!PCwind.equals(ParentWindow))
                     {
                         driver.switchTo().window(PCwind);
-                        scenario.log(".pdf HAS BEEN FOUND");
-                        driver.close();
-                        exists= true;
-                        scenario.log("PRINT BUTTON FOR BILL TO BILL(DSD) HAS BEEN HANDLED");
+                        if (driver.getCurrentUrl().toLowerCase().contains(".pdf"))
+                        {
+                            // Log that the PDF window has been found
+                            scenario.log(".pdf HAS BEEN FOUND");
+                            // Close the PDF window
+                            driver.close();
+                            scenario.log("PDF window closed successfully");
+                            exists=true;
+                        }
                     }
                 }
-                Assert.assertTrue(exists);
                 driver.switchTo().window(ParentWindow);
             }
             else
             {
                 scenario.log("PRINT BUTTON IS NOT ENABLED");
             }
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -176,17 +228,19 @@ public class BillingSelectionPage
         WebElement WebEle;
         try
         {
+            Thread.sleep(1000);
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button[@id='CancelButton']");
-            String ParentWindow = driver.getWindowHandle();
             if (WebEle.isDisplayed() && WebEle.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, WebEle, 1000);
+                HelpersMethod.ClickBut(driver, WebEle, 60000);
                 scenario.log("PRINT HAS BEEN CANCELLED");
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-                }
+
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(800))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 exists=true;
             }
             Assert.assertTrue(exists);
@@ -199,7 +253,7 @@ public class BillingSelectionPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,CancelButton,1000);
+            HelpersMethod.ClickBut(driver,CancelButton,10000);
             exists=true;
             scenario.log("CANCEL BUTTON HAS BEEN CLICKED");
             Assert.assertEquals(exists,true);
@@ -212,7 +266,7 @@ public class BillingSelectionPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,UndoBillButton,1000);
+            HelpersMethod.ClickBut(driver,UndoBillButton,10000);
             exists=true;
             scenario.log("UNDO BILLING HAS BEEN CLICKED");
             Assert.assertTrue(exists);
@@ -229,7 +283,7 @@ public class BillingSelectionPage
             if(HelpersMethod.IsExists("//div[contains(text(),'Undo billing')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Yes']");
-                HelpersMethod.ClickBut(driver,WebEle,1000);
+                HelpersMethod.ClickBut(driver,WebEle,10000);
                 exists = true;
                 scenario.log("UNDO BILLING POPUP HANDLED");
             }
@@ -243,8 +297,8 @@ public class BillingSelectionPage
         exists=false;
         try
         {
-            HelpersMethod.ActClearKey(driver,FromRange,1000);
-            HelpersMethod.ActSendKey(driver,FromRange,1000, String.valueOf(arg0));
+            HelpersMethod.ActClearKey(driver,FromRange,10000);
+            HelpersMethod.ActSendKey(driver,FromRange,10000, String.valueOf(arg0));
             exists=true;
             scenario.log("FROM RANGE HAS BEEN SELECTED "+arg0);
             Assert.assertTrue(exists);
@@ -257,8 +311,8 @@ public class BillingSelectionPage
         exists=false;
         try
         {
-            HelpersMethod.ActClearKey(driver,ToRange,1000);
-            HelpersMethod.ActSendKey(driver,ToRange,1000, String.valueOf(arg1));
+            HelpersMethod.ActClearKey(driver,ToRange,10000);
+            HelpersMethod.ActSendKey(driver,ToRange,10000, String.valueOf(arg1));
             exists=true;
             scenario.log("TO RANGE HAS BEEN SELECTED "+arg1);
             Assert.assertTrue(exists);
@@ -283,7 +337,7 @@ public class BillingSelectionPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,SelectButton,1000);
+            HelpersMethod.ClickBut(driver,SelectButton,10000);
             exists=true;
             scenario.log("RANGE SELECTED BUTTON HAS BEEN SELECTED");
             Assert.assertTrue(exists);

@@ -24,7 +24,7 @@ public class GeneralSettingsPage {
     }
     @BeforeMethod
     public void WaitForPage() {
-        HelpersMethod.Implicitwait(driver, 10);
+        //HelpersMethod.Implicitwait(driver, 10);
     }
 
     public void clickOnMasterPage(){

@@ -97,7 +97,7 @@ public class ThemeBuilderPage {
     }
     @BeforeMethod
     public void WaitForPage() {
-        HelpersMethod.Implicitwait(driver, 5);
+        ////HelpersMethod.Implicitwait(driver, 5);
     }
 
     public void ClickOnGSHumburger() {
