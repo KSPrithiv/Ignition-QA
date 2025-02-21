@@ -46,6 +46,17 @@ Feature: Inventory
       |Case|Unit|Sequence|
       | 2  |  1 |  2     |
 
+  @VerifyUnitValues
+  Scenario Outline: Test scenario for verifying unit values
+    Given User must be on Order Entry Page to select Inventory tab
+    And User should navigate to Inventory tab
+    Then User should be in Store inventory tab, in inventory page
+    Then User should change store inventory dropdown value
+    And User should change "<Unit qty>" in store inventory and verify same has been reflected in store inventory product grid
+    Examples:
+    |Unit qty|
+    |  4     |
+
   @CancelInventroyDetails
   Scenario: Test scenario to cancel Inventory details
     Given User must be on Order Entry Page to select Inventory tab

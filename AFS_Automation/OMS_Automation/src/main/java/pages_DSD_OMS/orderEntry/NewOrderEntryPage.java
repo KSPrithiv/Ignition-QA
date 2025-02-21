@@ -8250,4 +8250,32 @@ public class NewOrderEntryPage
         }
         catch (Exception e){}
     }
+
+    public void validateAllProductDropDownDisplay()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[@id='CPproducttypes']",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateAllProductDropDownNotDisplay()
+    {
+        exists=false;
+        try
+        {
+            if(!HelpersMethod.IsExists("//span[@id='CPproducttypes']",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }

@@ -2,14 +2,21 @@ package pages_DSD_OMS.billToBill;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -75,25 +82,24 @@ public class BillToBillPage
     public void Refresh_Page()
     {
         driver.navigate().to(currentURL);
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(800))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
     }
 
     public void ValidateBillToBill()
     {
         exists=false;
-        String Header=null;
-        WebElement WebEle;
+        String Header;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(800))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             Header=HelpersMethod.FindByElement(driver,"xpath","//div[@class='topHeaderRow row']/descendant::span").getText();
             Assert.assertEquals(Header,"Bill To Billing (DSD)");
@@ -117,13 +123,14 @@ public class BillToBillPage
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
             act.moveToElement(Search_Input).click().sendKeys("Bill To Billing").build().perform();
             WebElement BillMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Bill To Billing')]");
-            HelpersMethod.ClickBut(driver, BillMenu, 100);
+            HelpersMethod.ClickBut(driver, BillMenu, 10000);
             exists = true;
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(800))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -157,7 +164,7 @@ public class BillToBillPage
         {
             if(!WeeklyRadio.isSelected())
             {
-                HelpersMethod.ClickBut(driver,WeeklyRadio,10);
+                HelpersMethod.ClickBut(driver,WeeklyRadio,10000);
             }
             exists=true;
             Assert.assertEquals(exists,true);
@@ -172,7 +179,7 @@ public class BillToBillPage
         {
             if (!MonthlyRadio.isSelected())
             {
-                HelpersMethod.ClickBut(driver,MonthlyRadio,10);
+                HelpersMethod.ClickBut(driver,MonthlyRadio,10000);
             }
             exists=true;
             Assert.assertEquals(exists,true);
@@ -186,17 +193,10 @@ public class BillToBillPage
         Actions act=new Actions(driver);
         try
         {
-            HelpersMethod.Implicitwait(driver,20);
-            HelpersMethod.ClickBut(driver,YearDropdown,10);
-            HelpersMethod.Implicitwait(driver,4);
+            HelpersMethod.ClickBut(driver,YearDropdown,10000);
             List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
             WebElement YearFromDropDown=Values.get(2);
             act.moveToElement(YearFromDropDown).build().perform();
-            HelpersMethod.Implicitwait(driver,10);
-            //String Val_Text =YearFromDropDown.getText();
-            //HelpersMethod.Implicitwait(driver,10);
-            //scenario.log("YEAR SELECTED FROM DROP DOWN "+Val_Text);
-            //HelpersMethod.Implicitwait(driver,5);
             act.click(YearFromDropDown).build().perform();
             exists=true;
             Assert.assertEquals(exists,true);
@@ -208,19 +208,12 @@ public class BillToBillPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        HelpersMethod.Implicitwait(driver,40);
         try
         {
-            HelpersMethod.ClickBut(driver,MonthDropdown,10);
-            HelpersMethod.Implicitwait(driver,40);
+            HelpersMethod.ClickBut(driver,MonthDropdown,10000);
             List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
             WebElement MonthFromDropDown=Values.get(2);
             act.moveToElement(MonthFromDropDown).build().perform();
-            HelpersMethod.Implicitwait(driver,40);
-            //String Val_Text =MonthFromDropDown.getText();
-            //HelpersMethod.Implicitwait(driver,10);
-            //scenario.log("MONTH SELECTED FROM DROP DOWN "+Val_Text);
-            //HelpersMethod.Implicitwait(driver,5);
             act.click(MonthFromDropDown).build().perform();
             exists=true;
             Assert.assertEquals(exists,true);
@@ -234,17 +227,10 @@ public class BillToBillPage
         Actions act=new Actions(driver);
         try
         {
-            HelpersMethod.Implicitwait(driver,100);
-            HelpersMethod.ClickBut(driver,DateDropdown,60);
-            HelpersMethod.Implicitwait(driver,100);
+            HelpersMethod.ClickBut(driver,DateDropdown,50000);
             List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
             WebElement DateFromDropDown=Values.get(2);
             act.moveToElement(DateFromDropDown).build().perform();
-            HelpersMethod.Implicitwait(driver,100);
-            //String Val_Text =DateFromDropDown.getText();
-            //HelpersMethod.Implicitwait(driver,10);
-            //scenario.log("DATE SELECTED FROM DROP DOWN "+Val_Text);
-            //HelpersMethod.Implicitwait(driver,5);
             act.click(DateFromDropDown).build().perform();
             exists=true;
             Assert.assertEquals(exists,true);
@@ -276,18 +262,47 @@ public class BillToBillPage
     public void ClickLoadButton()
     {
         exists=false;
-        WebElement WebEle;
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("groupsCardGrid"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("groupsCardGrid")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.id("cancelEditButton")));
+
             if(LoadButton.isDisplayed() && LoadButton.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, LoadButton, 10);
+                HelpersMethod.ClickBut(driver, LoadButton, 10000);
                 exists=true;
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(800))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateBillSelection()
+    {
+        exists=false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(800))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            if(HelpersMethod.IsExists("//div[@id='groupsCardGrid']",driver))
+            {
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }

@@ -55,7 +55,7 @@ public class IconsSelectionPageStep {
     @Given("User enters URL and entered to login page")
     public void user_enters_url_and_entered_to_login_page() throws Exception {
         if (flag == false) {
-            HelpersMethod.Implicitwait(driver, 40);
+            //HelpersMethod.Implicitwait(driver, 40);
             loginpage = new LoginPage(driver, scenario);
             flag = true;
         }

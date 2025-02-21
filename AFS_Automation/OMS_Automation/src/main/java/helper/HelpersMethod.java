@@ -83,21 +83,17 @@ public class HelpersMethod
     public static void Refresh(WebDriver driver)
     {
         driver.navigate().to(driver.getCurrentUrl());
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
-        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(1000))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
     }
 
     public static void NavigateBack(WebDriver driver)
     {
         driver.navigate().back();
     }
-
-    public static void Implicitwait(WebDriver driver, int sec)
-    {driver.manage().timeouts().implicitlyWait(sec, TimeUnit.SECONDS);}
-
 
     public static boolean waitVisibilityOfEle(WebDriver driver, WebElement ele, int timeOut)
     {

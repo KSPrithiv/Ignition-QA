@@ -32,7 +32,7 @@ public class MyAccountPageStep
         @And("User is on My Account Frame")
         public void user_is_on_my_account_frame()
         {
-            //HelpersMethod.Implicitwait(driver,40);
+            ////HelpersMethod.Implicitwait(driver,40);
             String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -114,21 +114,21 @@ public class MyAccountPageStep
     @And("user clears and clicks customer account search box")
     public void user_clears_and_clicks_customer_account_search_box() {
         //myAccountPage = new MyAccountPage(driver, scenario);
-        HelpersMethod.Implicitwait(driver, 40);
+        ////HelpersMethod.Implicitwait(driver, 40);
         myAccountPage.Additionalcust_acc_search_box();
     }
 
     @And("user fetches the account number in the account details table")
     public void user_fetches_the_account_number_in_the_account_details_table() {
         //myAccountPage = new MyAccountPage(driver, scenario);
-        HelpersMethod.Implicitwait(driver, 40);
+       // //HelpersMethod.Implicitwait(driver, 40);
         myAccountPage.user_fetches_the_account_number_MyAccount();
     }
 
     @And("user validates Grid should display customer account no")
     public void user_validates_grid_should_display_customer_account_no() {
         //myAccountPage = new MyAccountPage(driver, scenario);
-        HelpersMethod.Implicitwait(driver, 40);
+        ////HelpersMethod.Implicitwait(driver, 40);
         myAccountPage.user_validates_grid_should_display_customer_account_no();
     }
 

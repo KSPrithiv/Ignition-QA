@@ -110,6 +110,7 @@ public class BillToBillPageStep
     public void userSelectBillGroupCheckBox()
     {
         billToBill=new BillToBillPage(driver,scenario);
+        billToBill.validateBillSelection();
         billToBill.ClickBillGroup();
     }
 
@@ -132,6 +133,7 @@ public class BillToBillPageStep
     public void userClickOnPrintButtonOnBillSelectionPage() throws InterruptedException, AWTException
     {
         billSelection=new BillingSelectionPage(driver,scenario);
+        billSelection.ValidateBillingSelection();
         billSelection.ClickPrintButton();
     }
 
@@ -149,6 +151,7 @@ public class BillToBillPageStep
     {
         billToBill=new BillToBillPage(driver,scenario);
         billToBill.MonthlyRadioButton();
+        billToBill.ValidateBillToBill();
         billToBill.ClickOnMonthlyDropDown();
         billToBill.ClickOnYearDropDown();
     }

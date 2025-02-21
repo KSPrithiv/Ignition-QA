@@ -219,7 +219,7 @@ public class MerchantPage
                 //Click on Company drop down
                 WebEle= HelpersMethod.FindByElement(driver,"id","dropdownList3");
                 HelpersMethod.ClickBut(driver,WebEle,20);
-                HelpersMethod.Implicitwait(driver,80);
+                //HelpersMethod.Implicitwait(driver,80);
                 Thread.sleep(10);
                 //Create list of web elements in dropdown
                 company=TestBase.testEnvironment.get_CompanyNo();
@@ -228,11 +228,11 @@ public class MerchantPage
                 {
                     act.moveToElement(Val).build().perform();
                     String Val_Text = Val.getText();
-                    HelpersMethod.Implicitwait(driver,40);
+                    //HelpersMethod.Implicitwait(driver,40);
                     if (Val_Text.equalsIgnoreCase(company) || Val_Text.contains(company))
                     {
                         act.click(Val).build().perform();
-                        HelpersMethod.Implicitwait(driver,40);
+                        //HelpersMethod.Implicitwait(driver,40);
                         break;
                     }
                 }
@@ -440,7 +440,7 @@ public class MerchantPage
                 //Click on Company drop down
                 WebEle= HelpersMethod.FindByElement(driver,"id","OwnerType");
                 HelpersMethod.ClickBut(driver,WebEle,20);
-                HelpersMethod.Implicitwait(driver,80);
+                //HelpersMethod.Implicitwait(driver,80);
                 Thread.sleep(10);
                 //Create list of web elements in dropdown
                 OwnerType="User Role";
@@ -449,11 +449,11 @@ public class MerchantPage
                 {
                     act.moveToElement(Val).build().perform();
                     String Val_Text = Val.getText();
-                    HelpersMethod.Implicitwait(driver,40);
+                    //HelpersMethod.Implicitwait(driver,40);
                     if (Val_Text.equalsIgnoreCase(OwnerType) || Val_Text.contains(OwnerType))
                     {
                         act.click(Val).build().perform();
-                        HelpersMethod.Implicitwait(driver,40);
+                        //HelpersMethod.Implicitwait(driver,40);
                         break;
                     }
                 }
@@ -593,15 +593,15 @@ public class MerchantPage
             List<WebElement> MenuBars=HelpersMethod.FindByElements(driver,"xpath","//div[@class='topMenu']/descendant::li/span");
             for(WebElement Menu:MenuBars)
             {
-                HelpersMethod.Implicitwait(driver,20);
+                //HelpersMethod.Implicitwait(driver,20);
                 act.moveToElement(Menu).build().perform();
-                HelpersMethod.Implicitwait(driver,20);
+                //HelpersMethod.Implicitwait(driver,20);
                 Menu_Text=Menu.getText();
                 if(MenuItem.equals(Menu_Text))
                 {
-                    HelpersMethod.Implicitwait(driver,10);
+                    //HelpersMethod.Implicitwait(driver,10);
                     act.click(Menu).build().perform();
-                    HelpersMethod.Implicitwait(driver,40);
+                    //HelpersMethod.Implicitwait(driver,40);
                     break;
                 }
             }
@@ -641,14 +641,14 @@ public class MerchantPage
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
         }
-        HelpersMethod.Implicitwait(driver,100);
+        //HelpersMethod.Implicitwait(driver,100);
         try
         {
              ClickOnStartDateCalender();
-             HelpersMethod.Implicitwait(driver,90);
+             //HelpersMethod.Implicitwait(driver,90);
              SelectStartDate(Start_Date_Val);
                    //exists=true;
-            HelpersMethod.Implicitwait(driver,90);
+            //HelpersMethod.Implicitwait(driver,90);
             WebElement WebEleDate2= HelpersMethod.FindByElement(driver,"xpath","//span[@class='date2']//a[@class='k-select']//span[@class='k-icon k-i-calendar']");
             new WebDriverWait(driver,Duration.ofMillis( 6000)).until(ExpectedConditions.visibilityOf(WebEleDate2));
             Actions act = new Actions(driver);
@@ -665,7 +665,7 @@ public class MerchantPage
     public void EnterEndDate(int End_Date_Val)
     {
        // exists=false;
-        HelpersMethod.Implicitwait(driver,90);
+        //HelpersMethod.Implicitwait(driver,90);
         WebElement WebEle;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
@@ -677,7 +677,7 @@ public class MerchantPage
 //            if(StartDate.isDisplayed())
 //            {
             ClickOnEndDateCalender();
-            HelpersMethod.Implicitwait(driver,90);
+            //HelpersMethod.Implicitwait(driver,90);
             SelectEndDate(End_Date_Val);
          //   exists=true;
 //            }
@@ -690,7 +690,7 @@ public class MerchantPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        HelpersMethod.Implicitwait(driver,40);
+        //HelpersMethod.Implicitwait(driver,40);
         try
         {
              HelpersMethod.clickOn(driver,destinationDropdown,100);
@@ -707,7 +707,7 @@ public class MerchantPage
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(6000));
         //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add Standing PO')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[@class='CPMessageCenter']/descendant::span[contains(text(),'Create notice')]",80);
-        HelpersMethod.Implicitwait(driver,200);
+        //HelpersMethod.Implicitwait(driver,200);
         try
         {
             //Click on start date icon
@@ -718,7 +718,7 @@ public class MerchantPage
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40);
             new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             Assert.assertEquals(exists,true);
-            HelpersMethod.Implicitwait(driver,60);
+            //HelpersMethod.Implicitwait(driver,60);
         }
         catch (Exception e){}
     }
@@ -730,7 +730,7 @@ public class MerchantPage
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
         //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add Standing PO')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
         //HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","(//span[@class='k-icon k-i-calendar'])[1]",80);
-        //HelpersMethod.Implicitwait(driver,80);
+        ////HelpersMethod.Implicitwait(driver,80);
         try
         {
             //Click on start date icon
@@ -741,7 +741,7 @@ public class MerchantPage
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40);
             new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             Assert.assertEquals(exists,true);
-            HelpersMethod.Implicitwait(driver,60);
+            //HelpersMethod.Implicitwait(driver,60);
         }
         catch (Exception e){}
     }
@@ -753,7 +753,7 @@ public class MerchantPage
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
         //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add Standing PO')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
         //HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","(//span[@class='k-icon k-i-calendar'])[1]",80);
-        //HelpersMethod.Implicitwait(driver,80);
+        ////HelpersMethod.Implicitwait(driver,80);
         try
         {
             //Click on End date icon
@@ -764,7 +764,7 @@ public class MerchantPage
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40);
             new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             Assert.assertEquals(exists,true);
-            HelpersMethod.Implicitwait(driver,60);
+            //HelpersMethod.Implicitwait(driver,60);
         }
         catch (Exception e){}
     }
@@ -776,7 +776,7 @@ public class MerchantPage
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
         //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add Standing PO')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[@class='CPMessageCenter']/descendant::span[contains(text(),'Create notice')]",60);
-        HelpersMethod.Implicitwait(driver,90);
+        //HelpersMethod.Implicitwait(driver,90);
         try
         {
             //Click on end date icon
@@ -787,7 +787,7 @@ public class MerchantPage
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",60);
             new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             Assert.assertEquals(exists,true);
-            HelpersMethod.Implicitwait(driver,60);
+            //HelpersMethod.Implicitwait(driver,60);
         }
         catch (Exception e){}
     }

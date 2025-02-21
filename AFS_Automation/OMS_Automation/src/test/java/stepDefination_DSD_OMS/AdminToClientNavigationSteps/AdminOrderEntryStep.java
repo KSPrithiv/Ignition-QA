@@ -373,6 +373,14 @@ public class AdminOrderEntryStep
         catSearchPage.enableDoNotLoadFullCatalogAutomatically();
     }
 
+    @Then("User should select {string} in Catalog search layout")
+    public void userShouldSelectInCatalogSearchLayout(String arg0)
+    {
+        catSearchPage=new catalogSearchPage(driver,scenario);
+        catSearchPage.clickCatalogSearchLayout();
+        catSearchPage.selectCatalogSearchLayout(arg0);
+    }
+
     @Then("User should select {string} in Catalog search layout and disable Do not load full catalog automatically")
     public void userShouldSelectInCatalogSearchLayoutAndDisableDoNotLoadFullCatalogAutomatically(String arg0)
     {
@@ -641,5 +649,47 @@ public class AdminOrderEntryStep
             orderpage.Scroll_start();
             exists = orderpage.Start_Order();
         }
+    }
+
+    @And("User should verify All Product dropdown is displaying")
+    public void userShouldVerifyAllProductDropdownIsDisplaying() throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.Validate_Catalog();
+        newOE.clickOnLoadAllProducts();
+        newOE.ResetFilter_Catalog();
+        newOE.validateDisplayCatalogProducts();
+        newOE.validateAllProductDropDownDisplay();
+        newOE.Catalog_OK();
+    }
+
+    @And("User should verify All Product dropdown is not displaying")
+    public void userShouldVerifyAllProductDropdownIsNotDisplaying() throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.Validate_Catalog();
+        newOE.clickOnLoadAllProducts();
+        newOE.ResetFilter_Catalog();
+        newOE.validateDisplayCatalogProducts();
+        newOE.validateAllProductDropDownNotDisplay();
+        newOE.Catalog_OK();
+    }
+
+    @Then("User should navigate to specific {string} to enable admin setting")
+    public void userShouldNavigateToSpecificToEnableAdminSetting(String tabValue)
+    {
+        adminHomePage = new AdminHomePage(driver, scenario);
+        adminHomePage.navigateToTab(tabValue);
+        adminHomePage.enableProductTypeFilter();
+        adminHomePage.Click_SaveButton();
+    }
+
+    @Then("User should navigate to specific {string} to disable admin setting")
+    public void userShouldNavigateToSpecificToDisableAdminSetting(String tabValue)
+    {
+        adminHomePage = new AdminHomePage(driver, scenario);
+        adminHomePage.navigateToTab(tabValue);
+        adminHomePage.disableProductTypeFilter();
+        adminHomePage.Click_SaveButton();
     }
 }

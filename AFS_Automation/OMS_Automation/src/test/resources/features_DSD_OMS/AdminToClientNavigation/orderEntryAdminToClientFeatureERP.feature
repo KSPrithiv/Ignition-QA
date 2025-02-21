@@ -51,3 +51,57 @@ Feature: scenarios for admin credentials and client credentials
     Examples:
       |  Setting                                   |             Key          |
       | Show and allow modification of warehouse   | CPShowAndModifyWarehouse |
+
+  @CatalogEnableAllProductCardView
+  Scenario Outline: Test scenario for enable auto loading of products in catalog dialog box, in card view
+    Given User enters URL and is on login page and entered credentials for Admin settings
+    When User is on Home Page for Admin settings
+    Then User Clicks on Permissions by drop down to select Customer Account#s
+    And User should enter menu "<Option>" in search bar to navigate to catalog search
+    Then User should select "<CatalogSearchLayout>" in Catalog search layout
+    And User should save all the details
+    Then User should navigate to specific "<Admin tab>" to enable admin setting
+    And User logs out from Admin site, logs in to client credentials
+    When User is on Home Page
+    Then User navigate to Client side
+    Then User should select Order Entry tab for admin
+    Then User selects Account# for Admin side setting
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Click on Add product drop down and select catalog option for admin setting
+    And User should verify All Product dropdown is displaying
+    Then Click on user Icon on Order Entry page
+    And Click on Logout on Order Entry page
+    Examples:
+      |Option             |   CatalogSearchLayout |    Admin tab  |
+      |Catalog Search     |    Card layout        |   Filters     |
+
+  @CatalogDisableAllProductCardView
+  Scenario Outline: Test scenario for disable auto loading of products in catalog dialog box, in card view
+    Given User enters URL and is on login page and entered credentials for Admin settings
+    When User is on Home Page for Admin settings
+    Then User Clicks on Permissions by drop down to select Customer Account#s
+    And User should enter menu "<Option>" in search bar to navigate to catalog search
+    Then User should select "<CatalogSearchLayout>" in Catalog search layout
+    And User should save all the details
+    Then User should navigate to specific "<Admin tab>" to disable admin setting
+    And User logs out from Admin site, logs in to client credentials
+    When User is on Home Page
+    Then User navigate to Client side
+    Then User should select Order Entry tab for admin
+    Then User selects Account# for Admin side setting
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Click on Add product drop down and select catalog option for admin setting
+    And User should verify All Product dropdown is not displaying
+    Then Click on user Icon on Order Entry page
+    And Click on Logout on Order Entry page
+    Examples:
+      |Option             |   CatalogSearchLayout |    Admin tab  |
+      |Catalog Search     |    Card layout        | Filters     |

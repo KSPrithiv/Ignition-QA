@@ -1,6 +1,7 @@
 package stepDefination_DSD_OMS.AdminToClientNavigationSteps;
 
 import helper.HelpersMethod;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
@@ -12,11 +13,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
+import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderGuide.OrderGuidePage;
+import util.DataBaseConnection;
 import util.TestBase;
 
 import java.awt.*;
+import java.sql.SQLException;
 import java.time.Duration;
+import java.util.List;
 
 /**
  * @Project Divya.Ramadas@telusagcg.com
@@ -30,6 +35,7 @@ public class AdminOrderGuideStep
     Scenario scenario;
     static boolean exists=false;
     static OrderGuidePage orderGuidePage;
+    static NewOrderEntryPage newOE;
     static String currentURL;
 
     @Before
@@ -80,5 +86,30 @@ public class AdminOrderGuideStep
         orderGuidePage = new OrderGuidePage(driver, scenario);
         orderGuidePage.ValidateOG();
         orderGuidePage.validateCustomerReferenceAndCustomerAccountIndex();
+    }
+
+    @And("User should verify products are auto loaded select Product from catalog")
+    public void userShouldVerifyProductsAreAutoLoadedSelectProductFromCatalog() throws InterruptedException, AWTException
+    {
+            newOE=new NewOrderEntryPage(driver,scenario);
+            newOE.Validate_Catalog();
+            newOE.validateAutoLoadProducts();
+            newOE.ResetFilter_Catalog();
+            newOE.selectAllProductsCatalogDialogbox();
+            newOE.validateDisplayCatalogProducts();
+            newOE.Catalog_OK();
+    }
+
+    @And("User should verify products are not auto loaded select Product from catalog")
+    public void userShouldVerifyProductsAreNotAutoLoadedSelectProductFromCatalog() throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.Validate_Catalog();
+        newOE.validateNoAutoLoadProducts();
+        newOE.clickOnLoadAllProducts();
+        newOE.ResetFilter_Catalog();
+        newOE.selectAllProductsCatalogDialogbox();
+        newOE.validateDisplayCatalogProducts();
+        newOE.Catalog_OK();
     }
 }

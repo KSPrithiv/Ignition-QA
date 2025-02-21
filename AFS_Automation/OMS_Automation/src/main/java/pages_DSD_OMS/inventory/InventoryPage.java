@@ -2,7 +2,10 @@ package pages_DSD_OMS.inventory;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.en_old.Ac;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -24,8 +27,11 @@ public class InventoryPage
     Scenario scenario;
     static boolean exists=false;
     static String runningTotalUnits;
-    int totalUitsValue;
-    int headIndex=0;
+    static int totalUitsValue;
+    static int headIndex=0;
+    static String firstProd;
+    static String firstQty;
+    static String updateQty;
 
     @FindBy(xpath="//div[contains(@class,'k-grouping-header')]/descendant::div[contains(@class,'k-grouping-drop-container')]")
     private WebElement To;
@@ -495,6 +501,7 @@ public class InventoryPage
                     if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/descendant::td["+i+"]/descendant::input",driver))
                     {
                         qtyInput = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/descendant::td[" + i + "]/descendant::input");
+                        HelpersMethod.ActClearKey(driver,qtyInput,10000);
                         HelpersMethod.EnterText(driver, qtyInput, 10000, unit);
                         qtyInput.sendKeys(Keys.TAB);
                     }
@@ -512,6 +519,7 @@ public class InventoryPage
                     if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/descendant::td["+i+"]/descendant::input",driver))
                     {
                         qtyInput = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/descendant::td[" + i + "]/descendant::input");
+                        HelpersMethod.ActClearKey(driver,qtyInput,10000);
                         HelpersMethod.EnterText(driver, qtyInput, 10000,cases);
                         qtyInput.sendKeys(Keys.TAB);
                     }
@@ -1036,5 +1044,203 @@ public class InventoryPage
                 }
             }
             catch (Exception e){}
+    }
+
+    public void readFirstProduct()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//tr[1]/descendant::button[@class='i-link-button']",driver))
+            {
+                firstProd = HelpersMethod.FindByElement(driver, "xpath", "//tr[1]/descendant::button[@class='i-link-button']").getText();
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readUnitQtyOfFirstProd()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        int i=0;
+        String headText;
+        try
+        {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for (WebElement head:heads)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equals("Units"))
+                {
+                    break;
+                }
+            }
+            if(HelpersMethod.IsExists("//tr[1]/td["+i+"]/descendant::input",driver))
+            {
+               WebElement webEle=HelpersMethod.FindByElement(driver,"xpath","//tr[1]/td["+i+"]/descendant::input");
+               firstQty=HelpersMethod.JSGetValueEle(driver,webEle,40000);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void searchForProdInCatalogDialogbox()
+    {
+        exists=false;
+        try
+        {
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+            {
+                Actions act=new Actions(driver);
+                WebElement webEle;
+                String headText;
+                int i=0;
+                scenario.log("CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND");
+                List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::span[@class='k-column-title']");
+                for(WebElement head:heads)
+                {
+                    i++;
+                    act.moveToElement(head).build().perform();
+                    headText=head.getText();
+                    if(headText.equalsIgnoreCase("Product #"))
+                    {
+                        break;
+                    }
+                }
+                if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-filter-row')]/descendant::th[contains(@class,'k-table-th')]["+i+"]/descendant::input",driver))
+                {
+                    webEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-filter-row')]/descendant::th[contains(@class,'k-table-th')]["+i+"]/descendant::input");
+                    HelpersMethod.EnterText(driver,webEle,40000,firstProd);
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(800))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                    if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[text()='No data available']",driver))
+                    {
+                        scenario.log("NO PRODUCT HAS BEEN FOUND");
+                    }
+                    else
+                    {
+                        scenario.log("PRODUCT HAS BEEN FOUND");
+                        exists=true;
+                    }
+                }
+            }
+            else
+            {
+                WebElement webEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::input[contains(@class,'product-search-input')]");
+                HelpersMethod.JSSetValueEle(driver,webEle,40000,firstProd);
+                webEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::span[@datatestid='searchBarSearchBtn']");
+                HelpersMethod.ActClick(driver,webEle,40000);
+                if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(text(),'Sorry, no products matched')]",driver))
+                {
+                    scenario.log("NO PRODUCT HAS BEEN FOUND!!!!");
+                }
+                else
+                {
+                    scenario.log("PRODUCT HAS BEEN FOUND");
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void changeQtyOfProd(String qty)
+    {
+        Actions act=new Actions(driver);
+        int j=0;
+        String headText;
+        WebElement webEle;
+        String qtyEarlier;
+        try
+        {
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+            {
+                List<WebElement> heads = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::span[@class='k-column-title']");
+                for (WebElement head : heads)
+                {
+                    j++;
+                    act.moveToElement(head).build().perform();
+                    headText = head.getText();
+                    if (headText.equalsIgnoreCase("Units"))
+                    {
+                        break;
+                    }
+                }
+                webEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]/descendant::td[" + j + "]/descendant::input");
+                qtyEarlier = HelpersMethod.JSGetValueEle(driver, webEle, 40000);
+                if (qtyEarlier.equals(firstQty))
+                {
+                    scenario.log("FIRST QTY FOUND IN CATALOG DIALOG BOX " + qtyEarlier);
+                    HelpersMethod.clearText(driver, webEle, 40000);
+                    HelpersMethod.EnterText(driver, webEle, 40000, qty);
+                    exists=true;
+                }
+            }
+            else
+            {
+                if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@id,'gridItemBox')][1]/descendant::div[text()='Unit Qty']/descendant::input",driver))
+                {
+                    webEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@id,'gridItemBox')][1]/descendant::div[text()='Unit Qty']/descendant::input");
+                    qtyEarlier = HelpersMethod.JSGetValueEle(driver, webEle, 40000);
+                    if (qtyEarlier.equals(firstQty))
+                    {
+                        scenario.log("FIRST QTY FOUND IN CATALOG DIALOG BOX " + qtyEarlier);
+                        HelpersMethod.ActClearKey(driver, webEle, 40000);
+                        HelpersMethod.EnterText(driver, webEle, 40000, qty);
+                        exists=true;
+                    }
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void comparePreviousAndNewUnitValue()
+    {
+        exists=false;
+        if(!firstQty.equals(updateQty))
+        {
+            exists=true;
+        }
+        Assert.assertEquals(exists,true);
+    }
+
+    public void updatedUnitQtyOfFirstProd()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        int i=0;
+        String headText;
+        try
+        {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for (WebElement head:heads)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equals("Units"))
+                {
+                    break;
+                }
+            }
+            if(HelpersMethod.IsExists("//tr[1]/td["+i+"]/descendant::input",driver))
+            {
+                WebElement webEle=HelpersMethod.FindByElement(driver,"xpath","//tr[1]/td["+i+"]/descendant::input");
+                updateQty=HelpersMethod.JSGetValueEle(driver,webEle,40000);
+            }
+        }
+        catch (Exception e){}
     }
 }

@@ -453,7 +453,7 @@ public class UserManagementPage {
                 HelpersMethod.ClickBut(driver,RegCancel,1);
             }
 
-            //HelpersMethod.Implicitwait(driver,20);
+            ////HelpersMethod.Implicitwait(driver,20);
         }
         catch (Exception e) {}
     }
