@@ -335,7 +335,7 @@ public class OrderControlPageSteps
     }
 
     @Then("User clicks on Print button and handle the new browser window")
-    public void userClicksOnPrintButtonAndHandleTheNewBrowserWindow()
+    public void userClicksOnPrintButtonAndHandleTheNewBrowserWindow() throws InterruptedException
     {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.clickOnPrintButton();

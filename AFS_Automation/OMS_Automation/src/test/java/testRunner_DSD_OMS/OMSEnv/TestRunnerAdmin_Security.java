@@ -34,6 +34,7 @@ public class TestRunnerAdmin_Security extends AbstractTestNGCucumberTests
         {
                 try
                 {
+                        Thread.sleep(1000);
                         //readPropertiesFile.InitializeProp(envi);
                         TestBase.InitializeProp(envi);
                         TestBase.SetDriver(TestBase.testEnvironment.get_browser());

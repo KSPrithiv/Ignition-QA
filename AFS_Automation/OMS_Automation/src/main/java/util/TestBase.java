@@ -184,12 +184,11 @@ public class TestBase
                 chromeOptions.addArguments("--silent");
 
                 System.setProperty("webdriver.chrome.silentOutput", "true");// extra -delete
-                System.setProperty("webdriver.chrome.logfile", "selenium.log");
-                System.setProperty("webdriver.chrome.verboseLogging", "true");
 
                 chromeOptions.addArguments("--ignore-certificate-errors");
                 chromeOptions.addArguments("--ignore-ssl-errors");
                 chromeOptions.addArguments("--disable-dev-shm-usage");
+                chromeOptions.addArguments("--remote-allow-origins=*");
                 chromeOptions.addArguments("--remote-debugging-port=9222");
                 chromeOptions.addArguments("--log-level=3");
 

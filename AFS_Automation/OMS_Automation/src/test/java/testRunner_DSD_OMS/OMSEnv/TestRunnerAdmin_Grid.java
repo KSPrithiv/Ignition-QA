@@ -31,11 +31,15 @@ public class TestRunnerAdmin_Grid extends AbstractTestNGCucumberTests
     {
         try
         {
+            Thread.sleep(1000);
             //readPropertiesFile.InitializeProp(envi);
             TestBase.InitializeProp(envi);
             TestBase.SetDriver(TestBase.testEnvironment.get_browser());
         }
-        catch (Exception e) { }
+        catch (Exception e)
+        {
+            System.out.println("EXCEPTION FOUND IS: "+e);
+        }
     }
 
     @AfterMethod

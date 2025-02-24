@@ -28,6 +28,7 @@ public class CatalogPageStep3
 
     static CatalogPage catalogpage;
     static OrderEntryPage orderEntryPage;
+    static NewOrderEntryPage newOE;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -80,5 +81,12 @@ public class CatalogPageStep3
         orderEntryPage=new OrderEntryPage(driver,scenario);
         orderEntryPage.navigateToOrderEntry1();
         orderEntryPage.ValidateOE();
+    }
+
+    @And("User goes through products added to order via catalog")
+    public void userGoesThroughProductsAddedToOrderViaCatalog() throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
     }
 }

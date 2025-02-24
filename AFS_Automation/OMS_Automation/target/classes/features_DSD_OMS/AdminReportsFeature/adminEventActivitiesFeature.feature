@@ -6,6 +6,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
 
   @Logon/Logoff
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with logon/logoff event
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
@@ -21,6 +23,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
 
   @Registration
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with Registration
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
@@ -36,6 +40,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
 
   @NewOrder
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with New order
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
@@ -51,6 +57,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
 
   @EditOrder
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with Edit order
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
@@ -66,6 +74,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
 
   @CancelOrder
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with cancel order
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
@@ -81,6 +91,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
 
   @NewStandingOrder
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with New standing order
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
@@ -96,6 +108,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
 
   @EditStandingOrder
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with edit order
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
@@ -111,6 +125,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
 
   @PasswordRequest
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with Password request
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
@@ -127,6 +143,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
 
   @EmailNotification
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with email notification
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
@@ -142,6 +160,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
 
   @GoalModification
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with Goal modification
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
@@ -157,6 +177,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
 
   @BlockOutDates
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with Blackout date modification
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
@@ -172,6 +194,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
 
   @CutoffMgmtModification
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with cutoff mgmt modification
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
@@ -187,6 +211,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
 
   @CutoffOverrideModification
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with cutoff override modification
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities

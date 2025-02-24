@@ -33,3 +33,22 @@ Feature: Catalog3
     Then Click on Next button
     Then Click on SubmitOrder button for creating order from Catalog
     Then User should be navigated to Order Entry page
+
+
+  @PendingOrderCart
+  Scenario: Test case for creating pending order by adding product to cart
+    Given User must be on Order Entry Page to select Catalog
+    And User should navigate to Catalog tab
+    And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
+    Then User enters Product# in Search bar and enters Qty
+      |1|
+      |2|
+      |1|
+    Then User click on cart in catalog and click on Gotocart
+    And user should be on New Order entry page
+    Then Enter PO# for New order
+      |PO123|
+    And User goes through products added to order via catalog
+    Then Click on Back button to handle Pending order Popup
+    And Popup message for Pending order should be displayed
+    Then User should be navigated to Order Entry page

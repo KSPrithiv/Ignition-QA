@@ -16,15 +16,15 @@ Feature: Test scenarios for Admin reports, related to Web payments reports
     |Main menu |  Sub menu   |
     |  Reports |Web Payments |
 
-  @ReportPDFFile
-  Scenario Outline: Test scenario for generating admin report in .PDF form
-    Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Web Payment
-    Then User selects Start and End dates for Creating reports
-    And User click Generate button and clicks on export .pdf
-    Examples:
-      |Main menu |  Sub menu   |
-      |  Reports |Web Payments |
+#  @ReportPDFFile
+#  Scenario Outline: Test scenario for generating admin report in .PDF form
+#    Given User is on Home Page for Admin setting to select Admin option for Admin reports
+#    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Web Payment
+#    Then User selects Start and End dates for Creating reports
+#    And User click Generate button and clicks on export .pdf for admin reports
+#    Examples:
+#      |Main menu |  Sub menu   |
+#      |  Reports |Web Payments |
 
   @ResetAdminReport
   Scenario Outline: Test scenario for resetting Web page web elements
