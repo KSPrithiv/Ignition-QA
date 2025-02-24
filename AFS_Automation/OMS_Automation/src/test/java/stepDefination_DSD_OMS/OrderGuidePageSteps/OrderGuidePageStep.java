@@ -475,7 +475,7 @@ public class OrderGuidePageStep
     }
 
     @Then("User clicks on print button")
-    public void userClicksOnPrintButton()
+    public void userClicksOnPrintButton() throws InterruptedException
     {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.PrintOG();

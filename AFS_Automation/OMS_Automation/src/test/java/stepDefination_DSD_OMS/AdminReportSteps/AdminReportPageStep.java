@@ -51,7 +51,7 @@ public class AdminReportPageStep
             loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
             loginpage.EnterPassword(TestBase.testEnvironment.getAdminWord());
             loginpage.ClickSignin();
-        }
+       }
     }
 
     @When("User is on Home Page for Admin setting for Admin reports")
@@ -177,6 +177,14 @@ public class AdminReportPageStep
         adminreportPage=new adminReportPage(driver,scenario);
         adminreportPage.clickOnGenerate();
         adminreportPage.clickOnDownloadPDF();
+    }
+
+    @And("User click Generate button and clicks on export .pdf for admin reports")
+    public void userClickGenerateButtonAndClicksOnExportPdfForAdminReports()
+    {
+        adminreportPage=new adminReportPage(driver,scenario);
+        adminreportPage.clickOnGenerate();
+        adminreportPage.clickOnDownloadPDFForAdmin();
     }
 
     @And("User clicks on reset button value set to all web elements in WebPage should be reset")

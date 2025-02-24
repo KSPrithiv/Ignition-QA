@@ -1,7 +1,9 @@
 package pages_DSD_OMS.adminReport;
 
+import gherkin.lexer.He;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -303,7 +305,7 @@ public class orderAdminPage
                 FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
                 if(!FTDate.equals("MM/DD/YYYY"))
                 {
-                    scenario.log(FTDate + " HAS BEEN SELECTED AS START DATE FOR STANDING ORDER");
+                    scenario.log(FTDate + " HAS BEEN SELECTED AS START DATE SELECTED");
                     exists = true;
                 }
                 Assert.assertTrue(exists);
@@ -338,7 +340,7 @@ public class orderAdminPage
                 FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
                 if(!FTDate.equals("MM/DD/YYYY"))
                 {
-                    scenario.log(FTDate + " HAS BEEN SELECTED AS START DATE FOR STANDING ORDER");
+                    scenario.log(FTDate + " HAS BEEN SELECTED AS END DATE SELECTED");
                     exists = true;
                 }
                 Assert.assertTrue(exists);
@@ -387,43 +389,78 @@ public class orderAdminPage
         WebElement downloadPdf=HelpersMethod.FindByElement(driver,"xpath","//button/span[text()='Download']");
         try
         {
-            String ParentWindow = driver.getWindowHandle();
-            HelpersMethod.ActClick(driver,downloadPdf,10000);
-
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(600))
-                    .pollingEvery(Duration.ofSeconds(2))
-                    .ignoring(NoSuchElementException.class);
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-            if(HelpersMethod.IsExists("//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(downloadPdf.isDisplayed() && downloadPdf.isEnabled())
             {
-                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
-                WebElement okButton=dialogPopup.findElement(By.xpath(".//button"));
-                HelpersMethod.ClickBut(driver,okButton,10000);
-            }
+                String ParentWindow = driver.getWindowHandle();
+                HelpersMethod.ClickBut(driver, downloadPdf, 10000);
+                scenario.log("TO GENERATE THE REPORT IN .pdf FORMATE BUTTON HAS BEEN CLICKED");
 
-            wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(600))
-                    .pollingEvery(Duration.ofSeconds(2))
-                    .ignoring(NoSuchElementException.class);
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-            Thread.sleep(5000);
-            Set<String> PCWindows = driver.getWindowHandles();
-            for (String PCwind : PCWindows)
-            {
-                if (!PCwind.equals(ParentWindow))
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(800))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
                 {
-                    driver.switchTo().window(PCwind);
-                    driver.close();
-                    scenario.log(".pdf HAS BEEN FOUND");
-                    exists = true;
+                    HelpersMethod.waitTillLoadingPage(driver);
                 }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(800))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                if(HelpersMethod.IsExists("//span[text()='Report']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+                {
+                    WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Report']/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button");
+                    HelpersMethod.ActClick(driver,okButton,20000);
+                    exists=true;
+                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(800))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(800))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                Thread.sleep(6000);
+                Set<String> allWindows = driver.getWindowHandles();
+                if(allWindows.size()>1)
+                {
+                    for (String handle : allWindows)
+                    {
+                        if (!handle.equals(ParentWindow))
+                        {
+                            // Switch to each child window
+                            driver.switchTo().window(handle);
+                            // Optionally check the URL or title to confirm if this is the window you want to close
+                            String url = driver.getCurrentUrl();
+                            scenario.log("Closing window with URL: " + url);
+                            Thread.sleep(500);
+                            // Use JavaScript to force-close the window
+                            ((JavascriptExecutor) driver).executeScript("window.close();");
+                            Thread.sleep(4000);
+                            exists=true;
+                        }
+                    }
+                }
+                Thread.sleep(1000);
+                // Switch back to the parent window
+                driver.switchTo().window(ParentWindow);
+                scenario.log("YOU ARE IN MAIN WINDOW");
+                exists=true;
             }
-            driver.switchTo().window(ParentWindow);
-            exists = true;
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -431,17 +468,44 @@ public class orderAdminPage
     public void clickOnResetButton()
     {
         exists=false;
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(600))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(600))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         WebElement resetButton=HelpersMethod.FindByElement(driver,"xpath","//button/span[text()='Reset']");
         try
         {
             if(resetButton.isDisplayed()&&resetButton.isEnabled())
             {
                 HelpersMethod.ActClick(driver, resetButton, 10000);
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 exists=true;
             }
             Assert.assertTrue(exists);
@@ -635,6 +699,22 @@ public class orderAdminPage
                    }
                }
            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void enterUsername()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//input[@id='UserName']",driver))
+            {
+                WebElement userInput= HelpersMethod.FindByElement(driver,"id","UserName");
+                HelpersMethod.EnterText(driver,userInput,20000,TestBase.testEnvironment.username());
+                exists=true;
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}

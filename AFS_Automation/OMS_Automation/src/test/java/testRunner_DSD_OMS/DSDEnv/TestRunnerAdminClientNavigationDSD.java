@@ -28,8 +28,8 @@ import java.io.IOException;
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeatureDSD.feature",
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderFactorOrderEntryFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderGuideAdminToClientFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/quotsAdminToClientFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/standaingOrderAdminToClientFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/quotesAdminToClientFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/standingOrderAdminToClientFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/webOrderingAdminToClientFeature.feature"
         },
                 glue = {"stepDefination_DSD_OMS"},

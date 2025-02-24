@@ -72,5 +72,23 @@ Feature: scenarios for admin credentials and client credentials
       |  Setting             |              Key          |
       | Hide leading zeros   |  CPGeneralHideLeadingZeros|
 
-
-
+#  @StandingOrderTruckWeekDay
+#  Scenario Outline: Test scenario for verifying Week day is displaying when mouse over truck symbol
+#    Given User should verify admin setting "<Setting>" is disabled by using "<Key>"
+#    Then User enters URL and is on login page and entered credentials for admin setting
+#    When User is on Home Page
+#    Then User navigate to Client side
+#    Then User should select Order Entry tab for admin
+#    Then User selects Account# for Admin side setting
+#    And User should navigate to Standing Order tab for admin setting
+#    And User click on Start standing order button and selects Start date 2 and End date 3 day from current date
+#    Then User enters Product# in Quick product entry inputbox
+#    And User enters Qty in standing order product grid based on enabled days
+#      |10|20|30|40|15|10|5|
+#    Then User should mouse over on truck symbol and find that route value is displayed
+#
+#    Then User sign out from client side for Admin setting changes
+#    And User should set admin setting "<Setting>" "<Key>" as default before making changes
+#    Examples:
+#      |  Setting                |              Key                  |
+#      | Display route header    |  CPStandingOrderDisplayRouteHeader|

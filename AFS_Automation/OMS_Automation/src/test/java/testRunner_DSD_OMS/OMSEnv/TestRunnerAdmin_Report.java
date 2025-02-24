@@ -2,10 +2,7 @@ package testRunner_DSD_OMS.OMSEnv;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import util.TestBase;
 
 import javax.mail.MessagingException;
@@ -18,8 +15,8 @@ import java.io.IOException;
 @CucumberOptions
         (features = {
                 "src/test/resources/features_DSD_OMS/AdminReportsFeature/adminEventActivitiesFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminReportsFeature/administrationAdminFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminReportsFeature/adminReportsFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminReportsFeature/administrationAdminFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminReportsFeature/orderAdminFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminReportsFeature/userAndAccountsFeature.feature",
         },
@@ -41,6 +38,7 @@ public class TestRunnerAdmin_Report extends AbstractTestNGCucumberTests
         try
         {
             //readPropertiesFile.InitializeProp(envi);
+            Thread.sleep(1000);
             TestBase.InitializeProp(envi);
             TestBase.SetDriver(TestBase.testEnvironment.get_browser());
         }

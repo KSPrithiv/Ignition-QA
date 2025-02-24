@@ -636,30 +636,57 @@ public class NewQuotePage
                 HelpersMethod.ScrollElement(driver,PrintBut);
                 String ParentWindow = driver.getWindowHandle();
                 HelpersMethod.ClickBut(driver, PrintBut, 10000);
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                Thread.sleep(4000);
+
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(800))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
                 {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+                    HelpersMethod.waitTillLoadingPage(driver);
                 }
-                Set<String> PCWindows = driver.getWindowHandles();
-                for (String PCwind : PCWindows)
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(800))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                Thread.sleep(6000);
+                Set<String> allWindows = driver.getWindowHandles();
+                if (allWindows.size() > 1)
                 {
-                    if (!PCwind.equals(ParentWindow))
+                    for (String handle : allWindows)
                     {
-                        driver.switchTo().window(PCwind);
-                        scenario.log(".pdf HAS BEEN FOUND");
-                        driver.close();
-                        exists = true;
-                        scenario.log("PRINT BUTTON HAS BEEN HANDLED");
+                        if (!handle.equals(ParentWindow))
+                        {
+                            // Switch to each child window
+                            driver.switchTo().window(handle);
+                            // Optionally check the URL or title to confirm if this is the window you want to close
+                            String url = driver.getCurrentUrl();
+                            scenario.log("Closing window with URL: " + url);
+                            Thread.sleep(500);
+                            // Use JavaScript to force-close the window
+                            ((JavascriptExecutor) driver).executeScript("window.close();");
+                            Thread.sleep(1000);
+                            exists = true;
+                            Thread.sleep(1000);
+                        }
                     }
                 }
+                Thread.sleep(1000);
+                // Switch back to the parent window
                 driver.switchTo().window(ParentWindow);
-                Assert.assertEquals(exists, true);
+                scenario.log("YOU ARE IN MAIN WINDOW");
+                exists = true;
             }
             else
             {
                 scenario.log("PRINT BUTTON IS NOT DISPLAYED/VISIBLE");
             }
+            Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
     }

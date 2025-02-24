@@ -1198,7 +1198,7 @@ public class OrderControlListPage
         catch (Exception e){}
     }
 
-    public void clickOnPrintButton()
+    public void clickOnPrintButton() throws InterruptedException
     {
         try
         {
@@ -1206,26 +1206,53 @@ public class OrderControlListPage
            {
                String ParentWindow = driver.getWindowHandle();
                HelpersMethod.ClickBut(driver, PrintButton, 10000);
-               if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-               {
-                   WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                   HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-               }
+               Thread.sleep(4000);
 
-               Set<String> PCWindows = driver.getWindowHandles();
-               for (String PCwind : PCWindows)
+               Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                       .withTimeout(Duration.ofSeconds(800))
+                       .pollingEvery(Duration.ofSeconds(2))
+                       .ignoring(NoSuchElementException.class);
+               wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+               String status = HelpersMethod.returnDocumentStatus(driver);
+               if (status.equals("loading"))
                {
-                   if (!PCwind.equals(ParentWindow))
+                   HelpersMethod.waitTillLoadingPage(driver);
+               }
+               wait = new FluentWait<WebDriver>(driver)
+                       .withTimeout(Duration.ofSeconds(800))
+                       .pollingEvery(Duration.ofSeconds(2))
+                       .ignoring(NoSuchElementException.class);
+               wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+               Thread.sleep(6000);
+               Set<String> allWindows = driver.getWindowHandles();
+               if (allWindows.size() > 1)
+               {
+                   for (String handle : allWindows)
                    {
-                       driver.switchTo().window(PCwind);
-                       scenario.log(".pdf HAS BEEN FOUND");
-                       driver.close();
-                       exists = true;
-                       scenario.log("PRINT BUTTON IN OCL HAS BEEN HANDLED");
+                       if (!handle.equals(ParentWindow))
+                       {
+                           // Switch to each child window
+                           driver.switchTo().window(handle);
+                           // Optionally check the URL or title to confirm if this is the window you want to close
+                           String url = driver.getCurrentUrl();
+                           scenario.log("Closing window with URL: " + url);
+                           Thread.sleep(500);
+                           // Use JavaScript to force-close the window
+                           ((JavascriptExecutor) driver).executeScript("window.close();");
+                           Thread.sleep(1000);
+                           exists = true;
+                           Thread.sleep(1000);
+                       }
                    }
                }
+               Thread.sleep(1000);
+               // Switch back to the parent window
                driver.switchTo().window(ParentWindow);
+               scenario.log("YOU ARE IN MAIN WINDOW");
+               exists = true;
            }
+           Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

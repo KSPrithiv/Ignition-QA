@@ -31,7 +31,7 @@ import java.io.IOException;
                         "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeatureERP.feature",
                         "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderFactorOrderEntryFeature.feature",
                         "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderGuideAdminToClientFeature.feature",
-                        "src/test/resources/features_DSD_OMS/AdminToClientNavigation/standaingOrderAdminToClientFeature.feature",
+                        "src/test/resources/features_DSD_OMS/AdminToClientNavigation/standingOrderAdminToClientFeature.feature",
                         "src/test/resources/features_DSD_OMS/AdminToClientNavigation/webOrderingAdminToClientFeature.feature"
                 },
                 glue = {"stepDefination_DSD_OMS"},

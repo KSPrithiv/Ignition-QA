@@ -4820,24 +4820,45 @@ public class NewOrderEntryPage
                 String ParentWindow = driver.getWindowHandle();
                 HelpersMethod.ClickBut(driver, PrintBut, 10000);
                 scenario.log("PRINT BUTTON HAS BEEN CLICKED IN NEW OE PAGE");
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(800))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(org.openqa.selenium.NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
                 {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingPage(driver);
                 }
-                Set<String> PCWindows = driver.getWindowHandles();
-                for (String PCwind : PCWindows)
+
+                Thread.sleep(4000);
+                Set<String> allWindows = driver.getWindowHandles();
+                if (allWindows.size() > 1)
                 {
-                    if (!PCwind.equals(ParentWindow))
+                    for (String handle : allWindows)
                     {
-                        driver.switchTo().window(PCwind);
-                        scenario.log(".pdf HAS BEEN FOUND");
-                        driver.close();
-                        exists= true;
-                        scenario.log("PRINT BUTTON FOR ALL ORDER HAS BEEN HANDLED");
+                        if (!handle.equals(ParentWindow))
+                        {
+                            // Switch to each child window
+                            driver.switchTo().window(handle);
+                            // Optionally check the URL or title to confirm if this is the window you want to close
+                            String url = driver.getCurrentUrl();
+                            scenario.log("Closing window with URL: " + url);
+                            Thread.sleep(500);
+                            // Use JavaScript to force-close the window
+                            ((JavascriptExecutor) driver).executeScript("window.close();");
+                            Thread.sleep(1000);
+                            exists = true;
+                            Thread.sleep(1000);
+                        }
                     }
                 }
+                Thread.sleep(1000);
+                // Switch back to the parent window
                 driver.switchTo().window(ParentWindow);
+                scenario.log("YOU ARE IN MAIN WINDOW");
+                exists = true;
             }
             else
             {

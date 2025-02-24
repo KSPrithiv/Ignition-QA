@@ -2,12 +2,8 @@ package testRunner_DSD_OMS.DSDEnv;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import util.TestBase;
-import util.readPropertiesFile;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -17,7 +13,13 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions
-        (features = {"src/test/resources/features_DSD_OMS/AdminReportsFeature"},
+        (features = {"src/test/resources/features_DSD_OMS/AdminReportsFeature/adminReportsFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminReportsFeature/adminEventActivitiesFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminReportsFeature/adminEventActivitiesFeatureDSD.feature",
+                "src/test/resources/features_DSD_OMS/AdminReportsFeature/administrationAdminFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminReportsFeature/orderAdminFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminReportsFeature/orderAdminFeatureDSD.feature",
+        },
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
                         "json:target/cucumber.json",
@@ -30,6 +32,7 @@ public class TestRunnerAdmin_Report extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afsi.com */
     @Parameters({"environment"})
+    //@BeforeMethod
     @BeforeClass
     public static void beforeClass(@Optional("environment") String envi)
     {
@@ -42,6 +45,7 @@ public class TestRunnerAdmin_Report extends AbstractTestNGCucumberTests
         catch (Exception e) { }
     }
 
+    //@AfterMethod
     @AfterClass
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {

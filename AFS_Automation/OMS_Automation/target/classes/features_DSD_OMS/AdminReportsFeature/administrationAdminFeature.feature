@@ -6,6 +6,8 @@ Feature: Test scenarios for Administration, for Reports
 
   @EventsActivitiesLog
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options
@@ -21,6 +23,10 @@ Feature: Test scenarios for Administration, for Reports
 
   @PasswordRequest
   Scenario Outline: Test scenario for verifying functionality of Password request tab
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
+    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options
@@ -35,6 +41,8 @@ Feature: Test scenarios for Administration, for Reports
 
   @RegisteredUser
   Scenario Outline: Test scenario for verifying functionality of Registred users tab
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options
@@ -49,6 +57,8 @@ Feature: Test scenarios for Administration, for Reports
 
   @LastLoginUser
   Scenario Outline: Test scenario for verifying functionality of Last user login dates tab
+#    Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
+#    When User is on Home Page for Admin setting for Admin reports
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options

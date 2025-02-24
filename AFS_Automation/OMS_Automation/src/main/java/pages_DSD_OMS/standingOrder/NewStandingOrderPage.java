@@ -544,13 +544,15 @@ public class NewStandingOrderPage
         }
         catch (Exception e){}
     }
+
     public void ReadProductNoInGrid()
     {
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(800))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         //To zoom out browser by 67%
         if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
         {

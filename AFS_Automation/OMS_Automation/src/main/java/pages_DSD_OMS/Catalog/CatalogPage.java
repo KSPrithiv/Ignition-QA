@@ -1577,7 +1577,7 @@ public class CatalogPage
         exists=false;
         try
         {
-            WebElement tireLable=HelpersMethod.FindByElement(driver,"xpath","//div[@class='label-preview-background label-preview-background-white']");
+            WebElement tireLable=HelpersMethod.FindByElement(driver,"xpath","//div[@class='label-preview-background label-preview-background-white']/descendant::div[text()='Tiered pricing']");
             HelpersMethod.ClickBut(driver,tireLable,10000);
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='k-animation-container k-animation-container-fixed k-animation-container-shown']"))));
             WebElement tirePricePopup=HelpersMethod.FindByElement(driver,"xapth","//div[@class='k-animation-container k-animation-container-fixed k-animation-container-shown']");
