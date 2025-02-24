@@ -13,12 +13,7 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions
-        (features = {"src/test/resources/features_DSD_OMS/AdminReportsFeature/adminReportsFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminReportsFeature/adminEventActivitiesFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminReportsFeature/adminEventActivitiesFeatureDSD.feature",
-                "src/test/resources/features_DSD_OMS/AdminReportsFeature/administrationAdminFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminReportsFeature/orderAdminFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminReportsFeature/orderAdminFeatureDSD.feature",
+        (features = {"src/test/resources/features_DSD_OMS/AdminReportsFeature"
         },
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
