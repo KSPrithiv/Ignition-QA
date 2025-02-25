@@ -654,7 +654,7 @@ public class NewQuotePage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                Thread.sleep(6000);
+                Thread.sleep(10000);
                 Set<String> allWindows = driver.getWindowHandles();
                 if (allWindows.size() > 1)
                 {
@@ -670,9 +670,8 @@ public class NewQuotePage
                             Thread.sleep(500);
                             // Use JavaScript to force-close the window
                             ((JavascriptExecutor) driver).executeScript("window.close();");
-                            Thread.sleep(1000);
+                            Thread.sleep(6000);
                             exists = true;
-                            Thread.sleep(1000);
                         }
                     }
                 }

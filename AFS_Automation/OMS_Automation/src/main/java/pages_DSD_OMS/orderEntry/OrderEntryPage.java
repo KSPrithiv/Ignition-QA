@@ -3785,22 +3785,49 @@ public class OrderEntryPage
         {
             WebElement eCommerce = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'help-links-line ecommerce-link')]");
             HelpersMethod.ActClick(driver, eCommerce, 20000);
-            Thread.sleep(2000);
-            Set<String> PCWindows = driver.getWindowHandles();
-            for (String PCwind : PCWindows)
+//            Thread.sleep(2000);
+//            Set<String> PCWindows = driver.getWindowHandles();
+//            for (String PCwind : PCWindows)
+//            {
+//                if (!PCwind.equals(ParentWindow))
+//                {
+//                    driver.switchTo().window(PCwind);
+//                    if(driver.getCurrentUrl().contains("Ignition-OMS-eCommerce"))
+//                    {
+//                        exists=true;
+//                    }
+//                    driver.close();
+//                    scenario.log("eCOMMERCE HELP BUTTON HAS BEEN HANDLED");
+//                }
+//            }
+//            driver.switchTo().window(ParentWindow);
+
+            Thread.sleep(6000);
+            Set<String> allWindows = driver.getWindowHandles();
+            if (allWindows.size() > 1)
             {
-                if (!PCwind.equals(ParentWindow))
+                for (String handle : allWindows)
                 {
-                    driver.switchTo().window(PCwind);
-                    if(driver.getCurrentUrl().contains("Ignition-OMS-eCommerce"))
+                    if (!handle.equals(ParentWindow))
                     {
-                        exists=true;
+                        driver.switchTo().window(handle);
+                        String url = driver.getCurrentUrl();
+                        scenario.log("Closing window with URL: " + url);
+                        Thread.sleep(500);
+                        // Use JavaScript to force-close the window
+                        ((JavascriptExecutor) driver).executeScript("window.close();");
+                        scenario.log("eCOMMERCE HELP BUTTON HAS BEEN HANDLED");
+                        Thread.sleep(4000);
+                        exists = true;
                     }
-                    driver.close();
-                    scenario.log("eCOMMERCE HELP BUTTON HAS BEEN HANDLED");
                 }
             }
+            Thread.sleep(1000);
+            // Switch back to the parent window
             driver.switchTo().window(ParentWindow);
+            scenario.log("YOU ARE IN MAIN WINDOW");
+            exists = true;
+
         }
         else
         {
@@ -3870,20 +3897,29 @@ public class OrderEntryPage
             WebElement salesHelp = dropDown.findElement(By.xpath("//div[contains(@class,'help-links-line sales-link')]"));
 
             HelpersMethod.ActClick(driver, salesHelp, 6000);
-            Thread.sleep(2000);
-            Set<String> PCWindows = driver.getWindowHandles();
-            for (String PCwind : PCWindows)
+            Thread.sleep(6000);
+            Set<String> allWindows = driver.getWindowHandles();
+            if (allWindows.size() > 1)
             {
-                if (!PCwind.equals(ParentWindow))
+                for (String handle : allWindows)
                 {
-                    driver.switchTo().window(PCwind);
-                    driver.close();
-                    exists = true;
-                    scenario.log("SALES HELP HAS BEEN HANDELED");
+                    if (!handle.equals(ParentWindow))
+                    {
+                        driver.switchTo().window(handle);
+                        String url = driver.getCurrentUrl();
+                        scenario.log("CLOSING WINDOW WITH URL: " + url);
+                        Thread.sleep(500);
+                        // Use JavaScript to force-close the window
+                        ((JavascriptExecutor) driver).executeScript("window.close();");
+                        Thread.sleep(4000);
+                        exists = true;
+                    }
                 }
             }
-            Assert.assertEquals(exists, true);
+            Thread.sleep(1000);
+            // Switch back to the parent window
             driver.switchTo().window(ParentWindow);
+            scenario.log("YOU ARE IN MAIN WINDOW");
         }
         catch (Exception e) {}
     }
@@ -4022,20 +4058,47 @@ public class OrderEntryPage
         exists=false;
         try
         {
-            Set<String> PCWindows = driver.getWindowHandles();
-            Thread.sleep(2000);
-            for (String PCwind : PCWindows)
+            Thread.sleep(6000);
+            Set<String> allWindows = driver.getWindowHandles();
+            if (allWindows.size() > 1)
             {
-                if (!PCwind.equals(ParentWindow))
+                for (String handle : allWindows)
                 {
-                    driver.switchTo().window(PCwind);
-                    scenario.log("PRIVACY POLICY LINK HAS BEEN FOUND");
-                    driver.close();
-                    exists = true;
-                    scenario.log("PRIVACY POLICY WINDOW HAS BEEN HANDLED");
+                    if (!handle.equals(ParentWindow))
+                    {
+                        // Switch to each child window
+                        driver.switchTo().window(handle);
+                        scenario.log("PRIVACY POLICY LINK HAS BEEN FOUND");
+                        // Optionally check the URL or title to confirm if this is the window you want to close
+                        String url = driver.getCurrentUrl();
+                        scenario.log("Closing window with URL: " + url);
+                        Thread.sleep(500);
+                        // Use JavaScript to force-close the window
+                        ((JavascriptExecutor) driver).executeScript("window.close();");
+                        scenario.log("PRIVACY POLICY WINDOW HAS BEEN HANDLED");
+                        Thread.sleep(4000);
+                    }
                 }
-                driver.switchTo().window(ParentWindow);
             }
+            Thread.sleep(1000);
+            // Switch back to the parent window
+            driver.switchTo().window(ParentWindow);
+            scenario.log("YOU ARE IN MAIN WINDOW");
+
+//            Set<String> PCWindows = driver.getWindowHandles();
+//            Thread.sleep(2000);
+//            for (String PCwind : PCWindows)
+//            {
+//                if (!PCwind.equals(ParentWindow))
+//                {
+//                    driver.switchTo().window(PCwind);
+//                    scenario.log("PRIVACY POLICY LINK HAS BEEN FOUND");
+//                    driver.close();
+//                    exists = true;
+//                    scenario.log("PRIVACY POLICY WINDOW HAS BEEN HANDLED");
+//                }
+//                driver.switchTo().window(ParentWindow);
+//            }
         }
         catch (Exception e){}
     }

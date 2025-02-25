@@ -120,7 +120,7 @@ public class OrderControlPageSteps
     {
         if(flag1==false)
         {
-            WebElement WebEle = null;
+            WebElement WebEle;
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -192,8 +192,8 @@ public class OrderControlPageSteps
         {
             orderControlList.navigateToOCL();
         }
-
         orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.navigateToOCLFromSummaryOE();
         orderControlList.Refresh_Page(currentURL);
         orderControlList.Validate_OCL();
     }

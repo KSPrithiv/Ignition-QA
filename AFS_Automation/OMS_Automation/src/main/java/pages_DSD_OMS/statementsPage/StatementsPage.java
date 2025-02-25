@@ -495,7 +495,8 @@ public class StatementsPage
     {
         exists=false;
         WebElement WebEle;
-        String status="";
+        String status;
+        Wait<WebDriver> wait;
         try
         {
             String ParentWindow = driver.getWindowHandle();
@@ -510,18 +511,18 @@ public class StatementsPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(800))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
-            Thread.sleep(4000);
+            Thread.sleep(1000);
             if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                 WebElement okButton=dialogPopup.findElement(By.xpath(".//button/span[text()='Ok']"));
-                HelpersMethod.ActClick(driver,okButton,8000);
+                HelpersMethod.ActClick(driver,okButton,80000);
                 scenario.log("***************THERE IS NO DATA TO DISPLAY IN THE SELECTED RANGE OF DATE**************");
                 exists=true;
             }
@@ -532,30 +533,38 @@ public class StatementsPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                Thread.sleep(5000);
-                Set<String> PCWindows = driver.getWindowHandles();
-                for (String PCwind : PCWindows)
+                Thread.sleep(10000);
+                Set<String> allWindows = driver.getWindowHandles();
+                if (allWindows.size() > 1)
                 {
-                    status = HelpersMethod.returnDocumentStatus(driver);
-                    if (status.equals("loading"))
+                    for (String handle : allWindows)
                     {
-                        HelpersMethod.waitTillLoadingPage(driver);
-                    }
-                    if (!PCwind.equals(ParentWindow))
-                    {
-                        driver.switchTo().window(PCwind);
-                        scenario.log(".pdf HAS BEEN FOUND");
-                        driver.close();
-                        exists = true;
+                        if (!handle.equals(ParentWindow))
+                        {
+                            // Switch to each child window
+                            driver.switchTo().window(handle);
+                            // Optionally check the URL or title to confirm if this is the window you want to close
+                            String url = driver.getCurrentUrl();
+                            scenario.log("Closing window with URL: " + url);
+                            Thread.sleep(500);
+                            // Use JavaScript to force-close the window
+                            ((JavascriptExecutor) driver).executeScript("window.close();");
+                            Thread.sleep(6000);
+                            exists = true;
+                        }
                     }
                 }
+                Thread.sleep(4000);
+                // Switch back to the parent window
                 driver.switchTo().window(ParentWindow);
+                scenario.log("YOU ARE IN MAIN WINDOW");
+                exists = true;
 
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(800))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -587,7 +596,7 @@ public class StatementsPage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
             }
-            Thread.sleep(4000);
+            Thread.sleep(6000);
             if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-window k-dialog')]");
@@ -614,7 +623,7 @@ public class StatementsPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                Thread.sleep(6000);
+                Thread.sleep(10000);
                 Set<String> allWindows = driver.getWindowHandles();
                 if (allWindows.size() > 1)
                 {
@@ -630,13 +639,12 @@ public class StatementsPage
                             Thread.sleep(500);
                             // Use JavaScript to force-close the window
                             ((JavascriptExecutor) driver).executeScript("window.close();");
-                            Thread.sleep(1000);
+                            Thread.sleep(8000);
                             exists = true;
-                            Thread.sleep(1000);
                         }
                     }
                 }
-                Thread.sleep(1000);
+                Thread.sleep(4000);
                 // Switch back to the parent window
                 driver.switchTo().window(ParentWindow);
                 scenario.log("YOU ARE IN MAIN WINDOW");

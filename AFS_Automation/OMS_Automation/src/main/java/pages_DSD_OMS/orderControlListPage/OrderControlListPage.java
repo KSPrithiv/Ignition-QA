@@ -1240,9 +1240,8 @@ public class OrderControlListPage
                            Thread.sleep(500);
                            // Use JavaScript to force-close the window
                            ((JavascriptExecutor) driver).executeScript("window.close();");
-                           Thread.sleep(1000);
+                           Thread.sleep(4000);
                            exists = true;
-                           Thread.sleep(1000);
                        }
                    }
                }
@@ -2077,11 +2076,13 @@ public class OrderControlListPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -2097,11 +2098,12 @@ public class OrderControlListPage
             if (HelpersMethod.EleDisplay(WebEle))
             {
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Order control list", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order control list')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
 
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -2109,7 +2111,7 @@ public class OrderControlListPage
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
 
-                Wait<WebDriver> wait = new FluentWait<>(driver)
+                wait = new FluentWait<>(driver)
                         .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
@@ -3006,6 +3008,52 @@ public class OrderControlListPage
                 }
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void navigateToOCLFromSummaryOE()
+    {
+        Wait<WebDriver> wait;
+        Actions act=new Actions(driver);
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@id='SummaryCard']",driver))
+            {
+                if (HelpersMethod.IsExists("//div[@class='item-searchbar']//*[local-name()='svg']", driver))
+                {
+                    WebElement humburger = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='item-searchbar']//*[local-name()='svg']");
+                    HelpersMethod.ActClick(driver, humburger, 10000);
+                    new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='drawer-menu-search-container']/descendant::input"))));
+                    new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='drawer-menu-search-container']/descendant::input")));
+                }
+                //Code to enter search value in hamburger input box and click on it
+                WebElement oeMenu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'drawer-menu-items')]/descendant::li/descendant::span[@class='menu-item-text' and text()='Order Entry']");
+                HelpersMethod.ActClick(driver,oeMenu,40000);
+                if(HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted')]/ancestor::div[@class='k-window k-dialog']",driver))
+                {
+                    WebElement saveOrderWithoutSave=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Your order has not been submitted')]/ancestor::div[@class='k-window k-dialog']/descendant::button/span[text()='Save order without submitting']");
+                    HelpersMethod.ActClick(driver,saveOrderWithoutSave,40000);
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(1000))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
+                //code to click on opened hamburger icon
+                if (HelpersMethod.IsExists("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]", driver))
+                {
+                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
+                    act.moveToElement(WebEle).click().build().perform();
+                }
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                navigateToOCL();
+            }
         }
         catch (Exception e){}
     }

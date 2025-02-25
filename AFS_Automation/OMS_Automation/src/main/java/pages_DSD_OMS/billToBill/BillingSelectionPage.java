@@ -3,10 +3,7 @@ package pages_DSD_OMS.billToBill;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -193,26 +190,33 @@ public class BillingSelectionPage
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
 
-                Thread.sleep(4000);
-                Set<String> PCWindows = driver.getWindowHandles();
-                for (String PCwind : PCWindows)
+                Thread.sleep(6000);
+                Set<String> allWindows = driver.getWindowHandles();
+                if (allWindows.size() > 1)
                 {
-                    if (!PCwind.equals(ParentWindow))
+                    for (String handle : allWindows)
                     {
-                        driver.switchTo().window(PCwind);
-                        if (driver.getCurrentUrl().toLowerCase().contains(".pdf"))
+                        if (!handle.equals(ParentWindow))
                         {
-                            // Log that the PDF window has been found
-                            scenario.log(".pdf HAS BEEN FOUND");
-                            // Close the PDF window
-                            driver.close();
-                            scenario.log("PDF window closed successfully");
-                            exists=true;
+                            // Switch to each child window
+                            driver.switchTo().window(handle);
+                            // Optionally check the URL or title to confirm if this is the window you want to close
+                            String url = driver.getCurrentUrl();
+                            scenario.log("Closing window with URL: " + url);
+                            Thread.sleep(500);
+                            // Use JavaScript to force-close the window
+                            ((JavascriptExecutor) driver).executeScript("window.close();");
+                            Thread.sleep(4000);
+                            exists = true;
+                            Thread.sleep(1000);
                         }
                     }
                 }
+                Thread.sleep(1000);
+                // Switch back to the parent window
                 driver.switchTo().window(ParentWindow);
-            }
+                scenario.log("YOU ARE IN MAIN WINDOW");
+                exists = true;            }
             else
             {
                 scenario.log("PRINT BUTTON IS NOT ENABLED");
