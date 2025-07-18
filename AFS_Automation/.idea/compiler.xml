@@ -8,10 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="WMS_Automation" />
-        <module name="OMS_Automation" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="OMS_Automation" target="1.8" />
       <module name="Shared_Mod_Automation" target="1.8" />
     </bytecodeTargetLevel>
   </component>

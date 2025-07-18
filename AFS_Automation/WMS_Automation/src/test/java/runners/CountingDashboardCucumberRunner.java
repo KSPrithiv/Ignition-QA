@@ -1,6 +1,6 @@
 package runners;
 
-import com.nordstrom.automation.testng.LinkedListeners;
+
 import common.constants.FilePaths;
 import common.setup.DriverManager;
 import common.setup.Environment;
@@ -19,9 +19,9 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static common.setup.DriverManager.*;
-@LinkedListeners({
+/*@LinkedListeners({
     TestListener.class
-})
+})*/
 @CucumberOptions(features = {"src/test/resources/features/counting/dashboard"},
         glue = {"steps"},
         plugin = {"pretty",

@@ -2,15 +2,24 @@ package steps.validations.outbound.loadplanning;
 
 import common.constants.FilePaths;
 import common.constants.Notifications;
+import common.setup.DriverManager;
+import common.utils.WebDriverUtils;
 import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import objects.outbound.OutboundOrderLoadsDTO;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 import ui.pages.outbound.loadplanning.OutboundTruckInfoPage;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class OutboundTruckInfoPageValidations {
     OutboundTruckInfoPage outboundTruckInfoPage = new OutboundTruckInfoPage();
@@ -40,13 +49,35 @@ public class OutboundTruckInfoPageValidations {
         softAssert.assertAll();
     }
 
-    @And("Validates First Assignment popup is present")
+  /*  @And("Validates First Assignment popup is present")
     public void validateAssignmentPopupPresent() {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(outboundTruckInfoPage.verifyAssignmentPopupRowsDisplayed(0) > 0,
                 "Assignment Popup Rows are not present");
         softAssert.assertAll();
-    }
+    }*/
+  @And("Validates First Assignment popup is present")
+  public void validateAssignmentPopupPresent() {
+      SoftAssert softAssert = new SoftAssert();
+      List<WebElement> assignments = outboundTruckInfoPage.getAssignments();
+
+      if (assignments == null || assignments.isEmpty()) {
+          softAssert.fail("No assignments found on the page.");
+      } else {
+          WebDriver driver = WebDriverUtils.getDriverFromElement(assignments.get(0));
+
+          int rows = outboundTruckInfoPage.verifyAssignmentPopupRowsDisplayed(driver);
+          softAssert.assertTrue(rows > 0, "Assignment Popup Rows are not present");
+      }
+
+      softAssert.assertAll();
+  }
+
+
+
+
+
+
 
     @And("Validates Assignment details on popup")
     public void validateAssignmentPopupDetails() {
@@ -84,7 +115,8 @@ public class OutboundTruckInfoPageValidations {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(outboundTruckInfoPage.getWindowTitleText(), Notifications.SPLIT_TASK, "Split task title is not displayed");
         softAssert.assertTrue(outboundTruckInfoPage.isQuantityDisplayed(), "Quantity is not displayed");
-        softAssert.assertTrue(outboundTruckInfoPage.isReasonDropdownDisplayed(), "Quantity is not displayed");
+       // softAssert.assertTrue(outboundTruckInfoPage.isReasonDropdownDisplayed(), "Quantity is not displayed");
+        softAssert.assertTrue(outboundTruckInfoPage.isSplitTaskPopupDisplayed(), "Quantity is not displayed");
         softAssert.assertAll();
     }
 
@@ -306,9 +338,30 @@ public class OutboundTruckInfoPageValidations {
     @And("Validates Yes button is active")
     public void validateYesBtnIsActive() {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(outboundTruckInfoPage.isYesBtnActive(),"Yes button is not active");
+        WebDriver driver = DriverManager.getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+        By yesButtonLocator = By.xpath("//button[.//span[text()='Yes'] and contains(@class, 'k-button')]");
+
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(yesButtonLocator));
+            wait.until(ExpectedConditions.elementToBeClickable(yesButtonLocator));
+            WebElement yesBtn = driver.findElement(yesButtonLocator);
+
+            boolean isEnabled = yesBtn.isEnabled();
+            boolean isDisplayed = yesBtn.isDisplayed();
+
+            softAssert.assertTrue(isEnabled && isDisplayed, "Yes button is not active or not visible");
+        } catch (Exception e) {
+            softAssert.fail("Failed to find or validate Yes button: " + e.getMessage());
+        }
+
         softAssert.assertAll();
     }
+
+
+
+
 
     @And("Validates that Route {string} for Truck Info is correct")
     public void validateRouteIsCorrect(String route) {

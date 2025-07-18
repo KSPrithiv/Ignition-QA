@@ -1,6 +1,6 @@
 package runners;
 
-import com.nordstrom.automation.testng.LinkedListeners;
+
 import common.constants.FilePaths;
 import common.setup.DriverManager;
 import common.setup.Environment;
@@ -20,9 +20,9 @@ import java.io.IOException;
 
 import static common.setup.DriverManager.*;
 
-@LinkedListeners({
+/*@LinkedListeners({
     TestListener.class
-})
+})*/
 @CucumberOptions(features = {"src/test/resources/features/counting/sessions"},
         glue = {"steps"},
         plugin = {"pretty",

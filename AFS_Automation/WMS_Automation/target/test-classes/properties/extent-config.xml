@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+    <configuration>
+        <theme>standard</theme> <!-- Options: standard, dark -->
+        <encoding>UTF-8</encoding>
+        <protocol>https</protocol>
+        <documentTitle>WMS Automation Test Report</documentTitle>
+        <reportName>WMS Regression Report</reportName>
+        <timelineEnabled>true</timelineEnabled>
+        <offlineMode>true</offlineMode>
+
+        <!-- Chart Configurations -->
+        <chartVisibilityOnOpen>true</chartVisibilityOnOpen>
+        <timelineEnabled>true</timelineEnabled>
+        <charts>
+            <chart>test</chart>
+            <chart>suite</chart>
+        </charts>
+
+        <!-- Custom CSS / JS (Optional) -->
+        <!--
+        <scripts>
+            <![CDATA[
+                console.log('Custom script loaded');
+            ]]>
+        </scripts>
+        <styles>
+            <![CDATA[
+                .report-name { font-size: 22px; font-weight: bold; }
+            ]]>
+        </styles>
+        -->
+    </configuration>
+</extentreports>

@@ -1,13 +1,22 @@
 package ui.pages.outbound.routesummary;
 
+import common.setup.DriverManager;
 import common.utils.Waiters;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.BasePage;
+
+import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 import static common.setup.DriverManager.getDriver;
+import static common.utils.Waiters.waitForElementToBeClickable;
+import static common.utils.Waiters.waitForElementToBeVisible;
+import static utilWMS.TestBase.driver;
 
 public class OutboundRouteSummaryPage extends BasePage {
     By title = By.cssSelector(".spnmoduleNameHeader");
@@ -20,7 +29,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     By enterProduct = By.cssSelector("input[placeholder='Enter a product']");
     By searchProductButton = By
             .xpath("//div[@class='i-indexfield-container__main'][.//input[@placeholder='Enter a product']]//button");
-    By routeOptions = By.cssSelector("button[aria-label='Route options dropdownbutton']");
+    By routeOptions = By.xpath("//span[text()='Route options']/parent::button");
     By shippedStatus = By.xpath("//span[contains(@class,'i-bar-description')][.//span[contains(@class, 'dot--green')]]");
     By auditStatus = By.xpath("//span[contains(@class,'i-bar-description')][.//span[contains(@class, 'dot--purple')]]");
     By pickedStatus = By.xpath("//span[contains(@class,'i-bar-description')][.//span[contains(@class, 'dot--yellow')]]");
@@ -54,7 +63,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     By tasksSelectedItemsFound = By.cssSelector("#wqTaskGrid .i-summary-area__other__section__label");
     By tasksItemsCountNumber = By.cssSelector("#wqTaskGrid .i-summary-area__main__value");
     By tasksItemsFound = By.cssSelector("#wqTaskGrid .i-summary-area__main__label");
-    By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
+    By cancelButton = By.xpath("//span[contains(text(), 'Cancel')]/parent::button");
     By backButton = By.xpath("//button[contains(text(), 'Back')]");
     By changeStatus = By.id("btnChangeStatus");
     By doorList = By.id("ddDoorList");
@@ -146,7 +155,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     By editTaskPalletsLabel = By.cssSelector("#wqListTaskPallets-label");
     By editTaskPallets = By.cssSelector("#wqListTaskPallets");
     By taskNotification = By.cssSelector(".k-dialog-content .i-notification-text");
-    By saveButton = By.xpath("//button[contains(text(), 'Save')]");
+    By saveButton = By.xpath("//span[contains(text(), 'Save')]");
     By okButton = By.xpath("//button[contains(text(), 'Ok')]");
     By replenishToCleanCheckBox = By.cssSelector("#replenishToClean");
     By notificationMsg = By.cssSelector(".toast-message");
@@ -157,25 +166,25 @@ public class OutboundRouteSummaryPage extends BasePage {
     By moveToNewShipperRadioButton = By.xpath("//input[@value='moveToNewShipper']");
     By moveToExistingShipperRadioButton = By.xpath("//input[@value='moveToExistingShipper']");
     By existingAssignmentTxtBox = By.xpath("//div[@data-test-id='existingAssignmentTxtBox']");
-    By userDropdown = By.xpath("//span[.//label[text()='User']]//span[@class='k-input']");
+    By userDropdown = By.xpath("//span[@class='k-input-value-text' and text()='Unassigned']/ancestor::span[@role='combobox']");
     By routeCodeLabel = By.xpath("//div[contains(@class,'k-textbox-container')][.//label[text()='Route code']]");
     By routeCodeInput = By.xpath("//div[contains(@class,'k-textbox-container')][.//label[text()='Route code']]//input");
     By scheduledDateLabel = By.cssSelector("#cpDate-label");
     By scheduledDate = By.cssSelector("#cpDate");
     By carrierLabel = By.xpath("//label[contains(text(), 'Carrier')]");
-    By carrierInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Carrier')]]//span[@class='k-input']");
+    By carrierInput = By.xpath("(//span[contains(@class,'k-dropdownlist')]//button)[6]");
     By routeTypeLabel = By.xpath("//label[contains(text(), 'Route type')]");
-    By routeTypeInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Route type')]]//span[@class='k-input']");
+    By routeTypeInput = By.xpath("//label[contains(text(), 'Route type')]/following::span[contains(@class, 'k-dropdownlist')][1]");
     By trailerLabel = By.xpath("//label[contains(text(), 'Trailer')]");
-    By trailerInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Trailer')]]//span[@class='k-input']");
+    By trailerInput = By.xpath("//label[contains(text(), 'Trailer')]/following::span[contains(@class, 'k-dropdownlist')][1]");
     By scheduledTimeLabel = By.cssSelector("#cpTile-label");
     By scheduledTimeInput = By.cssSelector("#cpTile");
     By driverLabel = By.xpath("//label[contains(text(), 'Driver')]");
     By driverInput = By.xpath("//div[contains(@class,'k-textbox-container')][.//label[text()='Driver']]//input");
     By maxStopsLabel = By.xpath("//label[contains(text(), 'Max stops')]");
-    By maxStopsInput = By.xpath("//div[contains(@class,'k-textbox-container')][.//label[text()='Max stops']]//input");
+    By maxStopsInput = By.xpath("//label[normalize-space(text())='Max stops']/following-sibling::input[@type='number']");
     By temperatureLabel = By.xpath("//label[contains(text(), 'Temperature')]");
-    By temperatureInput = By.xpath("//span[contains(@class,'k-textbox-container')][.//label[text()='Temperature']]//input");
+    By temperatureInput = By.xpath("(//span[contains(@class, 'k-numerictextbox')]//input[@type='tel'])");
     By dataAlt1 = By.xpath("//input[@name='Alt1']");
     By dataAlt2 = By.xpath("//input[@name='Alt2']");
     By dataAlt3 = By.xpath("//input[@name='alt3']");
@@ -205,7 +214,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     By shippedLabel = By.xpath("//label[contains(text(), 'Shipped:')]");
     By dropdownList = By.id("dropdownList");
     By arrowChevron = By.xpath("//button[contains(@class, 'i-card__card__title-area')]//span[contains(@class, 'k-i-arrow-chevron')]");
-    By routeLabel = By.xpath("//span[text()='Route']");
+    By routeLabel = By.xpath("//*[contains(text(), 'Route')]");
     By enterNameInput = By.xpath("//input[contains(@placeholder, 'Enter NAME')]");
     By loader = By.cssSelector(".loader");
     private static String randomRouteCode = null;
@@ -222,15 +231,40 @@ public class OutboundRouteSummaryPage extends BasePage {
 
     public static synchronized String getRandomRouteCode() { return randomRouteCode; }
 
-    private By getStatusDropDown(String status) {
+    /*private By getStatusDropDown(String status) {
         return By.xpath("//span[contains(text(),'" + status + "')]");
+    }*/
+    private By getStatusDropDown(String status) {
+        String actualStatus = mapDisplayedStatusText(status);
+        return By.xpath("//label[contains(text(),'" + actualStatus + "')]");
     }
+   /* public String getMaxStopsValue() {
+        By inputLocator = By.xpath("//label[contains(text(), 'Max stops')]/following::input[@type='number'][1]");
+        return DriverManager.getDriver().findElement(inputLocator).getAttribute("value").trim();
+    }*/
+
+    private String mapDisplayedStatusText(String input) {
+        switch (input.toLowerCase()) {
+            case "all statuses": return "All Status";
+            case "cancelled": return "Cancelled";
+            case "open": return "Open";
+            case "closed": return "Closed";
+            case "shipment in progress": return "Shipment in Progress";
+            default: return input;
+        }
+    }
+
 
     private By getDoorDropDown(String door) { return By.xpath("//span[contains(text(),'" + door + "')]"); }
 
-    private By getTemperatureTypeDropDown(String temperatureType) {
+  /*  private By getTemperatureTypeDropDown(String temperatureType) {
         return By.xpath("//span[contains(@role,'listbox')][.//span[@class='k-input' and text()='" + temperatureType + "']]");
-    }
+    }*/
+  private By getTemperatureTypeDropDown(String temperatureType) {
+      return By.xpath("//span[contains(@role,'combobox')][.//span[contains(@class,'k-input-value-text') and normalize-space(text())='" + temperatureType + "']]");
+  }
+
+
 
     private List<WebElement> getOrderTypeRowsByName(String orderType) {
         return findWebElements(By.xpath("//td[contains(text(), '" + orderType + "')]"));
@@ -314,17 +348,36 @@ public class OutboundRouteSummaryPage extends BasePage {
         return getValue(getEnterAccount()).trim();
     }
 
-    public String getStatusText(String status) {
+  /*  public String getStatusText(String status) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getStatusDropDown(status));
         return getText(getStatusesDropDown(status)).trim();
+    }*/
+
+    public String getStatusText() {
+        Waiters.waitTillLoadingPage(getDriver());
+
+        WebElement selectedStatusLabel = getDriver().findElement(
+                By.xpath("//span[contains(@class,'k-chip-label') and contains(text(),'Status selected')]")
+        );
+
+        Waiters.waitForElementToBeDisplay(selectedStatusLabel);
+        return selectedStatusLabel.getText().trim();
     }
 
-    public String getDoorText() {
+   /* public String getDoorText() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getDoorList());
         return getText(getDoorList()).trim();
-    }
+    }*/
+   public String getDoorText() {
+       Waiters.waitTillLoadingPage(getDriver());
+       Waiters.waitForElementToBeDisplay(getDoorList());
+
+       String rawText = getText(getDoorList());
+       return rawText.replaceAll("\\s+", " ").trim(); // Normalize spaces
+   }
+
 
     public List<WebElement> getDoors() {
         Waiters.waitForElementsToBeDisplay(findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']")));
@@ -346,10 +399,10 @@ public class OutboundRouteSummaryPage extends BasePage {
         waitUntilInvisible(2, loader);
     }
 
-    public void typeMaxStops(String maxStops) {
+   /* public void typeMaxStops(String maxStops) {
         Waiters.waitForElementToBeDisplay(getMaxStopsInput());
         enterText(getMaxStopsInput(), maxStops);
-    }
+    }*/
 
     public void typeTemperature(String temperature) {
         Waiters.waitTillLoadingPage(getDriver());
@@ -362,11 +415,6 @@ public class OutboundRouteSummaryPage extends BasePage {
         pressTab(getTemperatureInput());
     }
 
-    public String getMaxStopsValue() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getMaxStopsInput());
-        return getValue(getMaxStopsInput());
-    }
 
     public String getTemperatureValue() {
         Waiters.waitTillLoadingPage(getDriver());
@@ -465,13 +513,14 @@ public class OutboundRouteSummaryPage extends BasePage {
         waitUntilInvisible(2, loader);
     }
 
-    public void clickRoutesDropdown() {
+      public void clickRoutesDropdown() {
         Waiters.waitABit(4000);
         Waiters.waitForElementToBeDisplay(getRouteOptions());
         Waiters.waitABit(4000);
         clickOnElement(getRouteOptions());
         waitUntilInvisible(1, loader);
     }
+
 
     public void clickCarrierDropdown() {
         Waiters.waitForElementToBeDisplay(getCarrierInput());
@@ -519,11 +568,17 @@ public class OutboundRouteSummaryPage extends BasePage {
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(@class,'i-btn-checkbox')]"));
     }
 
-    public List<WebElement> getRouteDropdownOptions() {
+  /*  public List<WebElement> getRouteDropdownOptions() {
         Waiters.waitForElementsToBeDisplay(findWebElements(By
                 .xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='menuItem']")));
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='menuItem']"));
-    }
+    }*/
+  public List<WebElement> getRouteDropdownOptions() {
+      By locator = By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='menuitem']");
+      Waiters.waitForElementsToBeDisplay(findWebElements(locator));
+      return findWebElements(locator);
+  }
+
 
     public void clickTypesFilter() {
         Waiters.waitForElementToBeDisplay(getTypesDropdown());
@@ -644,13 +699,81 @@ public class OutboundRouteSummaryPage extends BasePage {
         clickOnElement(getProductSearchIndex().findElements(By.xpath(".//tr[contains(@class,'k-master-row')]")).get(index));
     }
 
-    public void selectOption(String status) {
+  /*  public void selectOption(String status) {
         waitUntilInvisible(1, loader);
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + status + "')]")));
         Waiters.waitTillLoadingPage(getDriver());
         waitUntilInvisible(2, loader);
-    }
+    }*/
+  public void selectOption(String status) {
+      waitUntilInvisible(10, loader);
+      Waiters.waitTillLoadingPage(getDriver());
+
+      WebElement input = findWebElement(By.cssSelector(".k-multiselect .k-input-inner"));
+      waitForElementToBeClickable(input);
+      clickOnElement(input);
+      Waiters.waitABit(500);
+
+      input.clear();
+      input.sendKeys(status);
+      Waiters.waitABit(500);
+
+      boolean found = false;
+
+      // Step 1: If status mentions "all", prioritize finding any "All" option
+      if (status.toLowerCase().contains("all")) {
+          List<WebElement> allOptions = findWebElements(By.xpath("//li[@role='option']//label[normalize-space()]"));
+          for (WebElement label : allOptions) {
+              String labelText = label.getText().trim().toLowerCase();
+              if (labelText.contains("all")) {
+                  WebElement checkbox = label.findElement(By.xpath(".//preceding-sibling::input[@type='checkbox']"));
+                  if (!checkbox.isSelected()) {
+                      checkbox.click();
+                  }
+                  found = true;
+                  break;
+              }
+          }
+
+          if (!found) {
+              // Try chip fallback if not found in standard list
+              List<WebElement> chips = findWebElements(By.cssSelector(".k-chip-label"));
+              for (WebElement chip : chips) {
+                  if (chip.getText().trim().toLowerCase().contains("all")) {
+                      clickOnElement(chip);
+                      found = true;
+                      break;
+                  }
+              }
+          }
+      }
+
+      // Step 2: Normal selection if not matched as "All"
+      if (!found) {
+          List<WebElement> labels = findWebElements(By.xpath("//li[@role='option']//label[normalize-space()]"));
+          for (WebElement label : labels) {
+              String labelText = label.getText().trim();
+              if (labelText.equalsIgnoreCase(status) || labelText.toLowerCase().contains(status.toLowerCase())) {
+                  WebElement checkbox = label.findElement(By.xpath(".//preceding-sibling::input[@type='checkbox']"));
+                  if (!checkbox.isSelected()) {
+                      checkbox.click();
+                  }
+                  found = true;
+                  break;
+              }
+          }
+      }
+
+      if (!found) {
+          throw new RuntimeException("Status '" + status + "' not found in dropdown.");
+      }
+
+      input.sendKeys(Keys.TAB);
+      waitUntilInvisible(5, loader);
+      Waiters.waitTillLoadingPage(getDriver());
+  }
+
 
     public void selectOutboundRouteCarrier(String carrier) {
         Waiters.waitTillLoadingPage(getDriver());
@@ -659,12 +782,12 @@ public class OutboundRouteSummaryPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
     }
 
-    public void selectOutboundRouteOption(String option) {
+    /*public void selectOutboundRouteOption(String option) {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + option + "') and @role='menuItem']")));
         waitUntilInvisible(1, loader);
-    }
+    }*/
 
     public void selectTrailerOption(String option) {
         Waiters.waitTillLoadingPage(getDriver());
@@ -690,7 +813,7 @@ public class OutboundRouteSummaryPage extends BasePage {
         waitUntilInvisible(1, loader);
     }
 
-    public void typeScheduledTime(String time) {
+   /* public void typeScheduledTime(String time) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getScheduledTimeInput());
@@ -708,7 +831,7 @@ public class OutboundRouteSummaryPage extends BasePage {
         Waiters.waitABit(4000);
         inputText(getScheduledTimeInput(), time.split(":")[1]);
         pressTab(getScheduledTimeInput());
-    }
+    }*/
 
     public void typeDriver(String driver) {
         Waiters.waitABit(2000);
@@ -716,17 +839,106 @@ public class OutboundRouteSummaryPage extends BasePage {
         enterText(getDriverInput(), driver);
     }
 
-    public void clickStatus(String status) {
+ /*   public void clickStatus(String status) {
         waitUntilInvisible(2, loader);
         Waiters.waitForElementToBeDisplay(getStatusesDropDown(status));
         clickOnElement(getStatusesDropDown(status));
+    }*/
+ public void clickStatus(String status) throws InterruptedException {
+     WebDriver driver = getDriver(); // OR use driver.get() depending on your setup
+
+     WebElement input = driver.findElement(By.id("ddlStatus"));
+     input.click();
+     input.clear();
+     input.sendKeys(status);
+     Thread.sleep(1000); // Ideally use WebDriverWait
+
+     By optionLocator = By.xpath("//li[@role='option']//label[contains(.,'" + status + "')]");
+     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+     wait.until(ExpectedConditions.elementToBeClickable(optionLocator));
+
+     WebElement option = driver.findElement(optionLocator);
+     option.click();
+
+     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+             "//span[@class='k-chip-label' and contains(text(),'" + status + "')]"
+     )));
+ }
+    public void clickOrderStatus(String... statuses) {
+        WebDriver driver = getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        try {
+            // Step 1: Open dropdown
+            WebElement inputBox = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".k-multiselect .k-input-inner")));
+            inputBox.click();
+            Waiters.waitTillLoadingPage(driver);
+            Waiters.waitABit(500);
+
+            // Step 2: Deselect all current selections
+            List<WebElement> selected = driver.findElements(By.cssSelector("li.k-selected input[type='checkbox']:checked"));
+            for (WebElement checkbox : selected) {
+                if (checkbox.isDisplayed()) {
+                    checkbox.click();
+                    Waiters.waitABit(300);
+                }
+            }
+
+            // Step 3: Select requested statuses
+            for (String status : statuses) {
+                String normalized = status.equalsIgnoreCase("All statuses") ? "All" : status;
+
+                List<WebElement> labels = driver.findElements(By.xpath("//li[@role='option']//label[normalize-space()]"));
+                boolean found = false;
+
+                for (WebElement label : labels) {
+                    if (label.getText().trim().equalsIgnoreCase(normalized)) {
+                        WebElement checkbox = label.findElement(By.xpath(".//preceding-sibling::input[@type='checkbox']"));
+                        checkbox.click();
+                        Waiters.waitABit(300);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    throw new RuntimeException("Status '" + status + "' not found.");
+                }
+            }
+
+            // Step 4: Close dropdown
+            inputBox.sendKeys(Keys.TAB);
+            Waiters.waitTillLoadingPage(driver);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed in clickOrderStatus: " + e.getMessage());
+        }
     }
 
-    public void clickDoor(String door) {
+
+
+
+    /*public void clickDoor(String door) {
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                         + door + "') and @role='option']")));
         waitUntilInvisible(1, loader);
+    }*/
+    public void clickDoor(String door) {
+        try {
+            // Ensure dropdown is open (you may already be doing this)
+            By optionLocator = By.xpath("//li[@role='option']//span[normalize-space(text())='" + door + "']");
+            WebElement option = Waiters.waitForElementToBeClickable(optionLocator, 15);
+            option.click();
+            waitUntilInvisible(1, loader);  // optional, for post-selection loading
+        } catch (TimeoutException e) {
+            throw new RuntimeException("Timeout: Could not select door '" + door + "'", e);
+        }
     }
+
+
+
+
+
 
     public void clickDoorDropdown(String door) {
         waitUntilInvisible(1, loader);
@@ -740,12 +952,12 @@ public class OutboundRouteSummaryPage extends BasePage {
         waitUntilInvisible(1, loader);
     }
 
-    public void selectTemperatureType(String temperatureType) {
+    /*public void selectTemperatureType(String temperatureType) {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                         + temperatureType + "') and @role='option']")));
         waitUntilInvisible(1, loader);
-    }
+    }*/
 
     public void clickOption(String door) {
         clickOnElement(getDoorList());
@@ -794,19 +1006,19 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public void clickAddFilter() {
-        Waiters.waitForElementToBeClickable(getAddFilterButton());
+        waitForElementToBeClickable(getAddFilterButton());
         clickOnElement(getAddFilterButton());
         waitUntilInvisible(1, loader);
     }
 
     public void clickReplenishToCleanCheckBox() {
-        Waiters.waitForElementToBeClickable(getReplenishToCleanCheckBox());
+        waitForElementToBeClickable(getReplenishToCleanCheckBox());
         clickOnElement(getReplenishToCleanCheckBox());
         waitUntilInvisible(1, loader);
     }
 
     public void clickOk() {
-        Waiters.waitForElementToBeClickable(getOkButton());
+        waitForElementToBeClickable(getOkButton());
         clickOnElement(getOkButton());
         waitUntilInvisible(1, loader);
     }
@@ -2121,4 +2333,133 @@ public class OutboundRouteSummaryPage extends BasePage {
     public WebElement getRouteLabel() { return findWebElement(routeLabel); }
 
     public WebElement getEnterNameInput() { return findWebElement(enterNameInput); }
+
+    /**
+     * Method Name: selectOutboundRouteOption
+     * Purpose: Selects a route option (e.g., "Edit") from the dropdown.
+     *
+     * @param optionText the visible text of the option to select
+     */
+    public void selectOutboundRouteOption(String optionText) {
+        // Step 1: Build the XPath for the desired option
+        By optionsLocator = By.xpath("//li[@role='menuitem']//span[normalize-space(text())='" + optionText + "']");
+
+        // Step 2: Wait manually using WebDriverWait if Waiters method doesn't support timeout
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
+        WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(optionsLocator));
+
+        // Step 3: Click the located element
+        clickOnElement(option);
+    }
+
+    public void typeScheduledTime(String time) {
+        WebElement input = getDriver().findElement(By.cssSelector("input#cpTile"));
+
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(input));
+
+        // Make sure it's visible and enabled
+        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", input);
+        wait.until(driver -> input.isDisplayed() && input.isEnabled());
+
+        input.click();         // Ensure it's focused
+        input.clear();         // Clear existing time
+        input.sendKeys(time);  // Enter new time
+        input.sendKeys(Keys.ENTER);  // Trigger Kendo UI validation
+    }
+    public void selectTemperatureType(String temperatureLabel) {
+        try {
+            // Safe overlay wait
+            try {
+                Waiters.waitForElementToDisappear(By.cssSelector("div.k-overlay"), 10);
+            } catch (Exception e) {
+                System.out.println("Overlay still present. Proceeding anyway.");
+            }
+
+            WebDriver driver = DriverManager.getDriver();
+
+            // Open dropdown
+            WebElement dropdown = waitForElementToBeClickable(
+                    By.xpath("//span[contains(@class, 'k-dropdownlist') and @role='combobox']"), 15);
+            new Actions(driver).moveToElement(dropdown).click().perform();
+
+            // Wait for the list item to be present and clickable
+            By optionLocator = By.xpath("//ul[contains(@id,'listbox')]/li[normalize-space(.)='" + temperatureLabel + "']");
+
+            waitForElementToBeClickable(optionLocator, 10);  // Wait until clickable
+            driver.findElement(optionLocator).click();  // Re-fetch to avoid stale element
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to select temperature type '" + temperatureLabel + "': " + e.getMessage(), e);
+        }
+    }
+
+    public String getMaxStopsValueByIndex(int index) {
+        List<WebElement> inputs = DriverManager.getDriver()
+                .findElements(By.cssSelector("input[type='number'][maxlength='3']"));
+
+        if (index >= inputs.size()) {
+            throw new RuntimeException("Max Stops input index out of range: " + index);
+        }
+
+        return inputs.get(index).getAttribute("value");
+    }
+
+
+    public void typeMaxStopsByIndex(int index) {
+        By maxStopsLocator = By.cssSelector("input[maxlength='3']");  // replace if needed
+
+        try {
+            new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(15))
+                    .until(ExpectedConditions.visibilityOfElementLocated(maxStopsLocator));
+
+            List<WebElement> inputs = DriverManager.getDriver().findElements(maxStopsLocator);
+
+            if (inputs.size() <= index) {
+                throw new RuntimeException("Index out of bounds for Max Stops input: " + index + ", available: " + inputs.size());
+            }
+
+            WebElement input = inputs.get(index);
+            input.click();
+            input.clear();
+            input.sendKeys("3");
+            input.sendKeys(Keys.TAB);
+        } catch (TimeoutException e) {
+            throw new RuntimeException("Max Stops input not visible. Check selector or wait conditions.", e);
+        }
+    }
+
+    public void typeMaxStops(String value) {
+        By inputLocator = By.xpath("//label[contains(text(), 'Max stops')]/following::input[@type='number'][1]");
+
+        WebElement input = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(15))
+                .until(ExpectedConditions.elementToBeClickable(inputLocator));
+
+        input.click();
+        input.clear();
+        input.sendKeys(value);
+        input.sendKeys(Keys.TAB);  // Trigger blur/update
+
+        System.out.println(">>> Typed Max Stops value: " + value);
+    }
+    public String getMaxStopsValue() {
+        By inputLocator = By.xpath("//label[contains(text(), 'Max stops')]/following::input[@type='number'][1]");
+        return DriverManager.getDriver().findElement(inputLocator).getAttribute("value").trim();
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

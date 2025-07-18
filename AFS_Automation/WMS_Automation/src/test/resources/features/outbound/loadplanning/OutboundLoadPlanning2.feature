@@ -21,6 +21,8 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Type label and Type value are present
     And Validates Trailer Type value is not empty
     And Clicks Exit button on Truck Info page
+    And Clicks Yes button on Warning Message
+    And Clicks No button on Warning Message
 
   @2
   Scenario: Checking Changing Ship date/time functionality on Outbound Truck Info page
@@ -48,6 +50,8 @@ Feature: Testing of Outbound Load Planning functionality
 #    And DockManagement Summary Page is validated
 #    And Go to Outbound Load Planning page
     And Clicks Exit button on Truck Info page
+    And Clicks Yes button on Warning Message
+    And Clicks No button on Warning Message
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
     And Selects Route by index 1 for Load Planning
@@ -83,7 +87,7 @@ Feature: Testing of Outbound Load Planning functionality
     #=========================================== Dec-27
     And Deletes cookies on application
     And Clicks Door dropdown on Truck Info page
-    And Selects door "DR01" on Truck Info page
+    And Selects door "DOOR01" on Truck Info page
     #below newly added
     And Clicks Yes button on Change Door popup
     #==========================================

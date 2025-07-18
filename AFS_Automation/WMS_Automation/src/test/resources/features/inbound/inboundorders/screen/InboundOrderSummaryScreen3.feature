@@ -83,7 +83,7 @@ Feature: Testing of Inbound Orders functionality
     Then Selects Order with index 1 and apply "Image" Order Option on Inbound Order Summary page
     And Validates Load Images on Inbound Order Summary page
     And Validates Save and Cancel buttons for Load image on Inbound Order Summary page
-    And Clicks Cancel button on Inbound Order Summary page
+    And Clicks Cancel button on Load Image popup on Inbound Order Summary page
 
   Scenario: Checking The Linked order on Inbound Order Summary screen
     Given User signs in the application

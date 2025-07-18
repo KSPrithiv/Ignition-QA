@@ -64,9 +64,10 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
-    Then Selects Load with index 1 and apply "Edit" Load Option for Load
+    Then Selects Load with index 2 and apply "Edit" Load Option for Load
     And Validates Edit load popup on Inbound Load Summary page
     And Clicks Cancel button on Inbound Load Summary page
+    And Clicks Route Back button on Inbound Load Summary page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
     And Checks Load with index 0 on Inbound Load Summary page
@@ -84,6 +85,7 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Validates loads are present on Inbound Load Summary page
     Then Selects Load with index 0 and apply "Source" Load Option for Load
     And Validates Source load screen on Inbound Load Summary page
+    And Clicks Route Back button on Inbound Load Summary page
     And Clicks Route Back button on Inbound Load Summary page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
@@ -103,6 +105,7 @@ Feature: Testing of Inbound Load Summary screen functionality
     Then Selects Load with index 0 and apply "Receive" Load Option for Load
     And Receiving page loads
     And Receiving page contains all web elements
+    And Clicks Route Back button on Inbound Load Summary page
     And Clicks Route Back button on Inbound Load Summary page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present

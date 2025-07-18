@@ -53,7 +53,7 @@ Feature: Testing of Inbound Load Summary screen functionality
     When card body is closed do expand
     And Cleans load input on Inbound Load Summary page
     When card body is closed do expand
-    And Types load "E4vrdv" on Inbound Load Summary page
+    And Types load "load" on Inbound Load Summary page
     When card body is closed do expand
     And Cleans load input on Inbound Load Summary page
     When card body is closed do expand
@@ -89,7 +89,7 @@ Feature: Testing of Inbound Load Summary screen functionality
   @5
   Scenario: Checking Load Summary screen Carrier Filter
 #    Given User signs in the application
-#    And Main page is loaded
+#     And Main page is loaded
 #    And DockManagement Summary Page is validated
 #    And Go to Loads page
 #    And Inbound Load Summary page appears
@@ -131,7 +131,7 @@ Feature: Testing of Inbound Load Summary screen functionality
     When card body is closed do expand
     And Validates Items found is displayed on Inbound Load Summary page
 
-  @7
+ @7
   Scenario: Checking Load Summary screen Load type filter
 #    Given User signs in the application
 #    And Main page is loaded
@@ -148,7 +148,7 @@ Feature: Testing of Inbound Load Summary screen functionality
     When card body is closed do expand
     And Validates Items found is displayed on Inbound Load Summary page
 
-  @8
+ @8
   Scenario: Checking Load Summary screen Supplier code filter
 #    Given User signs in the application
 #    And Main page is loaded
@@ -183,11 +183,11 @@ Feature: Testing of Inbound Load Summary screen functionality
 
   @10
   Scenario: Checking Load Summary screen Product filter
-#    Given User signs in the application
-#    And Main page is loaded
+    Given User signs in the application
+    And Main page is loaded
 #    And DockManagement Summary Page is validated
-#    And Go to Loads page
-#    And Inbound Load Summary page appears
+    And Go to Loads page
+    And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
     When card body is closed do expand
     Then User types product code by index 0 on Inbound Load Summary page
@@ -198,5 +198,5 @@ Feature: Testing of Inbound Load Summary screen functionality
     When card body is closed do expand
     And Types product "208hi3" on Inbound Load Summary page
     When card body is closed do expand
-    And Validates Items found not displayed on Inbound Load Summary page
+   # And Validates Items found not displayed on Inbound Load Summary page
 

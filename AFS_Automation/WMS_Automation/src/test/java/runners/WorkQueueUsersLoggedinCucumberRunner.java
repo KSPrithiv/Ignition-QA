@@ -25,7 +25,8 @@ import static common.setup.DriverManager.*;
                 "html:target/cucumber-reports/cucumber.html",
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
-                "rerun:target/failedrerun.txt"
+                "rerun:target/failedrerun.txt",
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
         }, monochrome = true, tags = "@WorkQueue")
 @Slf4j
 public class WorkQueueUsersLoggedinCucumberRunner extends AbstractTestNGCucumberTests {

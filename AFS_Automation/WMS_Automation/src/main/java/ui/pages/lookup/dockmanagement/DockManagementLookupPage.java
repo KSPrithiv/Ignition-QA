@@ -2,9 +2,17 @@ package ui.pages.lookup.dockmanagement;
 
 import common.utils.Waiters;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.BasePage;
+
+import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 import static common.setup.DriverManager.getDriver;
 
 public class DockManagementLookupPage extends BasePage {
@@ -36,7 +44,7 @@ public class DockManagementLookupPage extends BasePage {
     By outboundLabel = By.xpath("//span[text()='OUTBOUND']");
     By inboundLabel = By.xpath("//span[text()='INBOUND']");
     By items = By.xpath("//a[contains(text(), '+')]");
-    By dockMgmtSummaryRows = By.xpath("//div[@class='col-xs-12']//div[contains(@style, 'background:') and @class='row']");
+    By dockMgmtSummaryRows = By.xpath("//div[contains(@class,'DockManagementSummaryTableBody')]//div[contains(@class,'dockManagement_Col')]/ancestor::div[contains(@class,'DockManagementSummaryTableBody')]/div");
     By btnBack = By.id("btnBack");
     By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
     By okButton = By.xpath("//button[contains(text(), 'OK')]");
@@ -64,12 +72,12 @@ public class DockManagementLookupPage extends BasePage {
         Waiters.waitForElementToBeDisplay(chkBoxProduction);
     }
 
-    public void clickItemByIndex(int index) {
+   /* public void clickItemByIndex(int index) {
         waitUntilInvisible(2, loader);
         Waiters.waitForElementToBeDisplay(items);
         clickOnElement(getItems().get(index));
         waitUntilInvisible(5, loader);
-    }
+    }*/
 
     public void selectWarehouse(String warehouse) {
         clickOnElement(getDropdownList());
@@ -78,13 +86,13 @@ public class DockManagementLookupPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
     }
 
-    public void clickDockMgmtSummaryRowsByIndex(int index) {
+  /*  public void clickDockMgmtSummaryRowsByIndex(int index) {
         Waiters.waitTillLoadingPage(getDriver());
         waitUntilVisible(1, loader);
         Waiters.waitForElementToBeDisplay(dockMgmtSummaryRows);
         clickOnElement(getDockMgmtSummaryRows().get(index).findElement(By.xpath(".//div[contains(@class, 'outerDuckCell')]//a")));
         waitUntilVisible(3, loader);
-    }
+    }*/
 
     public void clickNotEmptyTrailerByIndex(int index) {
         waitUntilVisible(10, loader);
@@ -200,9 +208,9 @@ public class DockManagementLookupPage extends BasePage {
 
     public int areDockMgmtSummaryRowsPresent() { return elementsArePresent(getDockMgmtSummaryRows()); }
 
-    public boolean isButtonBackDisplayed() { return isElementDisplay(btnBack); }
+   /* public boolean isButtonBackDisplayed() { return isElementDisplay(btnBack); }*/
 
-    public boolean isOrdersAssignToDoorLabelDisplayed() { return isElementDisplay(ordersAssignToDoor); }
+    /*public boolean isOrdersAssignToDoorLabelDisplayed() { return isElementDisplay(ordersAssignToDoor); }*/
 
     public boolean isСhangeTrailerPopUpTitleDisplayed() { return isElementDisplay(getСhangeTrailerPopUpTitle()); }
 
@@ -355,7 +363,83 @@ public class DockManagementLookupPage extends BasePage {
 
     public List<WebElement> getItems() { return findWebElements(items); }
 
-    public List<WebElement> getDockMgmtSummaryRows() { return findWebElements(dockMgmtSummaryRows); }
+   /* public List<WebElement> getDockMgmtSummaryRows() { return findWebElements(dockMgmtSummaryRows); }*/
+   public List<WebElement> getDockMgmtSummaryRows() {
+       By rowLocator = By.xpath("//div[contains(@class,'dockManagement_Col_2B')]");
+
+       try {
+           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+           wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(rowLocator));
+
+           List<WebElement> rows = driver.findElements(rowLocator);
+           System.out.println(" Found " + rows.size() + " Dock Mgmt summary rows.");
+           return rows;
+       } catch (TimeoutException e) {
+           System.out.println(" Timeout: Could not locate Dock Mgmt rows.");
+           System.out.println(" Current Page Title: " + driver.getTitle());
+           System.out.println(" URL: " + driver.getCurrentUrl());
+           System.out.println(" DOM Preview: " + driver.getPageSource().substring(0, 1000));  // preview first 1000 chars
+           throw e;
+       }
+   }
+
+    public void clickDockMgmtSummaryRowsByIndex(int index) {
+        Waiters.waitForPageToStabilize(driver); // FIXED
+
+        List<WebElement> rows = getDockMgmtSummaryRows(); // Re-fetch after stabilization
+        if (rows.size() <= index) {
+            throw new RuntimeException("Index " + index + " is out of bounds. Only " + rows.size() + " rows found.");
+        }
+
+        rows.get(index).click();
+    }
+
+
+    public void clickItemByIndex(int index) {
+        Waiters.waitForLoaderToDisappear(driver); // Add this line
+
+        List<WebElement> items = getDockMgmtSummaryRows(); // however you fetch them
+        if (index >= items.size()) {
+            throw new RuntimeException("Index out of range");
+        }
+
+        items.get(index).click();
+    }
+
+    public boolean isOrdersAssignToDoorLabelDisplayed() {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement el = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//span[contains(text(),'Orders assigned to door')]")
+            ));
+            return el.isDisplayed();
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+
+    public boolean isButtonBackDisplayed() {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnBack")));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     public WebElement getBtnBack() { return findWebElement(btnBack); }
 

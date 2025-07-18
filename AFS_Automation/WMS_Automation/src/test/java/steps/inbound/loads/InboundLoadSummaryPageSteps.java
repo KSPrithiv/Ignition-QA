@@ -144,14 +144,16 @@ public class InboundLoadSummaryPageSteps {
     @And("Clicks load status {string} on Inbound Load Summary page")
     public void clickOrderStatus(String status) {
         log.info("Clicking Order Status " + status);
-        inboundLoadSummaryPage.clickLoadStatus(status);
+      //  inboundLoadSummaryPage.clickLoadStatus(status);
+        inboundLoadSummaryPage.clickOrderStatus();
     }
 
     @Step
     @Then("Selects load status {string} on Inbound Load Summary page")
     public void selectOrderStatus(String status) {
         log.info("Selecting Order Status " + status);
-        inboundLoadSummaryPage.selectLoadStatus(status);
+      //  inboundLoadSummaryPage.selectLoadStatus(status);
+        inboundLoadSummaryPage.selectOrderStatus(status);
     }
 
     @Step
@@ -400,9 +402,11 @@ public class InboundLoadSummaryPageSteps {
 
     @Step
     @Then("Types product {string} on Inbound Load Summary page")
-    public void typeProduct(String product) {
-        log.info("Searching product " + product);
-        inboundLoadSummaryPage.typeProduct(product);
+    public void typeProduct(String productCode) {
+        log.info("Searching product " + productCode);
+       // inboundLoadSummaryPage.typeProduct(product);
+        inboundLoadSummaryPage.typeSpecificProduct(productCode);
+
     }
 
     @Step
@@ -415,12 +419,14 @@ public class InboundLoadSummaryPageSteps {
     @Step
     @Then("Types product code by index {int} on Inbound Load Summary page")
     public void typeProductCodeByIndex(int index) {
-        log.info("Searching product by index");
+      /*  log.info("Searching product by index");
         List<String> productCodes = List.of(inboundOrderLoadsDTO.getProductCodes().getProductCode1(), inboundOrderLoadsDTO
                 .getProductCodes().getProductCode2(), inboundOrderLoadsDTO.getProductCodes().getProductCode3(),
                 inboundOrderLoadsDTO.getProductCodes().getProductCode4(), inboundOrderLoadsDTO.getProductCodes().getProductCode5(),
                 inboundOrderLoadsDTO.getProductCodes().getProductCode6(),  inboundOrderLoadsDTO.getProductCodes().getProductCode7());
-        inboundLoadSummaryPage.typeValueInSearch(productCodes.get(index));
+        inboundLoadSummaryPage.typeValueInSearch(productCodes.get(index));*/
+
+
     }
 
     @Step
@@ -459,7 +465,9 @@ public class InboundLoadSummaryPageSteps {
     @And("Clears product on Inbound Load Summary page")
     public void clearProduct() {
         log.info("Clear product");
-        inboundLoadSummaryPage.cleanProduct();
+      // inboundLoadSummaryPage.cleanProduct();
+        inboundLoadSummaryPage.clearProduct();
+
     }
 
     @Step

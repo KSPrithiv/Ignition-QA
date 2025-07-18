@@ -1,8 +1,7 @@
 package ui.pages.workqueue.assignmentlist.filteroption;
 
 import common.utils.Waiters;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import ui.pages.BasePage;
 import java.util.List;
 
@@ -40,7 +39,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     By activityIndicatorFilter = By.cssSelector(".i-btn-checkbox  #ActivityIndicator");
     By remainingFilter = By.cssSelector(".i-btn-checkbox  #Remaining");
     By printedFilter = By.cssSelector(".i-btn-checkbox  #Printed");
-    By clearAllButton = By.xpath("//button[text()='Clear all']");
+    By clearAllButton = By.xpath("//span[text()='Clear all']");
     By inputContains = By.xpath("//input[@placeholder='Contains']");
    // By inputContains = By.xpath("//input[@placeholder='Contains']");
     By applyButton = By.xpath("//button/span[text()='Apply']");
@@ -396,11 +395,44 @@ public class WorkQueueAssignmentsPage extends BasePage {
         clickOnElement(day);
     }
 
-    public void clickClearAllButton() {
+   /* public void clickClearAllButton() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getСlearAllButton());
         clickOnElement(getСlearAllButton());
-    }
+    }*/
+      public void clickClearAllButton() {
+       Waiters.waitTillLoadingPage(getDriver());
+
+       try {
+           WebElement clearAllBtn = getСlearAllButton(); // re-fetch inside try
+           Waiters.waitForElementToBeDisplay(clearAllBtn);
+           ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", clearAllBtn);
+           clickOnElement(clearAllBtn); // Regular click
+       } catch (ElementClickInterceptedException e) {
+           System.out.println("Clear All: Click intercepted. Falling back to JS click.");
+           WebElement clearAllBtn = getСlearAllButton(); // re-fetch again for JS
+           ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", clearAllBtn);
+       }
+   }
+   /*public void clickClearAllButton() {
+       Waiters.waitTillLoadingPage(getDriver());
+
+       try {
+           WebElement clearAllBtn = getСlearAllButton();
+           Waiters.waitForElementToBeDisplay(clearAllBtn);
+           ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", clearAllBtn);
+           clickOnElement(clearAllBtn);
+       } catch (ElementClickInterceptedException | StaleElementReferenceException e) {
+           System.out.println("Clear All: Click failed. Retrying with JS click due to: " + e.getClass().getSimpleName());
+           WebElement clearAllBtn = getСlearAllButton(); // Re-fetch
+           ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", clearAllBtn);
+       }
+   }*/
+
+
+
+
+
 
     public void clickCloseBtn() {
         Waiters.waitTillLoadingPage(getDriver());

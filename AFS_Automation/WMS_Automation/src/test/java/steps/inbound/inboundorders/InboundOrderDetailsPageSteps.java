@@ -9,11 +9,18 @@ import io.cucumber.java.en.Then;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import objects.inbound.InboundOrderLoadsDTO;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ui.pages.inbound.inboundorders.InboundOrderDetailsPage;
 
+import java.time.Duration;
 import java.util.List;
+
+import static common.setup.DriverManager.getDriver;
 
 @Slf4j
 public class InboundOrderDetailsPageSteps {
@@ -40,7 +47,10 @@ public class InboundOrderDetailsPageSteps {
     @And("Clicks change status option on Inbound Order Details page")
     public void clickChangeStatusOption() {
         LOG.info("Clicking Change Status option");
-        inboundOrderDetailsPage.clickChangeStatusOption();
+        //inboundOrderDetailsPage.clickChangeStatusOption();
+       // inboundOrderDetailsPage.clickOrderStatus();
+        inboundOrderDetailsPage.clickChangeStatusButton();
+
     }
 
     @Step
@@ -76,20 +86,47 @@ public class InboundOrderDetailsPageSteps {
     public void clickInboundOrderStatus(String status) {
         LOG.info("Clicking Order Status " + status);
         inboundOrderDetailsPage.clickOrderStatus(status);
+
     }
 
-    @Step
+   /* @Step
     @Then("Selects order status {string} on Inbound Order Details page")
     public void selectInboundOrderStatus(String status) {
         LOG.info("Selecting Order Status " + status);
         inboundOrderDetailsPage.selectOrderStatus(status);
-    }
+
+    }*/
+    @Step
+   @Then("Selects order status {string} on Inbound Order Details page")
+   public void selectInboundOrderStatus(String status) {
+       LOG.info("Clicking and selecting order status: " + status);
+       inboundOrderDetailsPage.clickStatusFilterDropdown(); // <== Make sure this line exists
+       Waiters.waitABit(1000);
+       //inboundOrderDetailsPage.selectStatusFromDropdown(status);
+        inboundOrderDetailsPage.selectOrderStatus(status);
+
+   }
+
+
+
+
+
 
     @Step
     @And("Selects order with index {int} on Inbound Order Details page")
     public void selectOrderByNumber(int orderNum) {
+      //  LOG.info("Selecting Order by number " + orderNum);
+     //  inboundOrderDetailsPage.selectOrderByOrderNumber(orderNum);
         LOG.info("Selecting Order by number " + orderNum);
-        inboundOrderDetailsPage.selectOrderByOrderNumber(orderNum);
+        List<WebElement> orders = inboundOrderDetailsPage.getOrderProducts();
+        if (orders.size() > orderNum) {
+            WebElement order = orders.get(orderNum);
+            LOG.info("Found order element: " + order.getText());
+            inboundOrderDetailsPage.clickOnElement(order);
+        } else {
+            LOG.error("Order not found at index: " + orderNum);
+        }
+
     }
 
     @Step

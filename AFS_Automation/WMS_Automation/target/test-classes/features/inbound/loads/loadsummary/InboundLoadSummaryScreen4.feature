@@ -111,6 +111,8 @@ And Validates Edit load popup on Inbound Load Summary page
 
 And Clicks Cancel button on Inbound Load Summary page
 
+And Clicks Route Back button on Inbound Load Summary page
+
 And Inbound Load Summary page appears
 
 And Inbound Load Summary page main elements are present
@@ -138,6 +140,8 @@ And Validates loads are present on Inbound Load Summary page
 Then Selects Load with index 0 and apply "Source" Load Option for Load
 
 And Validates Source load screen on Inbound Load Summary page
+
+And Clicks Route Back button on Inbound Load Summary page
 
 And Clicks Route Back button on Inbound Load Summary page
 
@@ -170,6 +174,8 @@ Then Selects Load with index 0 and apply "Receive" Load Option for Load
 And Receiving page loads
 
 And Receiving page contains all web elements
+
+And Clicks Route Back button on Inbound Load Summary page
 
 And Clicks Route Back button on Inbound Load Summary page
 

@@ -2,6 +2,7 @@ package ui.pages.outbound.loadplanning;
 
 import common.utils.Waiters;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
 import java.util.List;
@@ -26,6 +27,8 @@ public class OutboundAssignmentsPage extends BasePage {
     By backButton = By.id("backAssignmentBtn");
     By itemsCount = By.cssSelector(".i-summary-area__main__value");
     By itemsFound = By.cssSelector(".i-summary-area__main__label");
+
+
 
     public void waitOutboundOrderSummaryPageToLoad() {
         Waiters.waitUntilPageWillLoadedSelenide();

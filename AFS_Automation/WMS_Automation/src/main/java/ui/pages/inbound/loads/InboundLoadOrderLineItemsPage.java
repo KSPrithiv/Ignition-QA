@@ -22,8 +22,8 @@ public class InboundLoadOrderLineItemsPage extends BasePage {
     By qtyField = By.xpath("//span[contains(text(), 'Qty')]");
     By cubeField = By.xpath("//span[contains(text(), 'Cube')]");
     By weightField = By.xpath("//span[contains(text(), 'Weight')]");
-    By imagesButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Images')]");
-    By commentsButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Comments')]");
+    By imagesButton = By.xpath("(//button[@id='btnImageNo'])[2]");
+    By commentsButton = By.xpath("(//button[@id='btnImageNo'])[1]");
     By btnProductData = By.id("btnProductData");
     By btnProductEdit = By.id("btnProductEdit");
     By btnOrderLineFieldsImage = By.xpath("btnOrderLineFieldsImage");

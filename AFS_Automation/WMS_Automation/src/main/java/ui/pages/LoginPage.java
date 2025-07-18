@@ -26,7 +26,8 @@ public class LoginPage extends BasePage {
     By login = By.cssSelector("input[placeholder='UserName']");
     By password = By.cssSelector("input[type='password']");
     // By signInButton = By.xpath("//button[contains(text(), 'Sign in')]");
-    By signInButton = By.xpath("//button[contains(text(), 'Sign In')]");
+    //By signInButton = By.xpath("//button[contains(text(), 'Sign In')]");
+    By signInButton = By.id("signInBtn");;
 
     //JIRA purpose
     By loginJIRA = By.xpath("//input[@id='login-form-username']");
@@ -49,11 +50,21 @@ public class LoginPage extends BasePage {
 
 
     public void waitForLoginPageToLoad() {
-        Waiters.waitABit(2000);
+       /* Waiters.waitABit(2000);
         Waiters.waitForElementToBeClickable(getSignInButton());
         Waiters.waitForElementToBeDisplay(login);
         Waiters.waitForElementToBeDisplay(password);
-        Waiters.waitABit(5000);
+        Waiters.waitABit(5000);*/
+        Waiters.waitABit(2000);
+
+        WebElement signIn = getSignInButton();
+        if (signIn == null) {
+            throw new RuntimeException("Sign In button not found. Please check locator.");
+        }
+
+        Waiters.waitForElementToBeClickable(signIn);
+        Waiters.waitForElementToBeDisplay(login);
+        Waiters.waitForElementToBeDisplay(password);
     }
 
     public void fillInLoginField(String login) {

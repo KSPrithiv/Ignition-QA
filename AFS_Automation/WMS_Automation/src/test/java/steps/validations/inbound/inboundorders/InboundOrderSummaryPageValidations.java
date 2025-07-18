@@ -2,12 +2,20 @@ package steps.validations.inbound.inboundorders;
 
 import common.constants.FilePaths;
 import common.constants.Notifications;
+import common.setup.DriverManager;
 import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import objects.inbound.InboundOrderLoadsDTO;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 import ui.pages.inbound.inboundorders.InboundOrderSummaryPage;
 
+import java.time.Duration;
 import java.util.List;
 
 public class InboundOrderSummaryPageValidations {
@@ -157,12 +165,50 @@ public class InboundOrderSummaryPageValidations {
         softAssert.assertAll();
     }
 
-    @And("Validates Order option {string} on Inbound Order Summary page is disabled")
+  /*  @And("Validates Order option {string} on Inbound Order Summary page is disabled")
     public void validateOrderOptionIsNotActive(String option) {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(inboundOrderSummaryPage.isOrderOptionDisabled(option),"Order Option is enabled");
         softAssert.assertAll();
-    }
+    }*/
+  @And("^Validates Order option \"([^\"]*)\" on Inbound Order Summary page is disabled$")
+  public void validateOrderOptionIsNotActive(String optionName) {
+      SoftAssert softAssert = new SoftAssert();
+
+      try {
+          // Click the Order Options dropdown (assuming it's already available in view)
+          WebDriver driver = DriverManager.getDriver();
+          WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+          WebElement dropdownTrigger = wait.until(ExpectedConditions.elementToBeClickable(
+                  By.xpath("//button[contains(@class, 'order-options-button')]")
+          ));
+          dropdownTrigger.click();
+
+          // Wait for the dropdown option to appear
+          WebElement option = wait.until(ExpectedConditions.presenceOfElementLocated(
+                  By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(),'" + optionName + "')]")
+          ));
+
+          // Check for disabled status
+          String ariaDisabled = option.getAttribute("aria-disabled");
+          boolean isDisabled = "true".equalsIgnoreCase(ariaDisabled);
+
+          // Assertion
+          softAssert.assertTrue(
+                  isDisabled,
+                  "Order Option '" + optionName + "' is enabled, but should be disabled"
+          );
+
+      } catch (TimeoutException e) {
+          softAssert.fail("Order option '" + optionName + "' was not found in dropdown: " + e.getMessage());
+      } catch (Exception e) {
+          softAssert.fail("Unexpected error while checking order option: " + e.getMessage());
+      }
+
+      softAssert.assertAll();
+  }
+
 
     @And("Validates Data option on Inbound Order Summary page is disabled")
     public void validateDataOptionIsNotActive() {
@@ -281,7 +327,7 @@ public class InboundOrderSummaryPageValidations {
     @And("Validates Load Images on Inbound Order Summary page")
     public void validateImagesForInboundOrder() {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(inboundOrderSummaryPage.isSaveEditButtonDisplayed(), "Save Edit Button is not displayed");
+        softAssert.assertTrue(inboundOrderSummaryPage.isInboundPageSaveDisplayed(), "Save Edit Button is not displayed");
         softAssert.assertTrue(inboundOrderSummaryPage.isInboundImageCaptureButtonDisplayed(), "Inbound Image Capture Button is not displayed");
         softAssert.assertTrue(inboundOrderSummaryPage.isSelectFilesBtnDisplayed(), "Select Files Button is not displayed");
         softAssert.assertTrue(inboundOrderSummaryPage.isLoadImageLabelDisplayed(), "Load Image Label is not displayed");
@@ -291,8 +337,10 @@ public class InboundOrderSummaryPageValidations {
     @And("Validates Save and Cancel buttons for Load image on Inbound Order Summary page")
     public void verifySaveCancelButtons() {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(inboundOrderSummaryPage.isSaveButtonDisplayed(),"Save Button is not displayed");
+        softAssert.assertTrue(inboundOrderSummaryPage.isInboundPageSaveDisplayed(),"Save Button is not displayed");
+       // softAssert.assertTrue(inboundOrderSummaryPage.isSaveButtonDisplayed(),"Save Button is not displayed");
         softAssert.assertTrue(inboundOrderSummaryPage.isRouteBackButtonDisplayed(),"Route Back Button is not displayed");
+
         softAssert.assertAll();
     }
 

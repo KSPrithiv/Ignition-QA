@@ -1,15 +1,20 @@
 package ui.pages.outbound.ordersummary;
 
 import common.utils.Waiters;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.BasePage;
+
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 import static common.setup.DriverManager.getDriver;
+import static common.utils.Waiters.waitForElementToBeVisible;
+import static utilWMS.TestBase.driver;
 
 public class OutboundOrderSummaryPage extends BasePage {
     By title = By.cssSelector(".i-card__card__title-area__title");
@@ -29,7 +34,7 @@ public class OutboundOrderSummaryPage extends BasePage {
     By enterProduct = By.cssSelector("input[placeholder='Enter a product']");
     By searchProductButton = By
             .xpath("//div[@class='i-indexfield-container__main'][.//input[@placeholder='Enter a product']]//button");
-    By orderOptions = By.cssSelector("button[aria-label='Order options dropdownbutton']");
+    By orderOptions = By.xpath("//span[text()='Order options']/parent::button");
     By shippedStatus = By.xpath("//span[contains(@class,'i-bar-description')][.//span[contains(@class, 'dot--green')]]");
     By auditStatus = By.xpath("//span[contains(@class,'i-bar-description')][.//span[contains(@class, 'dot--purple')]]");
     By pickedStatus = By.xpath("//span[contains(@class,'i-bar-description')][.//span[contains(@class, 'dot--yellow')]]");
@@ -46,10 +51,10 @@ public class OutboundOrderSummaryPage extends BasePage {
     By orderAccount = By.xpath("//span[contains(text(), 'Test Account')]");
     By detailedRowsCheckboxes = By.cssSelector(".k-detail-cell input");
     By itemsCount = By.cssSelector(".i-summary-area__main__value");
-    By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
+    By cancelButton = By.xpath("//span[contains(text(), 'Cancel')]");
     By summaryInboundOrderDetails = By.cssSelector("#crdSummaryInboundOrderPortrait");
     By orderStatus = By.cssSelector("#span_Status");
-    By backButton = By.xpath("//button[contains(text(), 'Back')]");
+    By backButton = By.xpath("//span[text()='Back']/parent::button");
     By dialog = By.cssSelector(".k-dialog-title");
     By accountWindow = By.cssSelector(".k-window-title");
     By products = By.xpath("//div[@class='BarsBlock']//span[contains(@class, 'Title2 h15')]");
@@ -109,7 +114,7 @@ public class OutboundOrderSummaryPage extends BasePage {
     By editAssignmentEditDate = By.cssSelector("#wqAssignmentEditDate");
     By editAssignmentEditTime = By.cssSelector("#wqAssignmentEditTime");
     By editAssignmentUsers = By.cssSelector("#wqListAssignmentUsers");
-    By userDropdown = By.xpath("//span[.//label[text()='User']]//span[@class='k-input']");
+    By userDropdown = By.xpath("//label[text()='User']/following-sibling::span[contains(@class, 'k-dropdownlist')]");
     By editAssignmentEditComplete = By.cssSelector("#WorkQueueAssignmentsEditComplete");
     By editAssignmentEditCompleteLabel = By.xpath("//label[@for='WorkQueueAssignmentsEditComplete']");
     By reviewOrder = By.xpath("//label[contains(text(), 'Review order')]");
@@ -117,9 +122,9 @@ public class OutboundOrderSummaryPage extends BasePage {
     By scheduledDate = By.cssSelector("#cpDate");
     By scheduledTime = By.cssSelector("#cpTile");
     By carrierDropdown = By
-            .xpath("//span[contains(@class,'k-textbox-container')][.//label[text()='Carrier']]//span[@role='listbox']");
+            .xpath("//span[@class='k-input-inner']/span[text()='(None)']/ancestor::span[contains(@class,'k-dropdownlist')]");
     By paymentTypeDropdown = By
-            .xpath("//span[contains(@class,'k-textbox-container')][.//label[text()='Payment type']]//span[@role='listbox']");
+            .xpath("(//span[@role='combobox' and contains(@class, 'k-dropdownlist')])[4]");
     By commentsArea = By
             .xpath("//div[contains(@class,'k-textbox-container')][.//label[text()='Comment']]//textarea");
     By shipperDateColumn = By.xpath("//span[text()='Date']");
@@ -129,7 +134,7 @@ public class OutboundOrderSummaryPage extends BasePage {
     By sourceOrderTypeColumn = By.xpath("//span[text()='Order type']");
     By sourceOrderColumn = By.xpath("//span[text()='Order no.']");
     By sourceStatusColumn = By.xpath("//span[text()='Status']");
-    By saveButton = By.xpath("//button[contains(text(), 'Save')]");
+    By saveButton = By.xpath("//span[contains(text(), 'Save')]/parent::button");
     By moveShipDate = By.cssSelector("#moveStartDate-label");
     By moveShipDateInput = By.id("moveStartDate");
     By routeInput = By.xpath("//div[contains(@class, 'k-textbox-container')][.//label[text()='Route']]//input");
@@ -161,14 +166,51 @@ public class OutboundOrderSummaryPage extends BasePage {
         Waiters.waitForElementToBeDisplay(assignmentTab);
     }
 
-    public boolean isOutboundOrderOptionActive(String name) {
+   /* public boolean isOutboundOrderOptionActive(String name) {
         WebElement orderOption = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li"))
                 .stream()
                 .filter(el -> el.getText().equals(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Order option not found"));
         return orderOption.getAttribute("class").contains("disabled");
+    }*/
+    /**
+     * Checks if a specific order option (e.g., "Edit", "Data", "Release") is active in the Order Options dropdown.
+     *
+     * @param name The visible name of the option to verify.
+     * @return true if the option is active (not disabled); false otherwise.
+     */
+    public boolean isOutboundOrderOptionActive(String name) {
+        return isOutboundOrderOptionActive(name, false);
     }
+
+    private boolean isOutboundOrderOptionActive(String name, boolean retrying) {
+        try {
+            By option = By.xpath("//span[text()='" + name + "']/ancestor::li");
+            WebElement optionElement = getDriver().findElement(option);
+
+            String classAttr = optionElement.getAttribute("class");
+            return classAttr.contains("k-item") && !classAttr.contains("k-state-disabled");
+
+        } catch (NoSuchElementException e) {
+            if (!retrying) {
+                // Re-open the dropdown and try once more
+                getDriver().findElement(By.xpath("//span[text()='Order options']/parent::button")).click();
+                Waiters.waitForElementToBeVisible(By.xpath("//ul[contains(@class,'k-menu-group')]"));
+
+                // Retry once
+                return isOutboundOrderOptionActive(name, true);
+            }
+            throw new NoSuchElementException("Order option '" + name + "' not found after retry");
+        }
+    }
+
+    private boolean retryOptionCheck(String name) {
+        getDriver().findElement(By.xpath("//span[text()='Order options']/parent::button")).click();
+        Waiters.waitForElementToBeVisible(By.xpath("//ul[contains(@class, 'k-menu-group')]"));
+        return isOutboundOrderOptionActive(name);
+    }
+
 
     public List<WebElement> getRoutes() {
         Waiters.waitForPresenceOfAllElements(By
@@ -181,11 +223,11 @@ public class OutboundOrderSummaryPage extends BasePage {
         clickOnElement(getWorkIcon());
     }
 
-    public void clickAssignItem() {
+ /*   public void clickAssignItem() {
         Waiters.waitForElementToBeClickable(getAssignIcon());
         clickOnElement(getAssignIcon());
         waitUntilInvisible(2, loader);
-    }
+    }*/
 
     public void clickSaveButton() {
         Waiters.waitForElementToBeClickable(getSaveButton());
@@ -320,7 +362,7 @@ public class OutboundOrderSummaryPage extends BasePage {
         waitUntilInvisible(2, loader);
     }
 
-    public void typeScheduledDate(String date) {
+   /* public void typeScheduledDate(String date) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getScheduledDate());
         waitUntilInvisible(1, loader);
@@ -332,7 +374,7 @@ public class OutboundOrderSummaryPage extends BasePage {
         Waiters.waitABit(1000);
         pressTab(getScheduledDate());
         waitUntilInvisible(1, loader);
-    }
+    }*/
 
     public void typeComments(String comments) {
         Waiters.waitTillLoadingPage(getDriver());
@@ -341,7 +383,7 @@ public class OutboundOrderSummaryPage extends BasePage {
         inputText(getCommentsArea(), comments);
     }
 
-    public void typeScheduledTime(String time) {
+  /*  public void typeScheduledTime(String time) {
         Waiters.waitForElementToBeClickable(getScheduledTime());
         click(getScheduledTime());
         pressLeftArrow(getScheduledTime());
@@ -354,7 +396,7 @@ public class OutboundOrderSummaryPage extends BasePage {
         Waiters.waitABit(2000);
         inputText(getScheduledTime(), time.split(":")[1]);
         pressTab(getScheduledTime());
-    }
+    }*/
 
     public void typeAccount(String account) {
         Waiters.waitTillLoadingPage(getDriver());
@@ -476,18 +518,26 @@ public class OutboundOrderSummaryPage extends BasePage {
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
     }
 
-    public String getAllStatusDropdownText() {
+ /*   public String getAllStatusDropdownText() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAllStatusesDropDown());
         return getText(getAllStatusesDropDown());
+    }*/
+    public WebElement getAllStatusesDropDown() {
+        return getDriver().findElement(By.cssSelector(".k-multiselect .k-chip-content"));
+    }
+    public String getAllStatusDropdownText() {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(getAllStatusesDropDown());
+        return getAllStatusesDropDown().getText().trim();
     }
 
     public void clickBackButton() {
         waitUntilInvisible(1, loader);
         Waiters.waitTillLoadingPage(getDriver());
         pressPageUp(getBackButton());
-        Waiters.waitForElementToBeDisplay(By.xpath("//button[contains(text(), 'Back')]"));
-        clickOnElement(By.xpath("//button[contains(text(), 'Back')]"));
+        Waiters.waitForElementToBeDisplay(By.xpath("//span[text()='Back']/parent::button"));
+        clickOnElement(By.xpath("//span[text()='Back']/parent::button"));
         waitUntilInvisible(1, loader);
     }
 
@@ -510,7 +560,7 @@ public class OutboundOrderSummaryPage extends BasePage {
         return getText(getWorkQueueOrderTab());
     }
 
-    public void selectOutboundOrderStatus(String status) {
+    /*public void selectOutboundOrderStatus(String status) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getAllStatusesDropDown());
         clickOnElement(getAllStatusesDropDown());
@@ -523,7 +573,7 @@ public class OutboundOrderSummaryPage extends BasePage {
                  .orElse(null);
         clickOnElement(option);
         waitUntilInvisible(1, loader);
-    }
+    }*/
 
     public void selectOutboundOrderOption(String option) {
         //Waiters.waitTillLoadingPage(getDriver());
@@ -718,8 +768,8 @@ public class OutboundOrderSummaryPage extends BasePage {
 
     public void clickOkButton() {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(By.xpath("//button[contains(text(), 'Ok')]"));
-        clickOnElement(By.xpath("//button[contains(text(), 'Ok')]"));
+        Waiters.waitForElementToBeDisplay(By.xpath("//span[contains(text(), 'Ok')]/parent::button"));
+        clickOnElement(By.xpath("//span[contains(text(), 'Ok')]/parent::button"));
     }
 
     public void selectRandomRoutePopup() {
@@ -812,6 +862,10 @@ public class OutboundOrderSummaryPage extends BasePage {
     public boolean isWeightColumnDisplayed() { return isElementDisplay(getWeightColumn()); }
 
     public boolean isStatusIconActive() { return checkElementAttribute(getStatusIcon(), "class").contains("k-state-disabled"); }
+
+    public boolean isStatusIconDisabled() {
+        return checkElementAttribute(getStatusIcon(), "class").contains("k-state-disabled");
+    }
 
     public boolean isWorkIconActive() { return checkElementAttribute(getWorkIcon(), "class").contains("k-state-disabled"); }
 
@@ -1134,7 +1188,7 @@ public class OutboundOrderSummaryPage extends BasePage {
 
     public WebElement getSearchOrderButton() { return findWebElement(searchOrderButton); }
 
-    public WebElement getAllStatusesDropDown() { return findWebElement(allStatusesDropDown); }
+    /*public WebElement getAllStatusesDropDown() { return findWebElement(allStatusesDropDown); }*/
 
     public WebElement getDoorsDropDown() { return findWebElement(doorsDropDown); }
 
@@ -1365,5 +1419,195 @@ public class OutboundOrderSummaryPage extends BasePage {
     public WebElement getDropdownList() { return findWebElement(dropdownList); }
 
     public List<WebElement> getOutboundRoutes() { return findWebElements(routes); }
+    public void selectOrderStatus(String status) {
+        WebDriver driver = getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        String normalizedStatus = status.equalsIgnoreCase("All statuses") ? "All" : status;
+
+        for (int attempt = 1; attempt <= 3; attempt++) {
+            try {
+                // Step 1: Open dropdown
+                WebElement inputBox = wait.until(ExpectedConditions.elementToBeClickable(
+                        By.cssSelector(".k-multiselect .k-input-inner")
+                ));
+                inputBox.click();
+                Waiters.waitTillLoadingPage(driver);
+                Waiters.waitABit(500);
+
+                // Step 2: Deselect any selected options
+                List<WebElement> checkedBoxes = driver.findElements(
+                        By.cssSelector("li.k-selected input[type='checkbox']:checked")
+                );
+                for (WebElement checkbox : checkedBoxes) {
+                    try {
+                        if (checkbox.isDisplayed()) {
+                            checkbox.click();
+                            Waiters.waitABit(300);
+                        }
+                    } catch (Exception ignored) {
+                    }
+                }
+
+                // Step 3: Find matching label and click checkbox next to it
+                List<WebElement> labels = driver.findElements(
+                        By.xpath("//li[@role='option']//label[normalize-space()]")
+                );
+
+                boolean matched = false;
+                for (WebElement label : labels) {
+                    String labelText = label.getText().trim().toLowerCase();
+                    if (labelText.equals(normalizedStatus.toLowerCase())) {
+                        WebElement checkbox = label.findElement(By.xpath(".//preceding-sibling::input[@type='checkbox']"));
+                        checkbox.click();
+                        matched = true;
+                        break;
+                    }
+                }
+
+                if (!matched) {
+                    throw new TimeoutException("Status '" + normalizedStatus + "' not found.");
+                }
+
+                inputBox.sendKeys(Keys.TAB);
+                Waiters.waitTillLoadingPage(driver);
+                return;
+
+            } catch (StaleElementReferenceException e) {
+                System.out.println("Stale element on attempt " + attempt + ", retrying...");
+            } catch (TimeoutException e) {
+                System.out.println("Timeout: Could not find status '" + status + "' on attempt " + attempt);
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+
+        throw new RuntimeException("Failed to select status: " + status + " after 3 attempts.");
+    }
+
+    public void selectOutboundOrderStatus(String status) {
+        Waiters.waitTillLoadingPage(getDriver());
+
+        // Step 1: Click to open the dropdown
+        WebElement dropdown = getAllStatusesDropDown();
+        Waiters.waitForElementToBeClickable(dropdown);
+        clickOnElement(dropdown);
+        Waiters.waitABit(500); // Allow dropdown to render
+
+        // Step 2: Deselect currently selected statuses (e.g., Open, Shipment In Progress)
+        List<WebElement> selectedCheckboxes = findWebElements(
+                By.cssSelector("li.k-selected input[type='checkbox']:checked")
+        );
+        for (WebElement checkbox : selectedCheckboxes) {
+            try {
+                if (checkbox.isDisplayed()) {
+                    checkbox.click();
+                    Waiters.waitABit(300);
+                }
+            } catch (Exception ignored) {
+            }
+        }
+
+        // Step 3: Filter status if needed
+        WebElement input = findWebElement(By.cssSelector(".k-multiselect .k-input-inner"));
+        input.clear();
+        input.sendKeys(status);
+        Waiters.waitABit(500);
+
+        // Step 4: Find and select the correct checkbox
+        List<WebElement> labels = findWebElements(
+                By.xpath("//li[@role='option']//label[normalize-space()]")
+        );
+
+        boolean found = false;
+        for (WebElement label : labels) {
+            if (label.getText().trim().equalsIgnoreCase(status)) {
+                WebElement checkbox = label.findElement(By.xpath(".//preceding-sibling::input[@type='checkbox']"));
+                if (!checkbox.isSelected()) {
+                    checkbox.click();
+                }
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            throw new RuntimeException("Status '" + status + "' not found in dropdown.");
+        }
+
+        // Step 5: Confirm and wait for filtering
+        input.sendKeys(Keys.TAB);
+        waitUntilInvisible(5, loader);
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+    public void typeScheduledTime(String time) {
+        WebElement timeInput = findWebElement(By.id("cpTile")); // or use getScheduledTimeInput() if defined
+        WebDriver driver = getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(timeInput));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", timeInput);
+            Thread.sleep(300); // slight wait for stability
+
+            // Directly set value using JS
+            ((JavascriptExecutor) driver).executeScript("arguments[0].value = arguments[1];", timeInput, time);
+
+            // Trigger 'change' and 'blur' events to notify Kendo widget
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].dispatchEvent(new Event('input', { bubbles: true }));" +
+                            "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));" +
+                            "arguments[0].dispatchEvent(new Event('blur', { bubbles: true }));",
+                    timeInput
+            );
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to set scheduled time: " + e.getMessage(), e);
+        }
+    }
+    public void typeScheduledDate(String dateValue) {
+        WebDriver driver = getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        By dateInputLocator = By.cssSelector("#cpDate"); // Or your locator method
+
+        try {
+            // Re-fetch the element before interaction
+            WebElement dateInput = wait.until(ExpectedConditions.presenceOfElementLocated(dateInputLocator));
+            wait.until(ExpectedConditions.elementToBeClickable(dateInput));
+
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", dateInput);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].value = arguments[1];", dateInput, dateValue);
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].dispatchEvent(new Event('input', { bubbles: true }));" +
+                            "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));" +
+                            "arguments[0].dispatchEvent(new Event('blur', { bubbles: true }));",
+                    dateInput
+            );
+
+        } catch (StaleElementReferenceException e) {
+            // Retry once if stale
+            WebElement refreshedInput = wait.until(ExpectedConditions.presenceOfElementLocated(dateInputLocator));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].value = arguments[1];", refreshedInput, dateValue);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to set scheduled date: " + e.getMessage(), e);
+        }
+    }
+
+
+    public WebElement getScheduledTimeInput() {
+        return findWebElement(By.cssSelector("#cpTile")); // Replace selector if needed
+    }
+    public void clickAssignItem() {
+        // Wait until loader disappears
+        By loader = By.cssSelector(".loader-bg");
+        Waiters.waitForElementToDisappear(loader); // ← this method should wait for invisibility
+
+        // Now click the button safely
+        clickOnElement(By.cssSelector("#ddAssignItem"));
+    }
+
+
+
 
 }

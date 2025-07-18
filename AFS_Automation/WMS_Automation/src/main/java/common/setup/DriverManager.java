@@ -23,6 +23,8 @@ public class DriverManager {
     public static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
     public static long COUNTER = System.currentTimeMillis();
 
+
+
     public static void buildWebDriver(String browserType) {
         WebDriver createdDriver;
 
@@ -66,11 +68,11 @@ public class DriverManager {
 
         //HEADLESS MODE CODE STARTS
 
-        options.addArguments("--headless=new");
-        options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--no-proxy-server");
-        options.addArguments("--proxy-server='direct://'");
-        options.addArguments("--proxy-bypass-list=*");
+       // options.addArguments("--headless=new");
+       // options.addArguments("--remote-allow-origins=*");
+        //  options.addArguments("--no-proxy-server");
+          //options.addArguments("--proxy-server='direct://'");
+          //options.addArguments("--proxy-bypass-list=*");
         //options.addArguments("window-size=1920,1080");
         //options.addArguments("window-size=1280,720");
         //Fast

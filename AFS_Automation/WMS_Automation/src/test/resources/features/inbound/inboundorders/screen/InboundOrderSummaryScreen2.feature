@@ -84,6 +84,10 @@ Feature: Testing of Inbound Orders functionality
     And Validates orders are present on Inbound Order Summary page
     And Clicks order status "All statuses" on Inbound Order Summary page
     Then Selects order status "Ready To Receive" on Inbound Order Summary page
+
+
+
+
     And Checks Order with index 0 on Inbound Order Summary page
     And Clicks change status option on Inbound Order Summary page
     And Validates popup Change status title for Inbound Order Summary page
@@ -122,7 +126,7 @@ Feature: Testing of Inbound Orders functionality
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
     And Validates orders are present on Inbound Order Summary page
-    Then Selects Order with index 0 and apply "Receive" Order Option on Inbound Order Summary page
+    Then Selects Order with index 1 and apply "Receive" Order Option on Inbound Order Summary page
     And Receiving page loads
     And Receiving page contains all web elements
     And Clicks Route Back button on Inbound Order Summary page

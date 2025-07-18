@@ -1,19 +1,25 @@
 package ui.pages.inbound.receiving;
 
 import common.utils.Waiters;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.BasePage;
+
+import java.time.Duration;
 import java.util.List;
 
 import static common.setup.DriverManager.getDriver;
+import static utilWMS.TestBase.driver;
 
 public class ReceivingPage extends BasePage {
 
     By topIcon = By.xpath("//span[contains(text(), 'Receiving')]");
     By backButton = By.cssSelector("#RouteBackButton");
-    By nextButton = By.xpath("//button[contains(text(), 'Next')]");
-    By okButton = By.xpath("//button[contains(text(), 'Ok')]");
+    By nextButton = By.xpath("//span[contains(text(), 'Next')]");
+    By okButton = By.xpath("//span[contains(@class,'k-button-text') and normalize-space(text())='Ok']");
+
+
     By qtyInput = By.cssSelector("input[placeholder='Enter quantity']");
     By lotInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[text()='Lot']]//input");
     By gtinInput = By.cssSelector("input[placeholder='Enter gtin']");
@@ -22,9 +28,9 @@ public class ReceivingPage extends BasePage {
     By uomDropDown = By.id("ddlUOM");
     By yesButton = By.xpath("//button[contains(text(), 'Yes')]");
     By noButton = By.xpath("//button[contains(text(), 'No')]");
-    By reviewButton = By.xpath("//button[contains(text(), 'Review')]");
+    By reviewButton = By.id("reviewBtn1");
     By receiveButton = By.xpath("//button[contains(text(), 'Receive')]");
-    By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
+    By cancelButton = By.xpath("//span[contains(text(), 'Cancel')]");
     By deleteButton = By.id("btnStageDelete");
     By orderLabel = By.xpath("//label[text()='Order']");
     By orderInput = By.xpath("//label[text()='Order']//..//input");
@@ -244,7 +250,7 @@ public class ReceivingPage extends BasePage {
                 door + "')]")));
     }
 
-    public void checkLoad(int index) {
+    /*public void checkLoad(int index) {
         Waiters.waitForAllElementsToBeDisplay(getLoads().get(index));
         Waiters.waitABit(2000);
         clickOnElement(getLoads().get(index).findElement(By.xpath(".//input[@type='radio']")));
@@ -254,7 +260,7 @@ public class ReceivingPage extends BasePage {
             clickOkButton();
         }
         waitUntilInvisible(2, loader);
-    }
+    }*/
 
     public void enterLocation(String location) {
         Waiters.waitForElementToBeDisplay(getLocationInput());
@@ -341,10 +347,10 @@ public class ReceivingPage extends BasePage {
         clickOnElement(getNoButton());
     }
 
-    public void clickOkButton() {
+   /* public void clickOkButton() {
         Waiters.waitForElementToBeDisplay(okButton);
         clickOnElement(okButton);
-    }
+    }*/
 
     public String getOrderValue() {
         Waiters.waitForElementToBeDisplay(getOrderInput());
@@ -403,7 +409,7 @@ public class ReceivingPage extends BasePage {
 
     public WebElement getClearProduct() { return findWebElement(clearProduct); }
 
-    public WebElement getInvalidEntryTitle() { return findWebElement(invalidEntryTitle); }
+    /*public WebElement getInvalidEntryTitle() { return findWebElement(invalidEntryTitle); }*/
 
     public WebElement getQtyInput() { return findWebElement(qtyInput); }
 
@@ -492,4 +498,74 @@ public class ReceivingPage extends BasePage {
     public List<WebElement> getLoads() { return findWebElements(loadsList); }
 
     public WebElement getDropdownList() { return findWebElement(dropdownList); }
+
+    public void clickOnElement(WebElement element) {
+        waitForOverlayToDisappear();
+        try {
+            Waiters.waitUntilElementClickable(element, 10);
+            element.click();
+        } catch (ElementClickInterceptedException e) {
+            waitForOverlayToDisappear(); // in case a new overlay appeared
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        }
+    }
+
+
+    private void waitForOverlayToDisappear() {
+        By overlay = By.cssSelector(".k-overlay");
+
+        try {
+            // Wait until it appears (if it will)
+            WebDriverWait wait = new WebDriverWait((WebDriver) driver, Duration.ofSeconds(5));
+            wait.until(ExpectedConditions.presenceOfElementLocated(overlay));
+        } catch (Exception ignored) {
+            // it may not appear, that's okay
+        }
+
+        try {
+            // Then wait until it's gone
+            WebDriverWait wait = new WebDriverWait((WebDriver) driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(overlay));
+        } catch (Exception e) {
+            // overlay didn't disappear, fail quietly or log it
+        }
+    }
+
+    public void clickOkButton() { //344
+        waitForOverlayToDisappear(); // wait until overlay disappears
+        Waiters.waitForElementToBeDisplay(okButton);
+        clickOnElement(okButton);
+    }
+
+    public void checkLoad(int index) {
+        Waiters.waitForAllElementsToBeDisplay(getLoads().get(index));
+        Waiters.waitABit(2000); // better: replace with smarter wait
+        clickOnElement(getLoads().get(index).findElement(By.xpath(".//input[@type='radio']")));
+
+        waitForOverlayToDisappear();
+        clickOnElement(okButton);
+
+        Waiters.waitABit(1000); // let the modal or alert render
+        waitForOverlayToDisappear();
+
+        if (getInvalidEntryTitle() != null) {
+            clickOkButton(); // already waits & handles overlay
+        }
+
+        waitUntilInvisible(2, loader); // fine to keep
+    }
+
+
+
+    public WebElement getInvalidEntryTitle() {
+        try {
+            return Waiters.waitUntilElementPresent(invalidEntryTitle, 3); // add this util method
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+
+
 }

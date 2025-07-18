@@ -31,7 +31,7 @@ Feature: Testing of Inbound Orders details screen
     When User finds all orders from start date by index 0 to end date by index 0
     And Clicks order status "All statuses" on Inbound Order Details page
     And Selects order status "Received Order" on Inbound Order Details page
-    Then Selects order with index 0 on Inbound Order Details page
+    Then Selects order with index 1 on Inbound Order Details page
     And Clicks change status option on Inbound Order Details page
     And Validates popup Change status title for Inbound Order Details page
     And Validates Change status popup with Reopen Order status on Inbound Order Details page
@@ -75,7 +75,7 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0 to end date by index 0
-    Then Selects order with index 0 on Inbound Order Summary page
+    Then Selects order with index 1 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And Validates Received, Staged, Over and Remainder are present on Inbound Order Details page with correct color
@@ -102,7 +102,7 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0 to end date by index 0
-    Then Selects order with index 0 on Inbound Order Summary page
+    Then Selects order with index 1 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And User applies order "Receive" option on Inbound Order Details page

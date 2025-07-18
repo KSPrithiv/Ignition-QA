@@ -1,6 +1,7 @@
 package steps.outbound.loadplanning;
 
 import common.constants.FilePaths;
+import common.utils.WebDriverUtils;
 import common.utils.objectmapper.ObjectMapperWrapper;
 
 import io.cucumber.java.Before;
@@ -13,10 +14,7 @@ import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import objects.inbound.InboundOrderLoadsDTO;
 import objects.outbound.OutboundOrderLoadsDTO;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -468,8 +466,17 @@ public class OutboundTruckInfoPageSteps {
     @And("Clicks edit icon for first assignment on Assignments popup")
     public void selectEditFirstAssignment() {
         log.info("Selecting Edit first assignment on Truck Info page");
-        outboundTruckInfoPage.selectEditFirstAssignment();
+
+        // Get WebDriver from any known element on the page (e.g., first assignment card)
+        List<WebElement> assignments = outboundTruckInfoPage.getAssignments();
+        if (assignments == null || assignments.isEmpty()) {
+            throw new RuntimeException("No assignment elements available to get driver.");
+        }
+
+        WebDriver driver = WebDriverUtils.getDriverFromElement(assignments.get(0));
+        outboundTruckInfoPage.selectEditFirstAssignment(driver);
     }
+
 
     @Step
     @And("Clicks decrease quantity on Split task popup")

@@ -15,8 +15,8 @@ public class AddAllocationBatchPage extends BasePage {
     By codeInput = By.cssSelector("#txtBatchCode");
     By batchLabel = By.cssSelector("#ddlBatchType-label");
     By batchInput = By.cssSelector("#ddlBatchType");
-    By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
-    By saveButton = By.xpath("//button[contains(text(), 'Save')]");
+    By cancelButton = By.xpath("//span[contains(text(), 'Cancel')]");
+    By saveButton = By.xpath("//span[contains(text(), 'Save')]");
     By notificationTitle = By.cssSelector(".toast-title");
     By notificationMessage = By.cssSelector(".toast-message");
     By loader = By.cssSelector(".loader");

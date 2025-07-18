@@ -28,12 +28,12 @@ public class SetupProductPage extends BasePage {
     By searchProductButton = By.xpath("//div[contains(@class, 'countProductSearchControl')]//button[contains(@class, 'i-button--icon-only')]");
     By addNewProductButton = By.xpath("//div[contains(@class, 'reset-padding-product')]//button[@action='New']");
     By copyProductButton = By.xpath("//div[contains(@class, 'reset-padding-product')]//button[@action='Copy']");
-    By editProductButton = By.xpath("//div[contains(@class, 'reset-padding-product')]//button[@action='Edit']");
+    By editProductButton = By.xpath("//button[@id='productConfigurationButton_Edit' and @data-test-id='CPProductConfigurationToolbarButton_productConfigurationButton_Edit' and contains(@class, 'k-button') and contains(., 'Edit')]");
     By deleteButton = By.xpath("//div[contains(@class, 'reset-padding-product')]//button[@action='Delete']");
     By cancelButton = By.xpath("//div[contains(@class, 'reset-padding-product')]//button[@action='Cancel']");
-    By saveButton = By.xpath("//div[contains(@class, 'reset-padding-product')]//button[@action='Save']");
+    By saveButton = By.xpath("//button[@id='productConfigurationButton_Save' and normalize-space()='Save']");
     By cancelBtn = By.xpath("//div[contains(@class, 'k-dialog-buttongroup')]//button[@content='Cancel']");
-    By saveBtn = By.xpath("//div[contains(@class, 'k-dialog-buttongroup')]//button[@content='Save']");
+    By saveBtn = By.xpath("//button[normalize-space()='Save' and contains(@class, 'k-button') and contains(@class, 'k-button-solid-primary')]");
     By addNewWareHouseButton = By.xpath("//div[contains(@class, 'i-toolbar-container ')]//button[@action='New']");
     By setupProductLabel = By.xpath("//div[@id='setupContentPage']//span[text()='Product']");
     By setupAliasLabel = By.xpath("//div[@id='setupContentPage']//span[text()='Alias']");

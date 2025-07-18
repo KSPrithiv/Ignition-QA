@@ -10,7 +10,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Waits for Outbound Load Planning page to load
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
-    And Selects Route by index 0 for Load Planning
+    And Selects Route by index 1 for Load Planning
     And Clicks Done button on Load Planning page
     And Waits for Outbound Truck Info page to load
     And User gets all assignments from Truck diagram
@@ -39,7 +39,9 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Exit button on Truck Info page
     #code to handle warning message YES/NO to "release Assignments"
     And Validates Yes and No buttons are present
+# upadted yes button validated
     And Validates Yes button is active
+    And Clicks Yes button on Warning Message
     And Clicks Yes button on Warning Message
 
   @3
@@ -51,7 +53,7 @@ Feature: Testing of Outbound Load Planning functionality
 #    And Waits for Outbound Load Planning page to load
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
-    And Selects Route by index 0 for Load Planning
+    And Selects Route by index 1 for Load Planning
     And Clicks Done button on Load Planning page
     And Waits for Outbound Truck Info page to load
     And User gets all assignments from Truck diagram
@@ -80,17 +82,18 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Ok button on Truck Info
 
     And Select first assignment on Truck Info page
-
+#updated to click on Assignments
+    And Validates First Assignment popup is present
     And Clicks edit icon for first assignment on Assignments popup
     And Validates Split task popup displayed
     And Clicks decrease quantity on Split task popup
     And Clicks Save button on Split task popup
-    And Clicks reason dropdown on Split task popup
-    And Selects reason "Short Order" from dropdown on Split task popup
-    And Clicks Save button on Split task popup
+#    And Clicks reason dropdown on Split task popup
+#    And Selects reason "Short Order" from dropdown on Split task popup
+#    And Clicks Save button on Split task popup
 
   @5
-  Scenario: Checking Load Planning - split product pick task edit 003
+#  Scenario: Checking Load Planning - split product pick task edit 003
 #    Given User signs in the application
 #    And Main page is loaded
 #    And DockManagement Summary Page is validated
@@ -101,19 +104,19 @@ Feature: Testing of Outbound Load Planning functionality
 #    And Selects Route by index 0 for Load Planning
 #    And Clicks Done button on Load Planning page
 #    And Waits for Outbound Truck Info page to load
-    And User gets all assignments from Truck diagram
-    And Clicks Reprocess button on Truck Info page
-    And Clicks Yes button on Rebuilding Assignments popup
-    And Clicks Ok button on Truck Info
-    And Select first assignment on Truck Info page
+#    And User gets all assignments from Truck diagram
+#    And Clicks Reprocess button on Truck Info page
+#    And Clicks Yes button on Rebuilding Assignments popup
+#    And Clicks Ok button on Truck Info
+#    And Select first assignment on Truck Info page
 
-    And Clicks edit icon for first assignment on Assignments popup
-    And Validates Split task popup displayed
-    And Clicks decrease quantity on Split task popup
-    And Clicks Save button on Split task popup
-    And Clicks reason dropdown on Split task popup
-    And Selects reason "Short Order" from dropdown on Split task popup
-    And Clicks Save button on Split task popup
+#    And Clicks edit icon for first assignment on Assignments popup
+#    And Validates Split task popup displayed
+#    And Clicks decrease quantity on Split task popup
+#    And Clicks Save button on Split task popup
+#    And Clicks reason dropdown on Split task popup
+#    And Selects reason "Short Order" from dropdown on Split task popup
+#    And Clicks Save button on Split task popup
 
   @6
   Scenario: Checking Load Planning - Recalculate based on selected Assignments

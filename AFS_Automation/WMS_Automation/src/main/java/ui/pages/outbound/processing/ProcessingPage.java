@@ -5,11 +5,17 @@ import objects.processedorderdata.OrdersListDTO;
 import objects.processedorderdata.ProductsDTO;
 import objects.processedorderdata.ResponseDTO;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.BasePage;
+
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import static common.setup.DriverManager.getDriver;
@@ -39,10 +45,10 @@ public class ProcessingPage extends BasePage {
     By orderDetails = By.cssSelector("#divOrderScreen");
     By buttonClose = By.cssSelector("#btnWQClose");
     By batchErrorPopUp = By.cssSelector("#dialogTextContent");
-    By okButton = By.xpath("//button[contains(text(), 'OK')]");
+    By okButton = By.xpath("//span[contains(text(), 'OK')]/parent::button");
     By deleteBatchPopup = By.cssSelector(".k-window-content");
-    By yesButton = By.xpath("//button[contains(text(), 'Yes')]");
-    By noButton = By.xpath("//button[contains(text(), 'No')]");
+    By yesButton = By.xpath("//span[contains(text(), 'Yes')]");
+    By noButton = By.xpath("//span[contains(text(), 'No')]");
     By dropdownList = By.id("dropdownList");
     By dialogContent = By.cssSelector(".k-dialog-content");
     By notificationMsg = By.cssSelector(".toast-message");
@@ -405,10 +411,21 @@ public class ProcessingPage extends BasePage {
         return isElementDisplay(getProcessingGridHeader());
     }
 
-    public boolean isProcessingGridTableDisplayed() {
+  /*  public boolean isProcessingGridTableDisplayed() {
         Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getProcessingGridTable());
-    }
+    }*/
+  public boolean isProcessingGridTableDisplayed() {
+      Waiters.waitTillLoadingPage(getDriver());
+      try {
+          WebElement tableBody = getProcessingGridTable();
+          List<WebElement> rows = tableBody.findElements(By.tagName("tr"));
+          return tableBody.isDisplayed() && !rows.isEmpty();
+      } catch (Exception e) {
+          return false;
+      }
+  }
+
 
     public boolean isAllOrdersListDisplayed() {
         Waiters.waitTillLoadingPage(getDriver());
@@ -461,11 +478,33 @@ public class ProcessingPage extends BasePage {
         return isElementDisplay(By.cssSelector("#dtProcessingDate"));
     }
 
-    public void clickCalendarOption() {
+  /*  public void clickCalendarOption() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(By.cssSelector("a[title='Toggle calendar']"));
         clickOnElement(By.cssSelector("a[title='Toggle calendar']"));
+    }*/
+
+    public void clickCalendarOption() {
+        try {
+            By calendarToggle = By.cssSelector("button[title='Toggle calendar']");
+
+            Waiters.waitTillLoadingPage(getDriver());
+
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+            WebElement calendarIcon = wait.until(ExpectedConditions.elementToBeClickable(calendarToggle));
+            calendarIcon.click();
+
+            System.out.println(" Calendar toggle clicked successfully.");
+
+        } catch (TimeoutException | NoSuchElementException e) {
+            System.err.println("Failed to locate or click the calendar toggle.");
+            System.err.println("Page Title: " + getDriver().getTitle());
+            System.err.println("Current URL: " + getDriver().getCurrentUrl());
+            throw e;
+        }
     }
+
+
 
     public boolean isCalendarDisplayed() {
         Waiters.waitTillLoadingPage(getDriver());

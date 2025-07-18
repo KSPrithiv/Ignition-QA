@@ -68,7 +68,7 @@ public class DockManagementPageSteps {
 
     @Step
     @And("User clicks item {int} on Dock Management page")
-    public void clickItemByIndex(int index) {
+    public void clickItemByIndex(int index) throws InterruptedException {
         log.info("User clicks item on Dock Management page");
         dockManagementLookupPage.clickItemByIndex(index);
     }

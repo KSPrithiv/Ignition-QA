@@ -3,15 +3,22 @@ package ui.pages.inbound.loads;
 import common.constants.TimeFormats;
 import common.utils.Waiters;
 import common.utils.time.TimeConversion;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.BasePage;
+
+import java.time.Duration;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
 import static common.setup.DriverManager.getDriver;
+import static org.testng.AssertJUnit.assertTrue;
+import static utilWMS.TestBase.driver;
 
 public class InboundLoadSummaryPage extends BasePage {
+    private ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     By topIcon = By.xpath("//span[contains(text(), 'Inbound load summary')]");
     By dropdownList = By.id("dropdownList");
     By cardRouteSummaryFilter = By.cssSelector("#cardRouteSummaryFilter");
@@ -24,15 +31,15 @@ public class InboundLoadSummaryPage extends BasePage {
     By enterNameInput = By.cssSelector("input[placeholder='Enter name']");
     By enterProductInput = By.cssSelector("input[placeholder='Enter a product']");
     By searchProductButton = By.cssSelector(".autocomplete_custom button.k-button-icontext");
-    By loadOptionsButton = By.cssSelector("button[aria-label='Load options dropdownbutton']");
+    By loadOptionsButton = By.xpath("//span[text()='Load options']");
     By tableContent = By.cssSelector(".k-grid-table");
     By invalidEntryPopup = By.cssSelector(".k-window-title");
     By dialogPopup = By.cssSelector(".k-dialog-title");
     By dialogContent = By.cssSelector(".k-dialog-content");
     By dialogTextContent = By.id("dialogTextContent");
-    By okButton = By.xpath("//button[contains(text(), 'OK')]");
-    By saveButton = By.xpath("//button[contains(text(), 'Save')]");
-    By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
+    By okButton = By.xpath("//span[contains(text(), 'Ok')]");
+    By saveButton = By.xpath("//span[contains(text(), 'Save')]");
+    By cancelButton = By.xpath("//span[contains(text(), 'Cancel')]");
     By noButton = By.xpath("//button[contains(text(), 'No')]");
     By yesButton = By.xpath("//button[contains(text(), 'Yes')]");
     By routeBackButton = By.id("RouteBackButton");
@@ -57,13 +64,13 @@ public class InboundLoadSummaryPage extends BasePage {
     By scheduledDateLabel = By.cssSelector("#cpDate-label");
     By scheduledDate = By.cssSelector("#cpDate");
     By carrierLabel = By.xpath("//label[contains(text(), 'Carrier')]");
-    By carrierInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Carrier')]]//span[@class='k-input']");
+    By carrierInput = By.xpath("(//span[@role='combobox' and //label[contains(text(), 'Carrier')]])[3]");
     By trailerLabel = By.xpath("//label[contains(text(), 'Trailer')]");
-    By trailerInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Trailer')]]//span[@class='k-input']");
+    By trailerInput = By.xpath("(//span[@role='combobox' and //label[contains(text(), 'Carrier')]])[4]");
     By doorLabel = By.xpath("//label[contains(text(), 'Door')]");
-    By doorInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Door')]]//span[@class='k-input']");
+    By doorInput = By.xpath("(//span[@role='combobox' and //label[contains(text(), 'Carrier')]])[6]");
     By loadTypeLabel = By.xpath("//label[contains(text(), 'Load type')]");
-    By loadTypeInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Load type')]]//span[@class='k-input']");
+    By loadTypeInput = By.xpath("(//span[@role='combobox' and //label[contains(text(), 'Carrier')]])[2]");
     By scheduledTimeLabel = By.cssSelector("#cpTile-label");
     By scheduledTimeInput = By.cssSelector("#cpTile");
     By driverLabel = By.xpath("//label[contains(text(), 'Driver')]");
@@ -89,8 +96,8 @@ public class InboundLoadSummaryPage extends BasePage {
     By qtyField = By.xpath("//span[contains(text(), 'Qty')]");
     By cubeField = By.xpath("//span[contains(text(), 'Cube')]");
     By weightField = By.xpath("//span[contains(text(), 'Weight')]");
-    By imagesButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Images')]");
-    By commentsButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Comments')]");
+    By imagesButton = By.xpath("(//button[@id='btnImageNo'])[2]");
+    By commentsButton = By.xpath("(//button[@id='btnImageNo'])[1]");
     By receivedQty = By.xpath("//span[contains(@class, 'dot--green')]/following-sibling::span[contains(text(), 'Received')]");
     By stagedQty = By.xpath("//span[contains(@class, 'dot--yellow')]/following-sibling::span[contains(text(), 'Staged')]");
     By redQty = By.xpath("//span[contains(@class, 'dot--red')]/following-sibling::span[contains(text(), 'Over')]");
@@ -116,7 +123,7 @@ public class InboundLoadSummaryPage extends BasePage {
     By loader = By.cssSelector(".loader");
     By searchInput = By.cssSelector("#SummaryInboundLoad_DataSearch");
     By clearSearchButton = By.cssSelector(".i-search-box .i-search-box__clear");
-    By selectFilesBtn = By.xpath("//div[@aria-label='Select files']");
+    By selectFilesBtn = By.xpath("//span[contains(text(), 'Select files')]");
     By loadImageLabel = By.xpath("//span[text()='Load image(s)']");
     By saveEditButton = By.id("saveEditButton");
     By inboundImageCaptureButton = By.cssSelector(".inboundImageCaptureOpButtonDiv button");
@@ -227,7 +234,7 @@ public class InboundLoadSummaryPage extends BasePage {
         return getTableContent().findElements(By.xpath(".//tr")).size();
     }
 
-    public void selectLoadByLoadNumber(int loadNum) {
+    /*public void selectLoadByLoadNumber(int loadNum) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> loads = getTableContent().findElements(By.xpath(".//tr[@class='k-detail-row']"));
@@ -236,7 +243,7 @@ public class InboundLoadSummaryPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(loads.get(loadNum).findElements(By.xpath(".//input")).get(0));
         waitUntilInvisible(2, loader);
-    }
+    }*/
 
     public void clickLoadByLoadNumber(int loadNum) {
         Waiters.waitTillLoadingPage(getDriver());
@@ -286,13 +293,13 @@ public class InboundLoadSummaryPage extends BasePage {
         clickOnElement(clearSearchButton);
     }
 
-    public void cleanSearchInput() {
+   /* public void cleanSearchInput() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getSearchInput());
         doubleClick(getSearchInput());
         pressDelete(getSearchInput());
         pressEnter(getSearchInput());
-    }
+    }*/
 
     public void cleanProduct() {
         Waiters.waitTillLoadingPage(getDriver());
@@ -300,13 +307,13 @@ public class InboundLoadSummaryPage extends BasePage {
         waitUntilInvisible(4, loader);
     }
 
-    public void cleanLoad() {
+    /*public void cleanLoad() {
         Waiters.waitForElementToBeDisplay(tableContent);
         doubleClick(getEnterLoadInput());
         pressDelete(getEnterLoadInput());
         pressEnter(getEnterLoadInput());
         waitUntilInvisible(2, loader);
-    }
+    }*/
 
     public String getGridTableRowContent(int row) {
         Waiters.waitTillLoadingPage(getDriver());
@@ -314,11 +321,11 @@ public class InboundLoadSummaryPage extends BasePage {
         return getText(getTableContent().findElements(By.xpath(".//tr")).get(row));
     }
 
-    public void clickCarrierDropdown(String carrier) {
+    /*public void clickCarrierDropdown(String carrier) {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getCarrierDropdown(carrier));
         Waiters.waitTillLoadingPage(getDriver());
-    }
+    }*/
 
     public void clickChangeStatusOption() {
         Waiters.waitTillLoadingPage(getDriver());
@@ -420,12 +427,12 @@ public class InboundLoadSummaryPage extends BasePage {
                 .get(index));
     }
 
-    public void typeValueInSearch(String text) {
+    /*public void typeValueInSearch(String text) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getSearchInput());
         inputText(getSearchInput(), text);
         pressEnter(getSearchInput());
-    }
+    }*/
 
     public void typeDateLoadStart(CharSequence date) {
         Waiters.waitTillLoadingPage(getDriver());
@@ -470,7 +477,7 @@ public class InboundLoadSummaryPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
     }
 
-    public void typeFutureDateLoadEnd(int days) {
+  /*  public void typeFutureDateLoadEnd(int days) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getDateRouteEnd());
         doubleClick(getDateRouteEnd());
@@ -479,7 +486,7 @@ public class InboundLoadSummaryPage extends BasePage {
                 .getFormattedDateTime(TimeFormats.format_MMddyyyy), TimeFormats.format_MMddyyyy));
         pressEnter(getDateRouteEnd());
         Waiters.waitTillLoadingPage(getDriver());
-    }
+    }*/
 
     public void typeDateRouteEnd(CharSequence date) {
         Waiters.waitTillLoadingPage(getDriver());
@@ -491,13 +498,13 @@ public class InboundLoadSummaryPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
     }
 
-    public void typeProduct(CharSequence product) {
+    /*public void typeProduct(CharSequence product) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getEnterProductInput());
         inputText(getEnterProductInput(), product);
         pressEnter(getEnterProductInput());
         Waiters.waitTillLoadingPage(getDriver());
-    }
+    }*/
 
     public void typeTemperature(CharSequence temperature) {
         Waiters.waitTillLoadingPage(getDriver());
@@ -599,9 +606,13 @@ public class InboundLoadSummaryPage extends BasePage {
     }
 
     public boolean isStatusDropDownPresent() {
-        Waiters.waitTillLoadingPage(getDriver());
+       /* Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(By.xpath("//span[@class='k-input' and text()='All statuses']"));
-        return isElementPresent(getStatusDropDown("All statuses"));
+        return isElementPresent(getStatusDropDown("All statuses"));*/
+        Waiters.waitTillLoadingPage(getDriver());
+        By statusDropdownLocator = By.xpath("//span[contains(@class,'k-chip-label') and contains(text(),'Status selected')]");
+        Waiters.waitForElementToBeDisplay(statusDropdownLocator);
+        return isElementPresent(statusDropdownLocator);
     }
 
     public boolean isCardRouteSummaryFilterPresent() {
@@ -1069,16 +1080,20 @@ public class InboundLoadSummaryPage extends BasePage {
         return getElementAttribute(getDataOption(), "aria-disabled");
     }
 
-    public String isEditDisabled() {
+   /* public String isEditDisabled() {
         return getElementAttribute(findWebElement(By.xpath("//li[@role='menuItem' and text()='Edit']")), "aria-disabled");
-    }
+    }*/
+   public String isEditDisabled() {
+       WebElement editButton = findWebElement(By.xpath("//span[text()='Edit']/ancestor::li"));
+       return getElementAttribute(editButton, "aria-disabled");
+   }
 
     public String isSourceDisabled() {
-        return getElementAttribute(findWebElement(By.xpath("//li[@role='menuItem' and text()='Source']")), "aria-disabled");
+        return getElementAttribute(findWebElement(By.xpath("//span[text()='Source']/ancestor::li")), "aria-disabled");
     }
 
     public String isReceiveDisabled() {
-        return getElementAttribute(findWebElement(By.xpath("//li[@role='menuItem' and text()='Receive']")), "aria-disabled");
+        return getElementAttribute(findWebElement(By.xpath("//span[text()='Receive']/ancestor::li")), "aria-disabled");
     }
 
     public WebElement getTopIcon() {
@@ -1441,7 +1456,10 @@ public class InboundLoadSummaryPage extends BasePage {
 
     public WebElement getSaveBtn() { return findWebElement(saveBtn); }
 
-    public WebElement getSearchInput() { return findWebElement(searchInput); }
+    public By getSearchInput() {
+        return By.id("button_212"); // Use the actual id of the button you want to interact with
+    }
+
 
     public WebElement getSelectFilesBtn() { return findWebElement(selectFilesBtn); }
 
@@ -1454,4 +1472,399 @@ public class InboundLoadSummaryPage extends BasePage {
     public List<WebElement> getlayoutexpand() { return findWebElements(layoutexpand); }
 
     public WebElement getlayoutcollapse() { return findWebElement(layoutcollapse); }
+
+    public void typeFutureDateLoadEnd(int days) {
+        // Wait for the page to load completely and the necessary elements to be available
+        Waiters.waitTillLoadingPage(getDriver());
+
+        // Re-locate the element just before interacting with it
+        WebElement dateRouteEndElement = findWebElement(dateRouteEnd);
+
+        // Interact with the element
+        try {
+            // Double click, delete previous value and type new value
+            doubleClick(dateRouteEndElement);
+            pressDelete(dateRouteEndElement);
+
+            // Calculate future date and input the value
+            String futureDate = TimeConversion.futureDate(days, Calendar.DATE, TimeConversion.getFormattedDateTime(TimeFormats.format_MMddyyyy), TimeFormats.format_MMddyyyy);
+            inputText(dateRouteEndElement, futureDate);
+            pressEnter(dateRouteEndElement);
+        } catch (StaleElementReferenceException e) {
+            // If the element is stale, re-fetch and interact again
+            dateRouteEndElement = findWebElement(dateRouteEnd);
+            doubleClick(dateRouteEndElement);
+            pressDelete(dateRouteEndElement);
+
+            String futureDate = TimeConversion.futureDate(days, Calendar.DATE, TimeConversion.getFormattedDateTime(TimeFormats.format_MMddyyyy), TimeFormats.format_MMddyyyy);
+            inputText(dateRouteEndElement, futureDate);
+            pressEnter(dateRouteEndElement);
+        }
+
+        // Wait for the page to finish processing after the interaction
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
+    public void cleanLoad() {
+        try {
+            // Wait for table content visibility with increased timeout
+            Waiters.waitForElementToBeDisplay(tableContent, 90);
+
+            // Check if the table is visible before proceeding
+            if (isElementVisible(tableContent)) {
+                doubleClick(getEnterLoadInput());
+                pressDelete(getEnterLoadInput());
+                pressEnter(getEnterLoadInput());
+            } else {
+                System.out.println("Table is not visible!");
+            }
+
+        } catch (TimeoutException e) {
+            System.out.println("Timeout waiting for table to be visible: " + e.getMessage());
+        } catch (StaleElementReferenceException e) {
+            System.out.println("Stale Element Reference Exception: " + e.getMessage());
+            // Retry logic
+            Waiters.waitForElementToBeDisplay(tableContent, 90);
+            if (isElementVisible(tableContent)) {
+                doubleClick(getEnterLoadInput());
+                pressDelete(getEnterLoadInput());
+                pressEnter(getEnterLoadInput());
+            }
+        }
+
+        // Wait for the loader to disappear
+        waitUntilInvisible(2, loader);
+    }
+
+    public void clickOrderStatus(String... statuses) {
+        WebDriver driver = getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        try {
+            // Step 1: Open dropdown
+            WebElement inputBox = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".k-multiselect .k-input-inner")));
+            inputBox.click();
+            Waiters.waitTillLoadingPage(driver);
+            Waiters.waitABit(500);
+
+            // Step 2: Deselect all current selections
+            List<WebElement> selected = driver.findElements(By.cssSelector("li.k-selected input[type='checkbox']:checked"));
+            for (WebElement checkbox : selected) {
+                if (checkbox.isDisplayed()) {
+                    checkbox.click();
+                    Waiters.waitABit(300);
+                }
+            }
+
+            // Step 3: Select requested statuses
+            for (String status : statuses) {
+                String normalized = status.equalsIgnoreCase("All statuses") ? "All" : status;
+
+                List<WebElement> labels = driver.findElements(By.xpath("//li[@role='option']//label[normalize-space()]"));
+                boolean found = false;
+
+                for (WebElement label : labels) {
+                    if (label.getText().trim().equalsIgnoreCase(normalized)) {
+                        WebElement checkbox = label.findElement(By.xpath(".//preceding-sibling::input[@type='checkbox']"));
+                        checkbox.click();
+                        Waiters.waitABit(300);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    throw new RuntimeException("Status '" + status + "' not found.");
+                }
+            }
+
+            // Step 4: Close dropdown
+            inputBox.sendKeys(Keys.TAB);
+            Waiters.waitTillLoadingPage(driver);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed in clickOrderStatus: " + e.getMessage());
+        }
+    }
+
+    public void selectOrderStatus(String status) {
+        WebDriver driver = getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        String normalizedStatus = status.equalsIgnoreCase("All statuses") ? "All" : status;
+
+        for (int attempt = 1; attempt <= 3; attempt++) {
+            try {
+                // Step 1: Open dropdown
+                WebElement inputBox = wait.until(ExpectedConditions.elementToBeClickable(
+                        By.cssSelector(".k-multiselect .k-input-inner")
+                ));
+                inputBox.click();
+                Waiters.waitTillLoadingPage(driver);
+                Waiters.waitABit(500);
+
+                // Step 2: Deselect any selected options
+                List<WebElement> checkedBoxes = driver.findElements(
+                        By.cssSelector("li.k-selected input[type='checkbox']:checked")
+                );
+                for (WebElement checkbox : checkedBoxes) {
+                    try {
+                        if (checkbox.isDisplayed()) {
+                            checkbox.click();
+                            Waiters.waitABit(300);
+                        }
+                    } catch (Exception ignored) {
+                    }
+                }
+
+                // Step 3: Find matching label and click checkbox next to it
+                List<WebElement> labels = driver.findElements(
+                        By.xpath("//li[@role='option']//label[normalize-space()]")
+                );
+
+                boolean matched = false;
+                for (WebElement label : labels) {
+                    String labelText = label.getText().trim().toLowerCase();
+                    if (labelText.equals(normalizedStatus.toLowerCase())) {
+                        WebElement checkbox = label.findElement(By.xpath(".//preceding-sibling::input[@type='checkbox']"));
+                        checkbox.click();
+                        matched = true;
+                        break;
+                    }
+                }
+
+                if (!matched) {
+                    throw new TimeoutException("Status '" + normalizedStatus + "' not found.");
+                }
+
+                inputBox.sendKeys(Keys.TAB);
+                Waiters.waitTillLoadingPage(driver);
+                return;
+
+            } catch (StaleElementReferenceException e) {
+                System.out.println("Stale element on attempt " + attempt + ", retrying...");
+            } catch (TimeoutException e) {
+                System.out.println("Timeout: Could not find status '" + status + "' on attempt " + attempt);
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+
+        throw new RuntimeException("Failed to select status: " + status + " after 3 attempts.");
+    }
+
+    public void clickCarrierDropdown(String carrier) {
+        Waiters.waitTillLoadingPage(getDriver());
+
+        // Locate the dropdown based on the visible selected value
+        String xpath = "//span[contains(@class, 'k-input-value-text') and normalize-space(text())='" + carrier + "']/ancestor::span[contains(@class, 'k-dropdownlist')]";
+
+        WebElement dropdown = findWebElement(By.xpath(xpath));
+        clickOnElement(dropdown);
+
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
+    public void typeValueInSearch(String productCode) {
+        WebDriver driverInstance = getDriver();  // Ensure proper WebDriver initialization
+        WebDriverWait wait = new WebDriverWait(driverInstance, Duration.ofSeconds(60)); // Use explicit wait for up to 60 seconds
+
+        try {
+            // Wait for the product input field to be clickable
+            WebElement searchInputElement = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input.k-input-inner[placeholder='Enter a product']")));
+
+            if (searchInputElement != null) {
+                // Debugging: Log to verify the element is found
+                System.out.println("Element found, typing value: " + productCode);
+
+                // Click on the input field to ensure it's focused
+                searchInputElement.click();
+
+                // Clear any existing text in the input field
+                searchInputElement.clear();
+
+                // Type the new product code into the input field
+                searchInputElement.sendKeys(productCode);
+
+                // Optionally, press Enter if necessary
+                searchInputElement.sendKeys(Keys.ENTER);
+
+                // Wait until the page is done processing (if needed)
+                Waiters.waitTillLoadingPage(driverInstance);
+            } else {
+                // Debugging: Log an error if the element is not found
+                System.out.println("Element not found.");
+            }
+        } catch (StaleElementReferenceException e) {
+            // Handle the case where the element became stale and retry
+            System.out.println("Stale element detected, retrying...");
+            typeValueInSearch(productCode);  // Retry logic
+        } catch (TimeoutException e) {
+            // Handle the timeout exception if the element is not found within the wait time
+            System.out.println("Timeout waiting for the element: " + e.getMessage());
+        } catch (Exception e) {
+            // Handle any other exceptions and log the error message
+            System.out.println("Error during typing product code: " + e.getMessage());
+        }
+    }
+
+
+
+
+    public void clickClearButton() {
+        // Look for the clear button using its class name
+        WebElement clearButton = findWebElement(By.className("k-clear-value"));
+        if (clearButton != null && clearButton.isDisplayed()) {
+            clickOnElement(clearButton);  // Click on the clear button
+        } else {
+            System.out.println("Clear button is not visible or found.");
+        }
+    }
+
+
+
+    public void typeProduct(String productCode) {
+        WebElement productInputField = findWebElement(enterProductInput);
+
+        // Wait for the element to be displayed and enabled
+        Waiters.waitForElementToBeDisplay(productInputField);
+
+        // Click on the input field to ensure it is focused
+        productInputField.click();
+
+        // Explicitly clear the field by selecting all text and deleting it
+        productInputField.sendKeys(Keys.CONTROL + "a"); // Select all text
+        productInputField.sendKeys(Keys.DELETE); // Delete selected text
+
+        // Ensure the field is cleared, and enter the new product code
+        inputText(productInputField, productCode);
+
+        // Optionally press Enter after typing the product code if required
+        pressEnter(productInputField);
+
+        // Wait for the page or action to load after entering the product code
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
+
+    public void cleanSearchInput() {
+        // Wait for the page to load and the search input field to be displayed
+        Waiters.waitTillLoadingPage(getDriver());
+
+        // Get the search input element using XPath
+        WebElement searchInputElement = findWebElement(By.xpath("(//span[@title='clear'])[2]")); // Replace with correct XPath
+        Waiters.waitForElementToBeDisplay(searchInputElement);  // Wait until it's visible
+
+        // Explicitly clear the input field by selecting all text and sending the delete key
+        searchInputElement.click();
+        searchInputElement.sendKeys(Keys.CONTROL + "a"); // Select all text
+        searchInputElement.sendKeys(Keys.DELETE); // Delete the selected text
+
+        // Ensure the input field is completely cleared
+        if (!searchInputElement.getAttribute("value").isEmpty()) {
+            searchInputElement.clear(); // Clear the field if there is any value left
+        }
+
+        // Wait for the second clear button to be visible in the DOM
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10)); // Adjust timeout if necessary
+        try {
+            // Wait for the second clear button to be present and visible
+            WebElement clearButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[@title='clear'])[2]")));
+
+            if (clearButton.isDisplayed() && clearButton.isEnabled()) {
+                clearButton.click();  // Click the clear button
+            } else {
+                System.out.println("Clear button is not visible or enabled.");
+            }
+        } catch (TimeoutException e) {
+            System.out.println("Clear button not found within the timeout period: " + e.getMessage());
+        }
+
+        // Wait for any loader to disappear (optional)
+        waitUntilInvisible(2, loader);
+    }
+
+    public void selectLoadByLoadNumber(int orderNum) {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(tableContent);
+
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+
+        for (int attempt = 0; attempt < 3; attempt++) {
+            try {
+                List<WebElement> orders = findWebElements(By.xpath("//tr[contains(@class, 'k-detail-row')]//td[contains(@class, 'k-detail-cell')]"));
+                WebElement order = orders.get(orderNum);
+                clickOnElement(order);
+                Waiters.waitTillLoadingPage(getDriver());
+                break;
+            } catch (StaleElementReferenceException e) {
+                System.out.println("Attempt " + (attempt + 1) + ": Stale Element Reference Exception, retrying...");
+                Waiters.waitABit(1000); // Wait before retrying
+            }
+        }
+    }
+
+
+
+    // Helper method to wait until the element is clickable
+    public void waitForElementToBeClickable(WebElement element, int timeoutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+
+
+
+
+    public void typeProductByIndex(int index) {
+        Waiters.waitTillLoadingPage(getDriver()); // Wait for the page to load
+        WebElement productInputField = getEnterProductInput(); // Find the product input field
+
+        // Locate and select the product from the list by index
+        List<WebElement> productCodes = getTableContent().findElements(By.xpath("//someXPathToGetProductCodes"));
+        if (productCodes.size() > index) {
+            String productCode = productCodes.get(index).getText();
+            inputText(productInputField, productCode);  // Type the product code in the input field
+            pressEnter(productInputField);  // Press Enter after typing
+        }
+    }
+    public void clearProduct() {
+        // Wait for the element to be visible
+        WebElement productInputField = findWebElement(enterProductInput);  // Adjust the locator as needed
+
+        // Ensure the element is present before interacting with it
+        if (productInputField != null) {
+            Waiters.waitForElementToBeDisplay(productInputField);  // Wait for the element to be visible
+            clear(productInputField);  // Clear the input field
+        } else {
+            throw new NoSuchElementException("Product input field not found");
+        }
+    }
+
+
+
+
+    public void typeSpecificProduct(String productCode) {
+        Waiters.waitTillLoadingPage(getDriver());
+        WebElement productInputField = getEnterProductInput();  // Find the product input field
+
+        // Type the specific product code and press Enter
+        inputText(productInputField, productCode);
+        pressEnter(productInputField);  // Press Enter after typing the product code
+    }
+    public void validateItemsFoundNotDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
+        WebElement itemsFoundLabel = getItemsFoundLabel();
+
+        // Check if the "Items found" label is displayed or contains any value
+        boolean isItemsFoundDisplayed = isElementDisplay(itemsFoundLabel);
+        if (isItemsFoundDisplayed) {
+            String itemsFoundText = getText(itemsFoundLabel);
+            assertTrue("Items found are displayed: " + itemsFoundText, false);  // Fail if the label is visible
+        }
+    }
+
+
+
 }
+

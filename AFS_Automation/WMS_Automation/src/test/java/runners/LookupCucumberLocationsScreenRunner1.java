@@ -24,7 +24,8 @@ import static common.setup.DriverManager.*;
                 "json:target/cucumber.json",
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
-                "rerun:target/failedrerun.txt"
+                "rerun:target/failedrerun.txt",
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
         }, monochrome = true, tags = "@Lookup")
 
 @Slf4j

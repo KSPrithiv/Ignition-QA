@@ -1,6 +1,6 @@
 package ui.pages;
 
-import common.utils.Waiters;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -11,11 +11,21 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 
+
 import static common.setup.DriverManager.getDriver;
 
 
-
 public class BasePage {
+
+    protected WebDriver driver;
+
+    public BasePage() {
+        this.driver = getDriver();  // ensure not null
+        if (this.driver == null) {
+            throw new IllegalStateException("WebDriver is null! Did you forget to set it in DriverManager?");
+        }
+    }
+
 
     public void deleteCookies() {
         getDriver().manage().deleteAllCookies();
@@ -77,13 +87,24 @@ public class BasePage {
         }
     }
 
-    public boolean isElementDisplay(By locator) {
+   /* public boolean isElementDisplay(By locator) {
         try {
             return findWebElement(locator).isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
         }
+    }*/
+
+    public boolean isElementDisplay(By locator) {
+        try {
+            WebElement element = findWebElement(locator);
+            return element != null && element.isDisplayed();
+        } catch (Exception e) {
+            System.out.println("Exception checking element visibility: " + e.getMessage());
+            return false;
+        }
     }
+
 
     public void enterText(WebElement element, CharSequence... dataToSend) {
         element.clear();
@@ -152,6 +173,7 @@ public class BasePage {
             throw new IllegalStateException("WebDriver exception encountered: " + e.getMessage(), e);
         }
     }
+
 
     public void click(WebElement element) {
         Actions actions = new Actions(getDriver());
@@ -460,4 +482,23 @@ public class BasePage {
         }
         return elements;
     }
+    public boolean isElementVisible(By locator) {
+        try {
+            WebElement element = findWebElement(locator);  // Find the WebElement using the locator
+            return element.isDisplayed();  // Returns true if the element is visible on the page
+        } catch (NoSuchElementException | StaleElementReferenceException e) {
+            return false;  // Returns false if the element is not found or stale
+        }
+    }
+
+
+    public void waitForLoaderToDisappear() {
+        new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".loader-bg")));
+    }
+    public void waitForDetailsToLoad() {
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".loader-bg")));
+    }
+
 }

@@ -25,10 +25,29 @@ import static common.setup.DriverManager.getDriver;
                 "json:target/cucumber.json",
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
-                "rerun:target/failedrerun.txt"
+                "rerun:target/failedrerun.txt",
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+
+
+
         }, monochrome = true, tags = "@Login")
+/*@CucumberOptions(
+        features = {"src/test/resources/features/login/Login.feature"},
+        glue = {"steps", "common.setup"}, //  or whatever package your Hooks or Base setup is in
+        plugin = {
+                "pretty",
+                "json:target/cucumber.json",
+                "html:Reports/Index.html",
+                "json:target/cucumber-reports/cucumber.json",
+                "rerun:target/failedrerun.txt"
+        },
+        monochrome = true,
+        tags = "@Login"
+)*/
+
 
 @Slf4j
+
 public class LoginCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;
 

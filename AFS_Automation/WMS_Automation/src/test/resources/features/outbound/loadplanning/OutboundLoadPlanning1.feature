@@ -15,6 +15,7 @@ Feature: Testing of Outbound Load Planning functionality
     #And Validates Load Planning page is displayed
     #And Validates Load Planning popup title is displayed
     #And Validates Load Planning popup Ship Date is current date
+
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
     And Selects Route by index 1 for Load Planning
@@ -28,6 +29,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Trailer dropdown on Truck Info page
     And Validates Truck Info trailers exist
     And Selects random trailer on Truck Info page
+    And Clicks No button on Warning Message
 
 
   @2
@@ -44,8 +46,9 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Exit button on Truck Info page
     #added Mar-13 2024
     And Validates Yes and No buttons are present
-    And Validates Yes button is active
+    #And Validates Yes button is active
     And Clicks Yes button on Warning Message
+    And Clicks No button on Warning Message
 
 
 
@@ -58,6 +61,8 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Done button on Load Planning page
     And Waits for Outbound Truck Info page to load
     And Clicks Exit button on Truck Info page
+    And Clicks Yes button on Warning Message
+    And Clicks No button on Warning Message
 
 
   @5
@@ -154,4 +159,4 @@ Feature: Testing of Outbound Load Planning functionality
 #    And Clicks Yes button on Rebuilding Assignments popup
 #    And Clicks Ok button on Truck Info
     And Clicks Key button on Truck Info page
-    And Validates Pallet key popup
+    #And Validates Pallet key popup

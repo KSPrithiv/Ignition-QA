@@ -10,7 +10,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     And User checks In Use By Filter on Work Queue Assignments page
-    Then Types In Use By by index 0 on Work Queue Assignments page
+    Then Types In Use By by index 1 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page

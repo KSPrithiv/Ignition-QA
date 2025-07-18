@@ -1,8 +1,9 @@
 package steps.validations.outbound.loadplanning;
 
 import common.constants.Notifications;
+import common.setup.DriverManager;
 import common.utils.Waiters;
-import cucumber.api.Scenario;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import org.openqa.selenium.WebDriver;
 import org.testng.asserts.SoftAssert;
@@ -12,6 +13,7 @@ import ui.pages.outbound.loadplanning.OutboundTruckInfoPage;
 import java.awt.*;
 
 public class OutboundAssignmentsPageValidations {
+
     WebDriver driver;
     Scenario scenario;
     OutboundAssignmentsPage outboundAssignmentsPage = new OutboundAssignmentsPage();

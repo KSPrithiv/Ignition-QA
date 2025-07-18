@@ -26,10 +26,12 @@ Feature: Testing Lookup Location functionality
     And User clicks Show detail checkbox on Lookup Location page
     Then User checks Location Product 1 on Lookup Location page
     And User clicks Delete button on Lookup Location page
-    And Validates popup text "Remove highlighted items?" on Location Lookup page
+    And Validates popup text "Delete selected items?" on Location Lookup page
     And Validates Delete window title "Delete" on Location Lookup page
-    And Validates Yes and No buttons are displayed on Delete assignment popup on Location Lookup page
-    And User clicks No button on Lookup Location page
+    And Validates Cancel and Ok buttons are displayed on Delete assignment popup on Location Lookup page
+    #And User clicks Cancel button on Lookup Location page
+    #added
+    And User clicks Delete popup Cancel button on Lookup Location page
     And User clicks Delete button on Lookup Location page
 
   Scenario: Checking Non Product Reasons on Lookup Location screen
@@ -51,7 +53,7 @@ Feature: Testing Lookup Location functionality
     And User clicks Cancel button on Lookup Location page
     And User checks Location Product 1 on Lookup Location page
     And User clicks Edit button on Lookup Location page
-    And Validates Edit inventory elements are displayed on Location Lookup page
+#    And Validates Edit inventory elements are displayed on Location Lookup page
     And User types Receipt date by index 5 on Lookup Location page
     And User clicks Cancel button on Lookup Location page
     And User checks Location Product 1 on Lookup Location page

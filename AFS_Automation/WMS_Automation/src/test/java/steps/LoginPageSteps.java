@@ -1,6 +1,6 @@
 package steps;
 
-import com.nordstrom.automation.testng.LinkedListeners;
+
 import common.constants.FilePaths;
 import common.setup.DriverManager;
 import common.setup.Environment;
@@ -39,9 +39,7 @@ import ui.pages.outbound.loadplanning.OutboundLoadPlanningPage;
 
 import static common.setup.DriverManager.*;
 
-@LinkedListeners({
-        TestListener.class
-})
+
 @Slf4j
 public class LoginPageSteps {
     Scenario scenario;
@@ -73,20 +71,31 @@ public class LoginPageSteps {
     {
         this.scenario = scenario;
         //TestBase driver1 = TestBase.getInstanceOfDriver();
-        //driver = driver1.getDriver();
-        //driver = TestBase.getDriver();
+      //  driver = driver1.getDriver();
+      //  driver = TestBase.getDriver();
         driver = DriverManager.getDriver();
     }
 
-    @After
+   /* @After
     public void afterScenario1(Scenario scenario) {
         if (scenario.isFailed())
         {
             TakesScreenshot ts = (TakesScreenshot) driver;
             byte[] src = ts.getScreenshotAs(OutputType.BYTES);
             scenario.attach(src,"image/png", scenario.getName());
+
+        }
+    }*/
+    @After
+    public void afterScenario1(Scenario scenario) {
+        WebDriver driver = DriverManager.getDriver();
+        if (driver != null && scenario.isFailed()) {
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            byte[] src = ts.getScreenshotAs(OutputType.BYTES);
+            scenario.attach(src, "image/png", scenario.getName());
         }
     }
+
 
     @Step
     @Given("User signs in the application")

@@ -1,4 +1,4 @@
-@Processing @Regression
+@Processing @Regression @Outbound
 Feature: Testing of Receiving functionality
   Scenario: Checking Processing orders functionality
     Given User signs in the application
@@ -13,7 +13,7 @@ Feature: Testing of Receiving functionality
     And Validates order section is displayed on Processing page
     And Validates all orders section is selected on Processing page
     Then Validates date by index 2 is correct on Processing page
-    And Validates order date "1/22/2022" on Processing page
+    And Validates order date "06/16/2025" on Processing page
     And User goes to Unbatched on Processing page
     And User selects processing date by index 2 on Processing page
     And Validates statuses colors on Processing page
@@ -121,10 +121,10 @@ Feature: Testing of Receiving functionality
     And User clicks filtering order on Processing page
     And Selects Source Account on Change View Parameters page
     And Enters Code by index 1 on Change View Parameters page
-    And Selects Start Date by index 3 on Change View Parameters page
+    And Selects Start Date by index 2 on Change View Parameters page
     And Clicks Ok on Change View Parameters page
     And Wait for Processing page to load
-    And Validates filtered order details: start date "1/25/2022", source "001001", year "2022" on Processing page
+    And Validates filtered order details: start date "06/16/2025", source "000101", year "2025" on Processing page
     And User clicks filtering order on Processing page
     And Enters order by index 0 on Change View Parameters page
     And Selects Start Date by index 2 on Change View Parameters page
@@ -159,12 +159,12 @@ Feature: Testing of Receiving functionality
     
     And Go to Outbound Processing page
     And Wait for Processing page to load
-    When User selects processing date "01/24/2022" on Processing page
+    When User selects processing date "06/16/2025" on Processing page
     And Validates orders list on Processing page is displayed
     And Validates order section is displayed on Processing page
     And Validates all orders section is selected on Processing page
     And User goes to Batches on Processing page
-    Then User selects batch "NorthSanSide" on Processing page
+    Then User selects batch "Auto1" on Processing page
     And Clicks Unprocess button on Processing page
     And Validates Yes and No buttons are displayed on Unprocess batch popup
     And Validates Unprocess batch popup text

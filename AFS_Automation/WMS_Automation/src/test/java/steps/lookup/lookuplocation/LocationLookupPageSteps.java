@@ -2,16 +2,20 @@ package steps.lookup.lookuplocation;
 
 import common.constants.FilePaths;
 import common.constants.TimeFormats;
+import common.utils.Waiters;
 import common.utils.objectmapper.ObjectMapperWrapper;
 import common.utils.time.TimeConversion;
 import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import objects.lookupproductslocationsdata.LookupProductLocationsDTO;
+import org.openqa.selenium.By;
 import ui.pages.lookup.lookuplocation.LocationLookupPage;
 
 import java.util.Calendar;
 import java.util.List;
+
+import static common.setup.DriverManager.getDriver;
 
 @Slf4j
 public class LocationLookupPageSteps {
@@ -354,6 +358,15 @@ public class LocationLookupPageSteps {
         log.info("User clicks Edit button on Lookup Location page");
         locationLookupPage.clickEditButton();
     }
+    @Step
+    @And("User clicks Delete popup Cancel button on Lookup Location page")
+    public void clickDeletePopupCancelButton() {
+        log.info("User clicks Delete popup Cancel button on Lookup Location page");
+        By deletePopupCancelButton = By.xpath("//button[.//span[text()='Cancel'] and contains(@class, 'k-button')]");
+        Waiters.waitForElementToBeDisplay(deletePopupCancelButton);
+        getDriver().findElement(deletePopupCancelButton).click();
+    }
+
 
     @Step
     @And("User clicks Delete button on Lookup Location page")

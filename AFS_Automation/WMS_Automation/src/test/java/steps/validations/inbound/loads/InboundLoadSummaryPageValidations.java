@@ -4,6 +4,8 @@ import common.constants.Notifications;
 import common.constants.TimeFormats;
 import common.utils.time.TimeConversion;
 import io.cucumber.java.en.And;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
 import ui.pages.inbound.loads.InboundLoadSummaryPage;
 import java.util.Calendar;
@@ -308,7 +310,6 @@ public class InboundLoadSummaryPageValidations {
         softAssert.assertTrue(inboundLoadSummaryPage.isReceiveDisabled().equals("true"),"Receive is enabled");
         softAssert.assertAll();
     }
-
     @And("Validates Edit load popup on Inbound Load Summary page")
     public void verifyEditLoadPopup() {
         SoftAssert softAssert = new SoftAssert();

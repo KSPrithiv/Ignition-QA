@@ -3,13 +3,22 @@ package ui.pages.inbound.loads;
 import common.utils.Waiters;
 import objects.productdata.ProductData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.BasePage;
+
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static common.setup.DriverManager.driverThreadLocal;
 import static common.setup.DriverManager.getDriver;
+import static utilWMS.TestBase.driver;
 
 public class InboundLoadOrderDetailsPage extends BasePage {
     By topIcon = By.xpath("//span[contains(text(), 'Inbound load summary')]");
@@ -18,12 +27,12 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     By barContainer = By.cssSelector(".BarsContainer");
     By orderDet = By.cssSelector("#spnOrderNo");
     By productList = By.cssSelector("#crdInboundOrderPortrait .BarsBlock");
-    By orderOption = By.cssSelector("button[aria-label='Order options dropdownbutton']");
+    By orderOption = By.xpath("//span[contains(text(), 'Order options')]");
     By invalidEntryPopup = By.cssSelector(".k-window-title");
-    By okButton = By.xpath("//button[contains(text(), 'Ok')]");
-    By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
+    By okButton = By.xpath("//span[contains(text(), 'Ok')]");
+    By cancelButton = By.xpath("//span[contains(text(), 'Cancel')]");
     By backButton = By.cssSelector("#RouteBackButton");
-    By saveButton = By.xpath("//button[contains(text(), 'Save')]");
+    By saveButton = By.xpath("//span[contains(text(), 'Save')]");
     By noButton = By.xpath("//button[contains(text(), 'No')]");
     By yesButton = By.xpath("//button[contains(text(), 'Yes')]");
     By orderLoadNumber = By.xpath("//span[contains(text(), 'Order')]//following-sibling::span[contains(@id, 'spnOrderNo')]");
@@ -40,13 +49,14 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     By qtyField = By.xpath("//span[contains(text(), 'Qty')]");
     By cubeField = By.xpath("//span[contains(text(), 'Cube')]");
     By weightField = By.xpath("//span[contains(text(), 'Weight')]");
-    By imagesButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Images')]");
-    By commentsButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Comments')]");
+    By imagesButton = By.xpath("(//button[@id='btnImageNo'])[2]");
+    By commentsButton = By.xpath("(//button[@id='btnImageNo'])[1]");
     By changeStatusOption = By.id("btnChangeStatus");
     By doorOption = By.id("ddDoorItem");
     By dataOption = By.id("ddDataItem");
     By statusInput = By.id("span_Status");
-    By orderOptionButton = By.cssSelector("button[aria-label='Order options dropdownbutton']");
+   // By orderOptionButton = By.cssSelector("button[aria-label='Order options dropdownbutton']");
+    By orderOptionButton = By.xpath("//button[.//span[contains(text(), 'Order options')]]");
     By itemsFoundLabel = By.xpath("//span[contains(text(), 'Items found:')]");
     By itemsFoundValue = By.xpath("//span[contains(text(), 'Items found:')]//following-sibling::span[@class='i-summary-area__main__value']");
     By windowTitle = By.cssSelector(".k-window-title");
@@ -96,7 +106,7 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     By btnProductEdit = By.id("btnProductEdit");
     By saveEditButton = By.id("saveEditButton");
     By inboundImageCaptureButton = By.cssSelector(".inboundImageCaptureOpButtonDiv button");
-    By selectFilesBtn = By.xpath("//div[@aria-label='Select files']");
+    By selectFilesBtn = By.xpath("//span[contains(text(), 'Select files')]");
     By loadImageLabel = By.xpath("//span[text()='Load image(s)']");
     By temperatureLabel = By.xpath("//label[text()='Temperature']");
     By temperatureInput = By.xpath("//label[text()='Temperature']//following-sibling::input");
@@ -424,8 +434,25 @@ public class InboundLoadOrderDetailsPage extends BasePage {
         return isElementDisplay(getBtnAddProductCancel());
     }
 
-    public boolean isSaveButtonDisabled() { return getElementAttribute(getSaveButton(),
-            "class").contains("disabled"); }
+    /*public boolean isSaveButtonDisabled() { return getElementAttribute(getSaveButton(),
+            "class").contains("disabled"); }*/
+    public boolean isSaveButtonDisabled() {
+        // Get the WebDriver instance from ThreadLocal
+        WebDriver driver = driverThreadLocal.get(); // Assuming driverThreadLocal is your ThreadLocal<WebDriver> variable
+
+        // Locate the Save button using the provided XPath
+        WebElement saveButton = driver.findElement(By.xpath("//span[text()='Save']/parent::button"));
+
+        // Check if the 'disabled' attribute is present or if the class contains 'k-disabled'
+        String classAttribute = saveButton.getAttribute("class");
+        return saveButton.getAttribute("disabled") != null || classAttribute.contains("k-disabled");
+    }
+
+
+
+
+
+
 
     public String getDialogPopUpContentText() {
         Waiters.waitABit(2000);
@@ -470,7 +497,7 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     }
 
     public void selectOrderOption(String option) {
-        Waiters.waitForElementToBeDisplay(getOrderOption());
+       /* Waiters.waitForElementToBeDisplay(getOrderOption());
         Waiters.waitABit(2000);
         clickOnElement(getOrderOption());
         WebElement orderOption = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
@@ -479,8 +506,18 @@ public class InboundLoadOrderDetailsPage extends BasePage {
                 .findFirst()
                 .get();
         clickOnElement(orderOption);
-        Waiters.waitABit(2000);
+        Waiters.waitABit(2000);*/
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(getOrderOptionButton());
+        clickOnElement(getOrderOptionButton());
+        WebElement orderOption = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
+                + option + "')]"));
+        clickOnElement(orderOption);
+        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(1, loader);
+
     }
+
 
     public void selectOption(String option) {
         clickOnElement(findWebElements(By

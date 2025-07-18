@@ -2,9 +2,15 @@ package ui.pages.outbound.loadplanning;
 
 import common.utils.Waiters;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
+
+import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
+
+import static common.setup.DriverManager.getDriver;
 
 //import static common.setup.DriverManager.getDriver;
 
@@ -14,7 +20,7 @@ public class OutboundLoadPlanningPage extends BasePage {
     By loadPlanningShipDateLabel = By.id("loadPlanningShipDate-label");
     By dropDownRouteType = By.id("dropDownIconType");
     By dropDownRouteTypeLabel = By.id("dropDownIconType-label");
-    By doneButton = By.cssSelector("#btnlpDone");
+    By doneButton = By.xpath("//*[contains(text(), 'Done')]");
     By dropdownList = By.id("dropdownList");
     By loader = By.cssSelector(".loader");
 
@@ -114,6 +120,7 @@ public class OutboundLoadPlanningPage extends BasePage {
         //Waiters.waitTillLoadingPage(getDriver());
     }
 
+
     public List<WebElement> getRoutes() {
         //Waiters.waitTillLoadingPage(getDriver());
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
@@ -171,6 +178,24 @@ public class OutboundLoadPlanningPage extends BasePage {
         //Waiters.waitABit(5000);
     }
 
+    public void selectRoute(int index) {
+        List<WebElement> routes = getDriver().findElements(By.cssSelector("your-selector-here"));
+
+        if (routes == null || routes.isEmpty()) {
+            throw new IllegalStateException("No route options found. Ensure dropdown is open and selector is correct.");
+        }
+
+        if (index >= routes.size()) {
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds for route list size " + routes.size());
+        }
+
+        WebElement route = routes.get(index);
+        if (route == null) {
+            throw new NullPointerException("Route element at index " + index + " is null.");
+        }
+
+        clickOnElement(route);
+    }
 
 
 }

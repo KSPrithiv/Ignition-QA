@@ -43,10 +43,19 @@ public class DockManagementPageValidations {
     @And("Validates Item Details are displayed on DockManagement Lookup page")
     public void validateItemDetailsAreDisplayed() {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(dockManagementLookupPage.isOrdersAssignToDoorLabelDisplayed(),"Orders Assign To Door is not displayed");
-        softAssert.assertTrue(dockManagementLookupPage.isButtonBackDisplayed(),"Button Back is not displayed");
+        dockManagementLookupPage.waitForDetailsToLoad(); //  ensure page settled
+
+        softAssert.assertTrue(dockManagementLookupPage.isOrdersAssignToDoorLabelDisplayed(),
+                "Orders Assign To Door is not displayed");
+
+        softAssert.assertTrue(dockManagementLookupPage.isButtonBackDisplayed(),
+                "Button Back is not displayed");
+
         softAssert.assertAll();
     }
+
+
+
 
     @And("Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page")
     public void validateDockMgmtSummaryRowsAreDisplayed() {

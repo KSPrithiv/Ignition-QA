@@ -37,8 +37,8 @@ public class ChangeViewParametersPage extends BasePage {
     By startDate = By.cssSelector("#StartDate");
     By endDateLabel = By.cssSelector("#EndDate-label");
     By endDate = By.cssSelector("#EndDate");
-    By okButton = By.xpath("//button[contains(text(), 'OK')]");
-    By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
+    By okButton = By.xpath("//span[contains(text(), 'OK')]/parent::button");
+    By cancelButton = By.xpath("//span[contains(text(), 'Cancel')]");
     By loader = By.cssSelector(".loader");
 
     public void waitChangeViewParametersPageToLoad() {

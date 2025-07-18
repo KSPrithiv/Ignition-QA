@@ -1,9 +1,12 @@
 package ui.pages.lookup.lookuplocation;
 
 import common.utils.Waiters;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.BasePage;
+
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,8 +23,8 @@ public class LocationLookupPage extends BasePage {
     By addLocProdButton = By.id("addLocProdButton");
     By editLocProdButton = By.id("editLocProdButton");
     By lookupProductShowPalletCheck = By.id("lookupProductShowPalletCheck");
-    By transferButton = By.xpath("//button[text()='Move']");
-    By statusButton = By.xpath("//button[text()='Status']");
+    By transferButton = By.xpath("//button[@id='btnProductionMove' and contains(., 'Move')]");
+    By statusButton = By.xpath("//button[@id='editLocProdButton' and contains(., 'Status')]");
     By btnPrintLoc = By.id("btnPrintLoc");
     By labelTypeList = By.xpath("//span[@data-test-id='ddLocPrntLabelType']//span[@role='listbox']");
     By printerList = By.xpath("//span[@data-test-id='ddLocPrntPrinterType']//span[@role='listbox']");
@@ -51,12 +54,19 @@ public class LocationLookupPage extends BasePage {
     By rows = By.cssSelector(".k-grid-table tr");
     By columnHeaderCheckBox = By.xpath("//th[@role='columnheader']//input[@type='checkbox']");
     By dialogTextContent = By.id("dialogTextContent");
-    By okButton = By.xpath("//button[contains(text(), 'Ok')]");
-    By OKButton = By.xpath("//button[contains(text(), 'OK')]");
-    By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
-    By saveButton = By.xpath("//button[contains(text(), 'Save')]");
+    By okButton = By.xpath("//span[contains(text(), 'Ok')]");
+    By OKButton = By.xpath("//span[contains(text(), 'OK')]");
+    By cancelButton = By.id("cancelAddButton");
+    By saveButton = By.xpath("//button[@id='saveAddButton' or normalize-space(.)='Save' or .//span[normalize-space(.)='Save']]");
     By noButton = By.xpath("//button[contains(text(), 'No')]");
     By yesButton = By.xpath("//button[contains(text(), 'Yes')]");
+    // REPLACE existing locators with these:
+    By deletePopupCancelButton = By.xpath("//button[.//span[text()='Cancel'] and contains(@class, 'k-button')]");
+
+    By deletePopupOkButton = By.xpath("//button[.//span[normalize-space()='OK' or normalize-space()='Ok']]");
+
+
+
     By ddlProductTransferredLabel = By.id("ddlProductTransferred-label");
     By ddlProductTransferred = By.id("ddlProductTransferred");
     By ddlAddProductOwnerLabel = By.id("ddlAddProductOwner-label");
@@ -137,7 +147,7 @@ public class LocationLookupPage extends BasePage {
     By backLocProdButton = By.id("backLocProdButton");
     By selectAllCheckbox = By.xpath("//div[@class='k-grid-header']//input");
     By dropdownList = By.id("dropdownList");
-    By loadOptionDropDown = By.cssSelector("button[aria-label='Location option dropdownbutton']");
+    By loadOptionDropDown = By.xpath("//button[contains(@class, 'k-button') and contains(@class, 'k-menu-button') and @type='button']");
     By productionLabel = By.xpath("//label[@class='i-label autocomplete_custom_label']");
     By weightSerialLabel = By.xpath("//span[text()='Weight/Serial No']");
     String locationTableRows = "//table[@class='k-grid-table']//tr[.//a[contains(text(), '%s')]]";
@@ -424,7 +434,7 @@ public class LocationLookupPage extends BasePage {
         clickOnElement(OKButton);
     }
 
-    public void clickCancelButton() {
+   /* public void clickCancelButton() {
         waitUntilInvisible(3, loader);
         if(isVisible(OKButton) == true) {
             clickOnElement(OKButton);
@@ -433,7 +443,35 @@ public class LocationLookupPage extends BasePage {
         Waiters.waitForElementToBeDisplay(cancelButton);
         scrollAndClick(getCancelBtn());
         Waiters.waitABit(2_000);
-    }
+    }*/
+   public void clickCancelButton() {
+       WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+       wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loader-bg")));
+
+       try {
+           // Use a flexible locator in case ID fails
+           By cancelBtnLocator = By.xpath("//button[.//span[text()='Cancel']]");
+
+           WebElement cancelBtn = wait.until(ExpectedConditions.presenceOfElementLocated(cancelBtnLocator));
+           wait.until(ExpectedConditions.elementToBeClickable(cancelBtn));
+
+           ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", cancelBtn);
+           cancelBtn.click();
+
+       } catch (ElementClickInterceptedException | TimeoutException e) {
+           System.out.println("Cancel button click failed: " + e.getClass().getSimpleName() + " — retrying with JS...");
+
+           try {
+               WebElement cancelBtn = getDriver().findElement(By.xpath("//button[.//span[text()='Cancel']]"));
+               ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", cancelBtn);
+           } catch (NoSuchElementException ne) {
+               throw new RuntimeException("Cancel button not found in fallback attempt.");
+           }
+       }
+
+       wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loader-bg")));
+   }
+
 
     public void clickSaveButton() {
         waitUntilInvisible(3, loader);
@@ -441,6 +479,11 @@ public class LocationLookupPage extends BasePage {
         jsClick(getSaveBtn());
         waitUntilInvisible(1, loader);
     }
+
+
+
+
+
 
     public void clickYesButton() {
         Waiters.waitForElementToBeDisplay(yesButton);
@@ -620,12 +663,56 @@ public class LocationLookupPage extends BasePage {
                 + uom + "') and @role='option']")));
     }
 
-    public void selectProductStatus(String status) {
+  /*  public void selectProductStatus(String status) {
         Waiters.waitForElementToBeDisplay(ddlAddProductStatus);
         clickOnElement(ddlAddProductStatus);
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + status + "') and @role='option']")));
-    }
+    }*/
+  public void selectProductStatus(String statusText) {
+      WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+
+      try {
+          // Click the dropdown to open the list
+          WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.id("ddlAddProductStatus")));
+          dropdown.click();
+
+          // Wait for options to be visible
+          By optionsLocator = By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']");
+          List<WebElement> options = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(optionsLocator));
+
+          boolean clicked = false;
+          for (WebElement option : options) {
+              String optionText = option.getText().trim();
+              if (optionText.equalsIgnoreCase(statusText)) {
+                  try {
+                      // Try clicking directly
+                      option.click();
+                      clicked = true;
+                      break;
+                  } catch (Exception e) {
+                      // Fallback to JS click
+                      ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true); arguments[0].click();", option);
+                      clicked = true;
+                      break;
+                  }
+              }
+          }
+
+          if (!clicked) {
+              throw new RuntimeException("Status '" + statusText + "' not found in dropdown.");
+          }
+
+      } catch (Exception e) {
+          throw new RuntimeException("Status '" + statusText + "' not found or not clickable.", e);
+      }
+  }
+
+
+
+
+
+
 
     public List<WebElement> getLabelTypeOptions() {
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[@role='option']"));
@@ -1314,5 +1401,25 @@ public class LocationLookupPage extends BasePage {
     public WebElement getDropdownList() { return findWebElement(dropdownList); }
 
     public WebElement getProductionLabel() { return findWebElement(productionLabel); }
+
+    public boolean isDeleteOkButtonDisplayed() {
+        try {
+            Waiters.waitForElementToBeVisible(deletePopupOkButton); // reliable wait
+            return isElementDisplay(deletePopupOkButton);           // actual check
+        } catch (Exception e) {
+            return false; // if not found in time
+        }
+    }
+
+
+    public boolean isDeleteCancelButtonDisplayed() {
+        try {
+            Waiters.waitForElementToBeVisible(deletePopupCancelButton);  // Explicit wait
+            return isElementDisplay(deletePopupCancelButton);            // Your base page utility
+        } catch (Exception e) {
+            return false;  // Handle timeout or absence gracefully
+        }
+    }
+
 
 }

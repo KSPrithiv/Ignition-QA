@@ -4,6 +4,8 @@ import common.constants.FilePaths;
 import common.enums.DockDoorOption;
 import common.enums.RouteOptions;
 import common.enums.Statuses;
+import common.setup.DriverManager;
+import common.utils.Waiters;
 import common.utils.database.DataBaseConnection;
 import common.utils.database.StoreProceduresUtils;
 import common.utils.datautils.RandomData;
@@ -15,8 +17,15 @@ import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import objects.outbound.OutboundOrderLoadsDTO;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.outbound.routesummary.OutboundRouteSummaryPage;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.util.List;
 
 import static ui.pages.outbound.routesummary.OutboundRouteSummaryPage.setRandomRouteCode;
@@ -338,9 +347,10 @@ public class OutboundRouteSummaryPageSteps {
 
     @Step
     @And("User clicks status {string} on Outbound Route Summary page")
-    public void clickStatus(String status) {
+    public void clickStatus(String status) throws InterruptedException {
         log.info("Click status " + status);
-        outboundRouteSummaryPage.clickStatus(status);
+      //  outboundRouteSummaryPage.clickStatus(status);
+        outboundRouteSummaryPage.clickOrderStatus();
     }
 
     @Step
@@ -352,7 +362,7 @@ public class OutboundRouteSummaryPageSteps {
 
     @Step
     @And("User clicks door {string} on Outbound Route Summary page")
-    public void clickDoor(String door) {
+    public void clickDoor(String door) throws InterruptedException {
         log.info("Click door " + door);
         outboundRouteSummaryPage.clickDoor(door);
     }
@@ -587,12 +597,55 @@ public class OutboundRouteSummaryPageSteps {
 
     @Step
     @And("Type Max Stops by index {int} on Outbound Route Summary page")
-    public void typeMaxStopsByIndex(int index) {
+  /*  public void typeMaxStopsByIndex(int index) {
         log.info("Typing Outbound Route max stops by index");
         List<String> stops = List.of(outboundOrderLoadsDTO.getOutboundMaxStops().getOutboundMaxStop1(), outboundOrderLoadsDTO
                 .getOutboundMaxStops().getOutboundMaxStop2(), outboundOrderLoadsDTO.getOutboundMaxStops().getOutboundMaxStop3());
         outboundRouteSummaryPage.typeMaxStops(stops.get(index));
+    }*/
+   /* public void typeMaxStopsByIndex(int index) {
+        log.info("Typing Outbound Route max stops by index");
+
+        List<String> stops = List.of(
+                outboundOrderLoadsDTO.getOutboundMaxStops().getOutboundMaxStop1(),
+                outboundOrderLoadsDTO.getOutboundMaxStops().getOutboundMaxStop2(),
+                outboundOrderLoadsDTO.getOutboundMaxStops().getOutboundMaxStop3()
+        );
+
+        String valueToType = stops.get(index);
+        log.info("Max Stops from DTO: " + valueToType);
+
+        try {
+            // Locate input using reliable XPath based on label
+            By inputLocator = By.xpath("//label[contains(text(),'Max stops')]/following::input[@type='number'][1]");
+            WebElement input = Waiters.waitForElementToBeVisible(inputLocator, 15);
+
+            input.click();
+            input.clear();
+            input.sendKeys(valueToType);
+            input.sendKeys(Keys.TAB); // trigger blur to commit the value
+
+            log.info("Typed Max Stops value: " + valueToType);
+        } catch (TimeoutException e) {
+            throw new RuntimeException("Max Stops input not visible. Check selector or wait conditions.", e);
+        }
+    }*/
+    public void typeMaxStopsByIndex(int index) {
+        List<String> stops = List.of(
+                outboundOrderLoadsDTO.getOutboundMaxStops().getOutboundMaxStop1(),
+                outboundOrderLoadsDTO.getOutboundMaxStops().getOutboundMaxStop2(),
+                outboundOrderLoadsDTO.getOutboundMaxStops().getOutboundMaxStop3()
+        );
+        String value = stops.get(index);
+        System.out.println(">>> Max Stops from DTO: " + value);
+        outboundRouteSummaryPage.typeMaxStops(value);
     }
+
+
+
+
+
+
 
     @Step
     @And("Type Temperature {string} on Outbound Route Summary page")

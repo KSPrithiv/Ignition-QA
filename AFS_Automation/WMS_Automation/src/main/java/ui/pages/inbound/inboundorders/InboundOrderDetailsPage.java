@@ -1,13 +1,16 @@
 package ui.pages.inbound.inboundorders;
 
 import common.utils.Waiters;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.BasePage;
 
+import java.time.Duration;
 import java.util.List;
 
 import static common.setup.DriverManager.getDriver;
+import static utilWMS.TestBase.driver;
 
 public class InboundOrderDetailsPage extends BasePage {
     By topIcon = By.xpath("//span[contains(text(), 'Inbound order summary')]");
@@ -19,7 +22,7 @@ public class InboundOrderDetailsPage extends BasePage {
     By orderNumber = By.xpath("//span[contains(text(),'Order')]//following-sibling::span[@id='spnOrderNo']");
     By customerField = By.xpath("//span[contains(text(), 'Customer')]");
     By sourceField = By.xpath("//span[contains(text(), 'Source')]");
- //   By loadNumber = By.xpath("//span[contains(text(),'Load')]//following-sibling::span");
+    //   By loadNumber = By.xpath("//span[contains(text(),'Load')]//following-sibling::span");
     By doorField = By.xpath("//span[contains(text(), 'Door')]");
     By qaField = By.xpath("//span[contains(text(), 'QA')]");
     By carrierField = By.xpath("//span[contains(text(), 'Carrier')]");
@@ -27,15 +30,20 @@ public class InboundOrderDetailsPage extends BasePage {
     By qtyField = By.xpath("//span[contains(text(), 'Qty')]");
     By cubeField = By.xpath("//span[contains(text(), 'Cube')]");
     By weightField = By.xpath("//span[contains(text(), 'Weight')]");
-    By changeStatusOption = By.cssSelector("#btnChangeStatus");
+    By changeStatusOption = By.xpath("//button[@id='btnChangeStatus']");
     By doorOption = By.id("ddDoorItem");
     By dataOption = By.id("ddDataItem");
     By statusInput = By.id("span_Status");
-    By orderOptionsButton = By.cssSelector("button/span[aria-label='Order options dropdownbutton']");
+    // By orderOptionsButton = By.cssSelector("button/span[aria-label='Order options dropdownbutton']");
+    By orderOptionsButton = By.xpath("//button[.//span[contains(text(), 'Order options')]]");
+
+
     By orderStatus = By.id("span_Status");
     By sourceLabel = By.xpath("//span[contains(text(), 'Source')]");
-    By imagesButton = By.xpath("//button/span[@id='btnImageNo' and contains(text(), 'Images')]");
-    By commentsButton = By.xpath("//button/span[@id='btnImageNo' and contains(text(), 'Comments')]");
+    // By imagesButton = By.xpath("//button/span[@id='btnImageNo' and contains(text(), 'Images')]");
+    By imagesButton = By.xpath("//button[.//span[contains(text(), 'Images')]]");
+
+    By commentsButton = By.xpath("(//button[@id='btnImageNo'])[1]");
     By toolBar = By.cssSelector(".i-toolbar-container__summary");
     By itemsFoundLabel = By.xpath("//span[contains(text(), 'Items found:')]");
     By itemsFoundValue = By.xpath("//span[contains(text(), 'Items found:')]//following-sibling::span[@class='i-summary-area__main__value']");
@@ -61,11 +69,11 @@ public class InboundOrderDetailsPage extends BasePage {
     By scheduledTimeLabel = By.cssSelector("#cpTile-label");
     By scheduledTimeInput = By.cssSelector("#cpTile");
     By carrierLabel = By.xpath("//label[contains(text(), 'Carrier')]");
-    By carrierInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Carrier')]]//span[@class='k-input']");
+    By carrierInput = By.xpath("(//span[contains(@class, 'k-dropdownlist')]//button[@aria-label='select'])[2]");
     By trailerLabel = By.xpath("//label[contains(text(), 'Trailer')]");
-    By trailerInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Trailer')]]//span[@class='k-input']");
+    By trailerInput = By.xpath("(//span[contains(@class, 'k-dropdownlist')]//button[@aria-label='select'])[3]");
     By paymentTypeLabel = By.xpath("//label[contains(text(), 'Payment type')]");
-    By paymentTypeInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Payment type')]]//span[@class='k-input']");
+    By paymentTypeInput = By.xpath("(//span[contains(@class, 'k-dropdownlist')]//button[@aria-label='select'])[4]");
     By commentsLabel = By.xpath("//label[text()='Comment']");
     By commentsInput = By.xpath("//label[text()='Comment']//following-sibling::textarea");
     By temperatureLabel = By.xpath("//label[text()='Temperature']");
@@ -100,7 +108,7 @@ public class InboundOrderDetailsPage extends BasePage {
     By btnOrderLineFieldsImage = By.id("btnOrderLineFieldsImage");
     By saveEditButton = By.id("saveEditButton");
     By inboundImageCaptureButton = By.cssSelector(".inboundImageCaptureOpButtonDiv button");
-    By selectFilesBtn = By.xpath("//div[@aria-label='Select files']");
+    By selectFilesBtn = By.xpath("//span[contains(text(), 'Select files')]");
     By loadImageLabel = By.xpath("//span[text()='Load image(s)']");
     By orderLocationLink = By.xpath("//td[contains(@id, 'orderLocationlink')]//a");
     By locationColumn = By.xpath("//table[@role='presentation']//span[text() ='Location']");
@@ -114,11 +122,25 @@ public class InboundOrderDetailsPage extends BasePage {
     By stagedColumn = By.xpath("//table[@role='presentation']//span[text() ='Staged?']");
     By loader = By.cssSelector(".loader");
 
+    /* private By getStatus(String status) {
+         return By.xpath("//span[@class='k-input' and text()='" + status + "']");
+     }*/
+    // private By getStatus(String status) {
+    //    return By.xpath("//span[contains(@class, 'k-chip-label') and contains(text(), 'Status selected')]");
+    // }
     private By getStatus(String status) {
-        return By.xpath("//span[@class='k-input' and text()='" + status + "']");
+        return By.xpath("//ul[@role='listbox']//li[@role='option' and contains(text(), '" + status + "')]");
     }
 
-    private By getDoorDropDown(String door) { return By.xpath("//span[contains(text(),'" + door + "')]"); }
+
+    public WebElement getOrderOptionsButton() {
+        return findWebElement(orderOptionsButton);
+    }
+
+
+    private By getDoorDropDown(String door) {
+        return By.xpath("//span[contains(text(),'" + door + "')]");
+    }
 
     public void waitInboundOrderDetailsPageToLoad() {
         Waiters.waitTillLoadingPage(getDriver());
@@ -206,6 +228,38 @@ public class InboundOrderDetailsPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getMoveLoad());
         return isElementDisplay(getMoveLoad());
     }
+    public void selectDoorDropDown(String door) {
+        WebDriver driver = getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Increase timeout if needed
+
+        try {
+            // Wait until the dropdown is clickable
+            WebElement doorDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.id("ddDoorItem")));
+
+            // Scroll into view to avoid visibility issues
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", doorDropdown);
+
+            // Click on the dropdown to open it
+            doorDropdown.click();
+
+            // Wait for the door option to be visible
+            By doorOptionLocator = By.xpath("//span[contains(text(), '" + door + "')]");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(doorOptionLocator));
+
+            // Click the specific door option
+            WebElement doorOption = driver.findElement(doorOptionLocator);
+            doorOption.click();
+
+            // Optionally, wait for the dropdown to be closed or page to load if required
+            Waiters.waitTillLoadingPage(driver);
+        } catch (TimeoutException e) {
+            System.out.println("Timeout occurred while waiting for the door dropdown or option: " + e.getMessage());
+        } catch (NoSuchElementException e) {
+            System.out.println("No such element found while selecting the door: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("An error occurred while selecting the door option: " + e.getMessage());
+        }
+    }
 
     public boolean isMoveLoadInputDisplayed() {
         Waiters.waitForElementToBeDisplay(getMoveLoadInput());
@@ -228,37 +282,78 @@ public class InboundOrderDetailsPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
     }
 
-    public void selectOrderStatus(String status) {
+   /* public void selectOrderStatus(String status) {
         Waiters.waitTillLoadingPage(getDriver());
         WebElement orderStatus = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + status + "')]"));
         clickOnElement(orderStatus);
         Waiters.waitTillLoadingPage(getDriver());
-    }
+    }*/
 
-    public void selectOrderByOrderNumber(int orderNum) {
+   /* public void selectOrderByOrderNumber(int orderNum) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(tableContent);
+
         List<WebElement> orders = findWebElements(By.xpath("//tr[contains(@class, 'k-detail-row')]//td[contains(@class, 'k-detail-cell')]"));
         WebElement order = orders.get(orderNum);
         clickOnElement(order);
         Waiters.waitTillLoadingPage(getDriver());
+    }*/
+// Updated method to handle stale element exception and ensure element is clickable before interacting
+   public void selectOrderByOrderNumber(int orderNum) {
+       Waiters.waitTillLoadingPage(getDriver());
+       Waiters.waitForElementToBeDisplay(tableContent);
+
+       WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+
+       for (int attempt = 0; attempt < 3; attempt++) {
+           try {
+               List<WebElement> orders = findWebElements(By.xpath("//tr[contains(@class, 'k-detail-row')]//td[contains(@class, 'k-detail-cell')]"));
+               WebElement order = orders.get(orderNum);
+               clickOnElement(order);
+               Waiters.waitTillLoadingPage(getDriver());
+               break;
+           } catch (StaleElementReferenceException e) {
+               System.out.println("Attempt " + (attempt + 1) + ": Stale Element Reference Exception, retrying...");
+               Waiters.waitABit(1000); // Wait before retrying
+           }
+       }
+   }
+
+
+
+    // Helper method to wait until the element is clickable
+    public void waitForElementToBeClickable(WebElement element, int timeoutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutInSeconds));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void clickOrderStatus(String status) {
+    // Helper method to scroll the element into view
+    public void scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    // Helper method to click on an element
+    public void clickOnElement(WebElement element) {
+        element.click();
+    }
+
+  /*  public void clickOrderStatus(String status) {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getStatusDropDown(status));
         Waiters.waitTillLoadingPage(getDriver());
-    }
+    }*/
 
-    public void selectOption(String option) {
+
+    /*public void selectOption(String option) {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(findWebElements(By
                 .xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                         + option + "') and @role='option']"))
                 .stream().findFirst().get());
         Waiters.waitTillLoadingPage(getDriver());
-    }
+    }*/
 
     public void typeShipDate(String date) {
         Waiters.waitTillLoadingPage(getDriver());
@@ -297,11 +392,11 @@ public class InboundOrderDetailsPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
     }
 
-    public void selectDoorDropDown(String door) {
+    /*public void selectDoorDropDown(String door) {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDoorDropDown(door));
         Waiters.waitTillLoadingPage(getDriver());
-    }
+    }*/
 
     public void clickDoorDropdown() {
         Waiters.waitTillLoadingPage(getDriver());
@@ -379,9 +474,13 @@ public class InboundOrderDetailsPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
     }
 
-    public boolean isTopIconDisplayed() {  return isElementDisplay(getTopIcon()); }
+    public boolean isTopIconDisplayed() {
+        return isElementDisplay(getTopIcon());
+    }
 
-    public boolean isOrderOptionsButtonDisplayed() {  return isElementDisplay(getOrderOptionsButton()); }
+    public boolean isOrderOptionsButtonDisplayed() {
+        return isElementDisplay(getOrderOptionsButton());
+    }
 
     public boolean isOrderStatusDisplayed() {
         Waiters.waitTillLoadingPage(getDriver());
@@ -393,60 +492,110 @@ public class InboundOrderDetailsPage extends BasePage {
         return isElementDisplay(getOrderNumber());
     }
 
-    public boolean isSourceLabelDisplayed() {  return isElementDisplay(getSourceLabel()); }
+    public boolean isSourceLabelDisplayed() {
+        return isElementDisplay(getSourceLabel());
+    }
 
-    public boolean isImagesButtonDisplayed() {  return isElementDisplay(getImagesButton()); }
+    public boolean isImagesButtonDisplayed() {
+        return isElementDisplay(getImagesButton());
+    }
 
     public boolean isCommentsButtonDisplayed() {
 
         return isElementDisplay(getCommentsButton());
     }
 
-    public boolean isToolBarDisplayed() {  return isElementDisplay(getToolBar()); }
+    public boolean isToolBarDisplayed() {
+        return isElementDisplay(getToolBar());
+    }
 
-    public boolean isToolBarContainerPresent() { return isElementPresent(getToolBarContainer()); }
+    public boolean isToolBarContainerPresent() {
+        return isElementPresent(getToolBarContainer());
+    }
 
-    public boolean isBarContainerPresent() { return isElementPresent(getBarContainer()); }
+    public boolean isBarContainerPresent() {
+        return isElementPresent(getBarContainer());
+    }
 
-    public boolean isOrderLabelPresent() { return isElementPresent(getOrderLabel()); }
+    public boolean isOrderLabelPresent() {
+        return isElementPresent(getOrderLabel());
+    }
 
-    public boolean isOrderDetailsPresent() { return isElementPresent(getOrderDet()); }
+    public boolean isOrderDetailsPresent() {
+        return isElementPresent(getOrderDet());
+    }
 
-    public boolean isDoorFieldDisplayed() {  return isElementDisplay(getDoorField()); }
+    public boolean isDoorFieldDisplayed() {
+        return isElementDisplay(getDoorField());
+    }
 
-    public boolean isQaFieldDisplayed() {  return isElementDisplay(getQaField()); }
+    public boolean isQaFieldDisplayed() {
+        return isElementDisplay(getQaField());
+    }
 
-    public int isProductListDisplayed() { return elementsArePresent(getProductList()); }
+    public int isProductListDisplayed() {
+        return elementsArePresent(getProductList());
+    }
 
-    public boolean isCustomerFieldDisplayed() { return isElementDisplay(getCustomerField()); }
+    public boolean isCustomerFieldDisplayed() {
+        return isElementDisplay(getCustomerField());
+    }
 
-    public boolean isCarrierFieldDisplayed() { return isElementDisplay(getCarrierField()); }
+    public boolean isCarrierFieldDisplayed() {
+        return isElementDisplay(getCarrierField());
+    }
 
-    public boolean isLoadFieldDisplayed() { return isElementDisplay(getLoadField()); }
+    public boolean isLoadFieldDisplayed() {
+        return isElementDisplay(getLoadField());
+    }
 
-    public boolean isSourceFieldDisplayed() { return isElementDisplay(getSourceField()); }
+    public boolean isSourceFieldDisplayed() {
+        return isElementDisplay(getSourceField());
+    }
 
-    public boolean isQtyFieldDisplayed() { return isElementDisplay(getQtyField()); }
+    public boolean isQtyFieldDisplayed() {
+        return isElementDisplay(getQtyField());
+    }
 
-    public boolean isCubeFieldDisplayed() { return isElementDisplay(getCubeField()); }
+    public boolean isCubeFieldDisplayed() {
+        return isElementDisplay(getCubeField());
+    }
 
-    public boolean isWeightFieldDisplayed() { return isElementDisplay(getWeightField()); }
+    public boolean isWeightFieldDisplayed() {
+        return isElementDisplay(getWeightField());
+    }
 
-    public boolean isChangeStatusOptionDisplayed() { return isElementDisplay(getChangeStatusOption()); }
+    public boolean isChangeStatusOptionDisplayed() {
+        return isElementDisplay(getChangeStatusOption());
+    }
 
-    public boolean isDoorOptionDisplayed() { return isElementDisplay(getDoorOption()); }
+    public boolean isDoorOptionDisplayed() {
+        return isElementDisplay(getDoorOption());
+    }
 
-    public boolean isDataOptionDisplayed() { return isElementDisplay(getDataOption()); }
+    public boolean isDataOptionDisplayed() {
+        return isElementDisplay(getDataOption());
+    }
 
-    public boolean isChangeStatusOptionPresent() { return isElementPresent(getChangeStatusOption()); }
+    public boolean isChangeStatusOptionPresent() {
+        return isElementPresent(getChangeStatusOption());
+    }
 
-    public boolean isDoorOptionPresent() { return isElementPresent(getDoorOption()); }
+    public boolean isDoorOptionPresent() {
+        return isElementPresent(getDoorOption());
+    }
 
-    public boolean isDataOptionPresent() { return isElementPresent(getDataOption()); }
+    public boolean isDataOptionPresent() {
+        return isElementPresent(getDataOption());
+    }
 
-    public boolean isStatusInputDisplayed() { return isElementDisplay(getStatusInput()); }
+    public boolean isStatusInputDisplayed() {
+        return isElementDisplay(getStatusInput());
+    }
 
-    public WebElement getAddFilterButton() { return findWebElement(addFilterButton); }
+    public WebElement getAddFilterButton() {
+        return findWebElement(addFilterButton);
+    }
 
     public boolean isReopenOrderStatusDisplayed() {
         Waiters.waitForElementToBeDisplay(getReopenOrderStatus());
@@ -588,8 +737,10 @@ public class InboundOrderDetailsPage extends BasePage {
         return isElementDisplay(receiverUserColumn);
     }
 
-    public boolean isSaveButtonDisabled() { return getElementAttribute(getSaveButton(),
-            "class").contains("disabled"); }
+    public boolean isSaveButtonDisabled() {
+        return getElementAttribute(getSaveButton(),
+                "class").contains("disabled");
+    }
 
     public boolean isSaveEditButtonDisplayed() {
         Waiters.waitForElementToBeDisplay(getSaveEditButton());
@@ -611,163 +762,544 @@ public class InboundOrderDetailsPage extends BasePage {
         return isElementDisplay(getLoadImageLabel());
     }
 
-    public WebElement getTopIcon() { return findWebElement(topIcon); }
+    public WebElement getTopIcon() {
+        return findWebElement(topIcon);
+    }
 
-    public WebElement getOrderOptionsButton() { return findWebElement(orderOptionsButton); }
-
-    public WebElement getOrderStatus() { return findWebElement(orderStatus); }
-
-    public WebElement getOrderNumber() { return findWebElement(orderNumber); }
-
-    public WebElement getSourceLabel() { return findWebElement(sourceLabel); }
-
-    public WebElement getImagesButton() { return findWebElement(imagesButton); }
-
-    public WebElement getSaveButton() { return findWebElement(saveButton); }
-
-    public WebElement getCommentsButton() { return findWebElement(commentsButton); }
-
-    public WebElement getToolBar() { return findWebElement(toolBar); }
-
-    public WebElement getToolBarContainer() { return findWebElement(toolBarContainer); }
-
-    public WebElement getBarContainer() { return findWebElement(barContainer); }
-
-    public WebElement getOrderLabel() { return findWebElement(orderLabel); }
-
-    public WebElement getOrderDet() { return findWebElement(orderDet); }
-
-    public List<WebElement> getProductList() { return findWebElements(productList); }
-
-    public WebElement getCustomerField() { return findWebElement(customerField); }
-
-    public WebElement getSourceField() { return findWebElement(sourceField); }
-
-    public WebElement getDoorField() { return findWebElement(doorField); }
-
-    public WebElement getQaField() { return findWebElement(qaField); }
-
-    public WebElement getCarrierField() { return findWebElement(carrierField); }
-
-    public WebElement getLoadField() { return findWebElement(loadField); }
-
-    public WebElement getQtyField() { return findWebElement(qtyField); }
-
-    public WebElement getCubeField() { return findWebElement(cubeField); }
-
-    public WebElement getWeightField() { return findWebElement(weightField); }
-
-    public WebElement getChangeStatusOption() { return findWebElement(changeStatusOption); }
-
-    public WebElement getDoorOption() { return findWebElement(doorOption); }
-
-    public WebElement getDataOption() { return findWebElement(dataOption); }
-
-    public WebElement getStatusInput() { return findWebElement(statusInput); }
-
-    public WebElement getReopenOrderStatus() { return findWebElement(reopenOrderStatus); }
-
-    public WebElement getReadyToReceiveStatus() { return findWebElement(readyToReceiveStatus); }
-
-    public WebElement getFinishReceivingOrderStatus() { return findWebElement(finishReceivingOrderStatus); }
-
-    public WebElement getDialogPopup() { return findWebElement(dialogPopup); }
-
-    public WebElement getStatusDropDown(String status) { return findWebElement(getStatus(status)); }
-
-    public WebElement getTableContent() { return findWebElement(tableContent); }
-
-    public WebElement getReceivedQty() { return findWebElement(receivedQty); }
-
-    public WebElement getStagedQty() { return findWebElement(stagedQty); }
-
-    public WebElement getRedQty() { return findWebElement(redQty); }
-
-    public WebElement getGrayQty() { return findWebElement(grayQty); }
-
-    public WebElement getSourceOrderType() { return findWebElement(sourceOrderTypeColumn); }
-
-    public WebElement getSourceOrder() { return findWebElement(sourceOrderColumn); }
-
-    public WebElement getSourceStatus() { return findWebElement(sourceStatusColumn); }
-
-    public WebElement getScheduledDateLabel() { return findWebElement(scheduledDateLabel); }
-
-    public WebElement getScheduledDate() { return findWebElement(scheduledDate); }
-
-    public WebElement getCarrierLabel() { return findWebElement(carrierLabel); }
-
-    public WebElement getCarrierInput() { return findWebElement(carrierInput); }
-
-    public WebElement getTrailerLabel() { return findWebElement(trailerLabel); }
-
-    public WebElement getTrailerInput() { return findWebElement(trailerInput); }
-
-    public WebElement getScheduledTimeLabel() { return findWebElement(scheduledTimeLabel); }
-
-    public WebElement getScheduledTimeInput() { return findWebElement(scheduledTimeInput); }
-
-    public WebElement getPaymentTypeLabel() { return findWebElement(paymentTypeLabel); }
-
-    public WebElement getPaymentTypeInput() { return findWebElement(paymentTypeInput); }
-
-    public WebElement getCommentsLabel() { return findWebElement(commentsLabel); }
-
-    public WebElement getCommentsInput() { return findWebElement(commentsInput); }
-
-    public WebElement getTemperatureLabel() { return findWebElement(temperatureLabel); }
-
-    public WebElement getTemperatureInput() { return findWebElement(temperatureInput); }
-
-    public WebElement getSealNumberLabel() { return findWebElement(sealNumberLabel); }
-
-    public WebElement getSealNumberInput() { return findWebElement(sealNumberInput); }
-
-    public List<WebElement> getCommentsLabels() { return findWebElements(commentsLabels); }
-
-    public List<WebElement> getCommentsInputs() { return findWebElements(commentsInputs); }
-
-    public List<WebElement> getYesRadioButtons() { return findWebElements(yesRadioButtons); }
-
-    public List<WebElement> getNoRadioButtons() { return findWebElements(noRadioButtons); }
-
-    public WebElement getBtnAddProductCancel() { return findWebElement(btnAddProductCancel); }
-
-    public WebElement getNotificationMsg() { return findWebElement(notificationMsg); }
-
-    public WebElement getDateTimeCheckBox() { return findWebElement(dateTimeCheckBox); }
-
-    public WebElement getFromStatusCheckBox() { return findWebElement(fromStatusCheckBox); }
-
-    public WebElement getToStatusCheckBox() { return findWebElement(toStatusCheckBox); }
-
-    public WebElement getUserCheckBox() { return findWebElement(userCheckBox); }
-
-    public WebElement getMoveShipDate() { return findWebElement(moveShipDate); }
-
-    public WebElement getMoveShipDateInput() { return findWebElement(moveShipDateInput); }
-
-    public WebElement getMoveLoad() { return findWebElement(moveLoad); }
-
-    public WebElement getMoveLoadInput() { return findWebElement(moveLoadInput); }
-
-    public List<WebElement> getOrderProducts() { return findWebElements(orderProducts); }
+    /*public WebElement getOrderOptionsButton() { return findWebElement(orderOptionsButton); }*/
+
+    public WebElement getOrderStatus() {
+        return findWebElement(orderStatus);
+    }
+
+    public WebElement getOrderNumber() {
+        return findWebElement(orderNumber);
+    }
+
+    public WebElement getSourceLabel() {
+        return findWebElement(sourceLabel);
+    }
+
+    public WebElement getImagesButton() {
+        return findWebElement(imagesButton);
+    }
+
+    public WebElement getSaveButton() {
+        return findWebElement(saveButton);
+    }
+
+    public WebElement getCommentsButton() {
+        return findWebElement(commentsButton);
+    }
+
+    public WebElement getToolBar() {
+        return findWebElement(toolBar);
+    }
+
+    public WebElement getToolBarContainer() {
+        return findWebElement(toolBarContainer);
+    }
+
+    public WebElement getBarContainer() {
+        return findWebElement(barContainer);
+    }
+
+    public WebElement getOrderLabel() {
+        return findWebElement(orderLabel);
+    }
+
+    public WebElement getOrderDet() {
+        return findWebElement(orderDet);
+    }
+
+    public List<WebElement> getProductList() {
+        return findWebElements(productList);
+    }
+
+    public WebElement getCustomerField() {
+        return findWebElement(customerField);
+    }
+
+    public WebElement getSourceField() {
+        return findWebElement(sourceField);
+    }
+
+    public WebElement getDoorField() {
+        return findWebElement(doorField);
+    }
+
+    public WebElement getQaField() {
+        return findWebElement(qaField);
+    }
+
+    public WebElement getCarrierField() {
+        return findWebElement(carrierField);
+    }
+
+    public WebElement getLoadField() {
+        return findWebElement(loadField);
+    }
+
+    public WebElement getQtyField() {
+        return findWebElement(qtyField);
+    }
+
+    public WebElement getCubeField() {
+        return findWebElement(cubeField);
+    }
+
+    public WebElement getWeightField() {
+        return findWebElement(weightField);
+    }
+
+    public WebElement getChangeStatusOption() {
+        return findWebElement(changeStatusOption);
+    }
+
+    public WebElement getDoorOption() {
+        return findWebElement(doorOption);
+    }
+
+    public WebElement getDataOption() {
+        return findWebElement(dataOption);
+    }
+
+    public WebElement getStatusInput() {
+        return findWebElement(statusInput);
+    }
+
+    public WebElement getReopenOrderStatus() {
+        return findWebElement(reopenOrderStatus);
+    }
+
+    public WebElement getReadyToReceiveStatus() {
+        return findWebElement(readyToReceiveStatus);
+    }
+
+    public WebElement getFinishReceivingOrderStatus() {
+        return findWebElement(finishReceivingOrderStatus);
+    }
+
+    public WebElement getDialogPopup() {
+        return findWebElement(dialogPopup);
+    }
+
+    public WebElement getStatusDropDown(String status) {
+        return findWebElement(getStatus(status));
+    }
+
+    public WebElement getTableContent() {
+        return findWebElement(tableContent);
+    }
+
+    public WebElement getReceivedQty() {
+        return findWebElement(receivedQty);
+    }
+
+    public WebElement getStagedQty() {
+        return findWebElement(stagedQty);
+    }
+
+    public WebElement getRedQty() {
+        return findWebElement(redQty);
+    }
+
+    public WebElement getGrayQty() {
+        return findWebElement(grayQty);
+    }
+
+    public WebElement getSourceOrderType() {
+        return findWebElement(sourceOrderTypeColumn);
+    }
+
+    public WebElement getSourceOrder() {
+        return findWebElement(sourceOrderColumn);
+    }
+
+    public WebElement getSourceStatus() {
+        return findWebElement(sourceStatusColumn);
+    }
+
+    public WebElement getScheduledDateLabel() {
+        return findWebElement(scheduledDateLabel);
+    }
+
+    public WebElement getScheduledDate() {
+        return findWebElement(scheduledDate);
+    }
+
+    public WebElement getCarrierLabel() {
+        return findWebElement(carrierLabel);
+    }
+
+    public WebElement getCarrierInput() {
+        return findWebElement(carrierInput);
+    }
+
+    public WebElement getTrailerLabel() {
+        return findWebElement(trailerLabel);
+    }
+
+    public WebElement getTrailerInput() {
+        return findWebElement(trailerInput);
+    }
+
+    public WebElement getScheduledTimeLabel() {
+        return findWebElement(scheduledTimeLabel);
+    }
+
+    public WebElement getScheduledTimeInput() {
+        return findWebElement(scheduledTimeInput);
+    }
+
+    public WebElement getPaymentTypeLabel() {
+        return findWebElement(paymentTypeLabel);
+    }
+
+    public WebElement getPaymentTypeInput() {
+        return findWebElement(paymentTypeInput);
+    }
+
+    public WebElement getCommentsLabel() {
+        return findWebElement(commentsLabel);
+    }
+
+    public WebElement getCommentsInput() {
+        return findWebElement(commentsInput);
+    }
+
+    public WebElement getTemperatureLabel() {
+        return findWebElement(temperatureLabel);
+    }
+
+    public WebElement getTemperatureInput() {
+        return findWebElement(temperatureInput);
+    }
+
+    public WebElement getSealNumberLabel() {
+        return findWebElement(sealNumberLabel);
+    }
+
+    public WebElement getSealNumberInput() {
+        return findWebElement(sealNumberInput);
+    }
+
+    public List<WebElement> getCommentsLabels() {
+        return findWebElements(commentsLabels);
+    }
+
+    public List<WebElement> getCommentsInputs() {
+        return findWebElements(commentsInputs);
+    }
+
+    public List<WebElement> getYesRadioButtons() {
+        return findWebElements(yesRadioButtons);
+    }
+
+    public List<WebElement> getNoRadioButtons() {
+        return findWebElements(noRadioButtons);
+    }
+
+    public WebElement getBtnAddProductCancel() {
+        return findWebElement(btnAddProductCancel);
+    }
+
+    public WebElement getNotificationMsg() {
+        return findWebElement(notificationMsg);
+    }
+
+    public WebElement getDateTimeCheckBox() {
+        return findWebElement(dateTimeCheckBox);
+    }
+
+    public WebElement getFromStatusCheckBox() {
+        return findWebElement(fromStatusCheckBox);
+    }
+
+    public WebElement getToStatusCheckBox() {
+        return findWebElement(toStatusCheckBox);
+    }
+
+    public WebElement getUserCheckBox() {
+        return findWebElement(userCheckBox);
+    }
+
+    public WebElement getMoveShipDate() {
+        return findWebElement(moveShipDate);
+    }
+
+    public WebElement getMoveShipDateInput() {
+        return findWebElement(moveShipDateInput);
+    }
+
+    public WebElement getMoveLoad() {
+        return findWebElement(moveLoad);
+    }
+
+    public WebElement getMoveLoadInput() {
+        return findWebElement(moveLoadInput);
+    }
+
+    public List<WebElement> getOrderProducts() {
+        return findWebElements(orderProducts);
+    }
 
     //public List<WebElement> getOrderLineItems() { return findWebElements(orderLineItems); }
-    public List<WebElement> getOrderLineItems() { return findWebElements(orderLineItems); }
+    public List<WebElement> getOrderLineItems() {
+        return findWebElements(orderLineItems);
+    }
 
-    public WebElement getBtnProductData() { return findWebElement(btnProductData); }
+    public WebElement getBtnProductData() {
+        return findWebElement(btnProductData);
+    }
 
-    public WebElement getBtnProductEdit() { return findWebElement(btnProductEdit); }
+    public WebElement getBtnProductEdit() {
+        return findWebElement(btnProductEdit);
+    }
 
-    public WebElement getBtnOrderLineFieldsImage() { return findWebElement(btnOrderLineFieldsImage); }
+    public WebElement getBtnOrderLineFieldsImage() {
+        return findWebElement(btnOrderLineFieldsImage);
+    }
 
-    public WebElement getSaveEditButton() { return findWebElement(saveEditButton); }
+    public WebElement getSaveEditButton() {
+        return findWebElement(saveEditButton);
+    }
 
-    public WebElement getInboundImageCaptureButton() { return findWebElement(inboundImageCaptureButton); }
+    public WebElement getInboundImageCaptureButton() {
+        return findWebElement(inboundImageCaptureButton);
+    }
 
-    public WebElement getSelectFilesBtn() { return findWebElement(selectFilesBtn); }
+    public WebElement getSelectFilesBtn() {
+        return findWebElement(selectFilesBtn);
+    }
 
-    public WebElement getLoadImageLabel() { return findWebElement(loadImageLabel); }
+    public WebElement getLoadImageLabel() {
+        return findWebElement(loadImageLabel);
+    }
+
+    /* public void clickStatusFilterDropdown() {
+         By statusDropdown = By.xpath("//span[contains(@class, 'k-chip-label')]");
+         Waiters.waitForElementToBeDisplay(statusDropdown);
+         clickOnElement(statusDropdown);
+     }*/
+    public void clickStatusFilterDropdown() {
+        By dropdownTrigger = By.cssSelector(".k-multiselect");
+
+        Waiters.waitTillLoadingPage(getDriver());
+
+        WebElement dropdown = Waiters.waitForElementToBeDisplay(dropdownTrigger);
+
+        if (dropdown == null) {
+            throw new IllegalStateException("Status dropdown not found");
+        }
+
+        try {
+            dropdown.click();
+        } catch (Exception e) {
+            ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();", dropdown);
+        }
+
+        Waiters.waitABit(500);
+    }
+
+    public void selectStatusFromDropdown(String statusName) {
+        By statusOption = By.xpath("//li[@role='option' and contains(text(), '" + statusName + "')]");
+        Waiters.waitABit(500); // Give it 0.5s to render — you can tune this
+        Waiters.waitForElementToBeDisplay(statusOption);
+        clickOnElement(statusOption);
+    }
+
+    public void openStatusDropdown() {
+        By dropdownTrigger = By.xpath("//input[@role='combobox' and contains(@class,'k-input-inner')]");
+
+        // Wait for loader to disappear (if any)
+        Waiters.waitUntilInvisible(getDriver(), By.cssSelector(".loader-bg"));
+
+        // Wait for dropdown to be ready and click
+        WebElement dropdown = Waiters.waitForElementToBeClickable(dropdownTrigger);
+        dropdown.click();
+
+        // Small wait for the dropdown animation/render
+        Waiters.waitABit(500);
+    }
+
+    public void selectOrderStatus(String status) {
+        WebDriver driver = getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        String normalizedStatus = status.equalsIgnoreCase("All statuses") ? "All" : status;
+
+        for (int attempt = 1; attempt <= 3; attempt++) {
+            try {
+                // Step 1: Open dropdown
+                WebElement inputBox = wait.until(ExpectedConditions.elementToBeClickable(
+                        By.cssSelector(".k-multiselect .k-input-inner")
+                ));
+                inputBox.click();
+                Waiters.waitTillLoadingPage(driver);
+                Waiters.waitABit(500);
+
+                // Step 2: Deselect any selected options
+                List<WebElement> checkedBoxes = driver.findElements(
+                        By.cssSelector("li.k-selected input[type='checkbox']:checked")
+                );
+                for (WebElement checkbox : checkedBoxes) {
+                    try {
+                        if (checkbox.isDisplayed()) {
+                            checkbox.click();
+                            Waiters.waitABit(300);
+                        }
+                    } catch (Exception ignored) {
+                    }
+                }
+
+                // Step 3: Find matching label and click checkbox next to it
+                List<WebElement> labels = driver.findElements(
+                        By.xpath("//li[@role='option']//label[normalize-space()]")
+                );
+
+                boolean matched = false;
+                for (WebElement label : labels) {
+                    String labelText = label.getText().trim().toLowerCase();
+                    if (labelText.equals(normalizedStatus.toLowerCase())) {
+                        WebElement checkbox = label.findElement(By.xpath(".//preceding-sibling::input[@type='checkbox']"));
+                        checkbox.click();
+                        matched = true;
+                        break;
+                    }
+                }
+
+                if (!matched) {
+                    throw new TimeoutException("Status '" + normalizedStatus + "' not found.");
+                }
+
+                inputBox.sendKeys(Keys.TAB);
+                Waiters.waitTillLoadingPage(driver);
+                return;
+
+            } catch (StaleElementReferenceException e) {
+                System.out.println("Stale element on attempt " + attempt + ", retrying...");
+            } catch (TimeoutException e) {
+                System.out.println("Timeout: Could not find status '" + status + "' on attempt " + attempt);
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+
+        throw new RuntimeException("Failed to select status: " + status + " after 3 attempts.");
+    }
+
+
+    public void clickOrderStatus(String... statuses) {
+        WebDriver driver = getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        try {
+            // Step 1: Open dropdown
+            WebElement inputBox = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".k-multiselect .k-input-inner")));
+            inputBox.click();
+            Waiters.waitTillLoadingPage(driver);
+            Waiters.waitABit(500);
+
+            // Step 2: Deselect all current selections
+            List<WebElement> selected = driver.findElements(By.cssSelector("li.k-selected input[type='checkbox']:checked"));
+            for (WebElement checkbox : selected) {
+                if (checkbox.isDisplayed()) {
+                    checkbox.click();
+                    Waiters.waitABit(300);
+                }
+            }
+
+            // Step 3: Select requested statuses
+            for (String status : statuses) {
+                String normalized = status.equalsIgnoreCase("All statuses") ? "All" : status;
+
+                List<WebElement> labels = driver.findElements(By.xpath("//li[@role='option']//label[normalize-space()]"));
+                boolean found = false;
+
+                for (WebElement label : labels) {
+                    if (label.getText().trim().equalsIgnoreCase(normalized)) {
+                        WebElement checkbox = label.findElement(By.xpath(".//preceding-sibling::input[@type='checkbox']"));
+                        checkbox.click();
+                        Waiters.waitABit(300);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    throw new RuntimeException("Status '" + status + "' not found.");
+                }
+            }
+
+            // Step 4: Close dropdown
+            inputBox.sendKeys(Keys.TAB);
+            Waiters.waitTillLoadingPage(driver);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Failed in clickOrderStatus: " + e.getMessage());
+        }
+    }
+
+    public void clickChangeStatusButton() {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(30)); // Increased timeout
+
+        try {
+            // Wait for the loader to disappear (if any) to ensure no overlay is blocking the element
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".loader"))); // Adjust loader's selector
+
+            // Wait for the Change Status button to be clickable
+            WebElement changeStatusButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='btnChangeStatus']")));
+
+            // Scroll the element into view to avoid issues if it's out of the viewport
+            ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", changeStatusButton);
+
+            // Click the Change Status button
+            changeStatusButton.click();
+
+           // LOG.info("Change Status button clicked successfully.");
+        } catch (TimeoutException e) {
+            // Log the error and ta
+
+        }
+    }
+
+    public void selectOption(String option) {
+        WebDriver driver = getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Timeout in seconds
+
+        try {
+            // Click the dropdown button to open the options
+            WebElement dropdownButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@id='ddDoorList-accessibility-id']/following-sibling::button")));
+            dropdownButton.click();
+
+            // Wait until the dropdown options are visible (if dynamically loaded)
+            WebElement optionElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//ul[@aria-labelledby='ddDoorList-listbox-id']//li[contains(text(), '" + option + "')]")
+            ));
+
+            // Scroll the element into view to ensure it's not obscured
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", optionElement);
+
+            // Click on the desired option
+            optionElement.click();
+
+            // Optionally wait for any page transitions or loading, if required
+            Waiters.waitTillLoadingPage(driver);
+
+        } catch (NoSuchElementException e) {
+            System.out.println("No such element found for option: " + option);
+            e.printStackTrace();  // Print stack trace for debugging
+        } catch (TimeoutException e) {
+            System.out.println("Timeout while waiting for element: " + option);
+            e.printStackTrace();
+        } catch (ElementClickInterceptedException e) {
+            System.out.println("Click intercepted while selecting option: " + option);
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error occurred while selecting option: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
 }

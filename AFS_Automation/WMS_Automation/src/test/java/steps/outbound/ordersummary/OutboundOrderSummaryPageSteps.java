@@ -297,6 +297,7 @@ public class OutboundOrderSummaryPageSteps extends BasePage {
     public void selectOutboundOrderOpenStatus() {
         log.info("Selecting Outbound Order Status " + Statuses.OPEN.getStatus());
         outboundOrderSummaryPage.selectOutboundOrderStatus(Statuses.OPEN.getStatus());
+
     }
 
     @Step

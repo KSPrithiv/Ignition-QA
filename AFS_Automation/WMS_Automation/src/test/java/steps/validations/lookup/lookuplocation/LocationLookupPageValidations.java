@@ -119,8 +119,11 @@ public class LocationLookupPageValidations {
     @And("Validates Cancel and Ok buttons are displayed on Delete assignment popup on Location Lookup page")
     public void validateCancelAndOkButtonsPresent() {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(locationLookupPage.isCancelButtonDisplayed(),"Cancel Button is not displayed");
-        softAssert.assertTrue(locationLookupPage.isOkButtonDisplayed(),"Ok Button is not displayed");
+        /*softAssert.assertTrue(locationLookupPage.isCancelButtonDisplayed(),"Cancel Button is not displayed");
+        softAssert.assertTrue(locationLookupPage.isOkButtonDisplayed(),"Ok Button is not displayed");*/
+        softAssert.assertTrue(locationLookupPage.isDeleteCancelButtonDisplayed(), "Cancel Button is not displayed");
+        softAssert.assertTrue(locationLookupPage.isDeleteOkButtonDisplayed(), "Ok Button is not displayed");
+
         softAssert.assertAll();
     }
 

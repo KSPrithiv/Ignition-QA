@@ -44,11 +44,12 @@ Feature: Testing of Outbound Summary order Edit option functionality
 
   @3
   Scenario: Checking Order Door option functionality
-#    Given User signs in the application
-#    And Main page is loaded
-#    And DockManagement Summary Page is validated
-#    And Go to Outbound Order page
-#    And Waits for Outbound Order Summary page to load
+    Given User signs in the application
+   And Main page is loaded
+ #   And DockManagement Summary Page is validated
+    And Go to Outbound Order page
+    And Waits for Outbound Order Summary page to load
+      #0
     When Filling start date by index 2 on Outbound Order Summary page
     And Clears Account field on Outbound Order Summary page
     And Searches for order by index 5 on Outbound Order Summary page
@@ -61,11 +62,12 @@ Feature: Testing of Outbound Summary order Edit option functionality
 
   @4
   Scenario: Checking Order Data option functionality
-#    Given User signs in the application
-#    And Main page is loaded
+    Given User signs in the application
+    And Main page is loaded
 #    #And DockManagement Summary Page is validated
-#    And Go to Outbound Order page
-#    And Waits for Outbound Order Summary page to load
+    And Go to Outbound Order page
+    And Waits for Outbound Order Summary page to load
+    #0
     When Filling start date by index 2 on Outbound Order Summary page
     And Searches for order by index 5 on Outbound Order Summary page
     Then Selects order checkbox with index 0 on Outbound Order Summary page
@@ -82,11 +84,12 @@ Feature: Testing of Outbound Summary order Edit option functionality
 
   @5
   Scenario: Checking Order Log option functionality
-#    Given User signs in the application
-#    And Main page is loaded
+    Given User signs in the application
+    And Main page is loaded
 #    And DockManagement Summary Page is validated
-#    And Go to Outbound Order page
-#    And Waits for Outbound Order Summary page to load
+    And Go to Outbound Order page
+    And Waits for Outbound Order Summary page to load
+    #
     When Filling start date by index 2 on Outbound Order Summary page
     And Searches for order by index 5 on Outbound Order Summary page
     Then Selects order checkbox with index 0 on Outbound Order Summary page
@@ -97,11 +100,12 @@ Feature: Testing of Outbound Summary order Edit option functionality
 
   @6
   Scenario: Checking Order Source option functionality
-#    Given User signs in the application
-#    And Main page is loaded
+    Given User signs in the application
+    And Main page is loaded
 #    And DockManagement Summary Page is validated
-#    And Go to Outbound Order page
-#    And Waits for Outbound Order Summary page to load
+    And Go to Outbound Order page
+    And Waits for Outbound Order Summary page to load
+    #
     When Filling start date by index 2 on Outbound Order Summary page
     And Searches for order by index 5 on Outbound Order Summary page
     Then Selects order checkbox with index 0 on Outbound Order Summary page
@@ -118,11 +122,12 @@ Feature: Testing of Outbound Summary order Edit option functionality
 
   @7
   Scenario: Checking Order Move option functionality
-#    Given User signs in the application
-#    And Main page is loaded
+    Given User signs in the application
+    And Main page is loaded
 #    And DockManagement Summary Page is validated
-#    And Go to Outbound Order page
-#    And Waits for Outbound Order Summary page to load
+    And Go to Outbound Order page
+    And Waits for Outbound Order Summary page to load
+    #
     When Filling start date by index 2 on Outbound Order Summary page
     And Searches for order by index 5 on Outbound Order Summary page
     Then Selects order checkbox with index 0 on Outbound Order Summary page
@@ -135,21 +140,23 @@ Feature: Testing of Outbound Summary order Edit option functionality
 
   @8
   Scenario: Checking Order Image option functionality
-#    Given User signs in the application
-#    And Main page is loaded
+    Given User signs in the application
+    And Main page is loaded
 #    #And DockManagement Summary Page is validated
-#    And Go to Outbound Order page
-#    And Waits for Outbound Order Summary page to load
+    And Go to Outbound Order page
+    And Waits for Outbound Order Summary page to load
+    #
     When Filling start date by index 2 on Outbound Order Summary page
     Then Selects order checkbox with index 0 on Outbound Order Summary page
 
   @9
   Scenario: Checking Order Review option functionality
-#    Given User signs in the application
-#    And Main page is loaded
+    Given User signs in the application
+    And Main page is loaded
 #    And DockManagement Summary Page is validated
-#    And Go to Outbound Order page
-#    And Waits for Outbound Order Summary page to load
+    And Go to Outbound Order page
+    And Waits for Outbound Order Summary page to load
+    #
     When Filling start date by index 2 on Outbound Order Summary page
     Then Selects order checkbox with index 0 on Outbound Order Summary page
     And Selecting Outbound Order Review option on Outbound Order Summary page

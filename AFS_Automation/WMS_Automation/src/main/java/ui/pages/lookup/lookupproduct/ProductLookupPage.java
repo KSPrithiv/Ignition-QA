@@ -3,8 +3,13 @@ package ui.pages.lookup.lookupproduct;
 import common.utils.Waiters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.BasePage;
+
+import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static common.setup.DriverManager.getDriver;
 
@@ -107,7 +112,7 @@ public class ProductLookupPage extends BasePage {
     By saveButton = By.xpath("//button[contains(text(), 'Save')]");
     By notificationText = By.cssSelector("#pgstatusError .i-notification-text");
     By notificationMsg = By.cssSelector(".toast-message");
-    By clearAllButton = By.xpath("//button[text()='Clear all']");
+    By clearAllButton = By.xpath("//span[text()='Clear all']");
     By checkBoxes = By.cssSelector(".i-filter-popup__checkboxes .i-btn-checkbox");
     By warehouseIdFilter = By.cssSelector(".i-btn-checkbox  #WarehouseId");
     By ownerIdFilter = By.cssSelector(".i-btn-checkbox  #OwnerId");
@@ -244,14 +249,31 @@ public class ProductLookupPage extends BasePage {
         waitUntilInvisible(2, loader);
     }
 
-    public void clickProductByProductIndex(int index) {
+    /*public void clickProductByProductIndex(int index) {
         Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> tasks = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]"));
         scrollToCenter(tasks.get(index));
         Waiters.waitABit(2000);
         clickOnElement(tasks.get(index));
         waitUntilInvisible(1, loader);
+    }*/
+    public void clickProductByProductIndex(int index) {
+        List<WebElement> productRows = getDriver().findElements(By.xpath("//table[contains(@class, 'k-grid-table')]//tr[contains(@class, 'k-table-row')]"));
+
+        if (productRows.isEmpty()) {
+            throw new NoSuchElementException("No products found in the grid.");
+        }
+
+        if (index < 0 || index >= productRows.size()) {
+            throw new NoSuchElementException("Product row index " + index + " is out of bounds. Available rows: " + productRows.size());
+        }
+
+        WebElement targetRow = productRows.get(index);
+        scrollToElement(targetRow); // Optional, if scrolling is needed
+        targetRow.click();
     }
+
+
 
     public void typeFilter(String filter) {
         Waiters.waitForElementToBeDisplay(getInputContains());

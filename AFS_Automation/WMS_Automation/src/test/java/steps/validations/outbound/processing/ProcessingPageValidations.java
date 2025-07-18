@@ -3,6 +3,7 @@ package steps.validations.outbound.processing;
 import common.constants.FilePaths;
 import common.constants.Notifications;
 import common.constants.TimeFormats;
+import common.setup.DriverManager;
 import common.utils.database.DataBaseConnection;
 import common.utils.database.SqlQueriesUtils;
 import common.utils.database.StoreProceduresUtils;
@@ -14,15 +15,27 @@ import objects.orderdata.ProcessingOrderDTO;
 import objects.outbound.OutboundOrderLoadsDTO;
 import objects.storeproceduresdata.outbound.ProcessingParams;
 import objects.userdata.DataBaseData;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
 import steps.LoginPageSteps;
 import ui.pages.outbound.processing.AddAllocationBatchPage;
 import ui.pages.outbound.processing.ProcessingPage;
 
 import java.sql.ResultSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import static common.utils.time.TimeConversion.getFormattedDate;
@@ -202,7 +215,7 @@ public class ProcessingPageValidations {
     }
 
     @And("Validates order date {string} on Processing page")
-    public void validateOrdersDate(String date) {
+ /*   public void validateOrdersDate(String date) {
         SoftAssert softAssert = new SoftAssert();
         if(processingPage.getRowsCount() > 0) {
             softAssert.assertTrue(!processingPage.getOrdersDates().isEmpty(),
@@ -214,7 +227,46 @@ public class ProcessingPageValidations {
                     });
             softAssert.assertAll();
         }
+    }*/
+    public void validateOrdersDate(String expectedDate) {
+        SoftAssert softAssert = new SoftAssert();
+
+        List<String> actualDates = processingPage.getOrdersDates();
+        int rowCount = processingPage.getRowsCount();
+
+        System.out.println("Order row count: " + rowCount);
+        System.out.println("Expected date: " + expectedDate);
+        System.out.println("Actual order dates: " + actualDates);
+
+        if (rowCount == 0) {
+            softAssert.fail("No orders present on the Processing page.");
+        } else {
+            softAssert.assertFalse(actualDates.isEmpty(), "Orders Dates list is empty.");
+
+            for (String actualDate : actualDates) {
+                softAssert.assertEquals(
+                        normalizeDate(actualDate),
+                        normalizeDate(expectedDate),
+                        "Mismatch in order date."
+                );
+            }
+        }
+
+        softAssert.assertAll();
     }
+
+    // Optional: Normalize date to ensure consistent comparison
+    private String normalizeDate(String date) {
+        try {
+            DateTimeFormatter parser = DateTimeFormatter.ofPattern("[M/d/yyyy][MM/dd/yyyy]");
+            LocalDate parsed = LocalDate.parse(date, parser);
+            return parsed.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); // Standard format
+        } catch (DateTimeParseException e) {
+            return date.trim(); // Fallback to raw if parsing fails
+        }
+    }
+
+
 
     @And("Validates statuses colors on Processing page")
     public void validateColors() {
@@ -235,9 +287,20 @@ public class ProcessingPageValidations {
                 "Orders count is not correct" );
         softAssert.assertAll();
     }
+    private Date tryParseDate(String dateStr) throws ParseException {
+        List<String> formats = Arrays.asList("MM/dd/yyyy", "M/d/yyyy", "yyyy-MM-dd", "M/dd/yyyy", "MM/d/yyyy");
+
+        for (String format : formats) {
+            try {
+                return new SimpleDateFormat(format).parse(dateStr);
+            } catch (ParseException ignored) {}
+        }
+
+        throw new ParseException("Unparseable date: " + dateStr, 0);
+    }
 
     @And("Validates filtered order details: start date {string}, source {string}, year {string} on Processing page")
-    public void validateFilteredOrderDetails(String startDate, String source, String year) {
+  /*  public void validateFilteredOrderDetails(String startDate, String source, String year) {
         SoftAssert softAssert = new SoftAssert();
         List<WebElement> rows = processingPage.getFilteredOrders();
         for(int i = 0; i < processingPage.getFilteredOrdersNumber()-1; i++) {
@@ -258,7 +321,41 @@ public class ProcessingPageValidations {
                             getFormattedDate(TimeFormats.format_yyyy_MM_dd, TimeFormats.format_MMddyyyy, startDate));
             softAssert.assertAll();
         }
+    }*/
+    public void validateFilteredOrderDetails(String startDate, String source, String year) {
+        SoftAssert softAssert = new SoftAssert();
+        List<WebElement> rows = processingPage.getFilteredOrders();
+
+        for (int i = 0; i < processingPage.getFilteredOrdersNumber() - 1; i++) {
+            String[] details = processingPage.getFilteredOrderDetailsInfo(rows.get(i)).split("\\n");
+
+            String dateStr = Arrays.stream(details)
+                    .filter(el -> el.contains(year))
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("No Ship Date found"));
+
+            String account = Arrays.stream(details)
+                    .filter(el -> el.equals(source))
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("No Source found"));
+
+            softAssert.assertEquals(account, source, "Incorrect Source: " + account);
+
+            try {
+                Date expected = tryParseDate(startDate); // "06/16/2025"
+                Date actual = tryParseDate(dateStr);     // Parsed from order grid
+
+                softAssert.assertTrue(!actual.before(expected),
+                        "Order ship date " + actual + " is before expected start date " + expected);
+            } catch (ParseException e) {
+                throw new RuntimeException("Failed to parse date: " + dateStr + " or " + startDate, e);
+            }
+        }
+
+        softAssert.assertAll();
     }
+
+
 
     @SneakyThrows
     @And("Validates Filtered order detail on Processing page")
@@ -312,13 +409,34 @@ public class ProcessingPageValidations {
         softAssert.assertAll();
     }
 
-    @And("Validates filtered order contains No Record on Processing page")
+ /*   @And("Validates filtered order contains No Record on Processing page")
     public void validateFilteredOrderNoRecord() {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(processingPage.getFilteredOrders().get(0).getText(), Notifications.NO_RECORDS,
                 "Notification " + Notifications.NO_RECORDS +  " is not in Grid");
         softAssert.assertAll();
-    }
+    }*/
+ @And("Validates filtered order contains No Record on Processing page")
+ public void validateFilteredOrderNoRecord() {
+     SoftAssert softAssert = new SoftAssert();
+
+     WebDriver driver = DriverManager.getDriver(); // Replace with your actual driver getter
+     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+     try {
+         WebElement noRecordsElement = wait.until(
+                 ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".k-grid-norecords-template"))
+         );
+
+         String actualText = noRecordsElement.getText().trim();
+         softAssert.assertEquals(actualText, Notifications.NO_RECORDS,
+                 "Expected: [" + Notifications.NO_RECORDS + "], but found: [" + actualText + "]");
+     } catch (TimeoutException e) {
+         softAssert.fail("No 'No records available' message was found within the timeout.");
+     }
+
+     softAssert.assertAll();
+ }
 
     @And("Validate Unbatched Order with index {int} is checked on Processing page")
     public void validateUnbatchedOrderIsChecked(int num) {

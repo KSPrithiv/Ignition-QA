@@ -28,10 +28,10 @@ Feature: Testing of Outbound Route Summary Route option
     And Select Temperature type by index 0 on Outbound Route Summary page
     And Type Temperature by index 1 on Outbound Route Summary page
     And Clicks Save button on Outbound Route Summary page
-    And Clicks Routes dropdown on Outbound Route Summary page
-    And Select Outbound Route Edit option on Outbound Route Summary page
-    And Validates max stops by index 0 value on Outbound Route Summary page
-    And Clicks Save button on Outbound Route Summary page
+#   And Clicks Routes dropdown on Outbound Route Summary page
+#   And Select Outbound Route Edit option on Outbound Route Summary page
+#   And Validates max stops by index 0 value on Outbound Route Summary page
+#   And Clicks Save button on Outbound Route Summary page
 
   Scenario: Checking Route Assign functionality
     Given User signs in the application

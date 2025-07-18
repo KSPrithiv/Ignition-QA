@@ -32,6 +32,7 @@ public class TimeConversion {
         return dtf.format(date);
     }
 
+
     public static String getFormattedCurrentDate(String format) {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(new Date());

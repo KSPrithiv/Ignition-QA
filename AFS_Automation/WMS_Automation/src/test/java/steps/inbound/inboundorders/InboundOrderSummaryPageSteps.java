@@ -9,6 +9,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
+import java.util.stream.Collectors;
+
 import lombok.extern.slf4j.Slf4j;
 import objects.inbound.InboundOrderLoadsDTO;
 import objects.storeproceduresdata.inbound.InboundOrderSummaryParams;
@@ -17,6 +19,7 @@ import steps.LoginPageSteps;
 import ui.pages.inbound.inboundorders.InboundOrderSummaryPage;
 
 import java.sql.ResultSet;
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -454,7 +457,12 @@ public class InboundOrderSummaryPageSteps {
     @Step
     @And("Clicks order status {string} on Inbound Order Summary page")
     public void clickInboundOrderStatus(String status) {
+        //log.info("Clicking Order Status " + status);
+      //  inboundOrderSummaryPage.clickOrderStatus(status);
         log.info("Clicking Order Status " + status);
+        List<String> statusList = Arrays.stream(status.split(","))
+                .map(String::trim)
+                .collect(Collectors.toList());
         inboundOrderSummaryPage.clickOrderStatus(status);
     }
 
@@ -619,6 +627,13 @@ public class InboundOrderSummaryPageSteps {
                 .getLoadNames().getLoadName4(), inboundOrderLoadsDTO.getLoadNames().getLoadName5(), inboundOrderLoadsDTO
                 .getLoadNames().getLoadName6());
         inboundOrderSummaryPage.typeLoad(loads.get(index));
+    }
+
+
+    @And("Clicks Cancel button on Load Image popup on Inbound Order Summary page")
+    public void clickCancelOnLoadImagePopup() {
+        log.info("Clicking Cancel button on Load Image popup");
+        inboundOrderSummaryPage.clickCancelOnLoadImagePopup();
     }
 
 }

@@ -12,6 +12,6 @@ public class ReceivingPage extends BasePage {
     By loadLabel = By.cssSelector("#routeSearchBar-label");
     By loadInput = By.cssSelector("#routeSearchBar");
 
-    
+
 
 }

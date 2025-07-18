@@ -1,39 +1,49 @@
 package ui.pages.outbound.loadplanning;
 
 import common.utils.Waiters;
+import common.utils.WebDriverUtils;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.Before;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.BasePage;
 
 import java.awt.*;
+import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.stream.Collectors;
 
 import common.setup.DriverManager;
 
 public class OutboundTruckInfoPage extends BasePage {
+    public OutboundTruckInfoPage() {
+        this.driver = DriverManager.getDriver();  // or whatever method returns your active WebDriver
+    }
 
     WebDriver driver;
     Scenario scenario;
-    
+
 
     static boolean exists=false;
     static String currentURL=null;
 
 
     By truckInfoTitle = By.cssSelector(".i-card__card__title-area__title");
-    By exitButton = By.xpath("//button[contains(text(), 'Exit')]");
-    By exitIcon = By.xpath("//button[contains(text(), 'Exit')]//*[contains(@class, 'icon')]");
-    By workButton = By.xpath("//button[contains(text(), 'Work')]");
-    By editButton = By.xpath("//button[contains(text(), 'Edit')]");
-    By reprocessButton = By.xpath("//button[contains(text(), 'Reprocess')]");
-    By recalculateButton = By.xpath("//button[contains(text(), 'Recalculate')]");
-    By keyButton = By.xpath("//button[contains(text(), 'Key')]");
+    By exitButton = By.xpath("//span[contains(text(), 'Exit')]/parent::button");
+    By exitIcon = By.xpath("//button[.//*[text()='Exit']]//*[contains(@class, 'icon')]");
+    By workButton = By.xpath("//span[contains(text(), 'Work')]/parent::button");
+    By editButton = By.xpath("//span[contains(text(), 'Edit')]");
+    By reprocessButton = By.xpath("//span[contains(text(), 'Reprocess')]");
+    By recalculateButton = By.xpath("//span[contains(text(), 'Recalculate')]/parent::button");
+    By keyButton = By.xpath("//span[contains(text(), 'Key')]/parent::button");
     By routeLabel = By.xpath("//span[text()='Route']");
     By routeValue = By.xpath("//span[text()='Route']//following-sibling::span[@class='i-summary-area__other__value']");
     By shipDateInput = By.id("dateInputA");
@@ -66,27 +76,27 @@ public class OutboundTruckInfoPage extends BasePage {
     By noButton = By.id("btnWarnNo");
     By windowTitle = By.className("k-window-title");
     By warningMessage = By.className("k-window-content");
-    By yesBtn = By.xpath("//button[contains(text(), 'Yes')]");
-    By noBtn = By.xpath("//button[contains(text(), 'No')]");
-    By okBtn = By.xpath("//button[contains(text(), 'Ok')]");
+    By yesBtn = By.xpath("//span[contains(text(), 'Yes')]/parent::button");
+    By noBtn = By.xpath("//span[contains(text(), 'No')]/parent::button");
+    By okBtn = By.xpath("//span[contains(text(), 'Ok')]");
     By assignments = By.cssSelector(".lp_FullPalletWithDragSourceWrap");
     By editFormControl = By.xpath("//label[contains(@id, 'formControl')]");
     By editFormControlInput = By.xpath("//input[contains(@id, 'formControl')]");
     By cancelBtn = By.id("btnDialogCancel");
     By saveBtn = By.id("btnDialogSave");
-    By saveButton = By.xpath("//button[contains(text(), 'Save')]");
+    By saveButton = By.xpath("//span[contains(text(), 'Save')]/parent::button");
     By notificationMsg = By.cssSelector(".toast-message");
     By palletHead = By.className("staticPalletPHead");
     By palletContentTop = By.className("staticPalletContentTop");
     By palletContentBottom = By.className("staticPalletContentBottom");
-    By palletKeyTitle = By.xpath("//h3[contains(text(), 'Pallet key')]");
+    By palletKeyTitle = By.xpath("//div[contains(@class, 'staticTopCrossBottom') and text()='Pallet key']");
     By waitingToBePicked = By.xpath("//div[text()=' Waiting to be picked']");
     By waitingToBeLoaded = By.xpath("//div[text()=' Waiting to be loaded']");
     By loaded = By.xpath("//div[text()=' Loaded']");
     By palletDoesNotFit = By.xpath("//div[text()=' Pallet does not fit']");
-    By freezerItems = By.xpath("//div[text()=' Freezer ']");
-    By coolerItems = By.xpath("//div[text()=' Cooler ']");
-    By dryGoods = By.xpath("//div[text()=' Dry ']");
+    By freezerItems = By.xpath("//div[text()=' Freezer Items']");
+    By coolerItems = By.xpath("//div//div[text()=' Cooler items']");
+    By dryGoods = By.xpath("//div//div[text()=' Dry Goods']");
     By toggleIcon = By.xpath("//span[@aria-label='Toggle Clock']");
     By setButton = By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), 'Set')]");
     By tableGrid = By.className("k-grid-container");
@@ -94,11 +104,11 @@ public class OutboundTruckInfoPage extends BasePage {
     By assignmentHeader = By.xpath("//div[contains(@class, 'lp_pallet_header')]//div[contains(@class, 'lp_pallet_no')]");
     By assignmentHeaderContainer = By.xpath("//div[contains(@class, 'lp_pallet_assignment_text')]//div[contains(@class, 'palletHeaderContainer')]");
     By assignmentFooter = By.xpath("//div[contains(@class, 'lp_pallet_header')]//div[contains(@class, 'lp_pallet_no')]");
-    By assignmentBorder = By.xpath("//div[contains(@class, 'assignmentWrapForHeight')]/div[@draggable='true' and contains(@style, 'border:')]");
+    By assignmentBorder = By.xpath("//div[contains(@class,'lp_pallet_top_filler') and contains(@style, 'rgb(67, 113, 196)')]");
     By quantity = By.id("wqTextTaskQty");
     By reasonDropdown = By.id("wqListTaskTopOff");
-    By increaseValueArrow = By.xpath("//span[@title='Increase value']");
-    By decreaseValueArrow = By.xpath("//span[@title='Decrease value']");
+    By increaseValueArrow = By.xpath("//button[@title='Increase value']");
+    By decreaseValueArrow = By.xpath("//button[@title='Decrease value']");
     By notification = By.className("i-notification-text");
     By loader = By.cssSelector(".loader");
 
@@ -118,6 +128,12 @@ public class OutboundTruckInfoPage extends BasePage {
         return findWebElement(By.xpath("//div[contains(@class, 'lp_pallet_body')][.//div[@class='lp_pallet_no']//div[text()='"
                 + positionNum + "']]//div[@class='lp_pallet_top_filler']"));
     }
+    public boolean isAssignmentBorderBlue() {
+        WebElement element = findWebElement(By.xpath("//div[contains(@class,'lp_pallet_top_filler') and contains(@style, 'rgb(67, 113, 196)')]"));
+        return element != null && element.isDisplayed();
+    }
+
+
 
     private WebElement getFreeAssignmentPlace(String positionNum) {
         Waiters.waitTillLoadingPage(driver);
@@ -139,6 +155,8 @@ public class OutboundTruckInfoPage extends BasePage {
                 .getText().trim().indexOf(":") + 2);
         return findWebElements(By.xpath("//div[contains(@id, 'TaskListModal_" + id + "')]//div[@class='lpDrRow']"));
     }
+
+
 
     private static List<String> assignmentsNumbersList = null;
 
@@ -170,6 +188,34 @@ public class OutboundTruckInfoPage extends BasePage {
         Waiters.waitTillLoadingPage(driver);
         //button[@id='btnWarnYes'][text()='Yes']
     }
+ /* public void selectRandomTrailer() {
+      waitUntilInvisible(3, loader);
+
+      // Step 1: Click the trailer dropdown
+      clickOnElement(getTrailerDropDown());
+
+      // Step 2: Wait for the trailer list options to be visible
+      By trailerOptionsLocator = By.xpath("//ul[contains(@id,'ddTrailer') and contains(@class,'k-list-container')]//li");
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+      wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(trailerOptionsLocator, 0));
+
+      // Step 3: Fetch the list after waiting
+      List<WebElement> trailers = driver.findElements(trailerOptionsLocator);
+      if (trailers == null || trailers.isEmpty()) {
+          throw new NoSuchElementException("No trailers available to select on the Truck Info page.");
+      }
+
+      // Step 4: Click a random trailer
+      int randomIndex = new Random().nextInt(trailers.size());
+      clickOnElement(trailers.get(randomIndex));
+
+      // Step 5: Final wait
+      waitUntilInvisible(3, loader);
+      Waiters.waitTillLoadingPage(driver);
+  }*/
+
+
+
 
     public void clickTrailerDropDown() {
         Waiters.waitForElementToBeDisplay(getTrailerDropDown());
@@ -256,6 +302,11 @@ public class OutboundTruckInfoPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getReprocessButton());
         clickOnElement(getReprocessButton());
     }
+    public void waitForOverlayToDisappear() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("k-overlay")));
+    }
+
 
     public void clickRecalculateButton() {
         Waiters.waitForElementToBeDisplay(getRecalculateButton());
@@ -428,10 +479,29 @@ public class OutboundTruckInfoPage extends BasePage {
         clickOnElement(getAssignments().get(index).findElement(By.xpath(".//div[contains(@class, 'lp_pallet_footer')]")));
     }
 
-    public void selectEditFirstAssignment() {
+   /*public void selectEditFirstAssignment() {
         Waiters.waitForAllElementsToBeDisplay(getAssignmentPopupRows(0).get(getAssignmentPopupRows(0).size()-1));
         clickOnElement(getAssignmentPopupRows(0).get(0).findElement(By.xpath(".//div[contains(@class, 'lp_overlayChildIcon')]")));
-    }
+    }*/
+   public void selectEditFirstAssignment(WebDriver driver) {
+       // Locate the visible assignment popup
+       WebElement popup = driver.findElement(By.xpath("//div[contains(@id, 'TaskListModal') and contains(@style, 'display: block')]"));
+
+       // Find the edit icon inside the popup
+       List<WebElement> editIcons = popup.findElements(By.cssSelector(".lp_overlayChildIcon"));
+
+       if (editIcons.isEmpty()) {
+           throw new RuntimeException("No edit icons found in assignment popup.");
+       }
+
+       WebElement editIcon = editIcons.get(0);
+       Waiters.waitForElementToBeDisplay(editIcon);
+       clickOnElement(editIcon);
+   }
+
+
+
+
 
     public void clickReasonDropdown() {
         Waiters.waitForElementToBeDisplay(getReasonDropdown());
@@ -562,7 +632,20 @@ public class OutboundTruckInfoPage extends BasePage {
 
     public boolean isCancelBtnDisplayed() { return isElementDisplay(getCancelBtn()); }
 
-    public boolean isPalletHeadDisplayed() { return isElementDisplay(getPalletHead()); }
+    /*public boolean isPalletHeadDisplayed() { return isElementDisplay(getPalletHead()); }*/
+    public boolean isPalletHeadDisplayed() {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            WebElement header = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//p[text()='Trailer position']") // correct locator
+            ));
+            return header.isDisplayed();
+        } catch (Exception e) {
+            System.out.println("Pallet Key header not displayed: " + e.getMessage());
+            return false;
+        }
+    }
+
 
     public boolean isPalletContentTopDisplayed() { return isElementDisplay(getPalletContentTop()); }
 
@@ -586,21 +669,145 @@ public class OutboundTruckInfoPage extends BasePage {
 
     public boolean isTableGridDisplayed() { return isElementDisplay(getTableGrid()); }
 
-    public int verifyAssignmentPopupRowsDisplayed(int number) { return elementsArePresent(getAssignmentPopupRows(number)); }
+   /* public int verifyAssignmentPopupRowsDisplayed(int number) { return elementsArePresent(getAssignmentPopupRows(number)); }*/
+  /* public int verifyAssignmentPopupRowsDisplayed(WebDriver driver, int number) {
+       try {
+           List<WebElement> assignments = getAssignments();
+           if (assignments == null || assignments.size() <= number) {
+               throw new RuntimeException("Assignment index " + number + " is invalid.");
+           }
+
+           WebElement assignment = assignments.get(number);
+           assignment.click(); // Open the popup
+
+           Thread.sleep(1000);
+
+           // Extract Assignment ID from visible popup, not from pallet header
+           WebElement popupTitle = driver.findElement(By.cssSelector("div.popover-title span"));
+           String headerText = popupTitle.getText().trim(); // e.g., "Assignment#: 63845"
+
+           String id;
+           if (headerText.contains(":")) {
+               id = headerText.split(":")[1].trim();
+           } else {
+               throw new RuntimeException("Expected assignment header, but got: " + headerText);
+           }
+
+           // Locate popup rows by matching TaskListModal ID
+           By popupRowLocator = By.xpath("//div[contains(@id, 'TaskListModal_') and contains(@id, '" + id + "')]//div[@class='lpDrRow']");
+           Waiters.waitForElementToBeDisplay(driver, popupRowLocator, 15);
+
+           List<WebElement> popupRows = driver.findElements(popupRowLocator);
+           return popupRows != null ? popupRows.size() : 0;
+
+       } catch (TimeoutException e) {
+           System.err.println("Popup rows not found or timed out: " + e.getMessage());
+           return 0;
+       } catch (Exception e) {
+           System.err.println("Error verifying assignment popup rows: " + e.getMessage());
+           return 0;
+       }
+   }*/
+
+    public int verifyAssignmentPopupRowsDisplayed(WebDriver driver) {
+        try {
+            // Locate all elements with class 'palletHeaderContainer'
+            List<WebElement> assignmentHeaders = driver.findElements(By.cssSelector(".palletHeaderContainer"));
+
+            for (WebElement header : assignmentHeaders) {
+                String headerText = header.getText().trim();
+
+                // Only proceed if it's an Assignment, not Pallet
+                if (!headerText.contains("Assignment#:")) {
+                    continue;
+                }
+
+                // Extract assignment ID
+                String id = headerText.split("Assignment#:")[1].trim();
+                if (id.isEmpty()) {
+                    System.err.println("Empty assignment ID for header: " + headerText);
+                    continue;
+                }
+
+                // Find the stopItem under this assignment card
+                WebElement assignmentCard = header.findElement(By.xpath("ancestor::div[contains(@class, 'lp_pallet_body')]"));
+                WebElement stopItem = assignmentCard.findElement(By.cssSelector(".stopItem"));
+
+                // Click to open popup
+                stopItem.click();
+
+                // Construct locator for popup rows
+                By popupRowLocator = By.xpath("//div[starts-with(@id, 'TaskListModal_') and contains(@id,'" + id + "')]//div[@class='lpDrRow']");
+
+                // Wait for popup
+                Waiters.waitForElementToBeDisplay(driver, popupRowLocator, 15);
+
+                // Get the popup rows
+                List<WebElement> popupRows = driver.findElements(popupRowLocator);
+                return popupRows != null ? popupRows.size() : 0;
+            }
+
+            System.err.println("No valid assignment headers found.");
+            return 0;
+
+        } catch (TimeoutException e) {
+            System.err.println("Popup rows not found or timed out: " + e.getMessage());
+            return 0;
+        } catch (Exception e) {
+            System.err.println("Error verifying assignment popup rows: " + e.getMessage());
+            return 0;
+        }
+    }
+
 
     public boolean isAssignmentHeaderDisplayed() { return isElementDisplay(getAssignmentHeader()); }
 
     public boolean isQuantityDisplayed() { return isElementDisplay(getQuantity()); }
 
-    public boolean isReasonDropdownDisplayed() { return isElementDisplay(getReasonDropdown()); }
+   /* public boolean isReasonDropdownDisplayed() { return isElementDisplay(getReasonDropdown()); }*/
+   public boolean isSplitTaskPopupDisplayed() {
+       try {
+           WebElement qtyInput = driver.findElement(By.xpath("//label[contains(text(),'Qty')]"));
+           return qtyInput.isDisplayed();
+       } catch (NoSuchElementException | NullPointerException e) {
+           return false;
+       }
+   }
+
+
+
 
     public boolean isIncreaseValueArrowDisplayed() { return isElementDisplay(getIncreaseValueArrow()); }
 
     public boolean isDecreaseValueArrowDisplayed() { return isElementDisplay(getDecreaseValueArrow()); }
 
-    public boolean isYesBtnActive() { return getElementAttribute(getYesBtn(), "class").contains("k-primary"); }
+   /* public boolean isYesBtnActive() { return getElementAttribute(getYesBtn(), "class").contains("k-primary");}*/
+   public boolean isYesBtnActive() {
+       try {
+           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-    public boolean isAssignmentBorderBlue() { return getElementAttribute(getAssignmentBorder(), "style").contains("blue"); }
+           // Wait until the button appears in the DOM
+           WebElement yesButton = wait.until(ExpectedConditions.presenceOfElementLocated(
+                   By.xpath("//button[.//span[text()='Yes']]")
+           ));
+
+           // Wait until it's both visible and enabled
+           wait.until(ExpectedConditions.and(
+                   ExpectedConditions.visibilityOf(yesButton),
+                   driver -> yesButton.isEnabled()
+           ));
+
+           return yesButton.isDisplayed() && yesButton.isEnabled();
+       } catch (Exception e) {
+           System.out.println("Yes button is not active or not found: " + e.getMessage());
+           return false;
+       }
+   }
+
+
+
+
+   // public boolean isAssignmentBorderBlue() { return getElementAttribute(getAssignmentBorder(), "style").contains("blue"); }
 
     public boolean isRouteWeightGreaterTrailerWeight() { return getElementAttribute(getRouteWeightValue(), "style").contains("red"); }
 
@@ -676,7 +883,16 @@ public class OutboundTruckInfoPage extends BasePage {
 
     public WebElement getLoadPlanningScroll() { return findWebElement(loadPlanningScroll); }
 
-    public WebElement getDialogContent() { return findWebElement(dialogContent); }
+   // public WebElement getDialogContent() { return findWebElement(dialogContent); }
+   public WebElement getDialogContent() {
+       try {
+           WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+           return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("dialogTextContent")));
+       } catch (TimeoutException e) {
+           System.out.println("dialogTextContent element not found within timeout.");
+           return null;
+       }
+   }
 
     public WebElement getYesButton() { return findWebElement(yesButton); }
 
@@ -732,7 +948,27 @@ public class OutboundTruckInfoPage extends BasePage {
 
     public WebElement getAssignmentHeader() { return findWebElement(assignmentPopupHeader); }
 
-    public WebElement getQuantity() { return findWebElement(quantity); }
+    /*public WebElement getQuantity() { return findWebElement(quantity); }*/
+    public WebElement getQuantity() {
+        try {
+            if (driver == null) {
+                System.out.println(" WebDriver is null in getQuantity()");
+                return null;
+            }
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("wqTextTaskQty")));
+        } catch (Exception e) {
+            System.out.println(" getQuantity() failed: " + e.getMessage());
+            return null;
+        }
+    }
+
+
+
+
+
+
+
 
     public WebElement getReasonDropdown() { return findWebElement(reasonDropdown); }
 
