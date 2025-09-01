@@ -18,25 +18,27 @@ import java.io.IOException;
 
 import static common.setup.DriverManager.*;
 
-@CucumberOptions(features = {"src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen1.feature",
-"src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen2.feature","src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen3.feature"},
-        glue = {"steps"},
-        plugin = {"pretty",
-                "json:target/cucumber.json",
-                "html:Reports/Index.html",
-                "json:target/cucumber-reports/cucumber.json",
-                "rerun:target/failedrerun.txt"
-        }, monochrome = true)
+@CucumberOptions(features = {
+        "src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen1.feature",
+        "src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen2.feature",
+        "src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen3.feature" }, glue = {
+                "steps" }, plugin = { "pretty",
+                        "json:target/cucumber.json",
+                        "html:Reports/Index.html",
+                        "json:target/cucumber-reports/cucumber.json",
+                        "rerun:target/failedrerun.txt",
+                        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+                }, monochrome = true)
 @Slf4j
 public class InboundOrdersScreenCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
-    @Parameters({"environment","browser"})
+    @Parameters({ "environment", "browser" })
     @BeforeMethod
     public void startBrowserInstance(@Optional String env, @Optional String browser) {
         ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
         environment = ConfigFactory.create(Environment.class);
-        log.info("Starting app url " + environment.getUrl() + " on browser " +  environment.getBrowser());
+        log.info("Starting app url " + environment.getUrl() + " on browser " + environment.getBrowser());
         buildWebDriver(environment.getBrowser());
         DriverManager.openPage(environment.getUrl());
         new Waiters();
@@ -51,16 +53,16 @@ public class InboundOrdersScreenCucumberRunner extends AbstractTestNGCucumberTes
                 driverThreadLocal.get().quit();
                 quitDriver();
             } catch (Exception e) {
-                if(getDriver() instanceof ChromeDriver) {
-                    //   Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
+                if (getDriver() instanceof ChromeDriver) {
+                    // Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
                 }
             }
         }
     }
+
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
-      //  MailSend_WMS.sendMail();
-
+        // MailSend_WMS.sendMail();
 
     }
 }

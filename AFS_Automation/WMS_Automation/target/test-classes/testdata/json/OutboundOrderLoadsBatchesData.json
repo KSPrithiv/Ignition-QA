@@ -1,0 +1,155 @@
+{
+  "start dates":
+  {
+    "start date 1": "06/11/2025",
+    "start date 2": "06/16/2025",
+    "start date 3": "01/01/2017",
+    "start date 4": "01/01/2022",
+    "start date 5": "01/01/2019",
+    "start date 6": "09/29/2023",
+    "start date 7": "10/20/2023"
+  },
+  "end dates":
+  {
+    "end date 1": "04/30/2024",
+    "end date 2": "04/30/2024",
+    "end date 3": "06/16/2025",
+    "end date 4": "01/25/2022",
+    "end date 5": "02/28/2022",
+    "end date 6": "01/01/2022",
+    "end date 7": "2021-01-01"
+  },
+  "outbound routes":
+  {
+    "outbound route 1": "AFS_5",
+    "outbound route 2": "2396",
+    "outbound route 3": "28R001",
+    "outbound route 4": "1115",
+    "outbound route 5": "1198",
+    "outbound route 6": "1203",
+    "outbound route 7": "1208",
+    "outbound route 8": "23R001",
+    "outbound route 9": "23R002",
+    "outbound route 10": "Ignition"
+  },
+  "outbound route codes":
+  {
+    "outbound route code 1": "Testing123",
+    "outbound route code 2": "",
+    "outbound route code 3": "",
+    "outbound route code 4": "",
+    "outbound route code 5": "",
+    "outbound route code 6": ""
+  },
+  "outbound reasons":
+  {
+    "outbound reason 1": "Short Order",
+    "outbound reason 2": "",
+    "outbound reason 3": "",
+    "outbound reason 4": "",
+    "outbound reason 5": "",
+    "outbound reason 6": ""
+  },
+  "outbound orders":
+  {
+    "outbound order 1": "CO00001241",
+    "outbound order 2": "S00001545",
+    "outbound order 3": "S00001545",
+    "outbound order 4": "S00001108",
+    "outbound order 5": "10616",
+    "outbound order 6": "S00001179",
+    "outbound order 7": "S00001141"
+  },
+  "load names":
+  {
+    "load name 1": "28R001",
+    "load name 2": "LOADAUTO1",
+    "load name 3": "1190",
+    "load name 4": "",
+    "load name 5": "",
+    "load name 6": ""
+  },
+  "outbound accounts":
+  {
+    "outbound account 1": "00",
+    "outbound account 2": "000101",
+    "outbound account 3": "test",
+    "outbound account 4": "->BY CLICKING ASSIGNFF",
+    "outbound account 5": "111",
+    "outbound account 6": "000101",
+    "outbound account 7": "ryt88"
+  },
+  "outbound order types":
+  {
+    "outbound order type 1": "Customer Order",
+    "outbound order type 2": "Outbound Transfer",
+    "outbound order type 3": "Outbound WillCall",
+    "outbound order type 4": "",
+    "outbound order type 5": "",
+    "outbound order type 6": ""
+  },
+  "outbound products":
+  {
+    "outbound product 1": "219032",
+    "outbound product 2": "200002",
+    "outbound product 3": "01122",
+    "outbound product 4": "100002",
+    "outbound product 5": "",
+    "outbound product 6": ""
+  },
+  "outbound carriers":
+  {
+    "outbound carrier 1": "APPLY ACTUAL FRT",
+    "outbound carrier 2": "ALLOWANCE",
+    "outbound carrier 3": "Backhaul",
+    "outbound carrier 4": "Bond Trucking",
+    "outbound carrier 5": "",
+    "outbound carrier 6": ""
+  },
+  "outbound trailers":
+  {
+    "outbound trailer 1": "(None)",
+    "outbound trailer 2": "",
+    "outbound trailer 3": "",
+    "outbound trailer 4": "",
+    "outbound trailer 5": "",
+    "outbound trailer 6": "",
+    "outbound trailer 7": "S02"
+  },
+  "outbound max stops":
+  {
+    "outbound max stop 1": "20",
+    "outbound max stop 2": "",
+    "outbound max stop 3": ""
+  },
+  "outbound temperatures":
+  {
+    "outbound temperature 1": "20",
+    "outbound temperature 2": "45.00",
+    "outbound temperature 3": ""
+  },
+  "outbound temperature types":
+  {
+    "outbound temperature type 1": "C",
+    "outbound temperature type 2": "F",
+    "outbound temperature type 3": ""
+  },
+  "outbound top off modal zones":
+  {
+    "outbound top off modal zone 1": "CHL",
+    "outbound top off modal zone 2": "",
+    "outbound top off modal zone 3": ""
+  },
+  "outbound batches":
+  {
+    "outbound batch 1": "(Select batch type)",
+    "outbound batch 2": "PD PICKS",
+    "outbound batch 3": ""
+  },
+  "outbound names":
+  {
+    "outbound name 1": "NorthSanSide",
+    "outbound name 2": "",
+    "outbound name 3": ""
+  }
+}

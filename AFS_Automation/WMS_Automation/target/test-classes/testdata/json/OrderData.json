@@ -1,0 +1,43 @@
+{
+  "ordersList": [
+    {
+      "orderNumber": "PO",
+      "altOrderNumber": "",
+      "warehouse": "",
+      "source": "",
+      "orderType": "",
+      "qty": ""
+    },
+    {
+      "orderNumber": "00",
+      "altOrderNumber": "",
+      "warehouse": "",
+      "source": "",
+      "orderType": "",
+      "qty": ""
+    }
+  ],
+  "linkedOrdersList": [
+    {
+      "linkedOrderNumber" : "PO00001503",
+      "linkedOrders" : [
+        {
+          "orderNumber": "PO00001503",
+          "altOrderNumber": "",
+          "warehouse": "Main Warehouse",
+          "source": "DARIK ENTERPRISES INC.",
+          "orderType": "Regular PO",
+          "qty": "10"
+        },
+        {
+          "orderNumber": "PO00001504",
+          "altOrderNumber": "",
+          "warehouse": "Main Warehouse",
+          "source": "DARIK ENTERPRISES INC.",
+          "orderType": "Regular PO",
+          "qty": "10"
+        }
+      ]
+    }
+  ]
+}
