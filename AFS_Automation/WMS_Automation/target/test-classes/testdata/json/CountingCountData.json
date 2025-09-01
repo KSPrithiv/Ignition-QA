@@ -1,0 +1,83 @@
+{
+  "sessions":
+  {
+    "session 1": "Informed session",
+    "session 2": "DEFAULT COUNT",
+    "session 3": "Blind session",
+    "session 4": "Default count session",
+    "session 5": "ZONE 1"
+  },
+  "warehouses":
+  {
+    "warehouse 1": "Production",
+    "warehouse 2": "Main Warehouse",
+    "warehouse 3": "Warehouse 02",
+    "warehouse 4": "Warehouse 99 - Drop Ship",
+    "warehouse 5": "Wawrehouse 101 - On Water"
+  },
+  "location codes":
+  {
+    "location code 1": "A01A1",
+    "location code 2": "A01A2",
+    "location code 3": "A01B1",
+    "location code 4": "A03A1",
+    "location code 5": "101.058.60",
+    "location code 6": "101.056.80"
+  },
+  "UPC":
+  {
+    "UPC 1": "0005480003409",
+    "UPC 2": "1636383001",
+    "UPC 3": "1007076546366",
+    "UPC 4": "1003650042060",
+    "UPC 5": "123456321",
+    "UPC 6": "7332537112"
+  },
+  "UOM":
+  {
+    "UOM 1": "BX",
+    "UOM 2": "CS",
+    "UOM 3": "BAG",
+    "UOM 4": "CASES"
+  },
+  "products":
+  {
+    "product 1": "2001009",
+    "product 2": "160056",
+    "product 3": "000014",
+    "product 4": "06684",
+    "product 5": "18290"
+  },
+  "users":
+  {
+    "user 1": "AFS - AFS User",
+    "user 2": "AFS2 - AFS2 User",
+    "user 3": "AFSRF - AFSRF User",
+    "user 4": "AFSSUPPORT - Afs Support",
+    "user 5": "AFSWS - AFSWS User"
+  },
+  "owners":
+  {
+    "owner 1": "ABC Company",
+    "owner 2": "01",
+    "owner 3": "02",
+    "owner 4": "03",
+    "owner 5": "ABC Company"
+  },
+  "suppliers":
+  {
+    "supplier 1": "4368",
+    "supplier 2": "15000",
+    "supplier 3": "8877",
+    "supplier 4": "W01",
+    "supplier 5": "14244"
+  },
+  "product statuses":
+  {
+    "inventory status 1": "Stock",
+    "inventory status 2": "Ripening",
+    "inventory status 3": "Close to Expiring",
+    "inventory status 4": "QC Hold",
+    "inventory status 5": "Expired \\ Spoiled"
+  }
+}
